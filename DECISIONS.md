@@ -102,3 +102,7 @@ The founder's latest deadline is2:00pm PT, with Main handoff6:15am PT. Earlier d
 ## October 17 morning — image delivery and legacy routes only
 
 Ship offline-generated, content-addressed 480px/1200px WebPs for all 24 Mara and 12 A/B images, plus the reference/location still. Static files use one-year immutable caching; original PNG URLs/artifacts stay intact and load only on explicit loupe intent. The latest six-shot grid shrinks from13,720,257bytes to97,530bytes. Keep private uploads untouched. Redirect legacy Studio/Learning routes into the current workspace and preserve saved productions at /projects. Combined79tests, typecheck, build and CI pass; public asset bytes/headers/redirects verified. Under-two-second Incognito rendering is not yet certified because native Chrome automation timed out. No paid calls or labels.
+
+## October 17 morning — productions dashboard
+
+Add the founder-requested /dashboard overview from existing owner-scoped APIs. Count saved original-take attribute checks, distinct monitor-flagged shots and non-seed rules; keep historical calibration/recheck events and the separate A/B corpus out of take totals. The Mara curve and ring-rule marker derive from actual batch/rule data. Activity uses deduplicated recorded events and real links. Preserve compressed WebP delivery, original-on-intent inspection and existing workspace layouts; in-app branding and Open studio now enter the dashboard.
