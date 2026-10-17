@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import type { Shot } from "@/lib/types";
+import { originalImageSource } from "../image-source";
 import { ShotImage } from "../shot-image";
 import { Brackets, Scan } from "./motion";
 import {
@@ -39,7 +40,8 @@ export function InspectImage({
 }) {
   const stage = useRef<HTMLDivElement>(null),
     loupe = useRef<HTMLDivElement>(null);
-  const [loupeOn, setLoupeOn] = useState(true);
+  const [loupeShot, setLoupeShot] = useState<string | null>(null);
+  const loupeOn = loupeShot === shot.id;
   const check = failedCheck(shot),
     region = regionFor(check);
   function position(x: number, y: number, follow: boolean) {
@@ -84,7 +86,7 @@ export function InspectImage({
       img?.removeEventListener("load", rest);
       observer.disconnect();
     };
-  }, [shot.id, region?.x, region?.y, region?.width, region?.height]);
+  }, [shot.id, loupeOn, region?.x, region?.y, region?.width, region?.height]);
   return (
     <div
       ref={stage}
@@ -149,12 +151,14 @@ export function InspectImage({
           ref={loupe}
           className="v2-loupe"
           aria-hidden="true"
-          style={{ backgroundImage: `url(${JSON.stringify(shot.imageUrl)})` }}
+          style={{
+            backgroundImage: `url(${JSON.stringify(originalImageSource(shot.imageUrl))})`,
+          }}
         />
       )}
       <button
         className="v2-loupe-label v2-glass v2-mono"
-        onClick={() => setLoupeOn(!loupeOn)}
+        onClick={() => setLoupeShot(loupeOn ? null : shot.id)}
         aria-pressed={loupeOn}
       >
         Loupe 4× {loupeOn ? "on" : "off"}

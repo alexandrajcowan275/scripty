@@ -23,7 +23,7 @@ export function QuestionDeck({
           className={`v2-eval-card behind behind-${index}`}
           aria-hidden="true"
         >
-          <ShotImage src={item.imageUrl} alt="" />
+          <ShotImage src={item.imageUrl} alt="" variant="thumbnail" />
         </div>
       ))}
       <div
