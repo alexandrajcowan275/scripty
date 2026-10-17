@@ -1,4 +1,4 @@
-import { LandingScreen } from "@/components/ui-v2/landing";
+import { LandingClaude } from "@/components/landing-claude/landing";
 export default function Home() {
-  return <LandingScreen />;
+  return <LandingClaude />;
 }

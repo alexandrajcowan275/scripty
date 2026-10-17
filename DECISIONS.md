@@ -141,3 +141,8 @@ Restore the prior verified e83f899 production while correcting a rapid query-onl
 ## October 17 — real product landing story
 
 Integrate Design28955b2: a read-only Mara Studio preview expands into view, followed by a short word reveal and three Check/Correct/Carry product views. All checks, images and rule reach come from existing production data. Keep four credited cinematic photographs as atmosphere, with credits only in the footer. Scroll-linked keyframes change transform/opacity only; reduced-motion and unsupported browsers receive readable static layouts. No generation, human-label writes or evidence changes. The combined92-test suite, production build and typecheck passed before pushing.
+
+
+## October17 — founder-approved Claude cinematic landing
+
+Replace only the public landing entry with the founder’s final `components/landing-claude/` implementation and its bundled landing images. Preserve the working application routes and previous LandingScreen fallback. The opening title sequence is session-scoped, dismisses on interaction, and has reduced-motion styling; final public checks must use fresh private sessions at1440px and390px. All92 tests, production build and typecheck passed before committing. Unrelated README, design exports and gitignore changes remain outside this release.
