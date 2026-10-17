@@ -1,59 +1,61 @@
-**Public Scripty demo: https://canon-woad.vercel.app/**
+**Public Scripty app: https://canon-woad.vercel.app/**
 
 ```sh
 cd ~/canon && npm run dev
 ```
 
-Open **http://localhost:3000**. This exact one-command startup was verified on this Mac with `DEMO_MODE=cached`; the server is currently running. Node24/npm and dependencies are installed. Repo/folder/Vercel project remain `canon`.
+Open **http://localhost:3000**. Node24/npm, dependencies and local credentials are installed on this Mac. Repo/folder/Vercel project remain `canon`; GitHub stays private.
 
 # Scripty — morning handoff
 
-## Status
+Updated during the founder-authorized overnight work. Target: ready before **7am PT, October17**. Human submission deadline supplied by founder: **1:15pm PT**. No external submission has been made.
 
-All build phases, integration, two independent review rounds, real experiments, cache capture, draft evaluation and pitch/design assets are complete. **Final production is deployed and verified.** All4 batches/24 image hashes, review/accept persistence, session isolation and exhaustion pass on the public URL with no login, cookies from a prior account, auth headers or bypass credentials. Public desktop1440px/mobile390px have zero broken images or captured browser errors/warnings. Production stays cached, with no public AI spending.
+## Release status
 
-Release: `dpl_FKtFzCjnse9DzsxysVev43MnN4sj`, application source `c33da80`; immutable deployment https://canon-fzsksxhlw-archer-rag-dev.vercel.app (may be protected; use the public URL at the top). Final release evidence: `experiments/production-release.json`, `production-replay-final.json`, `no-egress-replay-final.json`. No-egress replay passed all4 genuine batches with **zero attempted outbound requests**. Public headers cannot enable live generation; reservations stayed$20.58 after rehearsal. Nothing remains in progress for the application release.
+The previously verified public release remains working. The replacement production-first application is being developed on `codex/figma-implementation`; it is **not yet the public release**. The designer is rebuilding a calm linear flow: Batch → one-shot Review → Learned, Memory drawer, separate Progress. Main is holding layout work until that exact spec arrives, then will verify screenshots, build and the public URL before releasing.
 
-## What works
+Verified checkpoint commit: `7af5e42` (Figma v2 implementation), pushed to the private repo. The subsequent production backend increment is tested locally. Final release commit/deployment/screenshot links will replace this paragraph when deployed.
 
-- Mara reference/character sheet, cinematic six-shot filmstrip, expected/observed checks and uncertainty, full-frame original image view, accept/reject with keyboard shortcuts, Scripty Memory, operational chart, prompt context and trace drawer.
-- Real OpenAI reference-conditioned generation →Supabase storage/checks →correction →one persisted/deduplicated rule →different scenes with that rule in prompts and monitor checks. Accepted portrait used as an extra reference in all6 deployed final-batch generations.
-- Four genuine cached batches/24 images. Local exact-hash replay, review/accept refresh persistence, session isolation and finite replay exhaustion pass without paid calls. All24 images bundled into all5 API routes.
-- Independent responsive/keyboard QA at1440px and390px;40 tests and final production build pass. Failures retain the workspace and actionable errors.
+## What works in the new backend
 
-## Real measurements
+- New production creation with the creator's name, character, private reference upload, canon details and six scene prompts saved to real Supabase.
+- Fresh production reads, exact uploaded-image bytes, owned production listing and same-browser persistence.
+- Different browser denied both production and private reference access.
+- Mara opens with all four original takes/24 real images immediately, without AI or database calls.
+- Sample review state remains separate from original history and from new productions.
+- Existing generation/review/Memory/trace engine is production-aware; public paid requests default off overnight. Limit responses preserve the production and offer Mara.
+-50 tests and production build pass; Supabase security advisors report no issues. Ten real-data checks are in `experiments/production-workspaces-local.json`.
 
-| Batch | Flagged | Uncertain checks |
+Reference generation and new-production paid generation are implemented but intentionally not paid-tested. The founder's no-spending/no-deletion instruction is enforced and recorded in `../BLOCKED.md`.
+
+## Real evidence
+
+| Original take | Flagged shots | Uncertain checks |
 | --- | --- | --- |
-| 1, finalv3 recheck | 2/6 | 4/36 |
-| 2, different scenes | 0/6 | 6/42 |
-| 3, local browser/new scenes | 0/6 | 8/42 |
-| 4, deployed/new scenes/positive reference | 1/6 | 6/42 |
+| 1, final checker v3 recheck | 2/6 | 4/36 |
+| 2 | 0/6 | 6/42 |
+| 3 | 0/6 | 8/42 |
+| 4, latest | 1/6 | 6/42 |
 
-The final rate worsened. Baseline images used an older model/style; checker v1/v2 originally flagged6/6 before disclosed calibration. Learned rules also add checks. These are **confounded operational rates, not human-verified improvement**. The final profile-side flag may itself be a monitor anatomy error. Three tuning attempts were time-boxed; no more tuning or paid generation is in progress.
+One ring rule reached all18 later generation prompts and18 corresponding monitor outputs. An accepted portrait was a positive reference for all six final-take shots. Original checker v1/v2 each flagged6/6 before disclosed calibration. Generator/settings/scenes/reference changes confound comparison, learned rules alter monitoring, and the final rate rose. Human-verified accuracy and causal image improvement remain unavailable. Draft labels are not authoritative. See `results.md`.
 
-All18 later prompts and18 monitor outputs include the learned ring rule. Pessimistic reservations total **$20.58** against the$24 ledger cap, not a provider billing receipt. Human-verified precision/recall/F1 remain unavailable. Ten-shot worksheet:35 draft booleans,5 uncertain cells; exploratory draft-only eval is not reportable accuracy. Full evidence/limitations: `results.md`, `experiments/final-summary.json`, `label-review.md`.
+API reservations remain **$20.58 of$24**, unchanged after production-upload verification; remaining$3.42. These reservations are pessimistic bounds, not a billing receipt. No more paid work is authorized tonight.
 
-## Two-minute rehearsal
+## Remaining overnight work
 
-1. Open the public URL in a fresh browser session, or local3000. Keep **Cached playback** visible. Click **Load recorded batch**.
-2. Select baseline **Frame04, map under streetlamp**. Click **Expand frame** to make the ring visible; Escape closes. Its ring is the clearer candidate wrong-hand example; human confirmation remains required.
-3. Reject with “Mara always wears a silver ring on her RIGHT hand.” Show the gold **This browser’s correction** label. Refresh: review/local memory survive. These replay edits do not change recorded images or live Supabase memory.
-4. Load batch2. Show its different scene and **Generation context** containing the recorded ring rule, its corresponding **Memory rule** check, and a recorded **Rule applied** trace. Recorded memory is labeled separately. This demonstrates the captured real engine run; do not claim the viewer’s local correction caused a historical image.
-5. Load batches3/4 to show all real rates, including final1/6. Inspect the accepted cafe portrait and final positive-reference trace if useful. No new image calls occur in playback.
+1. Receive the final linear-flow Figma spec and implement exact grid, spacing, type, motion and every state, with no extra labels/features.
+2. Compare final desktop/mobile screenshots with the Figma frames; verify upload/create, sample review/Memory/Progress, shortcuts, refresh, errors and sample alternatives.
+3. Finish repo terminology/design docs and final brand handout; keep business model short.
+4. Commit/push verified increments, deploy Vercel, and verify the public URL end to end. Add actual release artifacts here.
 
-After four batches, the next click returns an actionable exhaustion message. Restart with a fresh browser profile/private session or clear this site’s data. The local server may already be running; if a second terminal reports port3000 busy, use the existing http://localhost:3000 or stop its server before restarting. To stop your terminal’s server, pressCtrl-C.
+## Morning human actions
 
-## Your next steps, in order
+Record and share a two-minute video using `../docs/video-script.md`; verify it opens without login. Review the draft labels before claiming accuracy. Confirm private-repo judge-access and Devpost timing requirements, then submit. No account, pricing, savings or causal improvement claim is validated.
 
-1. **Record the2:00 video** using `../docs/video-script.md`, screen only, mode badge visible. Rehearse once; use real cached evidence and the script-supervisor story. Show the public URL and ensure the video link opens without login.
-2. **Verify draft labels** in `label-review.md` / `../seed/labels.json` against the exact images. Keep uncertain cells uncertain. Only a human should supply verifiedBy/verifiedAt after actual review, then run `npm run eval`. Keep accuracy/improvement unclaimed until that is done.
-3. **Submit to Devpost by Saturday October17,1:15pm PT.** Target assets ready10:45am. Use `../docs/devpost.md`, public app URL, video, private GitHub repo as permitted by the event, and `../docs/brand-guide.pdf` for Design. No external submission has been made.
+## Overnight operating rules
 
-## Operations and files
+Main alone edits app code. Design owns Figma/spec; judge panel and report-only QA run every90minutes, quiet when unchanged. Pitch writer delivered `pitch-final.md` and stopped. Routine editing, commits/pushes, deployments, Supabase changes, Figma uploads, browser use and inter-chat coordination are explicitly approved. Skip purchases, paid calls and deletion; log in `../BLOCKED.md`.
 
-Secrets remain in ignored `.env.local` and Vercel env vars; never include them in video/screenshots or commits. Production is cached; preview live APIs require server-only admin credentials. Private live operator instructions are in README; paid generation is finished and not needed for rehearsal.
+Check usage at meaningful checkpoints. At10% or less remaining in a reported window tonight, use the one available free full reset expiring October29 first (`RateLimitResetCredit_4a4a7f9881f881918f27541d1a601a4a`). No purchases. Last check: weekly80% remaining; 5-hour window unreported; two free resets available; none consumed.
 
-`integration.md` covers fixes; `review.md` is independent round2; `results.md` preserves real numbers/attempts; `../DECISIONS.md` records intentional design choices. Separate demo-safety/judge reports are dated checkpoint reviews and can predate the final release; final evidence here takes precedence for release status.
-
-Automatic approval review rejected the proposed recurring spend/push/deploy automation, so it was not created. All release work is performed in this active session. Caffeinate remains running to keep the Mac awake.
+Secrets remain in ignored `.env.local` and server-only Vercel variables. Never include them in video, screenshots, commits or URLs. Caffeinate is running. Production access is currently tied to its creating browser; clearing the owner cookie loses that access. No cross-device recovery is claimed.

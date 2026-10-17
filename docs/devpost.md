@@ -1,74 +1,54 @@
 # Scripty
 
-**Your AI script supervisor.** Continuity memory and monitoring for AI-generated stories.
-
-> Evidence snapshot: October 17, 2026. Measurements are operational monitor results, not human-verified continuity or accuracy. The current public app is [Scripty](https://canon-woad.vercel.app); four genuine batches and24 images are bundled for recorded playback.
+**Your AI script supervisor. Every correction carries forward.**
 
 ## Inspiration
 
-On a film set, the script supervisor keeps track of continuity across shots: the costume, the prop, the detail an editor will need later. The role involves detailed written and photographic records so separately filmed takes can fit together. [ScreenSkills role profile](https://www.screenskills.com/job-profiles/browse/film-and-tv-drama/technical/script-supervisor-film-and-tv-drama/).
-
-Crews call that person the “scripty.” We are building the AI scripty. An image API can return success while the story breaks: the ring moves to the wrong hand, or a scar switches sides. A creator catches it, corrects it, and too often has to repeat the instruction. Scripty makes that correction part of the project's working memory.
+On a film set, the script supervisor tracks the costume, prop and continuity detail an editor will need later. Crews call that person the “scripty.” AI filmmakers need that memory too: a generator can return success while a ring changes hands or a scar changes sides. [ScreenSkills role profile](https://www.screenskills.com/job-profiles/browse/film-and-tv-drama/technical/script-supervisor-film-and-tv-drama/).
 
 ## What it does
 
-Scripty puts a character reference, a character sheet, and creator-approved constraints around an image generator. It checks each shot attribute by attribute, shows expected versus observed values with confidence, and flags confident failures. A rejected shot becomes one short, testable rule. Repeated corrections merge with existing memory. Later generations receive the rule, and later monitoring checks it.
+Start a production with a character reference, canon details and six scenes. Review each shot against those requirements. A correction becomes one short continuity rule, persisted and deduplicated in Scripty Memory. Future generation prompts receive it; future monitoring checks it. Accepted shots can become positive references.
 
-The demo follows Mara: red wool scarf, scar above the left eye, short black hair, silver ring on the right hand. Six shots appear as a filmstrip beside Scripty Memory and a shot inspector. The essential demonstration is a correction on one shot, a persistent rule after refresh, and that rule in generation and monitoring context for different new scenes. Traces let the creator inspect each step. Accepted shots can also provide positive visual references.
+Mara is a pre-filled sample production with four original takes and24 real images. Its complete learning history opens without waiting for AI calls. Sample edits stay in the viewer's browser; original prompts and traces preserve the real engine history. New productions have separate Supabase state and private reference storage.
 
 ## How we built it
 
-Next.js App Router and TypeScript serve the interface and route handlers. Shared CSS tokens create a dark film-suite workspace. Supabase Postgres stores projects, attributes, rules, batches, shots, checks, and traces; Storage holds images. The generator accepts a reference image. A separate vision monitor returns structured checks validated with Zod. Rejection-to-rule extraction, deduplication, generation, and monitoring are separate, inspectable steps.
+Next.js App Router, React and TypeScript serve the application and API routes. Supabase Postgres stores production canon, shots, rules, checks and traces. Uploaded references live in private Storage with ownership checks. Signed HttpOnly browser sessions keep productions isolated. Reference-conditioned generation and a separate structured vision monitor sit behind server-side rate and atomic cost limits. Zod validates inputs and model output.
 
-Learning is persistent project memory and prompt adaptation; model weights stay fixed. A real-image cache provides a backup without new AI requests. Recorded images, prompts, checks, and rule traces retain their original provenance. Corrections made in cached playback are browser-local review state; they do not change historical generations or prove a new engine run. Persistent API reservations protect the hackathon's spending limit.
+Learning is persistent project memory and prompt adaptation; foundation-model weights stay fixed. Every paid attempt is reserved before its provider request. Generation failures preserve the production and offer the sample. During the founder's overnight no-spending window, public paid generation is explicitly disabled.
 
-## Challenges
+## Evidence and limits
 
-The monitor can be wrong too. In the initial real batch it flagged all six shots, including apparent anatomical-side mistakes by the checker. That is a calibration problem, not evidence that all six images truly failed. We retain the original checks and disclose monitor changes. Occluded details should be uncertain; confidence is model-reported, not a calibrated probability.
+One ring correction persisted after refresh, merged on repeat, and reached all18 later new-scene generation prompts and monitor outputs. An accepted portrait was an extra reference for the final six shots.
 
-A falling chart alone cannot prove learning: rules change the monitor as well as the prompt. We need different new scenes, fixed character criteria, disclosed sample sizes, and human-reviewed labels to assess the output. Serverless persistence creates another constraint: real project state must survive a new request, while cached review state must be visibly distinguished from live memory.
+| Original take | Flagged shots | Uncertain checks |
+| --- | --- | --- |
+| 1, final checker v3 recheck | 2/6 | 4/36 |
+| 2 | 0/6 | 6/42 |
+| 3 | 0/6 | 8/42 |
+| 4, latest | 1/6 | 6/42 |
 
-## Accomplishments
+These are operational monitor results, **not human-verified accuracy or causal image improvement**. Model, quality, style and scenes changed after take1; later rules changed the monitor and take4 added a positive reference. The final rate worsened and remains visible. Original checker v1/v2 each flagged6/6 before disclosed calibration. The final scar-side flag may itself be a checker error. Human review is pending. Full evidence: `handoff/results.md`.
 
-- A real raster reference and four complete six-shot batches:24 real images on different scene sets.
-- A wrong-hand ring correction converted to one rule; repeating the correction merged into the same rule ID, and refresh confirmed persistence.
-- The learned ring rule appears in all18 later new-scene generation prompts and all18 corresponding monitor outputs. An accepted portrait was an extra reference in all6 deployed batch4 generations.
-- Frozen calibrated checker v3 reports **2/6 flagged** in the baseline recheck and **0/6 flagged** in batch 2, with **6/42 uncertain checks** in batch 2. Original v1/v2 baseline checks remain retained at 6/6 flagged.
-- Batch3 returned0/6 flags with8/42 uncertain checks; batch4 returned1/6 flags with6/42 uncertain checks. The final operational rate worsened; no further tuning or selective exclusion was performed.
-- Public app: [Scripty](https://canon-woad.vercel.app), verified publicly without login, with all4 recorded batches,24 matching image hashes, local review persistence, and a no-egress backup rehearsal. Release evidence is in `handoff/MORNING.md`.
+## Continual Learning
 
-## What we learned
+A creator decision becomes inspectable, reusable production memory. Its exact text reaches later prompts and its rule ID reaches later checks across different scenes. The application learns project constraints through usage; it does not retrain model weights. Establishing better images requires a separate fixed-criteria, human-reviewed comparison.
 
-Continuity is a memory problem and a measurement problem. A useful production note is short, testable, and linked to the creator decision that produced it. A useful monitor admits when it cannot see the detail. The proof we can show first is that a correction persists and reaches a different scene; improvement in the resulting images needs its own evidence.
+## Design
 
-## What's next
+A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The design is being finalized in Figma; `handoff/MORNING.md` identifies the actual deployed version. Every intentional decision and verification finding is kept in `DECISIONS.md`. No reference-site logos, media or layouts are copied into Scripty.
 
-Human-verified labels and larger comparisons, temporal checks across video frames, and creator-controlled positive references. A future integration with real-time world models such as Reactor is exploratory. Video generation, multi-character projects, collaboration, billing, and additional provider integrations are outside this MVP.
+## Agent Monitoring — Lemma
 
-## Continual Learning track
+A successful API call can conceal a failed creative requirement. Scripty exposes expected versus observed details, uncertainty, flags and the rule behind a check. Original traces connect generation, monitoring, creator review and later rule application. The creator can challenge the monitor: anatomical-side false positives made this need concrete during development.
 
-One correction becomes reusable project memory. The rule is deduplicated, persisted, injected into a different scene's generation prompt, and checked during monitoring. This is an application-level learning loop with fixed model weights.
+## Scale
 
-The chart reports operational `flagged shots / total shots` per batch. With frozen calibrated checker v3, the baseline recheck is **2/6 flagged (33.3%)** and batch 2 is **0/6 flagged**, with **6 of 42 checks uncertain** and zero unavailable checks in batch 2. The original baseline checks with v1 and v2 each flagged 6/6; those diagnostics are preserved separately.
+Our first buyer hypothesis is a small AI production team making recurring characters. Proposed pricing combines review seats and checked generations. A pilot would measure review minutes and total generation cost per approved shot. Customers, pricing and savings remain unvalidated.
 
-Batch 2 changes both the scene set and the image generation settings: baseline images used version 1.5 at medium quality; later images use version 2.5 Sunburst at high quality with cinematic lens/grade instructions. This confounds a memory-only comparison. Batch3 uses six different new scenes with the later settings and same frozen checker:0/6 flags,8/42 uncertain. Batch4 adds the accepted portrait as an extra reference:1/6 flags,6/42 uncertain. That final increase remains visible, and its profile-side scar flag still needs human review. Fixed character criteria are retained throughout. These runs establish memory application to new scenes; they do not establish that memory caused better images. Human-verified continuity, precision, recall, and improvement remain unmeasured. Agent-drafted labels are provisional.
+## What we learned and what's next
 
-## Design track
+Continuity is a memory problem and a measurement problem. A useful correction is short, testable and traceable to its source; a useful monitor admits when the detail cannot be seen. Next: human-reviewed evaluation, creator pilots, temporal video checks and broader generator integrations. Accounts, collaboration and billing remain outside this release.
 
-The layout follows production work: reference and Scripty Memory at left, a central filmstrip, a right inspection surface, and a measurement/trace layer below. Red signals drift, gold signals retained memory, and green signals a passed check. Text and icons carry those meanings alongside color. Monospace numbers make confidence and traces easier to scan. Brief motion shows a rule arriving in memory. Keyboard review and a narrow-screen stack support practical use.
-
-See `docs/brand-guide.md` and the rendered one-page `docs/brand-guide.pdf` for the identity and palette. Every intentional interface decision is recorded in `DECISIONS.md`.
-
-## Agent Monitoring track — Lemma
-
-A successful API response can hide a failed creative requirement. Scripty checks for attribute, identity, style, and prompt-adherence drift while recording API errors separately. Traces connect generation, check, flag, creator correction, and later rule application. The system exposes the monitor's judgment and uncertainty so the creator can challenge it. The real baseline's false anatomical-side flags make this need concrete.
-
-## Scale to $1B track
-
-The initial buyer hypothesis is a small AI production team making recurring characters for ads, episodic stories, or micro-dramas. Repeated output gives continuity memory a reason to accumulate. A proposed commercial model combines creative-review seats with usage per checked generation; an API could serve larger production platforms later. There are no claimed customers, validated prices, measured savings, or revenue.
-
-The first asset is each project's creator-approved continuity memory and review history. Retention and lower rework are hypotheses to test with creator interviews and paid pilots. The proposed pilot compares review minutes and generation cost per approved shot under a fixed review standard, including uncertain checks and failed attempts in the accounting. Cross-customer failure-pattern analysis would require explicit permission and privacy controls. The model adapter creates a route toward keeping production memory when a team changes generators; broad provider coverage remains future work.
-
-## Competitive context
-
-Reference-driven generators, creative review tools, persistent agent memory, and agent observability already solve adjacent problems. Scripty's proposed focus is the complete creator workflow from a visible continuity mistake to a persistent, testable production constraint. This is a positioning hypothesis, not a uniqueness claim. See `docs/competitors.md` for dated comparisons and primary sources.
+Public app: [Scripty](https://canon-woad.vercel.app/). The repository remains private at the founder's request. Confirm the final video and judge-access requirements before submitting; no external submission has been made.

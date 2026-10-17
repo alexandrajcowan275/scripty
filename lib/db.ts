@@ -1,3 +1,4 @@
+import { orderShotsForReview } from "./shot-order";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Batch, Project, Rule, Shot, TraceEvent } from "./types";
@@ -60,7 +61,8 @@ export async function getProject(projectId: string): Promise<ProjectData | null>
     listTraces(projectId),
   ]);
   fail(batchesResult.error, "list batches"); fail(shotsResult.error, "list shots");
-  return { project, rules, batches: z.array(batchSchema).parse(batchesResult.data), shots: (shotsResult.data ?? []).map(parseShot), traces };
+  const batches = z.array(batchSchema).parse(batchesResult.data);
+  return { project, rules, batches, shots: orderShotsForReview((shotsResult.data ?? []).map(parseShot), batches, traces), traces };
 }
 export async function getShot(shotId: string): Promise<Shot | null> {
   const { data, error } = await db().from("shots").select(shotSelect).eq("id", id.parse(shotId)).maybeSingle();
@@ -144,3 +146,6 @@ export async function getApiBudget(): Promise<{ reservedUsd: number; limitUsd: 2
   const reservedUsd = z.coerce.number().min(0).max(24).parse(data?.reserved_usd);
   return { reservedUsd, limitUsd: 24, remainingUsd: Math.max(0, 24 - reservedUsd) };
 }
+
+/** Server-only entry point for production ownership and private reference storage. */
+export function serverDatabase(): SupabaseClient { return db(); }

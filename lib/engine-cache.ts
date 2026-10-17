@@ -37,12 +37,13 @@ export async function loadCache() {
   try { return manifestSchema.parse(JSON.parse(await readFile(path.join(process.cwd(), "seed/cache/manifest.json"), "utf8"))); }
   catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") return null; throw new Error("Recorded cache is invalid; regenerate it before serving the demo."); }
 }
-export async function cachedProject(request: Request, projectId: string): Promise<{ data: ProjectData; state: DemoState; cache: Awaited<ReturnType<typeof loadCache>>; recordedRuleIds: string[] } | null> {
+export async function cachedProject(request: Request, projectId: string, fullHistory = false): Promise<{ data: ProjectData; state: DemoState; cache: Awaited<ReturnType<typeof loadCache>>; recordedRuleIds: string[] } | null> {
   const project = projectSchema.parse(seed.project);
   if (project.id !== projectId) return null;
   const cache = await loadCache();
   if (cache && cache.projectId !== projectId) throw new Error("Cache belongs to another project");
   const state = readDemoState(request, projectId);
+  if (fullHistory && cache) state.count = cache.batches.length;
   const entries = cache?.batches.slice(0, state.count) ?? [];
   const rules = new Map<string, Rule>(seed.rules.map((rule) => [rule.id, rule as Rule]));
   // Captured review snapshots can contain rules learned AFTER this batch. Show only
@@ -55,9 +56,9 @@ export async function cachedProject(request: Request, projectId: string): Promis
     const review = state.reviews.find((item) => item.id === shot.id);
     return review ? { ...shot, status: review.decision === "accept" ? "accepted" as const : "rejected" as const, rejectReason: review.decision === "reject" ? review.reason : undefined } : { ...shot, status: "pending" as const, rejectReason: undefined };
   });
-  const localTraces: TraceEvent[] = state.rules.map((rule) => ({ id: `local-${rule.id}`, projectId, type: "rule_learned", message: `Cached session correction (local extraction, no AI call): ${rule.text}`, createdAt: rule.createdAt }));
+  const localTraces: TraceEvent[] = state.rules.map((rule) => ({ id: `local-${rule.id}`, projectId, type: "rule_learned", message: `Sample production correction (local extraction, no AI call): ${rule.text}`, createdAt: rule.createdAt }));
   const recordedRuleIds = [...new Set(entries.flatMap((entry) => entry.batch.rulesApplied))].filter((id) => rules.has(id) && !state.rules.some((rule) => rule.id === id));
-  return { recordedRuleIds, data: { project, rules: [...rules.values()], batches: entries.map((entry) => entry.batch), shots, traces: [...new Map(entries.flatMap((entry) => entry.traces).map((trace) => [trace.id, { ...trace, message: `[Recorded engine] ${trace.message}` }])).values(), ...localTraces] }, state, cache };
+  return { recordedRuleIds, data: { project, rules: [...rules.values()], batches: entries.map((entry) => entry.batch), shots, traces: [...new Map(entries.flatMap((entry) => entry.traces).map((trace) => [trace.id, { ...trace, message: `[Original production] ${trace.message}` }])).values(), ...localTraces] }, state, cache };
 }
-export const cacheMetadata = { mode: "cached", cacheAvailable: true, provenance: "cached_real_engine", warning: "Replaying recorded images and measured checks. Reviews and local memory persist in this browser; recorded generation results do not change when you add a correction." };
+export const cacheMetadata = { mode: "cached", cacheAvailable: true, provenance: "cached_real_engine", warning: "Mara’s original images and checks. Your sample reviews stay in this browser and do not rewrite its history." };
 export async function fallbackImage(index: number): Promise<string> { const cache = await loadCache(); return cache?.batches[0]?.shots[index % 6]?.imageUrl ?? seed.project.characters[0].referenceImageUrl; }

@@ -19,8 +19,8 @@ export async function body<T>(request: Request, schema: z.ZodType<T>): Promise<T
 export function apiError(error: unknown): Response {
   if (error instanceof HttpError) return Response.json({ error: error.message }, { status: error.status });
   if (error instanceof z.ZodError) return Response.json({ error: "Invalid request", details: error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`) }, { status: 400 });
-  console.error("Canon request failed", error instanceof Error ? error.message : "unknown error");
-  return Response.json({ error: "The request could not be completed. Check server configuration or try the cached demo." }, { status: 503 });
+  console.error("Scripty request failed", error instanceof Error ? error.message : "unknown error");
+  return Response.json({ error: "The request could not be completed. Please try again, or explore the Mara sample production." }, { status: 503 });
 }
 export const projectIdSchema = z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9_-]+$/);
 export async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T, index: number) => Promise<R>): Promise<R[]> {

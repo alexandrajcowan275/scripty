@@ -4,80 +4,63 @@
 cd ~/canon && npm run dev
 ```
 
-Open http://localhost:3000. This exact one-command cached run was verified on this Mac. Public demo: [Scripty](https://canon-woad.vercel.app).
+Open **http://localhost:3000**. Public app: [Scripty](https://canon-woad.vercel.app/). Current release and verification: [morning handoff](handoff/MORNING.md).
 
-The continuity memory and monitoring layer for AI-generated stories. One creator correction becomes a persistent, deduplicated constraint on later image generation and monitoring. This is project memory and prompt adaptation—not model-weight training.
+**Your AI script supervisor. Every correction carries forward.**
 
-## Run
+On a film set, the scripty keeps continuity between shots. Scripty brings that production memory to AI filmmaking: review a shot, save a correction, and carry the rule into future generation and monitoring.
 
-Node24.x and npm.
+## Two ways in
+
+**Start a new production.** Name the production and character, upload a private reference image or explicitly request reference creation, add canon details, and choose six scene prompts. Production data, checks, corrections and memory belong to that production in Supabase. Access is tied to a signed, HttpOnly browser cookie; accounts and cross-device recovery are outside this release.
+
+**Explore a sample production: Mara.** The complete history opens immediately: four takes,24 genuine images, original prompts, monitor checks and rule traces. Sample reviews are saved for this browser. They do not rewrite existing images or establish a new engine run.
+
+Public paid generation is disabled during the founder's overnight no-spending window. A generation request preserves the production and offers Mara. The implementation also has persistent creation/generation limits and a global atomic$24 API reservation cap. No purchase or extra generation is needed to explore the sample.
+
+## Run and check
+
+Node24.x and npm are required. Dependencies and local credentials are already installed on the founder's Mac. On a new checkout:
 
 ```sh
 npm ci
 cp .env.example .env.local
-# Fill server credentials locally. Never commit .env.local.
+# Supply server credentials privately; never commit .env.local.
 npm run dev
 ```
 
-Open http://localhost:3000. Public mode defaults to `DEMO_MODE=cached`. The committed cache contains four genuine batches and24 images. Open **Open demo project** to enter `/studio`; a fresh recorded session automatically loads the first six frames. **Load next batch** reveals the remaining recorded takes. `/learning` shows the complete recorded comparison. A missing cache is labeled and generation is disabled.
-
 ```sh
-npm run build
 npm test
-npm run typecheck
+npm run build
 npm start
 ```
 
-Build uses Next.js webpack for consistent CSS/font compilation in restricted worker sandboxes. Geist fonts are bundled locally.
+Supabase migrations are in `supabase/migrations/`. Tables have RLS enabled and no browser write access. Character references use a private Storage bucket and an ownership-checked server endpoint. Service credentials never enter the client bundle. The sample's own images are bundled locally and require no AI or database request.
 
-## Live setup and access
+## What learning means here
 
-Apply SQL migrations in filename order with the Supabase CLI, then run `npm run seed`. Tables use RLS and server-only service-role access. Storage bucket `shots` permits public image reads; uploads go through the server. `.env.example` lists all configuration without values.
+A rejection becomes one short, testable rule. Repeated constraints merge. Generation receives the character canon and active rules; the monitor checks those rules too. Accepted shots can become positive visual references. These are persistent production memory and prompt adaptation; model weights stay fixed.
 
-Set `DEMO_MODE=live` for the operator runtime. With `CANON_ADMIN_TOKEN` configured, live API requests also require `x-canon-mode: live` and `x-canon-admin-token`; an ordinary browser still gets cached playback. Keep that token out of the client bundle. For a private localhost browser rehearsal, start a runtime bound only to127.0.0.1 with an empty admin-token override:
+The sample's ring rule appears in all18 later generation prompts and corresponding monitor outputs. Correction reach requires both the exact rule text in the prompt and the same rule ID in checks; it counts unique shot IDs.
 
-```sh
-CANON_ADMIN_TOKEN= DEMO_MODE=live npm start -- --hostname 127.0.0.1 --port 3017
-```
+| Take | Flagged shots | Uncertain checks |
+| --- | --- | --- |
+| 1, final v3 recheck | 2/6 | 4/36 |
+| 2 | 0/6 | 6/42 |
+| 3 | 0/6 | 8/42 |
+| 4, latest | 1/6 | 6/42 |
 
-Do not run the ungated live override on a public host. The persistent database reservation cap remains active in every live runtime. Production stays cached.
+**Visual improvement remains unverified.** Generator settings, scenes and references changed, and learned rules also changed monitoring. The final flag rate rose. Earlier baseline checker versions flagged6/6 before disclosed calibration. Human-verified accuracy is unavailable; draft labels are excluded from authoritative evaluation. See [results](handoff/results.md).
 
-## Product and API
+## Operator notes
 
-- One Mara character sheet and a real raster reference, six-shot filmstrip, selected-shot inspector, keyboard A/R review, Scripty Memory, operational flag chart, trace drawer.
-- `POST /api/batch` `{projectId,scenePrompts?: string[6]}` generates/checks six shots with concurrency at most3. Every prompt includes the sheet and ordered rules; accepted frames can be extra references.
-- `POST /api/shot/:id/review` `{decision:"accept"|"reject",reason?:string}` saves review and creates/merges one rule on rejection. Reject requires a reason.
-- `GET /api/project/:id` returns project, rules, batches, shots, traces and provenance.
-- `POST /api/eval` `{projectId,recheck?:boolean,includeDrafts?:boolean}` evaluates stored checks by default; recheck requires authorized live mode.
-- `GET /api/cache/images/:filename` serves bundled captured images.
+- `CANON_PUBLIC_GENERATION_ENABLED=false` is the default overnight. Do not enable paid calls or raise limits without the founder's permission.
+- `DEMO_MODE=cached` keeps the original internal sample adapter. This implementation identifier is retained for compatibility.
+- Private operator requests to the original engine require its existing server-only admin token. Never put that token in browser code or URLs.
+- `npm run eval` excludes unverified labels by default. Do not publish draft-only accuracy.
+- `npm run cache:demo -- --capture-existing --batches 4 --base-url http://127.0.0.1:3017` is a read-only export of existing evidence; it does not generate new images.
+- Repo/folder and Vercel project remain `canon`; the product is **Scripty**. The GitHub repository remains private as requested.
 
-AI calls time out, retry within a shared deadline, and return explicit fallback/uncertain evidence on failure. Failed generation or monitoring is never a verified pass. The global server-only ledger reserves pessimistic upper bounds before each paid attempt and stops at$24; it is not an exact billing receipt.
+## Submission material
 
-## Honest evidence and cached backup
-
-`driftRate = flagged shots / total shots` is operational feedback. Learned rules can change the monitor as well as generation. A lower changing-monitor flag rate alone does not establish improvement. Freeze character criteria, inspect DIFFERENT new scenes, disclose label coverage and sample counts, and use human-reviewed labels before making accuracy/improvement claims. Flat or worsening results stay in `handoff/results.md`.
-
-Cached playback replays real historical images, checks, prompts and measurements; a viewer's local correction does not rewrite those historical outputs. Signed browser cookies keep playback/review memory isolated and persistent across refresh. Browser-local cached corrections do not automatically enter live Supabase memory. Use a new browser session/clear site data to restart after exhausting the finite replay. `CANON_SESSION_SECRET` must be stable across deployments.
-
-## Capture and eval
-
-```sh
-# Export already-generated batches from the private live runtime, without more AI calls:
-npm run cache:demo -- --capture-existing --batches 4 --base-url http://127.0.0.1:3017
-npm run eval -- --project mara
-npm run eval -- --project mara --include-drafts
-```
-
-Capture refuses fallback/incomplete evidence and records image hashes and provenance. `seed/experiment-scenes.json` records the actual planned scene sets; the capture `--scenes` input expects an array of six-prompt arrays, not its metadata wrapper. Draft labels are excluded by default. Agent-prepared labels require human verification; uncertain visual observations stay out of boolean labels and must remain disclosed in the worksheet.
-
-## Measured run
-
-Four genuine six-shot batches have final-monitor flag counts **2/6,0/6,0/6,1/6**; uncertain checks **4/36,6/42,8/42,6/42**. Baseline used an older image model/style, and its original monitor v1/v2 each flagged6/6 before disclosed calibration. Batch4 worsened from0/6 to1/6. These are operational monitor outputs, not verified image improvement. The learned ring rule reached all18 later generation prompts and monitor outputs; batch4 used an accepted portrait as a positive reference in all6 generations. Ten-shot labels remain agent drafts; human-verified precision/recall/F1 are unavailable. Pessimistic API reservations total **$20.58**, not a billing receipt. See `handoff/results.md` for limitations and exact evidence.
-
-## Deployment and handoffs
-
-Target: Vercel project `archer-rag-dev/canon`, private GitHub repository. Secrets are configured as server-only production/preview variables. Cache assets are included in serverless file tracing. Verify public production separately from protected previews.
-
-Submission deadline: Saturday October17,2026 **1:15pm PT**. Local/deployed checkpoint:1:00am PT; target morning assets by10:45am. See `handoff/MORNING.md` for the final URL and exact human steps; `handoff/results.md` for actual measurements; `handoff/review.md` for independent QA. External submission/video recording remain human steps.
-
-Sources: [OpenAI image generation](https://developers.openai.com/api/docs/guides/image-generation), [Supabase CLI](https://supabase.com/docs/reference/cli/introduction), [Next.js installation](https://nextjs.org/docs/app/getting-started/installation).
+[Devpost copy](docs/devpost.md) · [video script](docs/video-script.md) · [brand guide](docs/brand-guide.md) · [design decisions](DECISIONS.md) · [limits and skipped work](BLOCKED.md).

@@ -103,7 +103,7 @@ test("cached API replay, review and refresh share only the signed browser state"
     assert.equal(review.status, 200); const reviewCookie = review.headers.get("set-cookie")!.split(";")[0];
     const refreshed = await projectGet(new Request("http://localhost", { headers: { cookie: reviewCookie } }), { params: Promise.resolve({ id: "mara" }) });
     const refreshedData = await refreshed.json();
-    assert.equal(refreshedData.shots[0].status, "rejected"); assert.equal(refreshedData.rules.length, 4); assert.ok(refreshedData.rules.some((rule: Rule) => rule.id === "captured-applied")); assert.ok(refreshedData.traces.some((trace: { message: string }) => trace.message.startsWith("[Recorded engine]"))); assert.ok(!refreshedData.rules.some((rule: Rule) => rule.id === "captured-only"));
+    assert.equal(refreshedData.shots[0].status, "rejected"); assert.equal(refreshedData.rules.length, 4); assert.ok(refreshedData.rules.some((rule: Rule) => rule.id === "captured-applied")); assert.ok(refreshedData.traces.some((trace: { message: string }) => trace.message.startsWith("[Original production]"))); assert.ok(!refreshedData.rules.some((rule: Rule) => rule.id === "captured-only"));
     const secondBrowser = await projectGet(new Request("http://localhost"), { params: Promise.resolve({ id: "mara" }) });
     assert.equal((await secondBrowser.json()).shots.length, 0);
     const exhausted = await batchPost(new Request("http://localhost", { method: "POST", headers: { cookie: reviewCookie }, body: JSON.stringify({ projectId: "mara" }) }));

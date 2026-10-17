@@ -36,8 +36,8 @@ test("recorded measured rate is preserved and the latest unavailable batch does 
   const later = { ...batch, id: "batch-2", index: 2, driftRate: 0 };
   const laterShots = shots(0).map((shot) => ({ ...shot, id: `later-${shot.id}`, batchId: later.id }));
   const html = renderToStaticMarkup(<LearningCurve batches={[batch, later]} shots={[...shots(), ...laterShots]}/>);
-  assert.match(html, /Batch 1: 50%/);
-  assert.match(html, /1 incomplete batches excluded/);
+  assert.match(html, /Take 1: 50%/);
+  assert.match(html, /1 incomplete takes excluded/);
   assert.doesNotMatch(html, /Batch 2: 0%/);
   assert.match(html, /Human-reviewed labels under fixed criteria/);
   assert.match(html, /<strong>—<\/strong>/);
