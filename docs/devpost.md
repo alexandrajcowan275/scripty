@@ -2,7 +2,7 @@
 
 **Your AI script supervisor.** Continuity memory and monitoring for AI-generated stories.
 
-> Evidence snapshot: October 17, 2026. Measurements are operational monitor results, not human-verified continuity or accuracy. The current public app is [Scripty](https://canon-woad.vercel.app); deployment of the latest real cache is pending verification.
+> Evidence snapshot: October 17, 2026. Measurements are operational monitor results, not human-verified continuity or accuracy. The current public app is [Scripty](https://canon-woad.vercel.app); four genuine batches and24 images are bundled for recorded playback.
 
 ## Inspiration
 
@@ -30,12 +30,12 @@ A falling chart alone cannot prove learning: rules change the monitor as well as
 
 ## Accomplishments
 
-- A real raster reference, six-shot baseline, and completed six-shot batch of different new scenes.
+- A real raster reference and four complete six-shot batches:24 real images on different scene sets.
 - A wrong-hand ring correction converted to one rule; repeating the correction merged into the same rule ID, and refresh confirmed persistence.
-- The learned ring rule appears in all six new-scene generation prompts and all six corresponding monitor outputs.
+- The learned ring rule appears in all18 later new-scene generation prompts and all18 corresponding monitor outputs. An accepted portrait was an extra reference in all6 deployed batch4 generations.
 - Frozen calibrated checker v3 reports **2/6 flagged** in the baseline recheck and **0/6 flagged** in batch 2, with **6/42 uncertain checks** in batch 2. Original v1/v2 baseline checks remain retained at 6/6 flagged.
-- A third six-shot batch is running on different scenes with the frozen checker and later image/style settings. Its result is not yet included.
-- Public app: [Scripty](https://canon-woad.vercel.app), confirmed accessible; the latest real-cache deployment still needs verification.
+- Batch3 returned0/6 flags with8/42 uncertain checks; batch4 returned1/6 flags with6/42 uncertain checks. The final operational rate worsened; no further tuning or selective exclusion was performed.
+- Public app: [Scripty](https://canon-woad.vercel.app), publicly accessible; follow the final release verification in `handoff/MORNING.md`.
 
 ## What we learned
 
@@ -51,13 +51,13 @@ One correction becomes reusable project memory. The rule is deduplicated, persis
 
 The chart reports operational `flagged shots / total shots` per batch. With frozen calibrated checker v3, the baseline recheck is **2/6 flagged (33.3%)** and batch 2 is **0/6 flagged**, with **6 of 42 checks uncertain** and zero unavailable checks in batch 2. The original baseline checks with v1 and v2 each flagged 6/6; those diagnostics are preserved separately.
 
-Batch 2 changes both the scene set and the image generation settings: baseline images used version 1.5 at medium quality; later images use version 2.5 Sunburst at high quality with cinematic lens/grade instructions. This confounds a memory-only comparison. Batch 3 is running with six different new scenes, the later settings, and the same frozen checker; no batch-3 result is claimed here. Fixed character criteria are retained throughout. These runs establish memory application to new scenes; they do not establish that memory caused better images. Human-verified continuity, precision, recall, and improvement remain unmeasured. Agent-drafted labels are provisional.
+Batch 2 changes both the scene set and the image generation settings: baseline images used version 1.5 at medium quality; later images use version 2.5 Sunburst at high quality with cinematic lens/grade instructions. This confounds a memory-only comparison. Batch3 uses six different new scenes with the later settings and same frozen checker:0/6 flags,8/42 uncertain. Batch4 adds the accepted portrait as an extra reference:1/6 flags,6/42 uncertain. That final increase remains visible, and its profile-side scar flag still needs human review. Fixed character criteria are retained throughout. These runs establish memory application to new scenes; they do not establish that memory caused better images. Human-verified continuity, precision, recall, and improvement remain unmeasured. Agent-drafted labels are provisional.
 
 ## Design track
 
 The layout follows production work: reference and Scripty Memory at left, a central filmstrip, a right inspection surface, and a measurement/trace layer below. Red signals drift, gold signals retained memory, and green signals a passed check. Text and icons carry those meanings alongside color. Monospace numbers make confidence and traces easier to scan. Brief motion shows a rule arriving in memory. Keyboard review and a narrow-screen stack support practical use.
 
-See `docs/brand-guide.md` for the identity and palette.
+See `docs/brand-guide.md` and the rendered one-page `docs/brand-guide.pdf` for the identity and palette. Every intentional interface decision is recorded in `DECISIONS.md`.
 
 ## Agent Monitoring track — Lemma
 

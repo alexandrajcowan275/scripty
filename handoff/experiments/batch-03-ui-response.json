@@ -1,0 +1,786 @@
+{
+  "capturedAt": "2026-10-17T03:31:24.378Z",
+  "trigger": "local browser Generate batch with six new scene prompts",
+  "batch": {
+    "id": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+    "projectId": "mara",
+    "index": 3,
+    "rulesApplied": [
+      "seed-scarf",
+      "seed-scar",
+      "ca721c45-1e5d-412c-83ba-9a566443c44b"
+    ],
+    "driftRate": 0,
+    "createdAt": "2026-10-17T03:28:33.707+00:00"
+  },
+  "shots": [
+    {
+      "id": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "Wide establishing shot of Mara arriving at an empty ferry dock in early morning haze.",
+      "finalPrompt": "Wide establishing shot of Mara arriving at an empty ferry dock in early morning haze.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/a9c327ba-6557-4338-a188-0de3a2b456cd-23f767ef-8aa3-4893-afaf-c97a1a2453a8.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "Visible red knit/wool scarf wrapped around the neck; matches the expected red wool scarf.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "The character is facing mostly toward the viewer; the scar is visible on image-right side of the face near the right eye area, which maps to the character's LEFT eye side.",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Visible short black bob-length hair.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "The character is facing mostly toward the viewer; a silver ring is visible on image-left hand while that hand is holding the bag strap. For a frontal view, image-left maps to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.92
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Visible red knit/wool scarf worn around the neck.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Scar visible on image-right side near the eye; in this frontal-facing view that corresponds to the character's LEFT eye.",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "Silver ring visible on image-left hand; in this frontal-facing view that corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.92
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending"
+    },
+    {
+      "id": "429429d5-d095-4809-a5fc-41d87a582568",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "Over-the-shoulder shot of Mara taking a book from a shelf in a warm reading room.",
+      "finalPrompt": "Over-the-shoulder shot of Mara taking a book from a shelf in a warm reading room.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/9f739166-f32f-4df8-a028-6acf78cb54e9-429429d5-d095-4809-a5fc-41d87a582568.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "A bright red knitted/wool scarf is clearly visible around the neck.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "A small facial scar/mark is visible near the eye on the side of the face turned toward image-right, but the shot is a three-quarter view and the anatomical LEFT vs RIGHT side cannot be established with high confidence from visible landmarks alone.",
+          "pass": false,
+          "confidence": 0.48,
+          "note": "The scar is visible, but its anatomical side is unclear because the subject is turned three-quarter toward image-right and the visible eye/cheek side is not unambiguously mapped to LEFT or RIGHT."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black hair is clearly visible.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "A silver ring is visible on the hand extended toward the bookshelf, but the anatomical RIGHT hand cannot be confirmed from this view because the pose is angled and the hand laterality is ambiguous.",
+          "pass": false,
+          "confidence": 0.44,
+          "note": "Ring is visible, but hand side cannot be reliably determined from the visible orientation and anatomy in this shot."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "A red knitted/wool scarf is visible.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "A facial scar/mark is visible, but the anatomical side is unclear in this angle.",
+          "pass": false,
+          "confidence": 0.48,
+          "note": "The image shows a scar-like mark near the eye, but not enough to confirm it is over the LEFT eye specifically."
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "A silver ring is visible, but the hand side is not clearly established as the RIGHT hand from this angle.",
+          "pass": false,
+          "confidence": 0.44,
+          "note": "Visible ring alone is not enough to confirm the RIGHT hand in this three-quarter pose."
+        }
+      ],
+      "driftScore": 0.262857142857143,
+      "flagged": false,
+      "status": "pending"
+    },
+    {
+      "id": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "Close-up portrait of Mara waiting beside a cafe window in gentle daylight.",
+      "finalPrompt": "Close-up portrait of Mara waiting beside a cafe window in gentle daylight.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/91685256-c316-4d1b-bbae-63433701c931-6af981e3-570f-44d4-8e9d-202525cb709d.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "A thick red wool scarf is clearly visible around the neck in IMAGE 2.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal-facing/near-frontal orientation; the scar is visible on the image-right side of the face, which corresponds to the character's LEFT eye.",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black bob haircut is clearly visible in IMAGE 2.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal/near-frontal orientation; the silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Red wool scarf is visibly worn in IMAGE 2.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Scar is visibly over the character's LEFT eye in IMAGE 2 (image-right side of face on a near-frontal view).",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "Silver ring is visibly worn on the character's RIGHT hand in IMAGE 2 (image-left hand on a near-frontal view).",
+          "pass": true,
+          "confidence": 0.93
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending"
+    },
+    {
+      "id": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "High-angle shot of Mara arranging photographs on a worktable in bright daylight.",
+      "finalPrompt": "High-angle shot of Mara arranging photographs on a worktable in bright daylight.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/d14e61c5-ebba-4110-b6ab-196e9620a6e7-85f23e83-22ed-4f1c-9b79-cb9cfddf7014.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "visible red wool scarf wrapped around the neck; color and knit texture match red wool",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "frontal/near-frontal face angled slightly downward; the scar is visible on the image-right side of the face, which maps to the character's LEFT eye area",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black bob-length hair with bangs",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "frontal/near-frontal pose with both hands visible; the silver ring is on the image-left hand, which maps to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "visible red wool scarf worn around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "scar visible over the character's LEFT eye area (image-right side on a near-frontal face)",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "silver ring visible on the character's RIGHT hand (image-left hand in a near-frontal view)",
+          "pass": true,
+          "confidence": 0.9
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending"
+    },
+    {
+      "id": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "Low-angle shot of Mara pausing on a concrete stairway in warm afternoon light.",
+      "finalPrompt": "Low-angle shot of Mara pausing on a concrete stairway in warm afternoon light.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/24e227fc-371c-44dd-8e7e-60e7ef8eaa72-b7e5e769-d396-4ee9-bf03-507c26dafbb0.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf visible around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar visible above the eye on the image-right side of the face; the subject is facing generally toward the viewer, so image-right maps to the character's LEFT side",
+          "pass": true,
+          "confidence": 0.96
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black bob haircut visible",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "a silver ring is visible on the image-left hand; the subject is facing generally toward the viewer, so image-left maps to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.94
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "red wool scarf visible around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "scar visible above the eye on the image-right side of the face; the subject is facing generally toward the viewer, so image-right maps to the character's LEFT side",
+          "pass": true,
+          "confidence": 0.96
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "a silver ring is visible on the image-left hand; the subject is facing generally toward the viewer, so image-left maps to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.94
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending"
+    },
+    {
+      "id": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "Profile medium shot of Mara studying a timetable under a cool bus-stop lamp at night.",
+      "finalPrompt": "Profile medium shot of Mara studying a timetable under a cool bus-stop lamp at night.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/ed8ff7b8-dae6-4429-a5f0-cebc2e0605d4-edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "visible red wool scarf wrapped around the neck in the shot",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "unclear: a facial scar is visible near one eye, but the shot angle is a three-quarter profile and the anatomical LEFT/RIGHT eye side cannot be established confidently from the visible landmarks",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "The scar is visible, but the face is turned and the eye-side assignment is ambiguous in this shot."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "visible short black hair",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "unclear: a silver ring is visible on a pointing hand, but the hand's anatomical side cannot be confirmed confidently from this angle",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "The ring is visible, but the shot does not establish whether the ring is on the character's RIGHT hand with enough certainty."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "visible red wool scarf in the shot",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "unclear: the scar is visible near one eye, but the anatomical side is not confidently established in this shot",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "The required LEFT-eye location cannot be verified with confidence from the visible pose and angle."
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "unclear: a silver ring is visible, but the shot does not clearly establish that it is on the RIGHT hand",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "The ring is visible, but right-hand attribution is ambiguous from the visible pose."
+        }
+      ],
+      "driftScore": 0.28,
+      "flagged": false,
+      "status": "pending"
+    }
+  ],
+  "traces": [
+    {
+      "id": "438efb8c-ff51-494d-b6d4-53c3f533b6e1",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "generate",
+      "message": "Batch 3, scene 1; provider=openai; image_model=gpt-image-2.5-sunburst-2026-09-08; image_quality=high; images=1; accepted_reference=false",
+      "createdAt": "2026-10-17T03:29:07.907+00:00"
+    },
+    {
+      "id": "7996d842-4fa9-4fcb-91c5-bff2786f4379",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "generate",
+      "message": "Batch 3, scene 3; provider=openai; image_model=gpt-image-2.5-sunburst-2026-09-08; image_quality=high; images=1; accepted_reference=false",
+      "createdAt": "2026-10-17T03:29:10.154+00:00"
+    },
+    {
+      "id": "af533e96-b24e-4a65-a181-af6114135fe9",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "generate",
+      "message": "Batch 3, scene 2; provider=openai; image_model=gpt-image-2.5-sunburst-2026-09-08; image_quality=high; images=1; accepted_reference=false",
+      "createdAt": "2026-10-17T03:29:10.992+00:00"
+    },
+    {
+      "id": "029b5948-ce14-48df-9002-c8225f202386",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "scarf_color: expected=red wool scarf; observed=Visible red knit/wool scarf wrapped around the neck; matches the expected red wool scarf.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "81741809-dd81-4502-8971-97b4fbe79ee9",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "rule:seed-scarf: expected=Mara always wears a red wool scarf.; observed=Visible red knit/wool scarf worn around the neck.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "835a03d5-0ea8-4b26-bde1-7ba10a78eddc",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b: expected=Mara always wears a silver ring on her RIGHT hand.; observed=Silver ring visible on image-left hand; in this frontal-facing view that corresponds to the character's RIGHT hand.; result=pass; confidence=0.92; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "aafae34e-500b-44d0-8742-34e1734d89b0",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "scar_side: expected=scar over the LEFT eye; observed=The character is facing mostly toward the viewer; the scar is visible on image-right side of the face near the right eye area, which maps to the character's LEFT eye side.; result=pass; confidence=0.93; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "ab5bb6dc-e678-4da9-8bff-a4aa0749061a",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "rule:seed-scar: expected=Mara’s scar is always over the LEFT eye.; observed=Scar visible on image-right side near the eye; in this frontal-facing view that corresponds to the character's LEFT eye.; result=pass; confidence=0.93; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "c7f7ee27-cf68-42e4-b926-f14e7cef6930",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "ring_hand: expected=silver ring on the right hand; observed=The character is facing mostly toward the viewer; a silver ring is visible on image-left hand while that hand is holding the bag strap. For a frontal view, image-left maps to the character's RIGHT hand.; result=pass; confidence=0.92; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "cdc83f87-685e-42b8-9085-7f96590b5f5d",
+      "projectId": "mara",
+      "shotId": "23f767ef-8aa3-4893-afaf-c97a1a2453a8",
+      "type": "check",
+      "message": "hair: expected=short black hair; observed=Visible short black bob-length hair.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:14.955+00:00"
+    },
+    {
+      "id": "0c2f1602-e11d-49ec-8d2b-15a7386ce020",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "rule:seed-scarf: expected=Mara always wears a red wool scarf.; observed=Red wool scarf is visibly worn in IMAGE 2.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "0c9d5071-b74f-4c01-ba81-cb776023adde",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "hair: expected=short black hair; observed=Short black bob haircut is clearly visible in IMAGE 2.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "6132fa28-ad47-4cfa-b6ef-8e25050fef42",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "scarf_color: expected=red wool scarf; observed=A thick red wool scarf is clearly visible around the neck in IMAGE 2.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "85cab3ec-2c8d-4d86-9ff7-19f5ed7334ba",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "ring_hand: expected=silver ring on the right hand; observed=Frontal/near-frontal orientation; the silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand.; result=pass; confidence=0.93; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "8ef55fa9-db6c-4096-86f7-77b6a443ea64",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b: expected=Mara always wears a silver ring on her RIGHT hand.; observed=Silver ring is visibly worn on the character's RIGHT hand in IMAGE 2 (image-left hand on a near-frontal view).; result=pass; confidence=0.93; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "af2bbec7-03fd-4e88-9b77-4cdfd64f70f1",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "scar_side: expected=scar over the LEFT eye; observed=Frontal-facing/near-frontal orientation; the scar is visible on the image-right side of the face, which corresponds to the character's LEFT eye.; result=pass; confidence=0.97; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "cbae0d91-3d38-4b21-9cde-8d81289ffdf4",
+      "projectId": "mara",
+      "shotId": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "type": "check",
+      "message": "rule:seed-scar: expected=Mara’s scar is always over the LEFT eye.; observed=Scar is visibly over the character's LEFT eye in IMAGE 2 (image-right side of face on a near-frontal view).; result=pass; confidence=0.97; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.01+00:00"
+    },
+    {
+      "id": "0045e148-0987-4d2d-b1cb-10bb9b1e6bde",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "ring_hand: expected=silver ring on the right hand; observed=a silver ring is visible on the image-left hand; the subject is facing generally toward the viewer, so image-left maps to the character's RIGHT hand; result=pass; confidence=0.94; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "139cda2e-72ea-44be-8486-b02a260cc19c",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "rule:seed-scar: expected=Mara’s scar is always over the LEFT eye.; observed=scar visible above the eye on the image-right side of the face; the subject is facing generally toward the viewer, so image-right maps to the character's LEFT side; result=pass; confidence=0.96; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "559ea694-7595-4858-b5b9-4da4c433cfd1",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b: expected=Mara always wears a silver ring on her RIGHT hand.; observed=a silver ring is visible on the image-left hand; the subject is facing generally toward the viewer, so image-left maps to the character's RIGHT hand; result=pass; confidence=0.94; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "7551ecc9-e0a1-4e2f-bfec-80cb6a7660cb",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "scarf_color: expected=red wool scarf; observed=red wool scarf visible around the neck; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "877655c8-f6c2-4272-ba88-5957aecef177",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "scar_side: expected=scar over the LEFT eye; observed=scar visible above the eye on the image-right side of the face; the subject is facing generally toward the viewer, so image-right maps to the character's LEFT side; result=pass; confidence=0.96; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "d5c67497-2a31-46ae-ae27-45cf385ab58d",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "rule:seed-scarf: expected=Mara always wears a red wool scarf.; observed=red wool scarf visible around the neck; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "ee7fad4b-da7e-4eb4-a519-6d06734befd1",
+      "projectId": "mara",
+      "shotId": "b7e5e769-d396-4ee9-bf03-507c26dafbb0",
+      "type": "check",
+      "message": "hair: expected=short black hair; observed=short black bob haircut visible; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:17.156+00:00"
+    },
+    {
+      "id": "1cab07a2-6abb-4790-b890-f21bcdfa7d60",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "generate",
+      "message": "Batch 3, scene 4; provider=openai; image_model=gpt-image-2.5-sunburst-2026-09-08; image_quality=high; images=1; accepted_reference=false",
+      "createdAt": "2026-10-17T03:29:45.042+00:00"
+    },
+    {
+      "id": "0fed6f20-a604-4bf6-b42e-3d29349c9ecb",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "generate",
+      "message": "Batch 3, scene 5; provider=openai; image_model=gpt-image-2.5-sunburst-2026-09-08; image_quality=high; images=1; accepted_reference=false",
+      "createdAt": "2026-10-17T03:29:46.897+00:00"
+    },
+    {
+      "id": "966cfa9a-9ec3-40b6-b30c-ca1da2345abf",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "generate",
+      "message": "Batch 3, scene 6; provider=openai; image_model=gpt-image-2.5-sunburst-2026-09-08; image_quality=high; images=1; accepted_reference=false",
+      "createdAt": "2026-10-17T03:29:50.505+00:00"
+    },
+    {
+      "id": "16340979-74f0-45a0-b864-f694add56dda",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "rule:seed-scarf: expected=Mara always wears a red wool scarf.; observed=visible red wool scarf in the shot; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "400f559e-9d27-4494-b783-a689fe43929b",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "scar_side: expected=scar over the LEFT eye; observed=unclear: a facial scar is visible near one eye, but the shot angle is a three-quarter profile and the anatomical LEFT/RIGHT eye side cannot be established confidently from the visible landmarks; result=uncertain; confidence=0.49; The scar is visible, but the face is turned and the eye-side assignment is ambiguous in this shot.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "454c917a-f91d-4bf8-a810-826c8a7f0b1d",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "rule:seed-scar: expected=Mara’s scar is always over the LEFT eye.; observed=unclear: the scar is visible near one eye, but the anatomical side is not confidently established in this shot; result=uncertain; confidence=0.49; The required LEFT-eye location cannot be verified with confidence from the visible pose and angle.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "4cc04d23-74f6-4123-a32f-bb99ed9651ca",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b: expected=Mara always wears a silver ring on her RIGHT hand.; observed=unclear: a silver ring is visible, but the shot does not clearly establish that it is on the RIGHT hand; result=uncertain; confidence=0.49; The ring is visible, but right-hand attribution is ambiguous from the visible pose.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "7b0feabc-1079-4a3a-a66d-b82ea6742074",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "hair: expected=short black hair; observed=visible short black hair; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "e60b6e02-7573-4ff8-aa5b-c05b5dad3afa",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "scarf_color: expected=red wool scarf; observed=visible red wool scarf wrapped around the neck in the shot; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "eb37f561-68db-4a95-b57c-3ac29f0cc1e5",
+      "projectId": "mara",
+      "shotId": "edd93f85-ee3e-41b7-bbc1-847a7b4d4fcf",
+      "type": "check",
+      "message": "ring_hand: expected=silver ring on the right hand; observed=unclear: a silver ring is visible on a pointing hand, but the hand's anatomical side cannot be confirmed confidently from this angle; result=uncertain; confidence=0.49; The ring is visible, but the shot does not establish whether the ring is on the character's RIGHT hand with enough certainty.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:52.273+00:00"
+    },
+    {
+      "id": "140667bf-36e6-4d58-91e7-852a963524ee",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "hair: expected=short black hair; observed=Short black hair is clearly visible.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "1a20d42b-8008-409f-89c0-c72d8a3c6eee",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "ring_hand: expected=silver ring on the right hand; observed=A silver ring is visible on the hand extended toward the bookshelf, but the anatomical RIGHT hand cannot be confirmed from this view because the pose is angled and the hand laterality is ambiguous.; result=uncertain; confidence=0.44; Ring is visible, but hand side cannot be reliably determined from the visible orientation and anatomy in this shot.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "78f7e7fa-45d3-4994-8470-cec18dc9186a",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "scarf_color: expected=red wool scarf; observed=A bright red knitted/wool scarf is clearly visible around the neck.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "825949fd-20bd-46b8-a11f-dfb0f33efa49",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "rule:seed-scarf: expected=Mara always wears a red wool scarf.; observed=A red knitted/wool scarf is visible.; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "af90e375-9c0c-48bd-a210-489122e7332b",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b: expected=Mara always wears a silver ring on her RIGHT hand.; observed=A silver ring is visible, but the hand side is not clearly established as the RIGHT hand from this angle.; result=uncertain; confidence=0.44; Visible ring alone is not enough to confirm the RIGHT hand in this three-quarter pose.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "c0326e13-2ba6-4855-99c8-50e3bed42e31",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "scar_side: expected=scar over the LEFT eye; observed=A small facial scar/mark is visible near the eye on the side of the face turned toward image-right, but the shot is a three-quarter view and the anatomical LEFT vs RIGHT side cannot be established with high confidence from visible landmarks alone.; result=uncertain; confidence=0.48; The scar is visible, but its anatomical side is unclear because the subject is turned three-quarter toward image-right and the visible eye/cheek side is not unambiguously mapped to LEFT or RIGHT.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "e7115bdd-5690-4e98-9a8b-70fdf7013395",
+      "projectId": "mara",
+      "shotId": "429429d5-d095-4809-a5fc-41d87a582568",
+      "type": "check",
+      "message": "rule:seed-scar: expected=Mara’s scar is always over the LEFT eye.; observed=A facial scar/mark is visible, but the anatomical side is unclear in this angle.; result=uncertain; confidence=0.48; The image shows a scar-like mark near the eye, but not enough to confirm it is over the LEFT eye specifically.; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:53.99+00:00"
+    },
+    {
+      "id": "3775eabe-463f-4b12-b016-4e322a5ac237",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "scarf_color: expected=red wool scarf; observed=visible red wool scarf wrapped around the neck; color and knit texture match red wool; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    },
+    {
+      "id": "5fbedf36-f9b4-4a8d-ac1d-7c80c14411ae",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "scar_side: expected=scar over the LEFT eye; observed=frontal/near-frontal face angled slightly downward; the scar is visible on the image-right side of the face, which maps to the character's LEFT eye area; result=pass; confidence=0.93; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    },
+    {
+      "id": "7bcdc3c5-a857-48bb-8ff8-e88a4e97b727",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "rule:seed-scarf: expected=Mara always wears a red wool scarf.; observed=visible red wool scarf worn around the neck; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    },
+    {
+      "id": "b72c7f57-0994-4568-b4d4-3358e59742aa",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "ring_hand: expected=silver ring on the right hand; observed=frontal/near-frontal pose with both hands visible; the silver ring is on the image-left hand, which maps to the character's RIGHT hand; result=pass; confidence=0.90; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    },
+    {
+      "id": "bc5c87b9-1ad3-4c65-8021-37389f7ab5bf",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b: expected=Mara always wears a silver ring on her RIGHT hand.; observed=silver ring visible on the character's RIGHT hand (image-left hand in a near-frontal view); result=pass; confidence=0.90; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    },
+    {
+      "id": "d64858ee-5bf0-449c-88d2-3745145f4fe2",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "rule:seed-scar: expected=Mara’s scar is always over the LEFT eye.; observed=scar visible over the character's LEFT eye area (image-right side on a near-frontal face); result=pass; confidence=0.93; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    },
+    {
+      "id": "f8b5ee8a-241e-4ed2-9fc8-0ba477550c20",
+      "projectId": "mara",
+      "shotId": "85f23e83-22ed-4f1c-9b79-cb9cfddf7014",
+      "type": "check",
+      "message": "hair: expected=short black hair; observed=short black bob-length hair with bangs; result=pass; confidence=0.99; ; provenance=live_monitor; monitor_version=canon-monitor-v3; monitor_model=gpt-5.4-mini-2026-03-17",
+      "createdAt": "2026-10-17T03:29:56.286+00:00"
+    }
+  ],
+  "uncertainChecks": 8,
+  "note": "Same final Sunburst high generator/style and monitor v3 as batch2; fixed criteria; operational flag rates, no human verified improvement claim."
+}

@@ -1,4 +1,6 @@
-# Captured demo batches
+# Scripty — captured demo batches
+
+Installed: four genuine six-shot batches,24 PNGs,52,921,564 bytes, all hashes verified. Final-monitor flags:2/6,0/6,0/6,1/6. See `../../handoff/results.md` for calibration, model/style confounds, uncertainty and draft-label limits.
 
 No fabricated learning results are checked in. Capture complete real engine outputs only. Both scripts load `.env.local` silently and send `x-canon-mode: live` plus `x-canon-admin-token` from `CANON_ADMIN_TOKEN` when set. An unauthorized/cached response cannot be labeled real evidence.
 
@@ -7,18 +9,18 @@ No fabricated learning results are checked in. Capture complete real engine outp
 After the orchestrator generates, inspects, reviews, and generates new scenes in live mode:
 
 ```sh
-npx tsx scripts/cache-demo.ts --capture-existing --batches 3
+npx tsx scripts/cache-demo.ts --capture-existing --batches 4 --base-url http://127.0.0.1:3017
 npx tsx scripts/cache-demo.ts --capture-existing --batch-ids FIRST_ID,SECOND_ID,THIRD_ID
 ```
 
 `--capture-existing` makes a read-only project request and downloads existing images. It never calls generation, review, or monitor APIs. Default selection is the earliest indexed `--batches` batches (default two). Use `--batch-ids` to exclude incomplete attempts; selected batches remain in original index order. Combining existing export with `--decisions` or `--scenes` is rejected so this mode cannot unexpectedly spend money.
 
-Every selected batch must have exactly six unique shots, successful `openai` or `gemini` generation provenance, live-monitor provenance for every check, no zero-confidence fallback checks, and a drift rate matching its actual flags. Provider and scene order are reconstructed from saved engine traces. Missing/fallback/uncertain evidence causes an error; no real manifest is invented. Persisted creator review states/reasons are retained. Their original review timestamp is explicitly null because the shared Shot contract does not store it.
+Every selected batch must have exactly six unique shots, successful `openai` or `gemini` generation provenance, live-monitor provenance for every check, no zero-confidence fallback checks, and a drift rate matching its actual flags. Provider and scene order are reconstructed from saved engine traces. Missing/fallback/unavailable evidence causes an error; low-confidence occlusion remains valid and disclosed; no real manifest is invented. Persisted creator review states/reasons are retained. Their original review timestamp is explicitly null because the shared Shot contract does not store it.
 
 ## Generate and capture new evidence (paid calls)
 
 ```sh
-npx tsx scripts/cache-demo.ts --confirm-live --batches 2 --decisions seed/review-decisions.json --scenes seed/scenes.json
+npx tsx scripts/cache-demo.ts --confirm-live --batches 2
 ```
 
 The orchestrator controls all live spending. `--scenes` is optional JSON shaped as an array of batches, each containing exactly six nonempty prompt strings. This supports new angles/actions/lighting between batches rather than repeating scenes. `--decisions` is optional JSON with 1-based `batchIndex` and `shotIndex`, `decision`, and a real inspected `reason` for rejections. Decisions are applied after each batch and before the next generation. Example decisions are syntax only; replace the example reason after inspecting actual images.

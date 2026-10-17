@@ -1,0 +1,65 @@
+{
+  "createdAt": "2026-10-17T03:35:06.413Z",
+  "budget": {
+    "reservedUsd": 20.58,
+    "limitUsd": 24,
+    "remainingUsd": 3.4200000000000017
+  },
+  "cache": {
+    "provenance": "real_engine",
+    "captureMode": "persisted_read_only",
+    "images": 24,
+    "bytes": 52921564,
+    "allHashesVerified": true
+  },
+  "batches": [
+    {
+      "index": 1,
+      "id": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "shots": 6,
+      "flagged": 2,
+      "checks": 36,
+      "uncertain": 4,
+      "unavailable": 0,
+      "learnedRulePromptCount": 0,
+      "learnedRuleCheckCount": 0,
+      "acceptedReferenceTraces": 0
+    },
+    {
+      "index": 2,
+      "id": "617a645c-3e3f-4d4c-acbb-5debc8f0e867",
+      "shots": 6,
+      "flagged": 0,
+      "checks": 42,
+      "uncertain": 6,
+      "unavailable": 0,
+      "learnedRulePromptCount": 6,
+      "learnedRuleCheckCount": 6,
+      "acceptedReferenceTraces": 0
+    },
+    {
+      "index": 3,
+      "id": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "shots": 6,
+      "flagged": 0,
+      "checks": 42,
+      "uncertain": 8,
+      "unavailable": 0,
+      "learnedRulePromptCount": 6,
+      "learnedRuleCheckCount": 6,
+      "acceptedReferenceTraces": 0
+    },
+    {
+      "index": 4,
+      "id": "4b7aab59-8af9-41b2-a5fa-6c39bb3a492e",
+      "shots": 6,
+      "flagged": 1,
+      "checks": 42,
+      "uncertain": 6,
+      "unavailable": 0,
+      "learnedRulePromptCount": 6,
+      "learnedRuleCheckCount": 6,
+      "acceptedReferenceTraces": 6
+    }
+  ]
+}

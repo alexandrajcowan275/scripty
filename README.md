@@ -19,7 +19,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. Public mode defaults to `DEMO_MODE=cached`. Install the real `seed/cache/manifest.json` plus images to replay. A fresh browser begins with no delivered batches; Generate reveals the next recorded batch. A missing cache is labeled and generation is disabled.
+Open http://localhost:3000. Public mode defaults to `DEMO_MODE=cached`. The committed cache contains four genuine batches and24 images. A fresh browser begins with no delivered batches; Load recorded batch reveals the next six frames. A missing cache is labeled and generation is disabled.
 
 ```sh
 npm run build
@@ -62,15 +62,17 @@ Cached playback replays real historical images, checks, prompts and measurements
 ## Capture and eval
 
 ```sh
-# Root/operator controls paid generation and actual review decisions.
-npm run cache:demo -- --confirm-live --batches 3 --scenes seed/scene-sets.json --decisions seed/review-decisions.json
-# Or export already-generated batches without another AI call:
-npm run cache:demo -- --capture-existing --batches 3 --base-url http://127.0.0.1:3017
+# Export already-generated batches from the private live runtime, without more AI calls:
+npm run cache:demo -- --capture-existing --batches 4 --base-url http://127.0.0.1:3017
 npm run eval -- --project mara
 npm run eval -- --project mara --include-drafts
 ```
 
 Capture refuses fallback/incomplete evidence and records image hashes and provenance. `seed/experiment-scenes.json` records the actual planned scene sets; the capture `--scenes` input expects an array of six-prompt arrays, not its metadata wrapper. Draft labels are excluded by default. Agent-prepared labels require human verification; uncertain visual observations stay out of boolean labels and must remain disclosed in the worksheet.
+
+## Measured run
+
+Four genuine six-shot batches have final-monitor flag counts **2/6,0/6,0/6,1/6**; uncertain checks **4/36,6/42,8/42,6/42**. Baseline used an older image model/style, and its original monitor v1/v2 each flagged6/6 before disclosed calibration. Batch4 worsened from0/6 to1/6. These are operational monitor outputs, not verified image improvement. The learned ring rule reached all18 later generation prompts and monitor outputs; batch4 used an accepted portrait as a positive reference in all6 generations. Ten-shot labels remain agent drafts; human-verified precision/recall/F1 are unavailable. Pessimistic API reservations total **$20.58**, not a billing receipt. See `handoff/results.md` for limitations and exact evidence.
 
 ## Deployment and handoffs
 

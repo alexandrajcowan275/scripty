@@ -1,0 +1,68 @@
+{
+  "capturedAt": "2026-10-17T03:31:58.842Z",
+  "trigger": "local browser Accept then reload",
+  "accepted": [
+    {
+      "id": "6af981e3-570f-44d4-8e9d-202525cb709d",
+      "projectId": "mara",
+      "batchId": "6e96f65a-cbe6-4b5e-9dd3-ed7a72ffdad0",
+      "scenePrompt": "Close-up portrait of Mara waiting beside a cafe window in gentle daylight.",
+      "finalPrompt": "Close-up portrait of Mara waiting beside a cafe window in gentle daylight.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/91685256-c316-4d1b-bbae-63433701c931-6af981e3-570f-44d4-8e9d-202525cb709d.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "A thick red wool scarf is clearly visible around the neck in IMAGE 2.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal-facing/near-frontal orientation; the scar is visible on the image-right side of the face, which corresponds to the character's LEFT eye.",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black bob haircut is clearly visible in IMAGE 2.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal/near-frontal orientation; the silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Red wool scarf is visibly worn in IMAGE 2.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Scar is visibly over the character's LEFT eye in IMAGE 2 (image-right side of face on a near-frontal view).",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "rule:ca721c45-1e5d-412c-83ba-9a566443c44b",
+          "expected": "Mara always wears a silver ring on her RIGHT hand.",
+          "observed": "Silver ring is visibly worn on the character's RIGHT hand in IMAGE 2 (image-left hand on a near-frontal view).",
+          "pass": true,
+          "confidence": 0.93
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "accepted"
+    }
+  ]
+}

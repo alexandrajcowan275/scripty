@@ -1,15 +1,15 @@
-# Current blockers and resolved setup
+# Remaining human steps and resolved setup
 
-## Resolved
+There is no credentials, infrastructure, or application-build blocker. GitHub, OpenAI, Supabase, Vercel and the genuine24-image cache work. Paid generation has finished. Four batches and all original checker diagnostics are retained.
 
-The initial supplied placeholder returned HTTP401. User then supplied a replacement credential; `/v1/models` returned200 and the secret was synced to Vercel production+preview without printing or committing it. Supabase/storage/GitHub setup is verified.
+## Human morning steps
 
-A real raster reference and six real baseline shots now exist. Root is running the correction→different-scenes experiment and preparing the real cache. The initial checker confused anatomical sides; v2 calibration and honest re-evaluation are in progress and will preserve the original outputs.
+Verify the ten-shot DRAFT worksheet in `handoff/label-review.md` against the actual images before claiming monitor accuracy or output improvement. Agent-only judgments are not ground truth. Record the two-minute video, verify its public link, and submit by **October17,1:15pm PT**. No external submission has been made.
 
-## Human verification pending
+## Measurement limitations
 
-Agent image judgments remain DRAFT until a human verifies the fixed-criteria labels. A lower operational monitor flag rate is not a verified improvement claim. Video recording and external submission remain human steps before11amPT.
+Baseline-to-later comparison is confounded by the image model/style upgrade; original checker anatomy errors required three disclosed calibration attempts. Final batch worsened from0/6 to1/6 flagged, and the remaining profile-side flag itself needs human review. No further tuning was performed after the time box. Confidence is model-reported, not calibrated.
 
 ## Background mechanism
 
-Recurring automation was rejected by automatic approval review because of recurring spend/push/deploy authority. No automation exists; active-session work continues.
+Automatic approval review rejected a recurring automation with spend/push/deploy authority. It was not created. Release work was completed in the active session; any separate report-only QA schedules do not authorize paid generation or releases.

@@ -1,0 +1,327 @@
+{
+  "createdAt": "2026-10-17T03:33:31.022Z",
+  "note": "Stored final-v3 predictions; DRAFT agent labels only, no fresh API calls, no human verified accuracy claim",
+  "verified": {
+    "positiveClass": "drift",
+    "mode": "stored_checks",
+    "status": "no_verified_labels",
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "accuracy": null,
+    "truePositives": 0,
+    "falsePositives": 0,
+    "trueNegatives": 0,
+    "falseNegatives": 0,
+    "eligibleLabels": 0,
+    "evaluatedLabels": 0,
+    "skippedUnverified": 35,
+    "missingChecks": 0,
+    "missingShots": 0,
+    "confidenceThreshold": 0.6,
+    "includesDrafts": false,
+    "rows": []
+  },
+  "draft": {
+    "positiveClass": "drift",
+    "mode": "stored_checks",
+    "status": "complete",
+    "precision": 1,
+    "recall": 1,
+    "f1": 1,
+    "accuracy": 1,
+    "truePositives": 1,
+    "falsePositives": 0,
+    "trueNegatives": 34,
+    "falseNegatives": 0,
+    "eligibleLabels": 35,
+    "evaluatedLabels": 35,
+    "skippedUnverified": 0,
+    "missingChecks": 0,
+    "missingShots": 0,
+    "confidenceThreshold": 0.6,
+    "includesDrafts": true,
+    "rows": [
+      {
+        "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.98,
+        "result": "TN"
+      },
+      {
+        "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.97,
+        "result": "TN"
+      },
+      {
+        "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.93,
+        "result": "TN"
+      },
+      {
+        "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+        "attributeKey": "ring_hand",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.91,
+        "result": "TN"
+      },
+      {
+        "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.93,
+        "result": "TN"
+      },
+      {
+        "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+        "attributeKey": "ring_hand",
+        "trueDrift": true,
+        "predictedDrift": true,
+        "confidence": 0.88,
+        "result": "TP"
+      },
+      {
+        "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.98,
+        "result": "TN"
+      },
+      {
+        "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+        "attributeKey": "ring_hand",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.92,
+        "result": "TN"
+      },
+      {
+        "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.96,
+        "result": "TN"
+      },
+      {
+        "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+        "attributeKey": "ring_hand",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.94,
+        "result": "TN"
+      },
+      {
+        "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.87,
+        "result": "TN"
+      },
+      {
+        "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+        "attributeKey": "ring_hand",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.78,
+        "result": "TN"
+      },
+      {
+        "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.92,
+        "result": "TN"
+      },
+      {
+        "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+        "attributeKey": "ring_hand",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.48,
+        "result": "TN"
+      },
+      {
+        "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+        "attributeKey": "scarf_color",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+        "attributeKey": "scar_side",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.79,
+        "result": "TN"
+      },
+      {
+        "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+        "attributeKey": "hair",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.99,
+        "result": "TN"
+      },
+      {
+        "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+        "attributeKey": "ring_hand",
+        "trueDrift": false,
+        "predictedDrift": false,
+        "confidence": 0.7,
+        "result": "TN"
+      }
+    ]
+  }
+}
