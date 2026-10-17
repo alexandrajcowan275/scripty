@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-17T12:13:20.037711+00:00",
+  "sourceCommit": "3817d1775d3f503ce267b4703acf3546378c111c",
+  "applicationCommit": "c4c69d95a8cea9b910cbff275032d22dc1d6fd2f",
+  "deploymentId": "dpl_J1EdU3meoEyj2ixfzgG1AkYiXxnK",
+  "publicUrl": "https://canon-woad.vercel.app/",
+  "previewUrl": "https://canon-9bxt7xng6-archer-rag-dev.vercel.app",
+  "ci": "https://github.com/alexandrajcowan275/canon/actions/runs/39031477347",
+  "localChecks": {
+    "testsPassed": 74,
+    "testsFailed": 0,
+    "productionBuild": "passed"
+  },
+  "publicChecks": [
+    "Missing production settles to honest failure, without first-take claim or perpetual loading",
+    "Landing Start a production opens reference-first setup; Cancel returns without creating a production",
+    "Watch it on Mara opens original Take1 with2of6monitor flags",
+    "Review2flagged opens original T1S02ring finding and editable right-hand correction",
+    "Location still loads and external Marble world is honestly marked private"
+  ],
+  "paidCallsThisCheck": 0,
+  "humanLabelsSubmittedByAgents": 0,
+  "limits": [
+    "Full live loop and extraction/merge are verified in earlier attributed receipts, not repeated here",
+    "Human judgment persistence requires an actual human judgment; agents did not fabricate one",
+    "Final6:15readiness check remains scheduled"
+  ]
+}

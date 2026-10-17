@@ -8,7 +8,7 @@ Open http://localhost:3000. Public: **https://canon-woad.vercel.app/**. Private 
 
 **Deadline discrepancy — current official listing is11:00am PDT today**, verified again in the public browser. Your latest target is2:00pm PT; an extension is not publicly confirmed. Submit by11am unless you have organizer confirmation. [Official source](https://sephacks-2026.devpost.com/) / [verification](../docs/verification-deadline.json).
 
-Updated 5:09am PT; interim checkpoint. All eight application pages and the optional location card are live on **5a5b707**. The final failed-read/empty-state correction is integrating as **c4c69d9**, after 74 tests pass; release build and production verification are in progress. Main owns backend/docs/releases; Design owns UI.
+Updated **5:13am PT**, release candidate complete. Production is READY on **3817d1775d3f503ce267b4703acf3546378c111c**, branch **main**; application changes are **c4c69d9**. [Deployment](https://canon-9bxt7xng6-archer-rag-dev.vercel.app) · [green CI](https://github.com/alexandrajcowan275/canon/actions/runs/39031477347) · [verification receipt](../docs/verification-final-candidate.json). All eight pages, final recovery states and the optional location card are live. **74 tests pass; production build passes.** No rollback was required. Main owns backend/docs/releases; Design owns UI. One final bounded readiness check remains scheduled for 6:15am.
 
 ## What works
 

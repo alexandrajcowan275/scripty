@@ -61,7 +61,7 @@ Returns `{shot,newRule?,merged?,provenance,usage?,warning?}`. `decision:"accept"
 
 Current controls: $30 global cap, $2.23 founder-reported baseline, a separate $12 operator verification ceiling, per-owner/IP hourly throttles, and per-production generation lease/attempt cap. Never retry an ambiguous paid call merely because a UI timed out; refresh the saved production first.
 
-`GET /api/project/:id/locations` returns reviewed location metadata. Mara has one existing World Labs capture and a real external Marble link; owned productions currently return an empty array. This read-only route performs no generation or location continuity checking.
+`GET /api/project/:id/locations` returns reviewed location metadata. Mara has one existing World Labs capture and a real private Marble link (`marbleAccess:"permission_required"`); owned productions currently return an empty array. The captured PNG is available through `GET /api/locations/mara-platform/image`; the external viewer requires permission. This read-only route performs no generation or location continuity checking.
 
 Mara's blind question list now starts with the12controlled A/B shots (48canon questions), before the original history. Ring/scar checks come first within each study shot. Question payloads contain no condition, prediction, confidence or drift flag. Submitted labels for those study shot IDs are saved normally and included in free human-only evaluation; production take counts remain unchanged.
 

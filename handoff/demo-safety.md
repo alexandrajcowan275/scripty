@@ -1,3 +1,21 @@
+# Scheduled GET-only QA — 2026-10-17 05:11 AM Pacific
+
+**PASS for bounded changed-release checks. Prior P2external-study-image dependency RESOLVED; no new consequential regression.** At start latest READY metadata was `dpl_9VXyNatmb4mdYmZ5FyjebLsEF8UD` /5a5b707. At end docs/final-candidate3817d17 was BUILDING as `dpl_J1EdU3meoEyj2ixfzgG1AkYiXxnK`; do not treat this check as certification of that unfinished deployment. Canonical public pages were exercised during this window. Main reports final applicationc4c69d9 passes74tests/build; QA did not repeat them.
+
+## Focused evidence
+
+- GET `/api/project/mara/labels`:200,210questions. All first48study question imageURLs start `/api/study/images/`. One public study PNG200 SHA256matches its saved local PNG exactly. Only one image downloaded; no full corpus repeat.
+- Public EvalQ1/210loads ring question, monitor verdict remains hidden, human counts0and precision/recalldash. All6HTMLimages on that page loaded and same-origin; no horizontal overflow or captured browser errors/warnings. No human label submitted. Human-label persistence still uses Supabase; this does not certify offline label saving.
+- Sample Studio defaultTake4renders six original scenes and unchanged33/0/0/17rail. SelectingTake1 updates heading toTake1/2of6/2rules and URLtake=e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3. Refresh retainsTake1. This is view navigation only, with no review/generation request.
+- Memory shows original recorded ring reach18prompts/18checks separately from existing0reach browser notes; local reference and Dawn railway platform captured-still/private-world status render. No claim of world checking/generation.
+- No review/reject/accept/recheck/fix/generate/new?start=1/canon/reference-generation/label action, cookie manipulation/logout, paid call, data deletion or source/assets/db/git/deployment/protection mutation. Only this report updated. No screenshots, broad tests or full secrets scan repeated.
+
+## Handoff
+
+Keep runtime frozen unless a concrete blocker. Final6:15amPTboundedGET-onlyreadiness check remains pending; pause this existing90-minute automation after final check, never delete/create. Original24-shot replay and A/B0/6vs0/6limits remain unchanged; human accuracy/causal improvement not certified. Founder2pm submission target and official11am listing discrepancy remain Main/user coordination, not a verified extension.
+
+## Historical findings below — external Eval image P2 now closed
+
 # Scheduled GET-only QA — 2026-10-17 03:36 AM Pacific
 
 **Public changed views PASS; one P2 offline-dependency finding for Main.** Latest READY production metadata: `dpl_HovCGmcqkDuo3Z1tvm4NXWPNTUov` /bdca71c8d300e26d32c2736d00d7b66d370d4402. Local head241f899 was inspected only as source context. Strict GET-only browser navigation; no reviews, batch/recheck/fix/generate/canon/reference actions, new?start=1, labels, cookie manipulation/logout, data deletion, paid calls or app edits. Only this report updated.
