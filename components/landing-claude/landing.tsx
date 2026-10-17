@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import s from "./landing.module.css";
 
-const STATEMENT =
-  "On a real set, the script supervisor catches what changed between shots. Scripty does it for every AI shot, and remembers every correction you make.";
+const STATEMENT = "Cinema is being generated. Continuity isn't.";
 
 const CHECKS = [
   { k: "Red wool scarf", v: "✓ 0.99", ok: true },
@@ -13,6 +12,8 @@ const CHECKS = [
   { k: "Silver ring · right hand", v: "✓", ok: true },
   { k: "Scar · LEFT eye", v: "✕ 0.83", ok: false },
 ];
+
+const GRID = ["e0a363b5e81c", "32102f4cb12f", "c572629800c7", "08c322d07e20", "de2c61a4b138", "8a7badfdfd08"];
 
 const STEPS = [
   { n: "01", t: "Check", d: "Every generated shot is compared with your character's canon, one detail at a time. Unclear stays unclear. It never guesses." },
@@ -89,7 +90,7 @@ export function LandingClaude() {
     return () => { window.clearTimeout(id); window.removeEventListener("wheel", done); window.removeEventListener("pointerdown", done); };
   }, [reduce]);
   const revealRef = useRef<HTMLDivElement>(null);
-  const statementRef = useRef<HTMLParagraphElement>(null);
+  const statementRef = useRef<HTMLHeadingElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
   const [reveal, setReveal] = useState(0);
   const [words, setWords] = useState(0);
@@ -183,7 +184,41 @@ export function LandingClaude() {
       <section className={s.future}>
         <div className={s.beam} aria-hidden="true" /><div className={s.beam2} aria-hidden="true" /><div className={s.lamp} aria-hidden="true" />
         <p className={`${s.mono} ${s.futureK}`}>INT. THE FUTURE OF CINEMA</p>
-        <h2 className={s.futureH}>Cinema is being generated.<span>Continuity isn&apos;t.</span></h2>
+        <h2 ref={statementRef} className={s.futureH}>
+          {STATEMENT.split(" ").map((w, i) => (
+            <span key={i} className={`${s.fw} ${i < words ? s.fwOn : ""} ${i >= 4 ? s.fwDim : ""}`}>{w}{i === 3 ? <br /> : " "}</span>
+          ))}
+        </h2>
+      </section>
+
+      {/* PROJECTED: the shot opens up out of the beam */}
+      <section id="reveal" ref={revealRef} className={s.revealTrack}>
+        <div className={s.revealSticky}>
+          <div className={s.revealCaption} style={{ opacity: 1 - grow }}>
+            <span className={s.mono}>SC 12 · TK 4 · S05</span>
+          </div>
+          <div className={s.revealCard} style={{ transform: `scale(${scale})`, borderRadius: radius }}>
+            <img src="/landing/de2c61a4b138.jpg" alt="A generated shot of Mara opening a wooden locker, being checked by Scripty" />
+            <div className={s.revealShade} style={{ opacity: hud }} />
+            <div className={`${s.bk} ${locked ? s.bkLocked : ""}`} aria-hidden="true"><i /><i /><i /><i /></div>
+            <div className={`${s.glass} ${s.callout} ${locked ? s.show : ""}`}>
+              <b>Scar is by her right eye</b>
+              <span className={s.mono}>canon: LEFT · confidence 0.83</span>
+            </div>
+            <div className={`${s.glass} ${s.panel} ${hud > 0.1 ? s.show : ""}`}>
+              <div className={s.panelHead}><span className={s.mono}>T4 · S05 · CHECKING</span><span className={`${s.mono} ${s.bad}`}>{rowsShown >= 4 ? "DRIFT" : "…"}</span></div>
+              {CHECKS.map((c, i) => (
+                <div key={c.k} className={`${s.row} ${i < rowsShown ? s.rowOn : ""}`}>
+                  <span>{c.k}</span><span className={`${s.mono} ${c.ok ? s.ok : s.bad}`}>{c.v}</span>
+                </div>
+              ))}
+            </div>
+            <div className={`${s.glass} ${s.memory} ${memory ? s.show : ""}`}>
+              <i className={s.memDot} />
+              <div><b>Scar is always over her LEFT eye.</b><span className={s.mono}>saved to memory</span></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* HOW IT WORKS (sticky) */}
@@ -200,16 +235,13 @@ export function LandingClaude() {
           </div>
           <div className={s.stepsStage}>
             <div className={`${s.stage} ${step === 0 ? s.stageOn : ""}`}>
-              <div className={s.frame}>
-                <img src="/landing/de2c61a4b138.jpg" alt="" />
-                <div className={s.frameHud}><span>T4 · S05</span><span>● CHECKING</span></div>
-                <div className={`${s.bk} ${s.bkLocked} ${s.frameBk}`} aria-hidden="true"><i /><i /><i /><i /></div>
-                <div className={s.framePanel}>
-                  <div className={s.panelHead}><span className={s.mono}>CANON</span><span className={`${s.mono} ${s.bad}`}>1 DRIFT</span></div>
-                  {CHECKS.map((c) => (
-                    <div key={c.k} className={`${s.row} ${s.rowOn}`}><span>{c.k}</span><span className={`${s.mono} ${c.ok ? s.ok : s.bad}`}>{c.v}</span></div>
-                  ))}
-                </div>
+              <div className={s.grid}>
+                {GRID.map((g, i) => (
+                  <div key={g} className={`${s.cell} ${i === 4 ? s.cellFlag : ""}`}>
+                    <img src={`/landing/${g}.jpg`} alt="" />
+                    <span className={s.mono}>S0{i + 1}{i === 4 ? " · DRIFT" : " ✓"}</span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className={`${s.stage} ${step === 1 ? s.stageOn : ""}`}>

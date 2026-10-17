@@ -146,3 +146,8 @@ Integrate Design28955b2: a read-only Mara Studio preview expands into view, foll
 ## October17 — founder-approved Claude cinematic landing
 
 Replace only the public landing entry with the founder’s final `components/landing-claude/` implementation and its bundled landing images. Preserve the working application routes and previous LandingScreen fallback. The opening title sequence is session-scoped, dismisses on interaction, and has reduced-motion styling; final public checks must use fresh private sessions at1440px and390px. All92 tests, production build and typecheck passed before committing. Unrelated README, design exports and gitignore changes remain outside this release.
+
+
+## October17 — projected reveal and contact sheet
+
+Deploy the founder’s follow-up landing update: word-by-word cinema headline, a pinned Mara shot expanding from an inset to full screen, staged check overlays and a six-image contact-sheet step. These are presentation sequences using bundled images, not additional live AI runs or evaluation measurements. Preserve the working in-app routes and all original evidence. Production build/typecheck and92 tests pass before release.
