@@ -14,8 +14,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { Brand } from "./chrome";
 import { Icon, type IconName } from "../icons";
 import { MotionLink } from "./motion";
-import { OverviewDialog } from "./production-overview";
-import { LocationReference } from "./location-reference";
 
 const ShellContext = createContext<{
   register: (id: string, name: string) => void;
@@ -24,8 +22,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const router = useRouter();
   const path = usePathname(),
     content = useRef<HTMLDivElement>(null);
-  const [names, setNames] = useState<Record<string, string>>({}),
-    [locations, setLocations] = useState(false);
+  const [names, setNames] = useState<Record<string, string>>({});
   const register = useCallback(
     (id: string, name: string) =>
       setNames((previous) =>
@@ -41,7 +38,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (isApp && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
       content.current?.animate([{ opacity: 0 }, { opacity: 1 }], {
-        duration: 150,
+        duration: 200,
         easing: "ease-out",
       });
   }, [path, isApp]);
@@ -60,46 +57,32 @@ export function AppShell({ children }: { children: ReactNode }) {
     <ShellContext.Provider value={value}>
       <div className="v2-app-shell v2-workspace">
         <aside className="v2-dashboard-sidebar v2-app-sidebar">
-          <Brand />
           <nav aria-label="Workspace" className="v2-dashboard-nav">
+            <span className="v2-dashboard-group-label">Workspace</span>
             {nav("Home", "frame", "/dashboard", path === "/dashboard")}
-            {nav("Productions", "slate", "/projects", path === "/projects")}
-            {id && (
-              <div className="v2-shell-production">
-                <span title={names[id] ?? "Production"}>
-                  {names[id] ?? (id === "mara" ? "Mara" : "Production")}
-                </span>
-                <div>
-                  {[
-                    ["Studio", `/p/${id}`],
-                    ["Evidence", `/p/${id}/evidence`],
-                    ["Eval", `/p/${id}/eval`],
-                  ].map(([label, href]) => (
-                    <MotionLink
-                      href={href}
-                      className={
-                        path === href ||
-                        (label === "Studio" && path.includes("/shot/"))
-                          ? "on"
-                          : ""
-                      }
-                      key={label}
-                    >
-                      {label}
-                    </MotionLink>
-                  ))}
-                </div>
-              </div>
+            {nav(
+              "Productions",
+              "slate",
+              "/projects",
+              path === "/projects" || path === "/productions",
+            )}
+            {nav("New production", "plus", "/new", path === "/new")}
+          </nav>
+          <nav aria-label="Production" className="v2-dashboard-nav">
+            <span className="v2-dashboard-group-label">
+              {names[productionId] ??
+                (productionId === "mara" ? "Mara" : "Production")}
+            </span>
+            {nav(
+              "Studio",
+              "slate",
+              `/p/${productionId}`,
+              path === `/p/${productionId}` || path.includes("/shot/"),
             )}
             <button
               className="v2-dashboard-nav-item"
               onClick={() => {
                 const base = `/p/${productionId}`;
-                const query = new URLSearchParams(
-                  window.location.pathname === base
-                    ? window.location.search
-                    : "",
-                );
                 if (path === base) {
                   window.dispatchEvent(
                     new CustomEvent("scripty:open-memory", {
@@ -108,8 +91,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                   );
                   return;
                 }
-                query.set("panel", "memory");
-                router.push(`${base}?${query}`, { scroll: false });
+                router.push(`${base}?panel=memory`, { scroll: false });
               }}
             >
               <Icon name="layers" />
@@ -119,47 +101,23 @@ export function AppShell({ children }: { children: ReactNode }) {
               "Evidence",
               "activity",
               `/p/${productionId}/evidence`,
-              !id && path.endsWith("/evidence"),
+              path.endsWith("/evidence"),
             )}
             {nav(
               "Eval",
               "check",
               `/p/${productionId}/eval`,
-              !id && path.endsWith("/eval"),
+              path.endsWith("/eval"),
             )}
+          </nav>
+          <nav aria-label="Platform" className="v2-dashboard-nav">
+            <span className="v2-dashboard-group-label">Platform</span>
             {nav("API", "terminal", "/developers", path === "/developers")}
           </nav>
-          <div className="v2-dashboard-products">
-            <span className="v2-dashboard-group-label">Products</span>
-            <nav aria-label="Products">
-              <button
-                className="v2-dashboard-nav-item"
-                onClick={() => setLocations(true)}
-              >
-                <Icon name="image" />
-                <span>Locations</span>
-              </button>
-              {["Video", "Team"].map((label) => (
-                <button className="v2-dashboard-nav-item" disabled key={label}>
-                  <Icon name={label === "Video" ? "play" : "layers"} />
-                  <span>{label}</span>
-                  <small>Soon</small>
-                </button>
-              ))}
-            </nav>
-          </div>
         </aside>
         <div ref={content} className="v2-shell-page">
           {children}
         </div>
-        {locations && (
-          <OverviewDialog
-            title="Locations · Mara"
-            onClose={() => setLocations(false)}
-          >
-            <LocationReference projectId="mara" />
-          </OverviewDialog>
-        )}
       </div>
     </ShellContext.Provider>
   );
@@ -182,7 +140,8 @@ export function AppPageHeader({
   }, [id, productionName, shell?.register]);
   return (
     <header className="v2-app-header">
-      <div>
+      <div className="v2-app-header-left">
+        <Brand light href="/" />
         <nav aria-label="Breadcrumb" className="v2-app-breadcrumb">
           <MotionLink href="/dashboard">Home</MotionLink>
           {id && (
@@ -200,7 +159,7 @@ export function AppPageHeader({
             </>
           )}
         </nav>
-        <h1>{title}</h1>
+        <h1 className="v2-sr-title">{title}</h1>
       </div>
       {action ?? (
         <MotionLink href="/new" kind="start" className="v2-button">

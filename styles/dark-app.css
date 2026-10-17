@@ -1,24 +1,264 @@
 /* App-only materials. The final landing owns its own composition. */
-body:has(.v2-app-shell), .v2-app-shell {
-  background: radial-gradient(1200px 520px at 58% -12%, color-mix(in srgb, var(--memory) 5%, transparent), transparent 70%), var(--background);
+body:has(.v2-app-shell),
+.v2-app-shell {
+  background:
+    radial-gradient(
+      1200px 520px at 58% -12%,
+      color-mix(in srgb, var(--memory) 5%, transparent),
+      transparent 70%
+    ),
+    var(--background);
 }
-.v2-app-shell { --v2-stroke: var(--border); --v2-soft: var(--image-bed); --studio-ink-soft: var(--muted); }
-.v2-app-shell .v2-haze { display: none; }
-.v2-app-shell :is(.v2-screen,.v2-dashboard-main,.v2-detail-wrap,.v2-page-wrap) { background: transparent; }
-.v2-app-shell :is(.v2-button,.v2-review-primary) { background: var(--text); color: var(--background); border: 1px solid transparent; box-shadow: none; }
-.v2-app-shell :is(.v2-button,.v2-review-primary):hover:not(:disabled) { background: color-mix(in srgb, var(--text) 88%, var(--background)); color: var(--background); }
-.v2-app-shell :is(.v2-light,.v2-clear,.v2-button.secondary) { background: transparent; color: var(--text); border-color: var(--border); }
-.v2-app-shell :is(.v2-light,.v2-clear):hover:not(:disabled) { background: var(--hover); color: var(--text); }
-.v2-app-shell :is(input,textarea,select,.v2-inspector,.v2-eval-aside,.v2-setup-card,.v2-character-sheet,.v2-overview-card,.v2-sheet,.v2-rail-dialog) { background: var(--surface); color: var(--text); border-color: var(--border); }
-.v2-app-shell .v2-label { font: 400 10px/1.6 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.v2-app-shell :is(h1,h2,h3) { font-family: var(--font-display); }
-.v2-app-shell .v2-pass-text, .v2-app-shell .v2-status-tag.pass { color: var(--pass); }
-.v2-app-shell .v2-kbd { background: var(--image-bed); color: var(--muted); border-color: var(--border); }
-.v2-app-shell .v2-drift-text { color: var(--drift); }
-.v2-memory-sheet,.v2-access-dialog,.v2-overview-dialog { background: var(--surface); color: var(--text); border-color: var(--border); }
-.v2-memory-sheet :is(input,textarea,pre), .v2-reach-option { background: var(--image-bed); color: var(--text); }
-.v2-memory-sheet .v2-button { background: var(--text); color: var(--background); }
-.v2-memory-sheet .v2-light { background: transparent; color: var(--text); border: 1px solid var(--border); }
-.v2-app-shell .v2-brand img { filter: invert(1); }
-.v2-app-shell .v2-brand img[src*="light"] { filter: none; }
-.v2-app-shell :is(.v2-shot-card,.v2-review-image,.v2-evidence-frame) img { filter: none; }
+.v2-app-shell {
+  --v2-stroke: var(--border);
+  --v2-soft: var(--image-bed);
+  --studio-ink-soft: var(--muted);
+}
+.v2-app-shell .v2-haze {
+  display: none;
+}
+.v2-app-shell
+  :is(.v2-screen, .v2-dashboard-main, .v2-detail-wrap, .v2-page-wrap) {
+  background: transparent;
+}
+.v2-app-shell :is(.v2-button, .v2-review-primary) {
+  background: var(--text);
+  color: var(--background);
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.v2-app-shell :is(.v2-button, .v2-review-primary):hover:not(:disabled) {
+  background: color-mix(in srgb, var(--text) 88%, var(--background));
+  color: var(--background);
+}
+.v2-app-shell :is(.v2-light, .v2-clear, .v2-button.secondary) {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+.v2-app-shell :is(.v2-light, .v2-clear):hover:not(:disabled) {
+  background: var(--hover);
+  color: var(--text);
+}
+.v2-app-shell
+  :is(
+    input,
+    textarea,
+    select,
+    .v2-inspector,
+    .v2-eval-aside,
+    .v2-setup-card,
+    .v2-character-sheet,
+    .v2-overview-card,
+    .v2-sheet,
+    .v2-rail-dialog
+  ) {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.v2-app-shell .v2-label {
+  font: 400 10px/1.6 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.v2-app-shell :is(h1, h2, h3) {
+  font-family: var(--font-display);
+}
+.v2-app-shell .v2-pass-text,
+.v2-app-shell .v2-status-tag.pass {
+  color: var(--pass);
+}
+.v2-app-shell .v2-kbd {
+  background: var(--image-bed);
+  color: var(--muted);
+  border-color: var(--border);
+}
+.v2-app-shell .v2-drift-text {
+  color: var(--drift);
+}
+.v2-memory-sheet,
+.v2-access-dialog,
+.v2-overview-dialog {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.v2-memory-sheet :is(input, textarea, pre),
+.v2-reach-option {
+  background: var(--image-bed);
+  color: var(--text);
+}
+.v2-memory-sheet .v2-button {
+  background: var(--text);
+  color: var(--background);
+}
+.v2-memory-sheet .v2-light {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.v2-app-shell .v2-brand img {
+  filter: invert(1);
+}
+.v2-app-shell .v2-brand img[src*="light"] {
+  filter: none;
+}
+.v2-app-shell :is(.v2-shot-card, .v2-review-image, .v2-evidence-frame) img {
+  filter: none;
+}
+/* One frame around every working view. */
+.v2-app-shell {
+  grid-template-columns: 224px minmax(0, 1fr);
+  padding-top: 56px;
+}
+.v2-app-shell .v2-app-sidebar {
+  position: sticky;
+  top: 56px;
+  height: calc(100svh - 56px);
+  min-height: 0;
+  padding: 16px 12px;
+  gap: 28px;
+  background: color-mix(in srgb, var(--background) 80%, transparent);
+  border-color: var(--border);
+}
+.v2-app-shell .v2-dashboard-group-label {
+  margin: 0 10px 8px;
+  font: 400 10px/16px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.v2-app-shell .v2-dashboard-nav-item {
+  min-height: 34px;
+  padding: 7px 10px;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 400;
+}
+.v2-app-shell .v2-dashboard-nav-item svg {
+  display: none;
+}
+.v2-app-shell .v2-dashboard-nav-item.on {
+  background: var(--image-bed);
+  box-shadow: inset 2px 0 var(--text);
+  color: var(--text);
+  border-radius: 6px;
+}
+.v2-app-shell .v2-app-header {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 56px;
+  z-index: 40;
+  padding: 0 20px;
+  gap: 16px;
+  flex-wrap: nowrap;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+.v2-app-header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+.v2-app-shell .v2-app-header .v2-brand {
+  font-size: 0;
+  gap: 0;
+  flex-shrink: 0;
+}
+.v2-app-shell .v2-app-header .v2-brand img {
+  width: 25px;
+  height: 25px;
+}
+.v2-app-shell .v2-app-breadcrumb {
+  flex-wrap: nowrap;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.v2-app-shell .v2-app-breadcrumb [aria-current] {
+  color: var(--text);
+}
+.v2-app-shell .v2-app-header > .v2-button {
+  min-height: 34px;
+  padding: 7px 14px;
+  font-size: 12px;
+  border-radius: var(--radius-pill);
+}
+.v2-sr-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.v2-app-shell
+  .v2-shell-page
+  :is(
+    .v2-dashboard-main,
+    .v2-detail-wrap,
+    .v2-setup-wrap,
+    .v2-production-catalog,
+    .v2-eval-layout
+  ) {
+  padding: 28px;
+}
+.v2-app-shell .v2-app-header h1 {
+  margin: -1px;
+}
+@media (max-width: 760px) {
+  .v2-app-shell {
+    display: block;
+  }
+  .v2-app-shell .v2-app-sidebar {
+    position: relative;
+    top: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .v2-app-shell .v2-app-sidebar nav {
+    flex-direction: row;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  .v2-app-shell .v2-dashboard-group-label {
+    display: none;
+  }
+  .v2-app-shell .v2-dashboard-nav-item {
+    min-height: 36px;
+    padding: 8px 10px;
+  }
+  .v2-app-shell .v2-app-header {
+    padding: 0 16px;
+  }
+  .v2-app-header-left {
+    gap: 12px;
+  }
+  .v2-app-shell .v2-app-breadcrumb a {
+    max-width: 75px;
+  }
+  .v2-app-shell .v2-app-breadcrumb > a:first-child,
+  .v2-app-shell .v2-app-breadcrumb > a:first-child + span {
+    display: none;
+  }
+  .v2-app-shell
+    .v2-shell-page
+    :is(
+      .v2-dashboard-main,
+      .v2-detail-wrap,
+      .v2-setup-wrap,
+      .v2-production-catalog,
+      .v2-eval-layout
+    ) {
+    padding: 24px 16px;
+  }
+}
