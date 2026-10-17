@@ -49,9 +49,9 @@ Next comes video continuity and broader generator integrations. Tonight, we have
 Scripty. Keep the story straight.
 
 ## Recording notes
-- Keep Sample production label visible. Use recorded persistence and prompt evidence; do not portray local replay edits as new server learning.
+- Identify Mara as the sample production. Use original persistence/prompt evidence; do not portray a visitor’s new note as the source of historical generation.
 - Show the character reference, selected shot, learned rule, and a different scene's applied-rule evidence. Treat ring laterality as a review judgment until a human verifies it.
 - Put the evidence caption beside the four-batch chart or in the video caption. No accuracy headline from provisional agent labels.
 - Use the short landing line and quiet workspace labels; technical detail belongs in Evidence.
 - Rehearse and trim the recording to exactly two minutes. Confirm the video and GitHub links are accessible to judges.
-- The project handoff states human submission by 1:15 p.m. PT, while the previously checked Devpost schedule stated 11 a.m. PT. Main must reconcile this with current organizer guidance; do not assume 1:15 is accepted by Devpost.
+- Rechecked October17: [official Devpost](https://sephacks-2026.devpost.com/) currently lists2pmEDT, which is11amPacific today. Plan submission before11am. The founder supplied1:15pm, but no organizer extension is verified. Requirements: two-minute demo/pitch video, working GitHub and project links.

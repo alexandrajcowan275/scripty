@@ -25,7 +25,7 @@ Scripty sits in front of any image or video generator and does three things:
 6. Generate different new scenes with the learned rule, compare against the same fixed character criteria, and inspect the applied-rule trace. The **Learning curve** shows the actual flagged rate per batch; the **Trace log** shows checks, rules, and failures. Never deliberately weaken the baseline or promise a falling curve. Human-reviewed labels on new scenes are needed to establish improvement; operational flagged rates alone are insufficient because learned rules also change the monitor.
 
 ## 3. Hard constraints
-- Submission deadline: Sat Oct17,2026, **1:15pm PT**, as reaffirmed directly by the user. Checkpoint **1:00am PT**: local real-image flow, one-command run instructions, real cached replay, latest Vercel link in MORNING.md. Target final morning assets by10:45am. Do not submit externally without explicit user authorization.
+- Submission timing: founder supplied Sat Oct17,2026 **1:15pm PT**; official https://sephacks-2026.devpost.com/ rechecked October17 lists **11am PT (2pmEDT)**. Use the earlier published cutoff unless an organizer extension is confirmed. Checkpoint **1:00am PT**: local real-image flow, one-command run instructions, real cached replay, latest Vercel link in MORNING.md. Target final morning assets by10:45am. Do not submit externally without explicit user authorization.
 - Must deploy on **Vercel** with a public URL. Must work in a desktop browser at 1440px and stay usable at 390px.
 - No GPU hosting. APIs only. Keep the total API budget under $25.
 - **Never commit secrets.** Read keys from env vars only. Keep `.env.example` up to date.

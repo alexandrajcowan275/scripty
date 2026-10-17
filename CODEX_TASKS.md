@@ -1,6 +1,6 @@
 # Scripty: Codex task prompts
 
-**Current execution target:** checkpoint1:00amPT on Saturday October17,2026; direct user submission deadline1:15pmPT that day, with morning assets targeted10:45am. The latest direct user deadline supersedes earlier conservative11am planning. Product is Scripty, the AI script supervisor; repo/folder/Vercel project staycanon. Root orchestrates authorized parallel subagents/worktrees. Do not submit externally without direct user authorization.
+**Current execution target:** checkpoint1:00amPT on Saturday October17,2026; founder-reported target1:15pmPT that day, with morning assets targeted10:45am. Official Devpost was rechecked October17 and still lists11amPT (2pmEDT); plan submission by that earlier public cutoff unless an organizer extension is confirmed. Product is Scripty, the AI script supervisor; repo/folder/Vercel project staycanon. Root orchestrates authorized parallel subagents/worktrees. Do not submit externally without direct user authorization.
 
 MVP proof: a real creator correction on one shot survives refresh, becomes one deduplicated rule, and appears in generation and monitoring of a different new scene. Keep the baseline intact. Operational monitor flags alone do not prove improvement; report fixed-criteria, human-reviewed results with sample counts, or clearly label draft evidence. Defer video, multiple characters, accounts, collaboration, billing, and extra providers.
 

@@ -8,7 +8,7 @@ Open **http://localhost:3000**. This exact command was restarted and browser-ver
 
 # Scripty - morning handoff
 
-Updated **October16,2026,11:20pm PT**, before the1am checkpoint. Overnight Main/QA/judge checks continue every90minutes through the7am handoff. Founder-supplied submission deadline: **October17,1:15pm PT**. No external submission has been made.
+Updated **October17,2026,12:27am PT**, before the1am checkpoint. Overnight Main/QA/judge checks continue every90minutes through the7am handoff. **Official Devpost currently lists11:00am PT today (2:00pmEDT); use this earlier cutoff.** The founder’s supplied1:15pm target conflicts with the public listing; no extension is verified. Source: https://sephacks-2026.devpost.com/. No external submission has been made.
 
 ## Release
 
@@ -23,6 +23,7 @@ Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Speci
 - Landing offers **Start a new production** and **Explore a sample production: Mara**.
 - New production: name, character, private reference upload, editable canon details and six scene prompts. Real Supabase persistence, refresh, exact original image bytes and another-browser access denial were verified locally and on the public URL.
 - Reference uploads save before Continue. Owned Memory → Edit character saves an immutable version; prior reference versions remain available, and existing shots/checks are unchanged. Tested through both API and real browser.
+- Batch headings say “shots flagged,” preserving monitor uncertainty. Review now has a visible Back to shots action that leaves without saving; Escape remains available.
 - Mara opens all four takes/24 real images immediately. Batch → one-shot Review → actual returned Learned rule → Memory → Progress works. Keyboard A/R, Escape/focus return, review refresh and session isolation were verified.
 - Original counts remain separate from visitor review decisions. Scar rejection yields the scar rule; it does not substitute a ring example. Memory notes do not rewrite historical images.
 - Progress retains all four actual takes, uncertainty/confounds, full prompt/check/trace evidence and original ring-rule transfer. Known-image markers use source coordinates; full Review images are contained rather than cropped.
@@ -49,7 +50,7 @@ API reservation ledger remains **$20.58 of$24**, checked again after public uplo
 1. **Paid generation is intentionally unavailable.** Description-based reference generation and six-shot new-production generation are implemented but were not paid-tested for a new production. Upload/create/save works and offers Mara when generation is paused. Do not enable paid calls or increase limits without new founder authorization.
 2. **Record the two-minute video.** Use [video script](../docs/video-script.md), [final pitch](pitch-final.md), [Devpost copy](../docs/devpost.md), the public product and [Design cover](screenshots/figma-v3/devpost-cover.png). The script distinguishes the visitor’s new scar note from the original ring rule’s18-shot transfer. No final uploaded video exists yet.
 3. **Review the actual laterality findings before certifying them.** If unclear, demonstrate saved memory and prompt/check propagation; do not claim a visually repaired shot or measured accuracy.
-4. **Confirm judge access and submit.** The GitHub repository remains private as requested. No judge invitations/public conversion or external Devpost submission has been performed. Check the event’s access/video requirements and submit before1:15pm PT.
+4. **Confirm judge access and submit.** The GitHub repository remains private as requested. No judge invitations/public conversion or external Devpost submission has been performed. The current official requirements are a two-minute demo/pitch video, working GitHub link and deployed project link. Plan submission before11am PT unless the organizer confirms an extension; do not rely on the conflicting1:15pm target.
 5. Ownership is tied to the creating browser for30days. Clearing that cookie loses access; accounts, cross-device recovery and collaboration are outside this release. Save the production URL for returning directly.
 
 The final one-page [brand handout](../docs/brand-guide.pdf) is updated to light v3 and visually verified. Business copy is deliberately short and treats customers, pricing and savings as hypotheses. Larger proposals are in [internal/IDEAS.md](../internal/IDEAS.md). Purchases/deletion and optional cleanup are logged in [BLOCKED.md](../BLOCKED.md).

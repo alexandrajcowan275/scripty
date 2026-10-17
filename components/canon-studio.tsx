@@ -588,7 +588,7 @@ export function ScriptyStudio({
               ? "Checking your shots."
               : !shots.length && !generating
                 ? "Your first take starts here."
-                : `${flagged.length} of ${shots.length || 6} shots ${flagged.length === (shots.length || 6) ? "need review" : "drifted"}.`}
+                : `${flagged.length} of ${shots.length || 6} shots flagged.`}
           </h1>
           {loading || generating ? (
             <div
@@ -642,6 +642,13 @@ export function ScriptyStudio({
       ) : null}
       {view === "review" && selected ? (
         <main className="review-screen">
+          <button
+            className="pill secondary review-back"
+            onClick={back}
+            disabled={busy}
+          >
+            Back to shots
+          </button>
           <div className="review-bed">
             <div className="source-frame">
               <ShotImage

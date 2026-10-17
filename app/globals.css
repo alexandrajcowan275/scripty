@@ -331,12 +331,22 @@ caption {
   margin-top: 40px;
 }
 .review-screen {
+  position: relative;
   min-height: 1080px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
   padding: 72px 24px;
+}
+.review-back {
+  position: absolute;
+  top: 12px;
+  left: max(24px, calc((100% - 1076px) / 2));
+  height: 48px;
+  padding: 0;
+  min-width: 144px;
+  justify-content: flex-start;
 }
 .review-bed {
   width: min(1076px, 100%);
@@ -1016,6 +1026,10 @@ caption {
     align-items: stretch;
     gap: 32px;
     padding: 24px;
+  }
+  .review-back {
+    top: 24px;
+    left: 24px;
   }
   .review-bed {
     width: 100%;

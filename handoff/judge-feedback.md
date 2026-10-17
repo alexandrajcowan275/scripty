@@ -1,35 +1,36 @@
-# Scripty — working public-demo judge review
+# Current verdict — public light-v3 Scripty
 
-Reviewed: 2026-10-16 09:08 PM PT. Four simulated perspectives, not actual judges’ opinions. Desktop public production https://canon-woad.vercel.app/ inspected read-only. No review/generation requests, code, assets, labels, DB, git, deployment or protection changes. Main owns application code; pending Figma redesign is not scored before release.
+Reviewed October 17, 2026, about 12:25 a.m. Pacific. Public https://canon-woad.vercel.app/ opened without Vercel login. This supersedes the earlier dark-dashboard checkpoint. Four simulated perspectives only, not actual judges’ opinions. No paid calls or application/data changes; only this report is updated.
 
-## Observed evidence
+**Verdict:** convincing, substantially clearer recorded-memory demonstration. The calm landing, Batch → single Review flow and separate Progress improve the product story. The application-level rule transfer is evidenced; causal image improvement and monitor accuracy remain unverified. New-production upload/save and the mutating Learned transition were not exercised in this read-only audit. Existing QA records support those paths, not firsthand test here. Mobile was not re-tested.
 
-- Public app opens without Vercel login. Cached playback banner explains that local review corrections do not change historical recorded generation.
-- Visible four batches/24 shots; operational flags 2/6, 0/6, 0/6, 1/6; uncertainties 4, 6, 8, 6. Actual UI shows learned ring rule as Recorded memory and distinct incomplete-evidence cards.
-- Selected batch2 library portrait, expanded Generation context: learned right-hand ring rule appears in its actual final prompt, with cached_real_engine provenance and corresponding Memory rule check (78% model confidence).
-- Opened trace drawer: 257 recorded events, rule application, model/version and raw usage records. No paid requests made. Selected-shot inspector and reference images render in cinematic dark three-pane layout.
-- Local results preserve baseline calibration and model/style/scene confounds; all 18 later prompts/checks include the rule. Human labels remain DRAFT; default verified accuracy unavailable. These records support application-level memory transfer, not causal output improvement or trained model weights.
-- Desktop visual review only; no new mobile/keyboard test. Persistence and exhaustion supported by existing release QA, not re-executed here. Pitch scores assess existing written script, not delivery or final video.
+## Observed changes
 
-## Scores (Functionality / Continual Learning / Pitch)
+- Landing offers Start a new production and Explore a sample production: Mara. Sample opens instantly after loading, with six-shot take and Memory/Progress navigation.
+- Selected original take4 locker shot: full-size contained image with scar annotation; heading “Scar seems on her right. Canon says left.” Actions “Reject & remember” / “Looks right.” No visible back/cancel control appeared in the Review accessibility tree. No review decision was submitted.
+- Batch headline says “1 of 6 shots drifted.” Its accessible shot label more cautiously says “Monitor flagged continuity drift.” Ground-truth disagreement about this exact profile-side flag remains in results.
+- Progress shows all original counts 2/6,0/6,0/6,1/6. Concrete adjacent disclosure: “Models, scenes and checks changed. Human verification pending.” Expanded Evidence explains v3 recalibration, generator/style/scenes/reference changes, uncertainty counts, browser-local edits, and lack of causal/verified accuracy. This RESOLVES the earlier chart-disclosure finding.
+- Evidence reports the ring rule reaching18 later prompts/checks, displays its text and actual rule ID, offers Compare Take1 and Take3 plus expandable application/shot/trace evidence. This materially improves the earlier scattered-evidence issue.
+- Final pitch copy explicitly states fixed model weights, prompt-memory learning, operational rates/confounds, one buyer hypothesis and reviewer-time/cost-per-approved-shot pilot. No video was reviewed.
 
-| Simulated perspective | Functionality | Continual Learning | Pitch | Assessment |
+## Scores, 1–10
+
+| Simulated perspective | Functionality | Continual Learning | Pitch | Reason |
 |---|---:|---:|---:|---|
-| Ex-OpenAI lead / AI evals | 8 | 6 | 7 | Working, auditable recorded workflow and explicit uncertainty; persistent rule reaches new scenes. No controlled improvement comparison or independently verified labels. |
-| Apple/Luma/Pika designer | 8 | 6 | 8 | Purposeful image-first three-pane workspace, consistent hierarchy and full-frame inspection. Dense traces/confidence cards obscure the learning story and key controls require navigation. |
-| VC/professor | 7 | 6 | 6 | Buyer wedge is recurring-character production and memory can accumulate. Willingness to pay, repeat-use savings, defensibility and billion-dollar expansion remain hypotheses. |
-| Lemma CEO / silent failures | 8 | 6 | 7 | Recorded failures, explicit uncertain states, linked prompt/check traces and future prevention work as a demo. Laterality remains fallible; no verified monitor accuracy or automated existing-image repair. |
+| Ex-OpenAI ChatGPT lead / AI evals | 8 | 6 | 8 | Clear recorded transfer and unusually honest disclosures; no controlled/human-verified improvement. |
+| Apple/Luma/Pika designer | 9 | 6 | 8 | Stronger calm image-first flow and focused decision; noncommittal exit and first-visit provenance could be clearer. Desktop only. |
+| VC/professor | 8 | 6 | 7 | Product and buyer story clearer; business metrics/pricing/traction remain hypotheses. No evidence supports a $1B valuation claim. |
+| Lemma CEO / silent failures | 8 | 6 | 8 | Flags, evidence, trace access and uncertainty now easy to understand; headline still overstates monitor truth, and prevention is not existing-image repair. |
 
-Scores judge this release checkpoint. 5 = partial proof; 8 = convincing integrated demo; 10 = exceptional execution with validated evidence. No score validates a business valuation.
+Pitch scores assess written copy and observed product story, not final video/delivery. Continual Learning scores remain6 because presentation changes do not establish new learning efficacy.
 
-## Top five consequential fixes for Main
+## Highest-impact remaining fixes — at most five
 
-1. **Surface one correction-to-new-scene evidence chain, without requiring trace archaeology.** Current learned rule, prompt and checker evidence are inspectable but scattered among 24 shots and 257 events. Acceptance: a compact on-screen route links the original correction/rule ID, saved memory, later scene/prompt and its rule check; explicitly label this captured engine history rather than the visitor’s new local action. Keep main creative workflow dominant.
-2. **Disclose model/style confounds next to the chart, not only in handoff.** Visible generic warning says flags are not improvement, but omits the concrete model/style change and final 0/6→1/6 worsening. Acceptance: concise nearby note/inspectable details states changed model/style/scenes, v3 recheck, n=6/batch, draft human-label status, and no causal memory-only improvement. No new paid study needed for submission.
-3. **Have the human confirm the exact demonstration defect and preserve uncertainty.** Results disclose disagreement about baseline close-up laterality and possible final false flag. Acceptance: founder reviews baseline map shot versus reference at full frame, records an explicit confirmed/unclear judgment, and picks only a confirmed example for the pitch. Do not promote DRAFT labels or selected draft-only 100% eval to verified accuracy. If uncertain, pitch rule propagation rather than corrected visual truth.
-4. **Make monitoring details easier to scan and avoid false precision.** Raw trace cost reads 4.799999999999999; model confidence percentages look authoritative despite uncalibrated laterality. Acceptance: formatted display-only reservation amounts, concise human-readable trace summary with optional raw details, confidence described as model-reported, uncertain checks separated from true failures. Preserve original records. Do not call prevention automatic image repair.
-5. **Use the final pitch to demonstrate buyer economics rather than assert scale.** Acceptance: one recurring-character production buyer, concrete repeated review/re-roll task, proposed reviewer-minutes and cost-per-approved-shot pilot, memory portability positioning, and candid lack of validated customers/pricing. Show one witnessed learning event within two minutes, including caveat; no unverified $1B or savings headline.
+1. **Provide a visible noncommittal exit from single-shot Review.** Observed view exposes only Reject & remember / Looks right. Acceptance: Back to shots/Close returns to the same take and selection without writing a review; keyboard return remains available. Avoid forcing a creator to approve/reject just to navigate.
+2. **Use monitor-qualified batch language.** “1 of6 shots drifted” asserts visual truth despite known laterality uncertainty. Acceptance: headline such as “1 of6 shots flagged for review,” keeping per-shot “seems” wording; avoid implying every unflagged/uncertain shot is correct. Progress already handles this honestly.
+3. **Have the human confirm the actual pitch defect, then preserve the confidence limit.** The shown locker/profile flag may itself be wrong and the original close-up ring finding is disputed. Acceptance: founder inspects the exact reference/shot in full frame, selects a confirmed/unclear label, and chooses only a confirmed defect for the two-minute story. If ambiguous, demonstrate rule persistence/propagation rather than claiming visual repair. No automatic promotion of DRAFT labels or draft100% scores.
+4. **Finish submission artifacts/access and reconcile the deadline note.** MORNING.md records no uploaded final video and a private repo; pitch-final.md still warns of conflicting11am/1:15pm schedules. Acceptance: human confirms organizer/Devpost cutoff, verifies the final two-minute video URL and judge repository access, and uses the public canonical app URL. Do not change repo visibility or submit from this audit.
 
-## Continuing review
+## Boundaries
 
-Existing read-only heartbeat confirmed at 45-minute cadence; no duplicate created. Subsequent checks should report only meaningful new findings and evaluate the Figma redesign only after it is publicly released.
+Original take counts and draft-label limitations remain authoritative. Paid generation stays disabled; this review did not test a new paid production. Maintain report-only90-minute checks through7amPT, quiet when unchanged. Main remains sole app-code owner.
