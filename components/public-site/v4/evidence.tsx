@@ -7,7 +7,7 @@ import {
   ringRule,
   laterFrames,
   carriedFrames,
-  matchedFlags,
+  frames,
 } from "./data";
 function Caption({
   label,
@@ -27,6 +27,11 @@ function Caption({
 }
 export function EvidenceStory() {
   const finding = rejected.checks.find((check) => check.key === "ring_hand")!;
+  const ringFailures = [1, 2, 3, 4].map((take) =>
+    frames.filter((frame) => frame.take === take && frame.checks.some(
+      (check) => check.key === "ring_hand" && !check.pass,
+    )).length,
+  );
   return (
     <V4Site active="Evidence">
       <ScrollStory count={5}>
@@ -88,7 +93,7 @@ export function EvidenceStory() {
             Then it followed every take.
           </Caption>
         </section>
-        <section className="beat">
+        <section className="beat evidence-result">
           <div className="honest">
             <div>
               <b>
@@ -96,24 +101,21 @@ export function EvidenceStory() {
               </b>
               <p>
                 Later prompts and checks that carried the rule.
-                <br />
-                Proven.
               </p>
             </div>
             <div>
               <b>
-                {matchedFlags[0]} vs {matchedFlags[1]}
+                {ringFailures[0]} → {ringFailures[3]}
               </b>
               <p>
-                Flags with and without memory in a matched A/B test. No extra
-                visual improvement shown yet.
+                Ring-hand checks that failed, Take 1 → Take 4
               </p>
             </div>
           </div>
           <Caption label="The honest read">
-            Memory that persists.
+            Caught once.
             <br />
-            <span>Proof of fewer mistakes is next.</span>
+            <span>Remembered every take after.</span>
           </Caption>
           <div className="more">
             <Link className="w" href="/evidence/frames">
@@ -121,6 +123,10 @@ export function EvidenceStory() {
             </Link>
             <Link href="/dashboard">Open the studio</Link>
           </div>
+          <p className="method-link">
+            Each take used new scenes; a matched A/B test showed no extra drop yet.{" "}
+            <Link href="/evidence/frames">Method →</Link>
+          </p>
         </section>
       </ScrollStory>
     </V4Site>

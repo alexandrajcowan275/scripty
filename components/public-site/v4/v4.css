@@ -108,3 +108,7 @@
 .v4-frames .thread{z-index:3}
 /* Match the prototype's phone code typography and padding. */
 @media(max-width:760px){.v4-api pre{font-size:12px;padding:20px 22px}}
+
+/* Final Evidence readout: keep the method qualification directly below its actions. */
+.v4-evidence .evidence-result .cap{bottom:22vh}.v4-evidence .evidence-result .more{bottom:58px}.v4-evidence .method-link{position:absolute;bottom:16px;left:24px;right:24px;margin:0;text-align:center;font:12px/1.5 var(--font-ui);color:var(--fa)}.v4-evidence .method-link a{color:var(--mu);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.v4-evidence .evidence-result .cap{bottom:22vh}.v4-evidence .evidence-result .more{bottom:70px}.v4-evidence .method-link{font-size:11px;bottom:12px}}

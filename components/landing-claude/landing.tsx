@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import s from "./landing.module.css";
 
@@ -76,6 +77,31 @@ export function LandingClaude() {
   const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [intro, setIntro] = useState(false);
+  const router = useRouter();
+  const [cut, setCut] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+  const moveRef = useRef<HTMLDivElement>(null);
+  const [searching, setSearching] = useState(false);
+  const goStudio = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (reduce || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const href = e.currentTarget.getAttribute("href") || "/dashboard";
+    e.preventDefault();
+    setCut(true);
+    window.setTimeout(() => router.push(href), 480);
+  };
+  useEffect(() => {
+    const hero = heroRef.current, mv = moveRef.current;
+    if (!hero || !mv || reduce || !window.matchMedia("(pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let tx = 0, ty = 0, x = 0, y = 0, raf = 0, idle = 0;
+    const home = () => { const tr = mv.firstElementChild as HTMLElement | null; const r = tr?.getBoundingClientRect(); return r ? { cx: r.left + r.width / 2 - x, cy: r.top + r.height / 2 - y } : { cx: 0, cy: 0 }; };
+    const lock = () => { tx = 0; ty = 0; setSearching(false); };
+    const onMove = (ev: PointerEvent) => { const h = home(); tx = (ev.clientX - h.cx) * 0.55; ty = (ev.clientY - h.cy) * 0.55; setSearching(true); window.clearTimeout(idle); idle = window.setTimeout(lock, 900); };
+    const tick = () => { x += (tx - x) * 0.08; y += (ty - y) * 0.08; mv.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`; raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+    hero.addEventListener("pointermove", onMove);
+    hero.addEventListener("pointerleave", lock);
+    return () => { cancelAnimationFrame(raf); window.clearTimeout(idle); hero.removeEventListener("pointermove", onMove); hero.removeEventListener("pointerleave", lock); };
+  }, [reduce]);
   useEffect(() => {
     const done = () => { setIntro(false); delete document.documentElement.dataset.intro; };
     // Read the preference directly as well: the hook updates after hydration.
@@ -158,7 +184,7 @@ export function LandingClaude() {
       </header>
 
       {/* HERO with opening title sequence */}
-      <section className={s.hero}>
+      <section ref={heroRef} className={s.hero}>
         <picture className={s.heroBg} aria-hidden="true">
           <source media="(max-width: 760px)" srcSet="/brand/cinema-dunes-small.webp" />
           <img src="/brand/cinema-dunes.webp" alt="" />
@@ -166,9 +192,11 @@ export function LandingClaude() {
         <div className={s.heroShade} />
         <div className={s.vignette} aria-hidden="true" />
         <div className={s.grain} aria-hidden="true" />
-        <div className={s.track} aria-hidden="true">
-          <i /><i /><i /><i />
-          <em>SUBJECT LOCKED<br />CANON ✓</em>
+        <div ref={moveRef} className={s.trackMove} aria-hidden="true">
+          <div className={`${s.track} ${searching ? s.searching : ""}`}>
+            <i /><i /><i /><i />
+            <em>{searching ? <>SEARCHING…<br />READING CANON</> : <>SUBJECT LOCKED<br />CANON ✓</>}</em>
+          </div>
         </div>
         <div className={s.heroTop}>
           <span className={s.rec}><i />REC</span>
@@ -177,7 +205,7 @@ export function LandingClaude() {
         </div>
         <h1 className={s.h1}>Every shot,<span>held to the story.</span></h1>
         <div className={`${s.ctas} ${s.heroCtas}`}>
-          <Link href="/dashboard" className={s.btnLight}>Open the studio</Link>
+          <Link href="/dashboard" className={s.btnLight} onClick={goStudio}>Open the studio</Link>
           <a href="#how" className={s.btnText}>Watch it work →</a>
         </div>
         <p className={`${s.mono} ${s.heroCap}`}>THE SCRIPT SUPERVISOR<br />FOR GENERATED FILM</p>
@@ -317,7 +345,7 @@ ACTIVE CANON CONSTRAINTS:
         <div className={s.closeInner}>
           <h2 className={s.closeH}>Every correction<span>carries forward.</span></h2>
           <div className={s.ctas}>
-            <Link href="/dashboard" className={s.btnLight}>Open the studio</Link>
+            <Link href="/dashboard" className={s.btnLight} onClick={goStudio}>Open the studio</Link>
             <Link href="/new" className={s.btnGhost}>Start a production</Link>
           </div>
         </div>
@@ -325,6 +353,7 @@ ACTIVE CANON CONSTRAINTS:
           <span>SCRIPTY · LOS ANGELES</span><span>FADE OUT.</span><a href="/brand/CREDITS.md">PHOTO CREDITS</a>
         </footer>
       </section>
+      <div className={`${s.cut} ${cut ? s.cutOn : ""}`} aria-hidden="true"><i /><i /></div>
     </div>
   );
 }

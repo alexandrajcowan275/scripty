@@ -379,3 +379,15 @@
   .h1 { right: 20px; }
   .callout { left: 4%; right: 4%; top: 36%; }
 }
+
+/* ===== interaction: cursor viewfinder + cut to studio ===== */
+.trackMove { position: absolute; inset: 0; z-index: 2; pointer-events: none; will-change: transform; }
+.track { transition: transform 300ms var(--ease); }
+.track i { transition: border-color 300ms; }
+.searching i { border-color: rgba(255,255,255,.75) !important; }
+.searching { transform: scale(1.15) !important; }
+.searching em { color: rgba(255,255,255,.8) !important; }
+.cut { position: fixed; inset: 0; z-index: 80; pointer-events: none; }
+.cut i { position: absolute; left: 0; right: 0; height: 50vh; background: #000; transform: scaleY(0); transition: transform 460ms cubic-bezier(.7,0,.2,1); }
+.cut i:first-child { top: 0; transform-origin: top; } .cut i:last-child { bottom: 0; transform-origin: bottom; }
+.cutOn i { transform: scaleY(1); }
