@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-17T11:19:26.202Z",
+  "release": "b03e053",
+  "getStatus": 200,
+  "postStatus": 200,
+  "methodsMatch": true,
+  "unknownRecheckQueryStatus": 400,
+  "cacheControl": "no-store",
+  "humanLabels": 0,
+  "evaluatedLabels": 0,
+  "precision": null,
+  "recall": null,
+  "f1": null,
+  "accuracy": null,
+  "confusionMatrix": {
+    "truePositives": 0,
+    "falsePositives": 0,
+    "trueNegatives": 0,
+    "falseNegatives": 0
+  },
+  "metricsReady": false,
+  "labelSource": "human_blind",
+  "paidCalls": 0,
+  "humanLabelsWritten": 0
+}
