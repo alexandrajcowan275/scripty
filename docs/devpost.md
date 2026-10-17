@@ -1,6 +1,6 @@
 # Scripty
 
-**Scripty: the AI script supervisor. The more you use it, the less your AI drifts.**
+**Scripty: the AI script supervisor. Every correction carries forward.**
 
 ## Inspiration
 

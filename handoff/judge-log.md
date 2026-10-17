@@ -76,7 +76,45 @@ Qualified flag wording and visible nonmutating Review exit: resolved. Concrete m
 
 - **Done — P1 generated-take context:** Design54e2189 merged as241f899;73tests/build passed. Public verification: viewingTake1 correctly offers GenerateTake3; selecting the existingTake2 updates the URL and displays its image/rule reach. Automatic selection of a newly returned batch has a regression test; no third paid generation was run solely to recheck navigation.
 
-### Backend capacity decision — 03:48am PT
+### Backend capacity decision — 03:45am PT
 
 - **Skipped — replacing lifetime cap:** automatic review rejected changing three lifetime takes to six per hour because it expands persistent paid capacity. No command ran and no migration was created; the existing guard remains. Logged the limitation for the founder rather than bypassing review or interrupting them overnight.
 - **Done — actual scene count:** corrected budget preflight to use saved production scenes when no override is supplied; a one-scene production no longer gets a six-scene estimate. Per-attempt reservations, cost cap, access gate and existing take limit remain unchanged.
+
+## Run — 2026-10-17 03:48 AM PT — controlled A/B verified
+
+### New evidence
+
+Read seed/experiments/ab-test/result.json, docs/results.md, README and current MORNING. Artifact status completed; six A/six B images;24 receipts, zero unsettled attempts; humanVerified=false. Independently checked all six paired scenePrompt strings match, A rulesApplied empty, B includes the actual historical ring-rule ID, all12images have exactly4fixed checks and no monitor errors. Same Sunbursthigh1536×1024, reference hash, no accepted reference, v3canon-only checker/no calibration, threshold0.6. Canon already contains ring constraint in both arms. No fixed image seed exists.
+
+**Actual result:** A0/6 vs B0/6 targeted flagged shots;0/12ring/scar failures each;0/24overall failures each;0unclear; returned-usage cost estimate$0.710364, not invoice. This adds a controlled comparison but demonstrates no measured reduction. It is a baseline-floor/stochastic small-sample result pending blind human validation, not proof of universal ineffectiveness or verified anatomy. Do not reroll to chase a winning headline. Original2/6,0/6,0/6,1/6 +18/18transfer remain separate.
+
+Public GETconfig remains authorized:true; no review/save/paid action or human label submitted. Live Evidence renders original33→0→0→17and18reach with caveat, but does not yet show completed controlled0/6vs0/6 result. Eval now has210questions, first question is ring laterality;0answers, precision/recall—. Screenshot confirms first study image renders in the tactile card stack; no placeholder or broken image. Condition and model verdict hidden in visible question. API receipt/routes remain real. Existing screenshot/spec comparison remains consistent with Claude craft; no new mobile/motion certification. Shared-session mutation path remains intentionally unexecuted under paid restriction.
+
+### Scores/trend — inferred only
+
+| Judge | Functionality | Continual Learning | Pitch | Design | Trend |
+|---|---:|---:|---:|---:|---|
+| Kaushal Patel — evals rehearsal lens | 8 | 6 | 8 | 8 | Better experimental honesty; efficacy still unproved |
+| Michelle Liu | 8 | 6 | 8 | 9 | Craft stable; new blind-study card renders |
+| ShiaoFong Yin | 8 | 6 | 7 | 8 | No new buyer/economic validation |
+| Jerry Zhang | 8 | 7 | 8 | 8 | Actionable loop stable; no demonstrated success-rate lift |
+
+**Kaushal, inferred:** “The matched comparison is the right test, and its flat answer needs to lead.” Vote for auditable protocol/negative result; against suggesting0vs0proves reduced drift.
+**Michelle, inferred:** “The real shot stack and quiet hierarchy feel crafted; keep the evidence story equally precise.” Vote for image-led inspection; against boastful copy undermining deliberate design.
+**ShiaoFong, inferred:** “The loop is built; the economic benefit still needs a pilot.” Vote for narrowly defined buyer and measured-cost method; against treating12passing images as willingness to pay or a moat.
+**Jerry, inferred:** “I trust a system that preserves a failed repair and reports a flat experiment.” Vote for traceable feedback→action; against calling a completed request a successful semantic fix.
+
+### Recommendations sent — two, small and specific
+
+1. **README opening tagline — Main docs; Kaushal/Jerry.** Expected a supported memory-transfer claim or aspiration. Actual first line says “The more you use it, the less your AI drifts,” despite0/6vs0/6and still-flagged repair. Replace with “Every correction carries forward” or explicitly mark drift reduction as goal. The Results section is accurate; this is an unsupported opener, not fabricated experiment counts. Flag sent immediately.
+2. **Live Evidence summary — UI/Design via Main; Kaushal.** Expected latest completed controlled result beside historical series. Actual page still shows only33→0→0→17and generic noncausal qualifier. Add one short canon-only0/6 / memory0/6 sentence and link to protocol/results on the existing page; pending human validation explicit. No new feature or paid study requested.
+
+### Prior recommendation status
+
+README outdated frontend integration paragraph: resolved in rewrite. Clean recording session guidance: recorded in MORNING. Qualified headline/back navigation remain resolved. Human labels, video and judge repo access remain human steps. Founder2pmPToperational deadline is separately attributed from previously observed11amofficial listing; do not imply independently verified extension. No third recommendation needed.
+
+### Named-panel recommendations — 03:50am PT
+
+- **Done — support the headline with evidence:** replaced “the more you use it, the less your AI drifts” as an achieved promise with “Every correction carries forward.” Less drift is stated as the goal, while the matched study's flat result remains prominent. This uses the founder's standing permission to improve unsupported wording and aligns the first line with demonstrated18/18memory transfer.
+- **Forwarded — completed study on Evidence:** Design should add the real0/6versus0/6result within the existing Evidence disclosure, without adding panels/features or changing the original curve. Main supplies a small derived `summary.json` from the completed receipt, including its source hash and no per-shot verdicts/conditions, so the copy binds actual data.

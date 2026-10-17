@@ -4,7 +4,7 @@ Public app: https://canon-woad.vercel.app
 GitHub: canon repository is currently private; provide judges an accessible repository link before submission.
 
 ## Tagline
-Scripty: the AI script supervisor. The more you use it, the less your AI drifts.
+Scripty: the AI script supervisor. Every correction carries forward.
 
 ## Devpost description
 On a film set, the script supervisor keeps the story straight between shots. AI production needs that memory too: a generator can return success while a character detail changes.

@@ -1,0 +1,74 @@
+{
+  "id": "58e14757-8508-4850-8d68-8e595add22d2",
+  "status": "completed",
+  "completedAt": "2026-10-17T10:19:25.387Z",
+  "sourceSha256": "27dc78d7318a8bf334544e45387d5a6b7387e59e8ec087e49f0b31f17fcef015",
+  "targetedAttributes": [
+    "ring_hand",
+    "scar_side"
+  ],
+  "summary": {
+    "A": {
+      "shots": 6,
+      "flaggedShots": 0,
+      "targetedFlaggedShots": 0,
+      "targetedChecks": 12,
+      "targetedFailures": 0,
+      "targetedUnclear": 0,
+      "overallChecks": 24,
+      "overallFailures": 0,
+      "overallUnclear": 0,
+      "attributes": {
+        "ring_hand": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        },
+        "scar_side": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        }
+      }
+    },
+    "B": {
+      "shots": 6,
+      "flaggedShots": 0,
+      "targetedFlaggedShots": 0,
+      "targetedChecks": 12,
+      "targetedFailures": 0,
+      "targetedUnclear": 0,
+      "overallChecks": 24,
+      "overallFailures": 0,
+      "overallUnclear": 0,
+      "attributes": {
+        "ring_hand": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        },
+        "scar_side": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        }
+      }
+    }
+  },
+  "humanVerified": false,
+  "usageEstimatedUsd": 0.710364,
+  "interpretation": "No additional measured reduction; both arms had zero monitor flags. Human validation pending.",
+  "settings": {
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "size": "1536x1024",
+    "referenceImageUrl": "/seed/mara-reference.png",
+    "referenceSha256": "1549c0cb248c4994ceb0a4de86e677802c13d4f3906ac414a3e82dc6e17cc9e0",
+    "acceptedReferenceUrl": null,
+    "monitorModel": "gpt-5.4-mini-2026-03-17",
+    "monitorVersion": "canon-monitor-v3",
+    "monitorRules": [],
+    "checkerCalibration": [],
+    "threshold": 0.6
+  }
+}

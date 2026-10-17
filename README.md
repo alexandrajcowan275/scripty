@@ -1,6 +1,6 @@
 # Scripty
 
-**Scripty: the AI script supervisor. The more you use it, the less your AI drifts.**
+**Scripty: the AI script supervisor. Every correction carries forward.**
 
 [Open Scripty](https://canon-woad.vercel.app/) · Video: coming soon
 
@@ -36,7 +36,7 @@ flowchart LR
 
 ## Why it is continual learning
 
-Each creator correction becomes persistent, inspectable production memory. The same rule reaches later generation prompts and vision checks across new scenes; repeated constraints merge instead of accumulating duplicates. Human disagreements can also guide later inspection, while evaluation preserves frozen predictions. This is memory and prompt adaptation through usage; foundation-model weights stay fixed.
+Each creator correction becomes persistent, inspectable production memory. The same rule reaches later generation prompts and vision checks across new scenes; repeated constraints merge instead of accumulating duplicates. Human disagreements can also guide later inspection, while evaluation preserves frozen predictions. The goal is less drift over time. Today the demonstrated result is memory and prompt adaptation through usage; foundation-model weights stay fixed.
 
 ## Results
 
