@@ -31,7 +31,7 @@ function LandingContent() {
       <Ambient warm />
       <div className="v2-page-wrap">
         <header className="v2-public-nav">
-          <Brand />
+          <Brand href="/" />
           <nav aria-label="Scripty">
             <a href="#how">How it works</a>
             <MotionLink href="/developers" kind="receipt">
@@ -41,7 +41,7 @@ function LandingContent() {
               Evidence
             </MotionLink>
             <MotionLink
-              href={studioHref}
+              href="/dashboard"
               kind="mara"
               className="v2-button v2-small"
             >
@@ -204,9 +204,9 @@ function LandingContent() {
           </section>
         </main>
         <footer className="v2-public-footer">
-          <Brand />
+          <Brand href="/" />
           <span>Continuity. Now part of the crew.</span>
-          <MotionLink href="/projects">Your productions →</MotionLink>
+          <MotionLink href="/dashboard">Your productions →</MotionLink>
         </footer>
       </div>
     </div>
