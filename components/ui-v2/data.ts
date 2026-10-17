@@ -16,12 +16,18 @@ export type ProductionData = {
   scenePrompts?: string[];
   pricing?: { generatePerShotUsd?: number; recheckPerShotUsd?: number; model?: string };
   capabilities?: { recheck?: boolean; fix?: boolean; undo?: boolean };
+  monitorRuns?: { id: string; shot_id: string; checks: Check[]; flagged: boolean; drift_score: number; rule_ids: string[]; model: string; version: string; created_at: string }[];
+  repairs?: { shot_id: string; source_shot_id: string; created_at: string }[];
+  repairShots?: Shot[];
 };
 export type ReviewReceipt = {
   shot: Shot;
   newRule?: Rule;
   merged?: boolean;
   undoToken?: string;
+  provenance?: string;
+  warning?: string;
+  usage?: { estimatedUsd?: number; pricedRequests?: number; reservedUsd?: number };
   mode?: string;
 };
 export class RequestError extends Error {
@@ -79,7 +85,10 @@ export function ruleReach(rule: Rule, shots: Shot[]) {
 }
 export function rulePromptReach(rule: Rule, shots: Shot[]) { return new Set(shots.filter(s => s.finalPrompt.includes(rule.text)).map(s => s.id)).size; }
 export function ruleCheckReach(rule: Rule, shots: Shot[]) { return new Set(shots.filter(s => s.checks.some(c => c.key === `rule:${rule.id}`)).map(s => s.id)).size; }
-export function frameName(shot: Shot, data: ProductionData) {
+export function frameName(shot: Shot, data: ProductionData): string {
+  const sourceId = data.repairs?.find(r => r.shot_id === shot.id)?.source_shot_id;
+  const source = sourceId ? data.shots.find(s => s.id === sourceId) : undefined;
+  if (source) return `${frameName(source, data)}·fix`;
   const batch = data.batches.find(b => b.id === shot.batchId);
   const index = shotsFor(data, shot.batchId).findIndex(s => s.id === shot.id);
   return `T${number(batch?.index)}·S${index < 0 ? "—" : String(index + 1).padStart(2, "0")}`;
@@ -93,3 +102,8 @@ export function modelFor(data: ProductionData, batch: Batch | undefined, field: 
 }
 export function reviewReason(shot: Shot) { const check = failedCheck(shot); return shot.rejectReason ?? (check ? `Keep ${check.expected}.` : ""); }
 export function primaryRule(data: ProductionData) { return data.rules.find(r => r.source !== "seed" && ruleReach(r, data.shots) > 0) ?? data.rules.find(r => r.source !== "seed"); }
+export function allShots(data: ProductionData) { return [...new Map([...data.shots, ...(data.repairShots ?? [])].map(s => [s.id, s])).values()]; }
+export function currentShot(shot: Shot, data: ProductionData): Shot {
+  const run = data.monitorRuns?.find(r => r.shot_id === shot.id);
+  return run ? { ...shot, checks: run.checks, flagged: run.flagged, driftScore: run.drift_score } : shot;
+}
