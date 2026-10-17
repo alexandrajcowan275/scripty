@@ -5,6 +5,7 @@ export const maraLocations = [{
  imageUrl: '/api/locations/mara-platform/image',
  marbleUrl: world.world_marble_url,
  provenance: 'marble_capture' as const,
+ marbleAccess: 'permission_required' as const,
  model: world.model,
  capturedStill: 'experiments/worldlabs/standard-camera-view.png',
 }];

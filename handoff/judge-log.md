@@ -127,3 +127,8 @@ README outdated frontend integration paragraph: resolved in rewrite. Clean recor
 ### Requested location data — 04:10am PT
 
 - **Done — backend data:** Studio, Review and Memory are live, satisfying the founder's prerequisite. Added read-only Mara location metadata and a same-origin route for the already captured platform PNG plus the existing Marble URL. No world generation, reference injection, location accuracy or learned-environment claim. Design owns the optional existing-Memory card. Copied only the missing `/tmp` spike document; all existing experiment artifacts were preserved.
+
+### External location verification
+
+- **Done — captured still:** public metadata200 and PNG200 exactly match the saved capture; no provider calls.
+- **Skipped/blocked — public Marble viewer:** the actual external link reports permission denied. No sharing change or new generation attempted. Forwarded to Design: keep the real still, mark the external world permission-required, and avoid a broken public-viewer promise. Founder may decide on sharing in the morning.

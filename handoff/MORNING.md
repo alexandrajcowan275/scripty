@@ -53,3 +53,5 @@ Advanced Studio/cast/script features, compare-takes control, accounts/cross-devi
 ## Remaining overnight
 
 Finish safe Design page refinements and the optional location card, verify each release, then one bounded final public readiness check and finalize this file at6:15am. No paid repetitions are planned without a concrete changed-flow need. A stronger future experiment using a novel correction absent from initial canon is proposed in `internal/IDEAS.md`; it is not a new measured result or submission blocker.
+
+Optional location note: the captured still is publicly verified, but the linked Marble viewer reports permission denied in the verification browser. No permissions were changed. Design is marking that external world private/requiring permission; founder can share it later if desired. It does not block Mara or the learning loop.

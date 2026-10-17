@@ -6,5 +6,11 @@
   "imageStatus": 200,
   "exactCapturedStill": true,
   "marbleUrl": "https://marble.worldlabs.ai/world/f5a75d9d-c071-4a91-a167-e92d192d8858",
-  "paidCalls": 0
+  "paidCalls": 0,
+  "externalViewer": {
+    "checkedAt": "2026-10-17T11:25:25.698125+00:00",
+    "browserMessage": "You don't have permission to view this world. You can view public worlds and ones you've created.",
+    "publicAccessVerified": false,
+    "permissionChangesMade": false
+  }
 }

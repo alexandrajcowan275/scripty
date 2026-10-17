@@ -1,31 +1,37 @@
-# Scripty - brand guide
+# Scripty — brand guide
 
-**Your AI script supervisor.** Catch drift. Keep your character.
+**Your AI script supervisor. Every correction carries forward.**
 
-On film sets, the script supervisor (the “scripty”) keeps continuity between shots. Scripty brings that habit to AI filmmaking: review the shot, retain the correction, carry it into future generation and monitoring. Pronounced “script-ee.” Product name Scripty; the small lowercase interface wordmark follows the final Figma asset. Repo and Vercel project remain canon.
+On a film set, the script supervisor—the “scripty”—tracks the detail an editor needs between shots. Scripty brings that memory to AI production. Pronounced “script-ee”; lowercase **scripty** in the interface wordmark. Repository, folder and Vercel project remain `canon`.
 
-## Final light v3
+## Current direction
 
-A calm, editorial workspace. Real images lead. Batch, one-shot Review and Learned each have one job. Memory opens in a drawer; Progress is a separate view. Research drew on Runway’s restraint and Natural’s editorial confidence. Their assets, logos and layouts are not reused. The final designer’s light v3 supersedes earlier dark directions.
+A script supervisor's contact sheet, in glass: real cinematic frames, generous space, frosted image labels, restrained lavender/rose haze and tactile production notes. Runway informed the image-led restraint; Natural informed the editorial voice. Their logos, layouts and assets are not reused.
 
-| Token | Hex | Meaning |
+[Claude design handoff](../design/claude/DESIGN_HANDOFF.md) and [shared design system](../design/claude/DESIGN_SYSTEM.md) are the current implementation references. [Live token source](../styles/tokens.css) is authoritative for exact values; earlier light-v3 explorations and the older PDF handout are retained as history.
+
+| Role | Current token | Meaning |
 | --- | --- | --- |
-| Canvas | #F5F3EE | Warm editorial space |
-| Card | #FFFFFF | Inputs and Memory |
-| Image bed | #E8E5DF | Neutral containment |
-| Text | #171714 | Primary |
-| Secondary | #615E58 | Supporting copy |
-| Drift | #B4232C | Monitor flag only |
-| Pass | #147A42 | No confident flag; not human ground truth |
-| Memory fill / ink | #FFF0C2 / #8A5D00 | Saved rules |
-| Focus | #2858B8 | Keyboard accessibility |
+| Canvas | `#FBFAF8` | Warm contact sheet |
+| Surface / ink | `#FFFFFF` / `#111111` | Quiet controls and confident type |
+| Secondary | `#615E58` | Supporting copy |
+| Drift ink / fill / outline | `#B4232C` / `#D93A3F` / `#FF4D4F` | Model-reported flags |
+| Pass | `#147A42` | On-model finding, not human truth |
+| Memory fill / ink | `#FFF8E1` / `#8A5D00` | Learned constraints |
+| Focus | `#2858B8` | Keyboard accessibility |
 
-Inter Regular400 and Medium500: headline56/64, section24/32, body/action16/24. Mobile titles24/32. Geist Mono16 is reserved for an actual frame number exposed on focus. Fonts are local. Desktop max1296px,72px outer margins and24px gutters; mobile24px margins. Radius16, pill actions56px high, minimum hit target48px. Drawer alone uses the soft overlay shadow. No decorative texture, gradient or dashboard borders.
+Funnel Display leads headlines; Funnel Sans carries UI; Martian Mono identifies actual frame numbers, model versions, costs and traces. Fonts are served locally. Use the existing primitives, spacing, radii and responsive rules instead of one-off styling. Desktop rails become mobile drawers; the Memory sheet keeps its header/actions visible while the evidence body scrolls.
 
-Batch crops center consistently; Review contains the full source. Known drift markers use normalized source coordinates and never mirror the image. Hollow red versus solid green dots supplement accessible shot descriptions. Keyboard A accepts, R rejects, Escape returns; dialogs trap and restore focus.
+## Images and motion
 
-200ms marker/drawer,180ms saved rule,220ms comparison reveal; reduced motion shows final states. No success before persistence, no glow loops or invented timers.
+Studio uses real contact-sheet crops; Review preserves the full image and offers a reference comparison and loupe. Use location-based brackets only when actual coordinates exist; otherwise outline the frame. Unclear evidence stays distinct from a confident pass or failure. Example references are explicitly labeled and cannot enable generation until a real upload is supplied.
 
-**Voice:** confident, cinematic, a little witty. “Your AI script supervisor.” “Noted. On the next take.” Short, specific sentences. Say a monitor “flagged” or “seems” until human verification. Learned rules adapt prompts and checks; model weights stay fixed. Never promise causal improvement or guaranteed continuity.
+Motion follows the supplied transition prototype and reduced-motion setting: staged shot entry, restrained glass sheen, a settling gold Memory card, a moving loupe and short shot-step transitions. Source timings and easing live in shared tokens/components; no invented live counters or success before a saved response.
 
-Final editable source: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Exact screens, states and motion: ../handoff/design-v3-implementation.md. The companion brand-guide.pdf is a one-page handout, rendered for visual inspection.
+## Voice and evidence
+
+Confident, cinematic, specific: “Noted. On the next take.” “Every correction carries forward.” Keep visible copy short. A monitor flags or questions a detail; human review decides. Learned memory adapts prompts/checks, not foundation-model weights.
+
+The controlled study found0/6flags in both arms; it does not support a guaranteed drift-reduction slogan. Use less drift as the goal and memory transfer as the demonstrated claim. Unknown values display “—”; prices are measured estimates, confidence is model-reported, and human accuracy appears only from actual labels.
+
+Use the supplied Scripty logo, light variant on dark surfaces, and the founder-provided cover. Current screenshots and [measured results](results.md) take precedence over illustrative numbers in the original visual prototype.

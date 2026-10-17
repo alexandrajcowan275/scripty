@@ -23,3 +23,7 @@ Chrome extension file upload requires its Allow access to file URLs option. No s
 Automatic approval review rejected Main's proposed replacement of the existing three-take lifetime cap with a six-takes-per-hour limit, citing persistent paid-spend/service capacity expansion without specific approval for that setting. The rejected command did not run; no migration or rate-limit expansion was applied. Main retained the existing cap and fixed only the separate preflight bug that assumed six scenes even for a one-scene saved production. Global$30cost controls and live access remain intact.
 
 The public-UI verification production has used2of3take attempts; one remains. Mara's original four takes remain available. Changing the lifetime limit is an optional founder decision for the morning, not something retried indirectly overnight.
+
+## Marble viewer permission — optional location link
+
+The real existing Marble URL opened a permission-denied message in the verification browser: “You don't have permission to view this world.” The captured platform still and Scripty metadata endpoint work publicly and match the original artifact. No login, world creation or sharing/permission changes were attempted. The optional card must mark the external world as private/requiring permission and avoid a misleading working-public-viewer action. Founder can decide whether to share the world after waking; this does not block Mara or the core loop.
