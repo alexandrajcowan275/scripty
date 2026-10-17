@@ -45,7 +45,7 @@ export async function cachedProject(request: Request, projectId: string): Promis
   for (const rule of state.rules) rules.set(rule.id, rule);
   const shots = entries.flatMap((entry) => entry.shots).map((shot) => {
     const review = state.reviews.find((item) => item.id === shot.id);
-    return review ? { ...shot, status: review.decision === "accept" ? "accepted" as const : "rejected" as const, rejectReason: review.decision === "reject" ? review.reason : undefined } : { ...shot };
+    return review ? { ...shot, status: review.decision === "accept" ? "accepted" as const : "rejected" as const, rejectReason: review.decision === "reject" ? review.reason : undefined } : { ...shot, status: "pending" as const, rejectReason: undefined };
   });
   const localTraces: TraceEvent[] = state.rules.map((rule) => ({ id: `local-${rule.id}`, projectId, type: "rule_learned", message: `Cached session correction (local extraction, no AI call): ${rule.text}`, createdAt: rule.createdAt }));
   return { data: { project, rules: [...rules.values()], batches: entries.map((entry) => entry.batch), shots, traces: [...entries.flatMap((entry) => entry.traces), ...localTraces] }, state, cache };

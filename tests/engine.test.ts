@@ -88,14 +88,14 @@ test("cached API replay, review and refresh share only the signed browser state"
   try {
     await mkdir(path.join(directory, "seed/cache"), { recursive: true });
     const batch = { id: "recorded", projectId: "mara", index: 1, rulesApplied: [], driftRate: 1 / 6, createdAt: "2026-10-17T00:00:00.000Z" };
-    const shots = Array.from({ length: 6 }, (_, index) => ({ ...shot, id: `recorded-${index}`, batchId: "recorded", flagged: index === 0 }));
+    const shots = Array.from({ length: 6 }, (_, index) => ({ ...shot, id: `recorded-${index}`, batchId: "recorded", status: "rejected", rejectReason: "Captured script reason", flagged: index === 0 }));
     await writeFile(path.join(directory, "seed/cache/manifest.json"), JSON.stringify({ version: 1, projectId: "mara", provenance: "real_engine", createdAt: batch.createdAt, batches: [{ batch, shots, rules: [{ ...rules[0], id: "captured-only" }], traces: [] }] }));
     process.chdir(directory); process.env.DEMO_MODE = "cached";
     const initial = await projectGet(new Request("http://localhost"), { params: Promise.resolve({ id: "mara" }) });
     assert.equal((await initial.json()).shots.length, 0);
     const response = await batchPost(new Request("http://localhost", { method: "POST", body: JSON.stringify({ projectId: "mara" }) }));
     assert.equal(response.status, 200); const firstCookie = response.headers.get("set-cookie")!.split(";")[0];
-    const payload = await response.json(); assert.equal(payload.batch.driftRate, 1 / 6); assert.equal(payload.provenance, "cached_real_engine");
+    const payload = await response.json(); assert.equal(payload.batch.driftRate, 1 / 6); assert.equal(payload.provenance, "cached_real_engine"); assert.ok(payload.shots.every((item: Shot) => item.status === "pending" && !item.rejectReason));
     const review = await reviewPost(new Request("http://localhost", { method: "POST", headers: { cookie: firstCookie }, body: JSON.stringify({ decision: "reject", reason: "The ring is on the wrong hand" }) }), { params: Promise.resolve({ id: "recorded-0" }) });
     assert.equal(review.status, 200); const reviewCookie = review.headers.get("set-cookie")!.split(";")[0];
     const refreshed = await projectGet(new Request("http://localhost", { headers: { cookie: reviewCookie } }), { params: Promise.resolve({ id: "mara" }) });
