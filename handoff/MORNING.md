@@ -32,4 +32,4 @@ Founder: supply real blind labels (the new12 A/B images will be first), record/u
 
 ## In progress
 
-A/B blind-queue release verification, judge-facing README cleanup, incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
+A/B blind queue verified on publiccb84f34:210cards, first48cover all12studyimages, conditions/predictions hidden, zero human labels. Public new-production UI loop also passed generation→editednote→live memory→regeneration, with1prompt/1checkreach and$0.121538estimated additional usage. The selected-take navigation defect is being fixed by Design. Remaining: incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.

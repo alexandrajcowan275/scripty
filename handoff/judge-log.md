@@ -62,3 +62,8 @@ Qualified flag wording and visible nonmutating Review exit: resolved. Concrete m
 - **Done — fixed-criteria comparison:** completed the founder's six-pair A/B at$0.710364 usage estimate. A0/6 vsB0/6 ring/scar flagged shots;0/12targeted and0/24overall failed checks each, no uncertainty. No additional measured reduction, no human truth supplied. Preserved all12images, prompts/settings/checks and24settled usage receipts. README/Devpost present this actual result, separate from original confounded takes.
 - **Done — repo credibility:** MIT license, package name `scripty`, process document moved only to `docs/process/`, clean judge README, architecture/API/operations split. GitHub CI run39024145517 completed green before the badge was added.
 - **Done — consequential Design repair:** merged8e00a86 into9fbeca2;71tests/build passed and canonical public Studio reloaded all6Take4images. CSS semicolons restore intended glass/haze/shadow tokens. No production rollback was needed.
+
+### Main public workflow check — 03:30am PT
+
+- **Done — real functionality:** public form→reference vision→creator-confirmed canon→real shot→editable rejection→live rule→Memory save→second real shot persisted. Rule text and ID reached the next prompt/check. Two0/1flagged takes; no visual-improvement claim. Additional usage estimate$0.121538. No human labels supplied.
+- **Forwarded P1 — generated-take context:** newTake2 persisted but the UI initially stayed onTake1 and still offered GenerateTake2. Design is selecting the returned batch and computing next index from all history; repair/recheck source context stays intact. Main manually opened the saved new take to verify its data. This is a safe existing-flow correction, not a new feature.

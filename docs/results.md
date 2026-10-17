@@ -37,3 +37,5 @@ The live backend check exercised real generation, editable rejection, extraction
 ## Costs
 
 A/B returned-usage estimate:$0.710364 across12images and12monitor calls; all settled. Founder-reported historical baseline:$2.23. These are distinct from a provider invoice; see [operations](operations.md) for reconciliation and caps. No extra paid world generation was performed for the location card.
+
+A second public-UI verification created a private-reference production, corrected/confirmed anatomical canon, generated one shot, submitted an edited rejection, saved the actual learned-rule sheet, and generated a second shot. The rule reached1later prompt and1rule check; both takes had0/1flags. Additional usage estimate:$0.121538. It exposed a selected-take navigation defect forwarded to Design; that UI issue did not lose the new image or memory. [Public-UI receipt](verification-ui-live-loop.json).
