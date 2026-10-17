@@ -2,20 +2,19 @@
 
 import { AppPageHeader } from "../ui/app-shell";
 import { useEffect, useState } from "react";
-import { Icon } from "../icons";
+import { ShotImage } from "../shot-image";
 import { ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink } from "../ui/motion";
+import { ProductionTable } from "../ui/production-table";
 import {
-  HomeReviewQueue,
-  HomeRecentRules,
-  HomeAgents,
-} from "../ui/production-home";
-import {
-  ProductionOverviewCard,
-  RecordedTime,
-} from "../ui/production-overview";
-import { dashboardActivity, uniqueProductions } from "./dashboard-data";
-import { message, request, type ProductionData } from "./data";
+  currentShot,
+  frameName,
+  message,
+  request,
+  shotsFor,
+  sortedBatches,
+  type ProductionData,
+} from "./data";
 import { ProductionProvider, useProduction } from "./provider";
 
 type SavedProduction = {
@@ -90,11 +89,20 @@ function DashboardContent() {
       });
     return () => controller.abort();
   }, [reload]);
-  const productions = uniqueProductions([
-    ...(data ? [data] : []),
-    ...ownedData,
-  ]);
-  const activity = dashboardActivity(productions);
+  const latest = sortedBatches(data).at(-1);
+  const latestShots = shotsFor(data, latest?.id).map((shot) =>
+    data ? currentShot(shot, data) : shot,
+  );
+  const [query, setQuery] = useState("");
+  const rows = [
+    ...(data ? [{ id: data.project.id, name: data.project.name, data }] : []),
+    ...owned.map((item) => ({
+      id: item.project_id,
+      name: item.projects?.name ?? "Untitled production",
+      data: ownedData.find((p) => p.project.id === item.project_id),
+      createdAt: item.created_at,
+    })),
+  ].filter((row) => row.name.toLowerCase().includes(query.toLowerCase()));
   const retry = () => {
     setReload((value) => value + 1);
     void refresh().catch(() => {});
@@ -102,149 +110,57 @@ function DashboardContent() {
   return (
     <div className="v2-screen v2-workspace v2-dashboard">
       <Ambient />
-      <AppPageHeader title="Home" />
+      <AppPageHeader title="Productions" />
       <main className="v2-dashboard-main">
         {(error || ownedError) && (
           <ErrorNotice retry={retry}>{error || ownedError}</ErrorNotice>
         )}
-        <div
-          className="v2-home-banner"
-          role="img"
-          aria-label="Misty mountain landscape, photograph by Andreas Ebner"
-        />
-        <HomeReviewQueue
-          productions={productions}
-          loading={loading || ownedLoading}
-        />
-        <section id="productions" className="v2-dashboard-productions">
-          <div className="v2-dashboard-section-heading">
-            <h2>Productions</h2>
-            <span>
-              {data
-                ? `${1 + owned.length} ${owned.length ? "productions" : "production"}`
-                : "—"}
-            </span>
-          </div>
-          <div className="v2-dashboard-cards">
-            {data ? (
-              <ProductionOverviewCard
-                data={data}
-                name={data.project.name}
-                id={data.project.id}
-                sample
-              />
-            ) : (
-              <div
-                className="v2-skeleton v2-dashboard-card-skeleton"
-                role="status"
-                aria-label="Loading Mara"
-              />
-            )}
-            {owned.map((item) => (
-              <ProductionOverviewCard
-                key={item.project_id}
-                data={ownedData.find(
-                  (production) => production.project.id === item.project_id,
-                )}
-                name={item.projects?.name ?? "Untitled production"}
-                id={item.project_id}
-                createdAt={item.created_at}
-              />
-            ))}
-            <MotionLink href="/new" kind="start" className="v2-overview-new">
-              <span className="v2-overview-plus">
-                <Icon name="plus" size={24} />
-              </span>
-              <strong>New production</strong>
-              <span>Give your next story a memory.</span>
-            </MotionLink>
-          </div>
-        </section>
-        <HomeRecentRules
-          productions={productions}
-          loading={loading || ownedLoading}
-        />
-        <HomeAgents productions={productions} />
-        <section
-          className="v2-dashboard-activity"
-          aria-labelledby="activity-title"
-        >
-          <div className="v2-dashboard-section-heading">
-            <h2 id="activity-title">Activity</h2>
-          </div>
-          <div
-            className="v2-dashboard-table-scroll"
-            tabIndex={0}
-            role="region"
-            aria-label="Recent production activity. Scroll horizontally for all columns."
-          >
-            <table>
-              <thead>
-                <tr>
-                  {["Event", "Shot", "Detail", "Rule", "Time"].map(
-                    (heading) => (
-                      <th key={heading} scope="col">
-                        {heading}
-                      </th>
-                    ),
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {activity.map((row) => (
-                  <tr key={`${row.production.project.id}:${row.event.id}`}>
-                    <td>
-                      <MotionLink
-                        href={row.href}
-                        className={`v2-activity-event ${row.event.type === "flag" ? "drift" : row.event.type === "rule_learned" ? "memory" : ""}`}
-                      >
-                        <span className="v2-activity-dot" />
-                        {row.label}
-                      </MotionLink>
-                    </td>
-                    <td>
-                      <MotionLink
-                        href={row.href}
-                        className="v2-mono"
-                        title={row.production.project.name}
-                      >
-                        {row.shot}
-                      </MotionLink>
-                    </td>
-                    <td>
-                      <MotionLink
-                        href={row.href}
-                        className="v2-activity-detail"
-                        title={row.detail}
-                      >
-                        {row.detail}
-                      </MotionLink>
-                    </td>
-                    <td>
-                      <MotionLink
-                        href={row.href}
-                        className={`v2-activity-rule ${row.rule && row.rule.source !== "seed" ? "memory" : ""}`}
-                        title={row.rule?.text}
-                      >
-                        {row.rule?.text ?? "—"}
-                      </MotionLink>
-                    </td>
-                    <td>
-                      <RecordedTime value={row.event.createdAt} compact />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {!activity.length && (
-            <p className="v2-dashboard-empty">
-              {loading
-                ? "Opening the production log…"
-                : "Your next take starts the story."}
-            </p>
-          )}
-        </section>
+        <h2 className="v2-home-title">Productions</h2>
+        <div className="v2-production-table-tools">
+          <input
+            aria-label="Search productions"
+            placeholder="Search productions"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+        <ProductionTable rows={rows} loading={loading || ownedLoading} />
+        {data && latest && (
+          <section className="v2-home-latest">
+            <div className="v2-home-latest-heading">
+              <h3>
+                {data.project.name}
+                <span> · Take {latest.index}</span>
+              </h3>
+              <MotionLink
+                href={`/p/${data.project.id}?take=${latest.id}`}
+                className="v2-mono"
+              >
+                Open in Studio ›
+              </MotionLink>
+            </div>
+            <div className="v2-home-contact">
+              {latestShots.map((shot) => (
+                <MotionLink
+                  key={shot.id}
+                  href={`/p/${data.project.id}/shot/${shot.id}`}
+                  kind="shot"
+                  className={shot.flagged ? "flagged" : ""}
+                >
+                  <ShotImage
+                    src={shot.imageUrl}
+                    alt={shot.scenePrompt}
+                    variant="thumbnail"
+                  />
+                  <span className="v2-filmstrip-frame v2-mono">
+                    {frameName(shot, data)}
+                    {shot.flagged ? " · drift" : ""}
+                  </span>
+                </MotionLink>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
