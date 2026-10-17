@@ -87,13 +87,14 @@ test("budget reservations round up and fail closed at the persistent limit", asy
       reservations.push(JSON.parse(String(init?.body)).p_amount);
       return new Response(JSON.stringify(reservations.length === 1), { headers: { "content-type": "application/json" } });
     }
-    if (address.pathname.endsWith("api_budget_v2")) return new Response(JSON.stringify({ baseline_usd: "2.050000", spent_usd: "37.950000", held_usd: "0", limit_usd: "40" }), { headers: { "content-type": "application/json" } });
+    if (address.pathname.endsWith("release_stale_api_holds")) return new Response("0", { headers: { "content-type": "application/json" } });
+    if (address.pathname.endsWith("api_budget_v2")) return new Response(JSON.stringify({ baseline_usd: "2.230000", spent_usd: "27.770000", held_usd: "0", limit_usd: "30" }), { headers: { "content-type": "application/json" } });
     throw new Error("Unexpected budget request.");
   };
   try {
     assert.equal(await reserveApiBudget(0.000001), true); assert.equal(reservations[0], 0.000001);
     assert.equal(await reserveApiBudget(0.5), false);
-    assert.deepEqual(await getApiBudget(), { reservedUsd: 40, remainingUsd: 0, limitUsd: 40, baselineUsd: 2.05, usageEstimatedUsd: 37.95, heldUsd: 0 });
+    assert.deepEqual(await getApiBudget(), { reservedUsd: 30, remainingUsd: 0, limitUsd: 30, baselineUsd: 2.23, usageEstimatedUsd: 27.77, heldUsd: 0 });
     await assert.rejects(reserveApiBudget(-0.1)); await assert.rejects(reserveApiBudget(Number.NaN));
   } finally { globalThis.fetch = originalFetch; }
 });

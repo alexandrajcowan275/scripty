@@ -67,3 +67,11 @@ Qualified flag wording and visible nonmutating Review exit: resolved. Concrete m
 
 - **Done — real functionality:** public form→reference vision→creator-confirmed canon→real shot→editable rejection→live rule→Memory save→second real shot persisted. Rule text and ID reached the next prompt/check. Two0/1flagged takes; no visual-improvement claim. Additional usage estimate$0.121538. No human labels supplied.
 - **Forwarded P1 — generated-take context:** newTake2 persisted but the UI initially stayed onTake1 and still offered GenerateTake2. Design is selecting the returned batch and computing next index from all history; repair/recheck source context stays intact. Main manually opened the saved new take to verify its data. This is a safe existing-flow correction, not a new feature.
+
+### QA recommendation decision — 03:38am PT
+
+- **Done — study image resilience:** QA found the twelve blind-study images still depended on public Supabase Storage URLs, although the actual PNGs were already bundled in the repo. Added an allowlisted same-origin study-image route with statically traceable file paths; blind cards use it while raw experiment receipts retain original URLs. This removes the external image-storage dependency without duplicating images or changing the original24shot cache. Build tracing and a public byte/hash check verify the release. Human-label persistence still requires Supabase; offline claims remain scoped accordingly.
+
+### Selection fix follow-up — 03:40am PT
+
+- **Done — P1 generated-take context:** Design54e2189 merged as241f899;73tests/build passed. Public verification: viewingTake1 correctly offers GenerateTake3; selecting the existingTake2 updates the URL and displays its image/rule reach. Automatic selection of a newly returned batch has a regression test; no third paid generation was run solely to recheck navigation.

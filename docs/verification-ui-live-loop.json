@@ -155,5 +155,10 @@
   ],
   "usageEstimatedUsd": 0.12153800000000001,
   "humanLabelsAdded": 0,
-  "remainingIssue": "After GenerateTake2 the selected take initially stayed Take1 and CTA still said GenerateTake2; forwarded P1 to Design. New take itself persisted and opened manually."
+  "remainingIssue": "After GenerateTake2 the selected take initially stayed Take1 and CTA still said GenerateTake2; forwarded P1 to Design. New take itself persisted and opened manually.",
+  "navigationFollowup": {
+    "release": "241f899",
+    "verifiedPublicly": "Viewing old Take1 now offers GenerateTake3; choosing savedTake2 changes URL to its batch ID and displays Take2. No extra generation performed.",
+    "automaticGenerationSelection": "Returned-batch selection covered by regression test; not re-spent on another paid generation."
+  }
 }

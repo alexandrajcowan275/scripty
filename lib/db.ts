@@ -140,6 +140,8 @@ export async function settleApiBudget(reservationId: string, cost: number, model
   fail(error, "settleApiBudget");
 }
 export async function getApiBudget(): Promise<{ reservedUsd: number; limitUsd: number; remainingUsd: number; baselineUsd: number; usageEstimatedUsd: number; heldUsd: number }> {
+  const released = await db().rpc("release_stale_api_holds");
+  fail(released.error, "release stale API holds");
   const { data, error } = await db().from("api_budget_v2").select("baseline_usd,spent_usd,held_usd,limit_usd").eq("id", "scripty").single();
   fail(error, "getApiBudget");
   if (!data) throw new Error("Budget ledger unavailable");

@@ -91,6 +91,6 @@ npm run build
 
 ## How we built it
 
-We used a multi-agent Codex workflow with explicit folder ownership: Main coordinated backend, persistence, evidence, docs and releases; Design owned pages, components, styles and public assets. Claude supplied product-design direction and the HTML prototype. Independent judge and QA chats reported findings; Main accepted small safe fixes and verified releases before deployment. Shared contracts and isolated branches let design and engine work advance together while preserving the working sample.
+We used a multi-agent Codex workflow with explicit folder ownership: Main coordinated backend, persistence, evidence, docs and releases; Design owned pages, components, styles and public assets. Claude supplied product-design direction and the [HTML prototype and handoff](docs/design-sources.md). Independent judge and QA chats reported findings; Main accepted small safe fixes and verified releases before deployment. Shared contracts and isolated branches let design and engine work advance together while preserving the working sample.
 
 [Design decisions](DECISIONS.md) · [Devpost write-up](docs/devpost.md) · [Video script](docs/video-script.md) · [MIT license](LICENSE).

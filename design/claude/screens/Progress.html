@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scripty — Evidence</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;family=Funnel+Sans:wght@300..800&amp;family=Martian+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<style>
+h1,.disp{font-family:'Funnel Display','Funnel Sans',sans-serif}
+.mono{letter-spacing:-0.02em}
+body{margin:0;background:#FBFAF8}
+.pg{position:relative;overflow:hidden;min-height:1100px;background:#FBFAF8;color:#111;font-family:'Funnel Sans',system-ui,sans-serif}
+.haze{position:absolute;right:-240px;top:-280px;width:820px;height:620px;background:radial-gradient(closest-side,rgba(196,181,253,.35),rgba(251,207,232,.25) 45%,rgba(251,250,248,0) 75%);filter:blur(30px);pointer-events:none}
+.mono{font-family:'Martian Mono',monospace}
+.top{position:relative;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px}
+.wm{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-0.03em;color:#111;text-decoration:none}
+.tabs{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.65);border:1px solid rgba(17,17,17,.07)}
+.tab{font-size:13.5px;color:#555;text-decoration:none;padding:7px 14px;border-radius:999px}
+.tab.on{background:#111;color:#fff}
+.lbl{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.08em;color:#777;text-transform:uppercase}
+.r{display:grid;grid-template-columns:170px 1fr 110px;gap:20px;align-items:center;position:relative}
+.cells{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;position:relative;z-index:1}
+.c{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:3/2;background:#ddd}
+.c img{width:100%;height:100%;object-fit:cover;display:block}
+.bd{position:absolute;left:6px;top:6px;font-size:10.5px;font-weight:500;padding:3px 7px;border-radius:999px}
+.gd{position:absolute;right:6px;bottom:6px;width:10px;height:10px;border-radius:50%;background:#F5C451;box-shadow:0 0 0 3px rgba(255,255,255,.85),0 0 12px rgba(245,196,81,.9)}
+.rr{text-align:right}
+.stat{padding:22px;background:#FBFAF8}
+.num{font-family:'Martian Mono',monospace;font-size:40px;letter-spacing:-0.04em;line-height:1}
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div class="pg">
+  <div class="haze"></div>
+  <header class="top">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="Main.html" class="wm"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="#111"></rect><path d="M8 12V8h4M20 8h4v4M24 20v4h-4M12 24H8v-4" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="16" cy="16" r="3.2" fill="#FF4D4F"></circle></svg>scripty</a>
+      <span style="font-size:14px;color:#777">Mara</span>
+    </div>
+    <nav class="tabs">
+      <a href="Batch.html" class="tab">Studio</a>
+      <a href="Progress.html" class="tab on">Evidence</a>
+      <a href="Eval.html" class="tab">Eval</a>
+      <a href="Developers.html" class="tab">API</a>
+    </nav>
+    <span class="mono" style="font-size:12px;color:#777">24 real shots · 4 takes</span>
+  </header>
+
+  <main style="position:relative;max-width:1280px;margin:0 auto;padding:20px 32px 60px;display:flex;flex-direction:column;gap:28px">
+    <div style="max-width:880px">
+      <h1 style="margin:0;font-weight:400;font-size:46px;line-height:1.05;letter-spacing:-0.04em">One note in Take 1. <span style="color:#B9B5AF">Followed through every shot after it.</span></h1>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(17,17,17,.08);border-radius:20px;overflow:hidden">
+      <div class="stat"><div class="lbl">Drift rate</div><div class="num" style="margin-top:12px"><span style="color:#D93A3F">33</span><span style="color:#bbb">→</span>0<span style="color:#bbb">→</span>0<span style="color:#bbb">→</span><span style="color:#D93A3F">17</span></div><div style="font-size:12px;color:#888;margin-top:8px">% of shots flagged, per take</div></div>
+      <div class="stat"><div class="lbl">Rule reach</div><div class="num" style="margin-top:12px;color:#B07800">18 / 18</div><div style="font-size:12px;color:#888;margin-top:8px">later prompts and checks carried it</div></div>
+      <div class="stat"><div class="lbl">Merged, not duplicated</div><div class="num" style="margin-top:12px">1</div><div style="font-size:12px;color:#888;margin-top:8px">repeat note folded into the same rule</div></div>
+      <div class="stat"><div class="lbl">Checker accuracy</div><div class="num" style="margin-top:12px;color:#bbb">—</div><a href="Eval.html" style="font-size:12px;color:#111;margin-top:8px;display:inline-block">Needs your labels →</a></div>
+    </div>
+
+    <section style="position:relative;display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:24px;background:#fff;box-shadow:0 0 0 1px rgba(17,17,17,.06)">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div class="lbl">Memory thread · “silver ring stays on her RIGHT hand”</div><div style="display:flex;gap:16px;font-size:12px;color:#666"><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#F5C451;margin-right:6px"></span>rule applied</span><span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;border:2px solid #FF4D4F;margin-right:6px"></span>drift</span><span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;border:2px solid #1F9D57;margin-right:6px"></span>accepted look</span></div></div>
+      <div class="r"><div class="rl"><div style="font-size:14px;font-weight:500">Take 1</div><div class="mono" style="font-size:11px;color:#888;margin-top:3px">2 canon</div></div><div class="cells"><div class="c" style=""><img src="../img/de366e443656.jpg" alt=""></div><div class="c" style="outline:2px solid #FF4D4F;outline-offset:2px"><img src="../img/e0a363b5e81c.jpg" alt=""><span class="bd" style="background:#B07800;color:#fff">taught a rule</span></div><div class="c" style=""><img src="../img/7777ff70586f.jpg" alt=""></div><div class="c" style="outline:2px solid #FF4D4F;outline-offset:2px"><img src="../img/42740988d073.jpg" alt=""><span class="bd" style="background:#FF4D4F;color:#fff">drift</span></div><div class="c" style=""><img src="../img/e62ad3cb65fe.jpg" alt=""></div><div class="c" style=""><img src="../img/0edb2371e8cb.jpg" alt=""></div></div><div class="rr"><div class="mono" style="font-size:28px;letter-spacing:-0.03em;color:#D93A3F">33%</div><div class="mono" style="font-size:11px;color:#888">2/6 drifted</div></div></div>
+<div class="r"><div class="rl"><div style="font-size:14px;font-weight:500">Take 2</div><div class="mono" style="font-size:11px;color:#888;margin-top:3px">2 canon + 1 learned</div></div><div class="cells"><div class="c" style=""><img src="../img/5d82a9a56864.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/2e9dd43564dc.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/59d544d209e7.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/5ef78cabc863.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/0c56a18a52d6.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/6ae9fe8c3b98.jpg" alt=""><span class="gd"></span></div></div><div class="rr"><div class="mono" style="font-size:28px;letter-spacing:-0.03em;color:#111">0%</div><div class="mono" style="font-size:11px;color:#888">0/6 drifted</div></div></div>
+<div class="r"><div class="rl"><div style="font-size:14px;font-weight:500">Take 3</div><div class="mono" style="font-size:11px;color:#888;margin-top:3px">2 canon + 1 learned</div></div><div class="cells"><div class="c" style=""><img src="../img/8272db4c7762.jpg" alt=""><span class="gd"></span></div><div class="c" style="outline:2px solid #1F9D57;outline-offset:2px"><img src="../img/dc25f8407342.jpg" alt=""><span class="bd" style="background:#1F9D57;color:#fff">accepted look</span><span class="gd"></span></div><div class="c" style=""><img src="../img/89d3246d54fb.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/d6bc7d7632af.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/c3019e326cd4.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/9f577328bae5.jpg" alt=""><span class="gd"></span></div></div><div class="rr"><div class="mono" style="font-size:28px;letter-spacing:-0.03em;color:#111">0%</div><div class="mono" style="font-size:11px;color:#888">0/6 drifted</div></div></div>
+<div class="r"><div class="rl"><div style="font-size:14px;font-weight:500">Take 4 · new scenes</div><div class="mono" style="font-size:11px;color:#888;margin-top:3px">2 canon + 1 learned</div></div><div class="cells"><div class="c" style=""><img src="../img/32102f4cb12f.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/c572629800c7.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/08c322d07e20.jpg" alt=""><span class="gd"></span></div><div class="c" style=""><img src="../img/8a7badfdfd08.jpg" alt=""><span class="gd"></span></div><div class="c" style="outline:2px solid #FF4D4F;outline-offset:2px"><img src="../img/de2c61a4b138.jpg" alt=""><span class="bd" style="background:#FF4D4F;color:#fff">drift</span><span class="gd"></span></div><div class="c" style=""><img src="../img/10d9365ff40a.jpg" alt=""><span class="gd"></span></div></div><div class="rr"><div class="mono" style="font-size:28px;letter-spacing:-0.03em;color:#D93A3F">17%</div><div class="mono" style="font-size:11px;color:#888">1/6 drifted</div></div></div>
+      <div style="font-size:12.5px;line-height:1.55;color:#777;border-top:1px solid rgba(17,17,17,.06);padding-top:14px">Honest read: the rule reached every later prompt and check. Scenes, settings and the checker also changed between takes, so this proves memory carry-forward, not causal visual improvement. Take 4's new scenes surfaced a new drift, which became the next note.</div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

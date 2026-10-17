@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scripty — New production</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;family=Funnel+Sans:wght@300..800&amp;family=Martian+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<style>
+h1,.disp{font-family:'Funnel Display','Funnel Sans',sans-serif}
+.mono{letter-spacing:-0.02em}
+body{margin:0;background:#FBFAF8}
+.pg{position:relative;overflow:hidden;min-height:1000px;background:#FBFAF8;color:#111;font-family:'Funnel Sans',system-ui,sans-serif}
+.haze{position:absolute;right:-240px;top:-280px;width:820px;height:620px;background:radial-gradient(closest-side,rgba(196,181,253,.35),rgba(251,207,232,.25) 45%,rgba(251,250,248,0) 75%);filter:blur(30px);pointer-events:none}
+.mono{font-family:'Martian Mono',monospace}
+.top{position:relative;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.wm{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-0.03em;color:#111;text-decoration:none}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.65);border:1px solid rgba(17,17,17,.07)}
+.seg span{font-size:13.5px;padding:7px 14px;border-radius:999px;color:#555}
+.seg .on{background:#111;color:#fff}
+.glass{background:rgba(255,255,255,.7);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.75);box-shadow:0 10px 40px rgba(17,17,17,.12)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#111;color:#fff;border:none;border-radius:999px;padding:12px 20px;font:inherit;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn.light{background:#fff;color:#111;border:1px solid rgba(17,17,17,.1)}
+.lbl{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.08em;color:#777;text-transform:uppercase}
+.box{position:absolute;border:1.5px solid rgba(255,255,255,.95);border-radius:8px;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.pin{position:absolute;font-size:12px;font-weight:500;padding:5px 10px;border-radius:999px;white-space:nowrap}
+.canon{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 14px;border-radius:14px;background:#fff;border:1px solid rgba(17,17,17,.07);font-size:14px}
+.scene{display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:12px;background:#fff;border:1px solid rgba(17,17,17,.06);font-size:13.5px}
+input{font:inherit;color:#111}
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div class="pg">
+  <div class="haze"></div>
+  <header class="top">
+    <a href="Main.html" class="wm"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="#111"></rect><path d="M8 12V8h4M20 8h4v4M24 20v4h-4M12 24H8v-4" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="16" cy="16" r="3.2" fill="#FF4D4F"></circle></svg>scripty</a>
+    <div class="seg"><span class="on">Quick · one character</span><span>Studio · full script, cast, API</span></div>
+    <a href="Batch.html" style="font-size:14px;color:#555;text-decoration:none">Cancel</a>
+  </header>
+
+  <div style="position:relative;max-width:1280px;margin:0 auto;padding:18px 32px 130px">
+    <input value="The Long Winter · Episode 1" aria-label="Production name" style="border:none;background:transparent;font-size:40px;font-weight:500;letter-spacing:-0.035em;width:100%;padding:0;margin-bottom:6px">
+    <div style="font-size:15px;color:#777;margin-bottom:26px">Drop a reference. Scripty reads it and proposes the canon. You confirm what must never change.</div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px">
+      <section style="display:flex;flex-direction:column;gap:12px">
+        <div style="position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/2;background:#ddd">
+          <img src="../img/ref.jpg" alt="Mara reference image" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <span class="box" style="left:39%;top:0%;width:21%;height:22%"></span>
+          <span class="box" style="left:49%;top:8%;width:8%;height:11%;border-color:#FFD166"></span>
+          <span class="box" style="left:39%;top:23%;width:22%;height:47%"></span>
+          <span class="box" style="left:34%;top:85%;width:10%;height:13%;border-color:#FFD166"></span>
+          <span class="pin glass" style="left:24%;top:6%">Short black bob</span>
+          <span class="pin glass" style="left:60%;top:9%">Scar · her left eye</span>
+          <span class="pin glass" style="left:63%;top:36%">Red wool scarf</span>
+          <span class="pin glass" style="left:12%;top:80%">Silver ring · right hand</span>
+          <span class="glass mono" style="position:absolute;right:16px;bottom:16px;border-radius:999px;padding:6px 12px;font-size:11px">4 details found · 2 need left/right confirm</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span class="lbl">Cast</span>
+          <span class="btn light" style="padding:6px 12px 6px 6px;font-size:13px"><img src="../img/ref.jpg" alt="" style="width:24px;height:24px;border-radius:50%;object-fit:cover">Mara</span>
+          <span class="btn light" style="padding:7px 12px;font-size:13px;color:#777;border-style:dashed">+ Add character</span>
+          <span class="btn light" style="padding:7px 12px;font-size:13px;color:#777;border-style:dashed">+ Location / prop</span>
+        </div>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between"><span class="lbl">Canon · checked on every shot</span><span class="mono" style="font-size:11px;color:#999">weight</span></div>
+          <div class="canon"><span>Short black bob</span><span class="mono" style="font-size:11px;color:#999">●●○</span><span style="font-size:12px;color:#1F7A4D">Confirmed</span></div>
+          <div class="canon"><span>Deep red wool scarf</span><span class="mono" style="font-size:11px;color:#999">●●●</span><span style="font-size:12px;color:#1F7A4D">Confirmed</span></div>
+          <div class="canon" style="border-color:#F3DC97;background:#FFFBEF"><span>Scar over her <b style="font-weight:500">LEFT</b> eye</span><span class="mono" style="font-size:11px;color:#999">●●●</span><span style="display:flex;gap:4px"><span class="btn" style="padding:5px 10px;font-size:12px">Left</span><span class="btn light" style="padding:5px 10px;font-size:12px">Right</span></span></div>
+          <div class="canon" style="border-color:#F3DC97;background:#FFFBEF"><span>Silver ring on her <b style="font-weight:500">RIGHT</b> hand</span><span class="mono" style="font-size:11px;color:#999">●●○</span><span style="display:flex;gap:4px"><span class="btn light" style="padding:5px 10px;font-size:12px">Left</span><span class="btn" style="padding:5px 10px;font-size:12px">Right</span></span></div>
+          <div style="font-size:12.5px;color:#8A6200">Left and right are where AI drifts most, so Scripty asks you once.</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="lbl">Shots for take 1</span><span style="font-size:12.5px;color:#555">Paste a script, Scripty splits it</span></div>
+          <div class="scene"><span class="mono" style="color:#999;font-size:12px">01</span>Wide · Mara crosses a foggy platform at dawn</div>
+          <div class="scene"><span class="mono" style="color:#999;font-size:12px">02</span>Close-up · soft window light, looks to camera</div>
+          <div class="scene"><span class="mono" style="color:#999;font-size:12px">03</span>Low angle · climbs a fire escape, golden hour</div>
+          <div class="scene" style="color:#999;border-style:dashed"><span class="mono" style="font-size:12px">+3</span>more suggested from your script</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="glass" style="position:absolute;left:50%;bottom:28px;transform:translateX(-50%);border-radius:999px;padding:8px 8px 8px 20px;display:flex;gap:16px;align-items:center">
+    <span style="font-size:13px;color:#555">Model <b style="color:#111;font-weight:500">gpt-image-1.5 ▾</b></span>
+    <span style="font-size:13px;color:#555">Shots <b style="color:#111;font-weight:500">6 ▾</b></span>
+    <span class="mono" style="font-size:12px;color:#777">≈ $0.30 · 90s</span>
+    <a href="Batch.html" class="btn">Generate take 1 →</a>
+  </div>
+</div>
+</body>
+</html>

@@ -18,3 +18,9 @@ Use final Figma frame IDs and high-fidelity context. Reuse the app's state, API 
 
 ## Character version conflicts
 Owned character edits now append versions and preserve old references/checks. A larger future improvement is version-scoped learned rules and a clear resolution policy when a new canonical detail conflicts with a rule learned from an older take. Do not silently rewrite historical checks or claim this conflict policy is validated. No new paid study is authorized overnight.
+
+## October17 — after the controlled six-pair result
+
+The requested matched test found0/6targeted flags in both arms. The learned ring rule reinforces a fact already present in canon, so this run has a baseline floor; preserve that result. A stronger follow-up would pre-register a genuinely new creator preference absent from the initial character sheet (for example the real single-loose-scarf-knot correction), generate matched new scenes with and without that learned rule, and score both against the same held-out requirement. Collect blind human labels before interpreting a monitor difference. Do not reroll the existing experiment or silently change its target. This is a future evaluation proposal, not a new measured result or a submission blocker.
+
+Small completed improvement: keep the controlled-study corpus separate from production takes and prepend its12images to existing blind Eval; reuse the existing card/label contracts. This makes the founder's validation work direct without rewriting the original curve. Small reported product fix: after a real new take completes, navigate to that returned batch and compute the next take index from all saved history; Design owns that patch.

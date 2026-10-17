@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-17T10:41:33.847Z",
+  "command": "cd ~/canon && npm run dev",
+  "url": "http://localhost:3000",
+  "runtime": "v24.16.0",
+  "landing": 200,
+  "sampleShots": 24,
+  "sampleTakes": 4,
+  "blindQuestions": 210,
+  "studyImagesSameOrigin": true,
+  "studyImageExactByteMatch": true,
+  "paidCalls": 0,
+  "serverStoppedAfterVerification": true
+}

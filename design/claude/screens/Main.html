@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scripty — Landing</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;family=Funnel+Sans:wght@300..800&amp;family=Martian+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<style>
+h1,.disp{font-family:'Funnel Display','Funnel Sans',sans-serif}
+.mono{letter-spacing:-0.02em}
+body{margin:0;background:#FBFAF8}
+.pg{position:relative;overflow:hidden;min-height:1180px;background:#FBFAF8;color:#111;font-family:'Funnel Sans',system-ui,sans-serif}
+.haze{position:absolute;inset:-200px -200px auto auto;width:900px;height:700px;background:radial-gradient(closest-side,rgba(196,181,253,.45),rgba(251,207,232,.35) 45%,rgba(251,250,248,0) 75%);filter:blur(30px);pointer-events:none}
+.haze2{position:absolute;left:-260px;top:620px;width:700px;height:600px;background:radial-gradient(closest-side,rgba(254,215,170,.4),rgba(251,250,248,0) 70%);filter:blur(30px);pointer-events:none}
+.mono{font-family:'Martian Mono',monospace}
+.wrap{position:relative;max-width:1240px;margin:0 auto;padding:0 40px}
+.nav{display:flex;align-items:center;justify-content:space-between;height:84px}
+.wm{display:flex;align-items:center;gap:10px;font-weight:600;font-size:19px;letter-spacing:-0.03em;color:#111;text-decoration:none}
+.links{display:flex;align-items:center;gap:28px;font-size:14px}
+.links a{color:#3a3a3a;text-decoration:none}
+.cta{display:inline-flex;align-items:center;gap:10px;background:#111;color:#fff !important;padding:12px 20px;border-radius:999px;font-weight:500;font-size:15px;text-decoration:none}
+.cta.light{background:rgba(255,255,255,.7);color:#111 !important;border:1px solid rgba(17,17,17,.1);backdrop-filter:blur(12px)}
+.glass{background:rgba(255,255,255,.62);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.7);box-shadow:0 10px 40px rgba(17,17,17,.12)}
+.br{position:absolute;width:16px;height:16px;border-color:#fff;border-style:solid}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:13px;padding:7px 0}
+.ok{color:#1F7A4D}.bad{color:#D93A3F}
+.frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:#ddd}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.fl{position:absolute;left:10px;bottom:10px;font-family:'Martian Mono',monospace;font-size:10.5px;color:#111;padding:4px 8px;border-radius:999px}
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div class="pg">
+  <div class="haze"></div><div class="haze2"></div>
+  <div class="wrap">
+    <header class="nav">
+      <a href="Main.html" class="wm">
+        <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="9" fill="#111"></rect><path d="M8 12V8h4M20 8h4v4M24 20v4h-4M12 24H8v-4" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="16" cy="16" r="3.2" fill="#FF4D4F"></circle></svg>
+        scripty
+      </a>
+      <nav class="links">
+        <a href="#how">How it works</a>
+        <a href="Developers.html">API</a>
+        <a href="Progress.html">Evidence</a>
+        <a href="Batch.html" class="cta" style="padding:9px 16px;font-size:14px">Open studio</a>
+      </nav>
+    </header>
+
+    <section style="padding:70px 0 44px;max-width:1040px">
+      <a href="Progress.html" class="mono" style="display:inline-flex;align-items:center;gap:10px;font-size:12px;color:#3a3a3a;text-decoration:none;background:rgba(255,255,255,.7);border:1px solid rgba(17,17,17,.08);border-radius:999px;padding:6px 12px 6px 8px;margin-bottom:28px"><span style="width:7px;height:7px;border-radius:50%;background:#FF4D4F;box-shadow:0 0 0 4px rgba(255,77,79,.18)"></span>Monitoring 24 real shots · 1 rule learned · 18 prompts carried it →</a>
+      <h1 style="margin:0;font-weight:400;font-size:clamp(40px,5.4vw,74px);line-height:1.04;letter-spacing:-0.04em">Scripty remembers your story. <span style="color:#B9B5AF">Scarf. Scar. Ring. Every detail your AI forgets between shots, caught, corrected and never repeated.</span></h1>
+      <div style="display:flex;gap:12px;margin-top:36px;flex-wrap:wrap">
+        <a href="NewProduction.html" class="cta">Start a production <span aria-hidden="true">→</span></a>
+        <a href="Batch.html" class="cta light">Watch it on Mara</a>
+      </div>
+    </section>
+
+    <section style="position:relative;border-radius:28px;overflow:hidden;aspect-ratio:3/2;background:#222">
+      <img src="../img/e0a363b5e81c.jpg" alt="Mara close-up portrait, generated shot from Take 1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(0,0,0,0) 45%)"></div>
+
+      <div style="position:absolute;left:63%;top:77%;width:13%;height:19%">
+        <span class="br" style="top:0;left:0;border-width:2px 0 0 2px;border-color:#FF4D4F"></span><span class="br" style="top:0;right:0;border-width:2px 2px 0 0;border-color:#FF4D4F"></span><span class="br" style="bottom:0;left:0;border-width:0 0 2px 2px;border-color:#FF4D4F"></span><span class="br" style="bottom:0;right:0;border-width:0 2px 2px 0;border-color:#FF4D4F"></span>
+      </div>
+      <div class="glass" style="position:absolute;left:52%;top:69%;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:500;display:flex;gap:8px;align-items:center"><span style="width:7px;height:7px;border-radius:50%;background:#FF4D4F"></span>Ring on the wrong hand <span class="mono" style="font-weight:400;color:#555">0.96</span></div>
+
+      <div class="glass" style="position:absolute;right:28px;top:28px;width:270px;border-radius:20px;padding:16px 18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span class="mono" style="font-size:11px;letter-spacing:.08em;color:#555">T1 · S02 · CHECKING</span><span class="mono" style="font-size:11px;color:#D93A3F">DRIFT</span></div>
+        <div class="row" style="border-bottom:1px solid rgba(17,17,17,.07)"><span>Red wool scarf</span><span class="mono ok">✓ 0.99</span></div>
+        <div class="row" style="border-bottom:1px solid rgba(17,17,17,.07)"><span>Short black hair</span><span class="mono ok">✓ 0.98</span></div>
+        <div class="row" style="border-bottom:1px solid rgba(17,17,17,.07)"><span>Scar · left eye</span><span class="mono ok">✓</span></div>
+        <div class="row"><span>Ring · right hand</span><span class="mono bad">✕ 0.96</span></div>
+      </div>
+
+      <div class="glass" style="position:absolute;left:28px;bottom:28px;border-radius:20px;padding:14px 18px;max-width:380px;display:flex;gap:12px;align-items:flex-start;background:rgba(255,248,224,.75)">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style="flex:none;margin-top:1px"><circle cx="10" cy="10" r="9" fill="#B07800"></circle><path d="M6 10.5l2.6 2.6L14 7.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <div><div style="font-size:14px;font-weight:500">Learned: the silver ring stays on her right hand.</div><div class="mono" style="font-size:11px;color:#6B5200;margin-top:3px">carried into the next 18 prompts and checks</div></div>
+      </div>
+    </section>
+
+    <section id="how" style="padding:90px 0 30px;display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start">
+      <div>
+        <div class="mono" style="font-size:12px;color:#777;letter-spacing:.08em">THE CONTACT SHEET</div>
+        <p style="font-size:22px;line-height:1.35;letter-spacing:-0.02em;margin:14px 0 0">On a real set, the script supervisor photographs every setup and circles what changed. <span style="color:#9A958E">Scripty does it for every AI shot, in seconds, then teaches the model what you circled.</span></p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="frame"><img src="../img/32102f4cb12f.jpg" alt=""><span class="fl glass">T4·S01 ✓</span></div>
+        <div class="frame"><img src="../img/c572629800c7.jpg" alt=""><span class="fl glass">T4·S02 ✓</span></div>
+        <div class="frame"><img src="../img/08c322d07e20.jpg" alt=""><span class="fl glass">T4·S03 ✓</span></div>
+        <div class="frame"><img src="../img/8a7badfdfd08.jpg" alt=""><span class="fl glass">T4·S04 ✓</span></div>
+        <div class="frame" style="outline:2px solid #FF4D4F;outline-offset:3px"><img src="../img/de2c61a4b138.jpg" alt=""><span class="fl glass" style="color:#C42A2F">T4·S05 · scar side</span></div>
+        <div class="frame"><img src="../img/10d9365ff40a.jpg" alt=""><span class="fl glass">T4·S06 ✓</span></div>
+      </div>
+    </section>
+
+    <section style="padding:60px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(17,17,17,.08);border-radius:22px;overflow:hidden">
+      <div style="background:#FBFAF8;padding:28px"><div class="mono" style="font-size:12px;color:#777">01 · CATCH</div><div style="font-size:19px;letter-spacing:-0.015em;margin-top:10px">Every detail checked on its own. Says “unclear” instead of guessing.</div></div>
+      <div style="background:#FBFAF8;padding:28px"><div class="mono" style="font-size:12px;color:#777">02 · CIRCLE</div><div style="font-size:19px;letter-spacing:-0.015em;margin-top:10px">Reject with one note. It becomes a testable rule, merged, never duplicated.</div></div>
+      <div style="background:#FBFAF8;padding:28px"><div class="mono" style="font-size:12px;color:#777">03 · CARRY</div><div style="font-size:19px;letter-spacing:-0.015em;margin-top:10px">Rules ride into every future prompt and check, across any model you use.</div></div>
+    </section>
+
+    <footer style="display:flex;justify-content:space-between;align-items:center;padding:56px 0 40px;font-size:13px;color:#777;gap:16px;flex-wrap:wrap">
+      <span class="mono">Los Angeles · 1:52 AM · on set</span>
+      <span>Works in front of OpenAI, Gemini, or your own model</span>
+      <span class="mono">Changelog 10-17-26</span>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

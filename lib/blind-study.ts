@@ -14,7 +14,7 @@ export function validatedStudyShots(value: unknown): Shot[] {
  // Stable opaque ordering avoids exposing paired A/B generation order.
  return [...shots].sort((a,b)=>createHash('sha256').update(a.id).digest('hex').localeCompare(createHash('sha256').update(b.id).digest('hex')));
 }
-export function studyShots(projectId:string) {return projectId==='mara'?validatedStudyShots(experiment):[];}
+export function studyShots(projectId:string) {return projectId==='mara'?validatedStudyShots(experiment).map(shot=>({...shot,imageUrl:`/api/study/images/${shot.id}.png`})) :[];}
 export function evaluationShots(projectId:string, original:Shot[]) {
  const study=studyShots(projectId),ids=new Set(study.map(s=>s.id));
  return [...study,...original.filter(s=>!ids.has(s.id))];
