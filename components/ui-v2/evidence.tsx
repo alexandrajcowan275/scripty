@@ -4,6 +4,7 @@ import { Nav, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
 import { CountUp, MemoryThreadDot, Stat } from "../ui/metrics";
 import matchedStudy from "@/seed/experiments/ab-test/summary.json";
+import { ProductionDriftChart } from "../ui/production-overview";
 import { ShotImage } from "../shot-image";
 import {
   frameName,
@@ -61,7 +62,7 @@ export function EvidenceScreen() {
       t.type === "rule_learned" && /merged|merge=true|reused/i.test(t.message),
   ).length;
   return (
-    <div className="v2-screen v2-evidence">
+    <div className="v2-screen v2-workspace v2-evidence">
       <Ambient />
       <Nav
         id={id}
@@ -75,8 +76,8 @@ export function EvidenceScreen() {
       />
       <main className="v2-detail-wrap">
         <RevealHeadline
-          lead="One note. A longer memory."
-          continuation="Follow it through the contact sheet."
+          lead="Memory across takes."
+          continuation="Original shots. Real checks."
         />
         {error && (
           <ErrorNotice
@@ -155,6 +156,7 @@ export function EvidenceScreen() {
             </MotionLink>
           </Stat>
         </div>
+        {data && id === "mara" && <ProductionDriftChart data={data} />}
         {loading ? (
           <div
             className="v2-skeleton v2-evidence-skeleton"

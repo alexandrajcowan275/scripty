@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import type { Batch, Rule, Shot, TraceEvent } from "@/lib/types";
 import {
+  pendingReviewShots,
   dashboardActivity,
   lastProductionActivity,
   productionTotals,
@@ -139,5 +140,30 @@ test("production activity uses recorded take/trace times only", () => {
   assert.equal(
     lastProductionActivity({ ...mara, batches: [], traces: [] }),
     undefined,
+  );
+});
+
+test("Home excludes decided flags while preserving historical evidence", () => {
+  const flagged = mara.shots.filter((shot) => shot.flagged);
+  assert.ok(flagged.length >= 3);
+  const data = {
+    ...mara,
+    shots: flagged.map((shot, index) => ({
+      ...shot,
+      status: (index === 0
+        ? "pending"
+        : index === 1
+          ? "accepted"
+          : "rejected") as Shot["status"],
+    })),
+  };
+  const queue = pendingReviewShots([data, data]);
+  assert.deepEqual(
+    queue.map((item) => item.shot.id),
+    [flagged[0].id],
+  );
+  assert.equal(
+    data.shots.filter((shot) => shot.flagged).length,
+    flagged.length,
   );
 });

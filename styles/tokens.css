@@ -108,11 +108,26 @@
   --editorial-grade: saturate(0.88) contrast(1.06) brightness(0.98);
   --editorial-cool-wash: rgba(151, 178, 205, 0.1);
   --editorial-shadow: 0 16px 56px rgba(14, 15, 18, 0.16);
+  --cinema-mountains: url("/brand/cinema-mountains.webp");
   --editorial-visor: url("/brand/editorial-visor-marcin-sajur.webp");
   --editorial-couture: url("/brand/editorial-couture-felix-young.webp");
+  --work-canvas: #f6f7f9;
+  --work-memory-fill: #fff9f5;
+  --work-memory-halo: rgba(255, 138, 61, 0.08);
+  --work-memory-glow: rgba(255, 138, 61, 0.1);
+  --work-shadow: 0 2px 12px rgba(14, 15, 18, 0.04);
+  --work-haze: rgba(175, 196, 213, 0.16);
+  --work-title: 30px;
+  --work-heading: 22px;
+  --work-body: 14px;
+  --work-label: 12px;
+  --work-metric: 64px;
+  --work-counter: 32px;
+  --radius-tag: 4px;
 }
 @media (max-width: 760px) {
   :root {
+    --cinema-mountains: url("/brand/cinema-mountains-small.webp");
     --editorial-visor: url("/brand/editorial-visor-marcin-sajur-small.webp");
     --editorial-couture: url("/brand/editorial-couture-felix-young-small.webp");
   }

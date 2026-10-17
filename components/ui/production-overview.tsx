@@ -116,7 +116,7 @@ export function ProductionDriftChart({ data }: { data: ProductionData }) {
     <div className="v2-drift-chart">
       <div className="v2-chart-heading">
         <div>
-          <h2>Continuity, take by take.</h2>
+          <h2>Monitor flags per take</h2>
           <p>Mara · monitor-flagged shots</p>
         </div>
         <MotionLink

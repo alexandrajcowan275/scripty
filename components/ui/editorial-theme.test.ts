@@ -54,6 +54,18 @@ test("orange memory uses readable text variants while drift and pass retain AA",
   assert.ok(contrast("--memory", "--surface") >= 4.5);
   assert.ok(contrast("--memory-code-text", "--code-surface") >= 4.5);
 });
+test("workspace text and memory labels remain AA on the quiet working surface", () => {
+  for (const foreground of [
+    "--text",
+    "--muted",
+    "--muted-strong",
+    "--memory-ink",
+    "--drift",
+  ]) {
+    assert.ok(contrast(foreground, "--work-canvas") >= 4.5, foreground);
+  }
+  assert.ok(contrast("--memory-detail", "--work-memory-fill") >= 4.5);
+});
 test("the image color grade can only apply to landing and dashboard image layers", () => {
   const styles = postcss.parse(
     readFileSync(new URL("../../styles/ui-v2.css", import.meta.url), "utf8"),

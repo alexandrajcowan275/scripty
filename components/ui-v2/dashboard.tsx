@@ -6,18 +6,17 @@ import { Icon, type IconName } from "../icons";
 import { Brand, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink } from "../ui/motion";
 import { LocationReference } from "../ui/location-reference";
-import { EditorialBackdrop } from "../ui/editorial-backdrop";
+import {
+  HomeReviewQueue,
+  HomeRecentRules,
+  HomeAgents,
+} from "../ui/production-home";
 import {
   OverviewDialog,
-  ProductionDriftChart,
   ProductionOverviewCard,
   RecordedTime,
 } from "../ui/production-overview";
-import {
-  dashboardActivity,
-  productionTotals,
-  uniqueProductions,
-} from "./dashboard-data";
+import { dashboardActivity, uniqueProductions } from "./dashboard-data";
 import { message, request, type ProductionData } from "./data";
 import { ProductionProvider, useProduction } from "./provider";
 
@@ -96,9 +95,7 @@ function DashboardContent() {
                   !Array.isArray(result.value.traces))),
           )
         )
-          setOwnedError(
-            "Some productions couldn’t be read. Totals are unavailable.",
-          );
+          setOwnedError("Some productions couldn’t be read. Try again.");
       })
       .catch((cause) => {
         if (!controller.signal.aborted) setOwnedError(message(cause));
@@ -112,8 +109,6 @@ function DashboardContent() {
     ...(data ? [data] : []),
     ...ownedData,
   ]);
-  const ready = !!data && !ownedLoading && !ownedError && !error;
-  const totals = ready ? productionTotals(productions) : null;
   const activity = dashboardActivity(productions);
   const retry = () => {
     setReload((value) => value + 1);
@@ -129,7 +124,7 @@ function DashboardContent() {
     </MotionLink>
   );
   return (
-    <div className="v2-screen v2-dashboard">
+    <div className="v2-screen v2-workspace v2-dashboard">
       <Ambient />
       <aside className="v2-dashboard-sidebar">
         <Brand />
@@ -176,10 +171,8 @@ function DashboardContent() {
       </aside>
       <main className="v2-dashboard-main">
         <header className="v2-dashboard-header">
-          <EditorialBackdrop kind="couture" />
           <div>
-            <span className="v2-dashboard-eyebrow">The production office</span>
-            <h1>Your productions</h1>
+            <h1>Home</h1>
           </div>
           <MotionLink href="/new" kind="start" className="v2-button">
             <Icon name="plus" />
@@ -189,45 +182,18 @@ function DashboardContent() {
         {(error || ownedError) && (
           <ErrorNotice retry={retry}>{error || ownedError}</ErrorNotice>
         )}
-        <section
-          className="v2-dashboard-metrics"
-          aria-label="Saved production totals"
-          aria-busy={loading || ownedLoading}
-        >
-          <div className="v2-dashboard-main-metric">
-            <span>Saved attribute checks</span>
-            <strong>
-              {totals ? totals.checks.toLocaleString("en-US") : "—"}
-            </strong>
-            <p>Across all saved takes</p>
-          </div>
-          <div className="v2-dashboard-small-metric">
-            <span className="v2-dashboard-signal drift" />
-            <strong>{totals?.flagged ?? "—"}</strong>
-            <span>Drift caught</span>
-            <small>Shots flagged by the monitor</small>
-          </div>
-          <div className="v2-dashboard-small-metric">
-            <span className="v2-dashboard-signal memory" />
-            <strong>{totals?.learned ?? "—"}</strong>
-            <span>Rules learned</span>
-            <small>Saved to production memory</small>
-          </div>
-        </section>
-        {data ? (
-          <ProductionDriftChart data={data} />
-        ) : (
-          <div
-            className="v2-skeleton v2-dashboard-chart-skeleton"
-            role="status"
-            aria-label={
-              loading ? "Loading real take history" : "Take history unavailable"
-            }
-          />
-        )}
+        <div
+          className="v2-home-banner"
+          role="img"
+          aria-label="Misty mountain landscape, photograph by Andreas Ebner"
+        />
+        <HomeReviewQueue
+          productions={productions}
+          loading={loading || ownedLoading}
+        />
         <section id="productions" className="v2-dashboard-productions">
           <div className="v2-dashboard-section-heading">
-            <h2>On the slate</h2>
+            <h2>Productions</h2>
             <span>
               {data
                 ? `${1 + owned.length} ${owned.length ? "productions" : "production"}`
@@ -269,13 +235,17 @@ function DashboardContent() {
             </MotionLink>
           </div>
         </section>
+        <HomeRecentRules
+          productions={productions}
+          loading={loading || ownedLoading}
+        />
+        <HomeAgents productions={productions} />
         <section
           className="v2-dashboard-activity"
           aria-labelledby="activity-title"
         >
           <div className="v2-dashboard-section-heading">
-            <h2 id="activity-title">From the set</h2>
-            <span>Recent activity</span>
+            <h2 id="activity-title">Activity</h2>
           </div>
           <div
             className="v2-dashboard-table-scroll"

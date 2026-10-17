@@ -195,7 +195,7 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
         ? shotsFor(data, before.id)[Math.max(0, index)]
         : undefined);
   return (
-    <div className="v2-screen v2-review">
+    <div className="v2-screen v2-workspace v2-review">
       <Ambient />
       <header className="v2-review-top">
         <div className="v2-review-top-left">

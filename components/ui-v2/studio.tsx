@@ -311,7 +311,7 @@ export function StudioScreen() {
     setDrawer(null);
   };
   return (
-    <div className="v2-screen v2-studio">
+    <div className="v2-screen v2-workspace v2-studio">
       <Ambient />
       <Nav id={id} data={data} />
       <div className="v2-studio-grid">

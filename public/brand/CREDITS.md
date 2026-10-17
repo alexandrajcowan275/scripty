@@ -26,3 +26,10 @@ WebP SHA-256 / size:
 - Young: `24ea43f8958d393754a692c701d1bc2a967d05a2bcaa617571ef550562f54c01` / 48,270 bytes.
 - Sajur, small: `d228e43684f03b4c4e04341f828c6df6cf88f0c46d1b8182063891494d0461c6` / 47,926 bytes.
 - Young, small: `18f97f92ccb5d111148f162b0ba67dfdd4a730a044dafc9fb08c10c5bc169754` / 16,572 bytes.
+
+## Cinematic landscape — Home header / landing
+
+- Photograph: **Andreas Ebner**, “Drone Shot of Foggy Mountains”.
+- Source: https://www.pexels.com/photo/drone-shot-of-foggy-mountains-12404363/
+- License: [Pexels License](https://www.pexels.com/license/) — free website/app and commercial use; resizing/compression allowed. No endorsement implied.
+- Local files: `cinema-mountains.webp`, `cinema-mountains-small.webp`. Resized/compressed from the source photograph, no AI generation or composite content.

@@ -142,3 +142,21 @@ export function dashboardActivity(
     )
     .slice(0, limit);
 }
+
+/** Historical flags remain evidence; only undecided shots belong in the work queue. */
+export function pendingReviewShots(productions: ProductionData[]) {
+  return uniqueProductions(productions)
+    .flatMap((data) =>
+      data.shots
+        .filter((shot) => shot.flagged && shot.status === "pending")
+        .map((shot) => ({ data, shot })),
+    )
+    .sort((a, b) => {
+      const time = ({ data, shot }: typeof a) =>
+        Date.parse(
+          data.batches.find((batch) => batch.id === shot.batchId)?.createdAt ??
+            "",
+        ) || 0;
+      return time(b) - time(a);
+    });
+}
