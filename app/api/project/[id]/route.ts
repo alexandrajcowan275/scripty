@@ -1,3 +1,7 @@
+import { getShot } from "@/lib/db";
+import { workspaceEvidence } from "@/lib/workspace";
+import { productionOwner } from "@/lib/productions";
+import { hasPaidAccess } from "@/lib/access";
 import { ownedProduction, productionCharacter } from "@/lib/productions";
 import { getProject } from "@/lib/db";
 import { cachedProject, cacheMetadata } from "@/lib/engine-cache";
@@ -27,11 +31,12 @@ export async function GET(
       return Response.json(
         {
           ...data,
+          ...(production ? await workspaceEvidence(id, production.ownerHash) : {}),
           ...(production
             ? {
                 scenePrompts: production.scene_prompts,
                 generationEnabled:
-                  process.env.CANON_PUBLIC_GENERATION_ENABLED === "true",
+                  hasPaidAccess(request),
               }
             : {}),
           mode: "live",
@@ -42,9 +47,16 @@ export async function GET(
     }
     const cached = await cachedProject(request, id);
     if (!cached) throw new HttpError("Project not found", 404);
+    let evidence = {};
+    try {
+      const found = await workspaceEvidence(id, productionOwner(request).hash);
+      evidence = { ...found, repairShots: (await Promise.all(found.repairs.map(row => getShot(row.shot_id)))).filter(Boolean) };
+    } catch { /* Free sample still works without database/owner session. */ }
     return Response.json(
       {
         ...cached.data,
+        ...evidence,
+        generationEnabled: hasPaidAccess(request),
         ...cacheMetadata,
         recordedRuleIds: cached.recordedRuleIds,
         ...(cached.cache

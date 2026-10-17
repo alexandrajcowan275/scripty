@@ -1,15 +1,18 @@
+import { hasPaidAccess } from "@/lib/access";
 import {
   ownedProduction,
   checkOrigin,
   productionCharacter,
+  productionOwner,
 } from "@/lib/productions";
 import { z } from "zod";
 import seed from "@/seed/mara.json";
 import {
   getShot,
+  serverDatabase,
   getProject,
   updateShotReview,
-  addRule,
+  addLearnedRule,
   addTrace,
 } from "@/lib/db";
 import { emptyUsage } from "@/lib/engine-ai";
@@ -36,6 +39,7 @@ export async function POST(
   context: { params: Promise<{ id: string }> },
 ) {
   try {
+    checkOrigin(request);
     const { id } = await context.params;
     if (!id || id.length > 200) throw new HttpError("Invalid shot ID");
     const input = await body(request, requestSchema);
@@ -47,7 +51,13 @@ export async function POST(
     if (!production && !liveMode(request)) {
       const cached = await cachedProject(request, seed.project.id);
       if (!cached) throw new HttpError("Project not found", 404);
-      const original = cached.data.shots.find((shot) => shot.id === id);
+      let original = cached.data.shots.find((shot) => shot.id === id);
+      let ownedRepair = false;
+      if (!original) {
+        const owner = productionOwner(request);
+        const lineage = await serverDatabase().from("shot_repairs").select("shot_id").eq("shot_id", id).eq("project_id", "mara").eq("owner_hash", owner.hash).maybeSingle();
+        if (!lineage.error && lineage.data) { original = await getShot(id) ?? undefined; ownedRepair = true; }
+      }
       if (!original)
         throw new HttpError("Shot not found in this browser session", 404);
       const shot = {
@@ -57,13 +67,11 @@ export async function POST(
       };
       const learned =
         input.decision === "reject"
-          ? localRejectionRule(
-              original,
-              cached.data.project.characters[0],
-              input.reason!,
-              cached.state.rules,
-            )
+          ? hasPaidAccess(request)
+            ? await learnRule(original, cached.data.project.characters[0], input.reason!, cached.data.rules)
+            : { ...localRejectionRule(original, cached.data.project.characters[0], input.reason!, cached.state.rules), provenance: "cached_local_rule", usage: emptyUsage(), error: undefined }
           : undefined;
+      if (ownedRepair) await updateShotReview(id, input.decision, input.reason);
       cached.state.reviews = [
         ...cached.state.reviews.filter((review) => review.id !== id),
         { id, ...input },
@@ -78,7 +86,8 @@ export async function POST(
           shot,
           ...(learned ? { newRule: learned.rule, merged: learned.merged } : {}),
           ...cacheMetadata,
-          provenance: learned ? "cached_local_rule" : "cached_review",
+          provenance: learned?.provenance ?? "cached_review",
+          ...(learned ? { usage: learned.usage, ...(learned.error ? { warning: "AI extraction was unavailable. Your exact note was saved locally." } : {}) } : {}),
         },
         {
           headers: {
@@ -106,7 +115,7 @@ export async function POST(
       ? productionCharacter(snapshot.project.characters[0], production)
       : snapshot.project.characters[0];
     const learned =
-      production && process.env.CANON_PUBLIC_GENERATION_ENABLED !== "true"
+      !hasPaidAccess(request)
         ? {
             ...localRejectionRule(
               shot,
@@ -126,7 +135,9 @@ export async function POST(
             input.reason!,
             snapshot.rules,
           );
-    await addRule(learned.rule);
+    const savedRule = await addLearnedRule(learned.rule);
+    learned.merged = learned.merged || savedRule.id !== learned.rule.id;
+    learned.rule = savedRule;
     await addTrace({
       id: crypto.randomUUID(),
       projectId: shot.projectId,

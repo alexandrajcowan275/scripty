@@ -1,23 +1,21 @@
 import { z } from "zod";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-import { getProject } from "@/lib/db";
-import { evaluateMonitor } from "@/lib/eval";
-import { monitorImage } from "@/lib/monitor";
+import { apiError, body, HttpError, projectIdSchema } from "@/lib/engine-http";
 import { cachedProject } from "@/lib/engine-cache";
-import { apiError, body, HttpError, liveMode, projectIdSchema } from "@/lib/engine-http";
+import { evaluateHumanLabels, humanSubmissions } from "@/lib/human-eval";
+import { checkOrigin, productionOwner } from "@/lib/productions";
+import { workspace } from "@/lib/workspace";
 export const maxDuration = 300;
 export async function POST(request: Request) {
   try {
+    checkOrigin(request);
     const input = await body(request, z.strictObject({ projectId: projectIdSchema, recheck: z.boolean().optional(), includeDrafts: z.boolean().optional() }));
-    const live = liveMode(request);
-    if (input.recheck && !live) throw new HttpError("Fresh evaluation requires authorized live mode", 409);
-    const cached = live ? null : await cachedProject(request, input.projectId);
-    const snapshot = live ? await getProject(input.projectId) : cached?.data;
-    if (!snapshot) throw new HttpError("Project not found", 404);
-    const labels = JSON.parse(await readFile(path.join(process.cwd(), "seed/labels.json"), "utf8"));
-    const deadline = Date.now() + 260000;
-    const result = await evaluateMonitor(snapshot.shots, labels, { includeDrafts: input.includeDrafts, ...(input.recheck ? { recheck: async (shot) => { const checked = await monitorImage({ imageUrl: shot.imageUrl, character: snapshot.project.characters[0], rules: snapshot.rules, deadline }); if (checked.error) throw new HttpError("Evaluation incomplete: a monitor request failed; no success metrics returned", 503); return checked.checks; } } : {}) });
-    return Response.json({ projectId: input.projectId, ...result, engineMode: live ? "live" : "cached", provenance: input.recheck ? "live_recheck" : "stored_checks" }, { headers: { "Cache-Control": "no-store" } });
+    if (input.includeDrafts) throw new HttpError("Public evaluation uses human labels only. Agent drafts are never ground truth.", 400);
+    if (input.recheck) throw new HttpError("Use the explicit memory re-check endpoint; evaluation itself never spends API budget.", 409);
+    const owner = productionOwner(request, true);
+    const data = input.projectId === "mara" ? (await cachedProject(request, input.projectId, true))?.data : await workspace(request, input.projectId);
+    if (!data) throw new HttpError("Production not found", 404);
+    const labels = await humanSubmissions(input.projectId, owner.hash);
+    const result = await evaluateHumanLabels(data.shots, labels);
+    return Response.json({ projectId: input.projectId, ...result }, { headers: { "Cache-Control": "no-store", ...(owner.cookie ? { "Set-Cookie": owner.cookie } : {}) } });
   } catch (error) { return apiError(error); }
 }

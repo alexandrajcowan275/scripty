@@ -1,3 +1,4 @@
+import "./test-backend";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { evaluateMonitor } from "../lib/eval";
@@ -80,17 +81,17 @@ test("budget reservations round up and fail closed at the persistent limit", asy
   const reservations: number[] = [];
   globalThis.fetch = async (input, init) => {
     const address = new URL(input instanceof Request ? input.url : String(input));
-    if (address.pathname.endsWith("reserve_api_budget")) {
+    if (address.pathname.endsWith("reserve_api_attempt")) {
       reservations.push(JSON.parse(String(init?.body)).p_amount);
       return new Response(JSON.stringify(reservations.length === 1), { headers: { "content-type": "application/json" } });
     }
-    if (address.pathname.endsWith("api_budget")) return new Response(JSON.stringify({ reserved_usd: "24.0000" }), { headers: { "content-type": "application/json" } });
+    if (address.pathname.endsWith("api_budget_v2")) return new Response(JSON.stringify({ baseline_usd: "2.050000", spent_usd: "37.950000", held_usd: "0", limit_usd: "40" }), { headers: { "content-type": "application/json" } });
     throw new Error("Unexpected budget request.");
   };
   try {
-    assert.equal(await reserveApiBudget(0.000001), true); assert.equal(reservations[0], 0.0001);
+    assert.equal(await reserveApiBudget(0.000001), true); assert.equal(reservations[0], 0.000001);
     assert.equal(await reserveApiBudget(0.5), false);
-    assert.deepEqual(await getApiBudget(), { reservedUsd: 24, remainingUsd: 0, limitUsd: 24 });
+    assert.deepEqual(await getApiBudget(), { reservedUsd: 40, remainingUsd: 0, limitUsd: 40, baselineUsd: 2.05, usageEstimatedUsd: 37.95, heldUsd: 0 });
     await assert.rejects(reserveApiBudget(-0.1)); await assert.rejects(reserveApiBudget(Number.NaN));
   } finally { globalThis.fetch = originalFetch; }
 });

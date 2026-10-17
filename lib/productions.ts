@@ -7,6 +7,7 @@ import {
 import { z } from "zod";
 import { serverDatabase, attributeSchema } from "./db";
 import type { Character } from "./types";
+import { requirePaidAccess } from "./access";
 import { HttpError } from "./engine-http";
 const ownerCookieName = "scripty_owner";
 function signature(value: string) {
@@ -57,12 +58,14 @@ export function checkOrigin(request: Request) {
   }
 }
 /** Public paid calls stay off until explicitly enabled by the operator. */
-export function requireGenerationCapacity(productionSaved = false) {
+export function requireGenerationCapacity(productionSaved = false, request?: Request) {
   if (process.env.CANON_PUBLIC_GENERATION_ENABLED !== "true")
     throw new HttpError(
       productionSaved ? generationLimitMessage : referenceLimitMessage,
       429,
     );
+  if (request) requirePaidAccess(request);
+  else throw new HttpError("Production access code required", 401);
 }
 export const productionInput = z.object({
   name: z.string().trim().min(1).max(100),

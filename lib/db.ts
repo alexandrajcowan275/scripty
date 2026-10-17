@@ -127,25 +127,34 @@ export async function seedProject(input: Project, inputRules: Rule[]): Promise<v
   const { error } = await db().rpc("seed_project", { p_project: project, p_rules: rules }); fail(error, "seedProject");
 }
 
-/** Reserve a conservative upper bound BEFORE every paid attempt, including retries.
- * Returns false at the fixed $24 DB cap. Never refund network failures automatically. */
+/** Reserve before each attempt. Completed responses settle to usage-derived cost;
+ * failures without usage retain their hold. Original ledger remains untouched. */
 export async function reserveAiBudget(reservationId: string, amount: number): Promise<boolean> {
-  id.parse(reservationId);
-  z.number().positive().max(24).finite().parse(amount);
-  // Round upward: numeric(10,4) must never round a tiny reservation down to zero.
-  const rounded = Math.ceil(amount * 10000) / 10000;
-  const { data, error } = await db().rpc("reserve_api_budget", { p_amount: rounded, p_reservation_id: reservationId });
+  id.parse(reservationId); z.number().positive().max(10).finite().parse(amount);
+  const { data, error } = await db().rpc("reserve_api_attempt", { p_id: reservationId, p_amount: Math.ceil(amount * 1e6) / 1e6, p_scope: process.env.SCRIPTY_BUDGET_SCOPE === "verification" ? "verification" : "production" });
   fail(error, "reserveApiBudget"); return z.boolean().parse(data);
 }
-export async function reserveApiBudget(amount: number): Promise<boolean> {
-  return reserveAiBudget(crypto.randomUUID(), amount);
+export async function reserveApiBudget(amount: number): Promise<boolean> { return reserveAiBudget(crypto.randomUUID(), amount); }
+export async function settleApiBudget(reservationId: string, cost: number, model: string, usage: unknown) {
+  const { error } = await db().rpc("settle_api_attempt", { p_id: reservationId, p_cost: cost, p_model: model, p_usage: usage });
+  fail(error, "settleApiBudget");
 }
-export async function getApiBudget(): Promise<{ reservedUsd: number; limitUsd: 24; remainingUsd: number }> {
-  const { data, error } = await db().from("api_budget").select("reserved_usd").eq("id", "canon-demo").single();
+export async function getApiBudget(): Promise<{ reservedUsd: number; limitUsd: number; remainingUsd: number; baselineUsd: number; usageEstimatedUsd: number; heldUsd: number }> {
+  const { data, error } = await db().from("api_budget_v2").select("baseline_usd,spent_usd,held_usd,limit_usd").eq("id", "scripty").single();
   fail(error, "getApiBudget");
-  const reservedUsd = z.coerce.number().min(0).max(24).parse(data?.reserved_usd);
-  return { reservedUsd, limitUsd: 24, remainingUsd: Math.max(0, 24 - reservedUsd) };
+  if (!data) throw new Error("Budget ledger unavailable");
+  const parse = (v: unknown) => z.coerce.number().nonnegative().finite().parse(v);
+  const baselineUsd = parse(data.baseline_usd), usageEstimatedUsd = parse(data.spent_usd), heldUsd = parse(data.held_usd), limitUsd = parse(data.limit_usd);
+  const reservedUsd = Math.round((baselineUsd + usageEstimatedUsd + heldUsd) * 1e6) / 1e6;
+  return { reservedUsd, limitUsd, remainingUsd: Math.max(0, Math.round((limitUsd - reservedUsd) * 1e6) / 1e6), baselineUsd, usageEstimatedUsd, heldUsd };
 }
 
 /** Server-only entry point for production ownership and private reference storage. */
 export function serverDatabase(): SupabaseClient { return db(); }
+
+export async function addLearnedRule(input: Rule): Promise<Rule> {
+  const rule = ruleSchema.parse(input);
+  const { data, error } = await db().rpc("save_memory_rule", { p_rule: rule });
+  fail(error, "save memory rule");
+  return ruleSchema.parse(withoutNulls(data));
+}

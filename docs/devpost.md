@@ -16,7 +16,7 @@ Mara is a pre-filled sample production with four original takes and24 real image
 
 Next.js App Router, React and TypeScript serve the application and API routes. Supabase Postgres stores production canon, shots, rules, checks and traces. Uploaded references live in private Storage with ownership checks. Signed HttpOnly browser sessions keep productions isolated. Reference-conditioned generation and a separate structured vision monitor sit behind server-side rate and atomic cost limits. Zod validates inputs and model output.
 
-Learning is persistent project memory and prompt adaptation; foundation-model weights stay fixed. Every paid attempt is reserved before its provider request. Generation failures preserve the production and offer the sample. During the founder's overnight no-spending window, public paid generation is explicitly disabled.
+Learning is persistent project memory and prompt adaptation; foundation-model weights stay fixed. Every paid attempt is reserved before its provider request. Generation failures preserve the production and offer the sample. Live actions require a private access code and usage-based accounting under the founder-authorized $40 cap. Operator verification has a separate $6 ceiling.
 
 ## Evidence and limits
 

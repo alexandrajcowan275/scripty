@@ -18,7 +18,7 @@ export const maxDuration = 180;
 export async function POST(request: Request) {
   try {
     checkOrigin(request);
-    requireGenerationCapacity();
+    requireGenerationCapacity(false, request);
     const input = await body(
       request,
       z.object({

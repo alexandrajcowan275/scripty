@@ -1,15 +1,30 @@
 import { z } from "zod";
 import { isReasoningMonitor, MONITOR_ATTEMPT_RESERVATION } from "./engine-config";
 import * as database from "./db";
+import { usageCost } from "./pricing";
 
-export type Usage = { imageRequests: number; textRequests: number; inputTokens: number; outputTokens: number; reservedUsd: number };
-export const emptyUsage = (): Usage => ({ imageRequests: 0, textRequests: 0, inputTokens: 0, outputTokens: 0, reservedUsd: 0 });
+export type Usage = { imageRequests: number; textRequests: number; inputTokens: number; outputTokens: number; reservedUsd: number; estimatedUsd: number; pricedRequests: number };
+export const emptyUsage = (): Usage => ({ imageRequests: 0, textRequests: 0, inputTokens: 0, outputTokens: 0, reservedUsd: 0, estimatedUsd: 0, pricedRequests: 0 });
 export function addUsage(target: Usage, source: Usage) { for (const key of Object.keys(target) as (keyof Usage)[]) target[key] += source[key]; }
 export const safeError = (error: unknown): string => error instanceof Error ? error.message.slice(0, 300) : "Provider request failed";
+const reservationIds = new WeakMap<Usage, string[]>();
 export async function reserve(amount: number, usage: Usage): Promise<void> {
-  const fn = (database as unknown as { reserveApiBudget?: (amount: number) => Promise<boolean> }).reserveApiBudget;
-  if (!fn || !await fn(amount)) throw new Error("AI spending allowance exhausted or unavailable; no provider call made.");
+  const id = crypto.randomUUID();
+  if (!await database.reserveAiBudget(id, amount)) throw new Error("AI spending allowance exhausted or unavailable; no provider call made.");
+  reservationIds.set(usage, [...(reservationIds.get(usage) ?? []), id]);
   usage.reservedUsd += amount;
+}
+export async function settleUsage(usage: Usage, model: string, raw: Record<string, unknown> | undefined) {
+  const ids = reservationIds.get(usage);
+  const id = ids?.pop();
+  if (!raw) return;
+  const cost = usageCost(model, raw);
+  if (cost === null) return;
+  usage.estimatedUsd += cost;
+  usage.pricedRequests++;
+  if (!id) return;
+  // A settlement outage must not trigger another billable call. Retain its hold.
+  try { await database.settleApiBudget(id, cost, model, raw); } catch { console.error("Usage settlement unavailable; conservative reservation retained"); }
 }
 export async function aiFetch(url: string, init: RequestInit, deadline = Date.now() + 60000): Promise<Response> {
   const remaining = Math.min(60000, deadline - Date.now());
@@ -43,6 +58,7 @@ export async function structuredCall<T>(options: { schema: z.ZodType<T>; name: s
           text: { format: { type: "json_schema", name: options.name, strict: true, schema: z.toJSONSchema(options.schema) } } }),
       }, options.deadline);
       const data = await response.json();
+      await settleUsage(options.usage, options.model, data.usage);
       options.usage.inputTokens += data.usage?.input_tokens ?? 0;
       options.usage.outputTokens += data.usage?.output_tokens ?? 0;
       if (data.status !== "completed") throw new Error("Structured response incomplete or refused");
