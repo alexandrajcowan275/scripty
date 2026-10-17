@@ -1,0 +1,11 @@
+{
+  "base": "https://canon-woad.vercel.app",
+  "deployment": "dpl_Bp27FCZzgXFkyG6ViBVYunJPBcRm",
+  "main_commit": "a3486a6",
+  "checks": [
+    "24 real sample images and four takes available",
+    "latest product capacity wording served",
+    "no paid request attempted"
+  ],
+  "pass": true
+}

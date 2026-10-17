@@ -4,7 +4,7 @@
 cd ~/canon && npm run dev
 ```
 
-Open **http://localhost:3000**. This exact command was restarted and browser-verified on this Mac against the final interface. Node24, dependencies and local credentials are installed. Repo/folder/Vercel project remain `canon`; GitHub stays private.
+Open **http://localhost:3000**. This exact command was restarted and browser-verified on this Mac against the final interface, then stopped to leave port3000 free for morning. Node24, dependencies and local credentials are installed. Repo/folder/Vercel project remain `canon`; GitHub stays private.
 
 # Scripty - morning handoff
 
@@ -12,9 +12,9 @@ Updated **October16,2026,11:20pm PT**, before the1am checkpoint. Overnight Main/
 
 ## Release
 
-**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Application commit `9edc16a`, followed by capacity-copy cleanup `f2d6cfa`; both are in the release branch being fast-forwarded to main. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
+**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Application commit `9edc16a`, followed by capacity-copy cleanup `f2d6cfa`; both are pushed on main, with release documentation commit `a3486a6`. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
 
-Verified production deployment: **dpl_EuUMC4t5pTEyPQ9Trwsq6obju3or**, https://canon-2o3pwz6rf-archer-rag-dev.vercel.app. The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Later main pushes with the same application update release documentation/capacity wording; see git/Vercel history for their exact deployment IDs.
+Verified production deployment: **dpl_Bp27FCZzgXFkyG6ViBVYunJPBcRm**, https://canon-8xpto7m5u-archer-rag-dev.vercel.app (main `a3486a6`, READY; public alias verified). The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Subsequent documentation-only pushes may create a new deployment of the same application; the release above was verified against the canonical public URL.
 
 Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Specification: [design-v3-implementation.md](design-v3-implementation.md). Desktop/mobile comparisons and public proof: [screenshots/verification](screenshots/verification/). Independent Design found no outstanding material mismatch in inspected views; QA passed the public sample flow and390px layout.
 
@@ -29,7 +29,7 @@ Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Speci
 - Graceful saved-capacity response, sample alternative, private ownership and server-side budget/rate guards. Public paid generation stays **disabled** under the no-spending instruction.
 -52 tests and production build pass. Final Supabase security advisor reports **No issues found**. All24 public image hashes, four-take replay, acceptance/rejection persistence and isolated sessions pass. Sample flow also works with server AI/database egress blocked.
 
-Evidence: [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
+Evidence: [final main alias](experiments/public-main-release.json), [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
 
 ## Real metrics
 
@@ -58,4 +58,4 @@ The final one-page [brand handout](../docs/brand-guide.pdf) is updated to light 
 
 Main alone edits app code. Design completed the final spec and bounded visual check. Independent judge panel and report-only QA run every90minutes, quiet when unchanged; pitch writer completed and stopped. Main has a90-minute heartbeat for consequential fixes and final6:30–7am readiness/MORNING update. Routine project actions are explicitly approved; nothing needs a login, payment or approval to continue the authorized free work.
 
-Latest reported usage: weekly73% remaining,5-hour window unavailable; two free resets available, none consumed. Use only the founder-authorized free reset if a reported window reaches10% remaining, expiringOct29 first. Never purchase. Secrets stay in ignored .env.local and server-only Vercel variables, never in screenshots or commits.
+Latest reported usage: weekly71% remaining,5-hour window unavailable; two free resets available, none consumed. Use only the founder-authorized free reset if a reported window reaches10% remaining, expiringOct29 first. Never purchase. Secrets stay in ignored .env.local and server-only Vercel variables, never in screenshots or commits.
