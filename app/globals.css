@@ -7,6 +7,8 @@
 @import "../styles/cinematic.css";
 @import "../styles/app-shell.css";
 @import "../styles/landing-story.css";
+@import "../styles/dark-app.css";
+@import "../design/dark/dark-tokens.css";
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--text);

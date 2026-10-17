@@ -1,0 +1,24 @@
+/* App-only materials. The final landing owns its own composition. */
+body:has(.v2-app-shell), .v2-app-shell {
+  background: radial-gradient(1200px 520px at 58% -12%, color-mix(in srgb, var(--memory) 5%, transparent), transparent 70%), var(--background);
+}
+.v2-app-shell { --v2-stroke: var(--border); --v2-soft: var(--image-bed); --studio-ink-soft: var(--muted); }
+.v2-app-shell .v2-haze { display: none; }
+.v2-app-shell :is(.v2-screen,.v2-dashboard-main,.v2-detail-wrap,.v2-page-wrap) { background: transparent; }
+.v2-app-shell :is(.v2-button,.v2-review-primary) { background: var(--text); color: var(--background); border: 1px solid transparent; box-shadow: none; }
+.v2-app-shell :is(.v2-button,.v2-review-primary):hover:not(:disabled) { background: color-mix(in srgb, var(--text) 88%, var(--background)); color: var(--background); }
+.v2-app-shell :is(.v2-light,.v2-clear,.v2-button.secondary) { background: transparent; color: var(--text); border-color: var(--border); }
+.v2-app-shell :is(.v2-light,.v2-clear):hover:not(:disabled) { background: var(--hover); color: var(--text); }
+.v2-app-shell :is(input,textarea,select,.v2-inspector,.v2-eval-aside,.v2-setup-card,.v2-character-sheet,.v2-overview-card,.v2-sheet,.v2-rail-dialog) { background: var(--surface); color: var(--text); border-color: var(--border); }
+.v2-app-shell .v2-label { font: 400 10px/1.6 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.v2-app-shell :is(h1,h2,h3) { font-family: var(--font-display); }
+.v2-app-shell .v2-pass-text, .v2-app-shell .v2-status-tag.pass { color: var(--pass); }
+.v2-app-shell .v2-kbd { background: var(--image-bed); color: var(--muted); border-color: var(--border); }
+.v2-app-shell .v2-drift-text { color: var(--drift); }
+.v2-memory-sheet,.v2-access-dialog,.v2-overview-dialog { background: var(--surface); color: var(--text); border-color: var(--border); }
+.v2-memory-sheet :is(input,textarea,pre), .v2-reach-option { background: var(--image-bed); color: var(--text); }
+.v2-memory-sheet .v2-button { background: var(--text); color: var(--background); }
+.v2-memory-sheet .v2-light { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.v2-app-shell .v2-brand img { filter: invert(1); }
+.v2-app-shell .v2-brand img[src*="light"] { filter: none; }
+.v2-app-shell :is(.v2-shot-card,.v2-review-image,.v2-evidence-frame) img { filter: none; }

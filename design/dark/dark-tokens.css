@@ -1,0 +1,84 @@
+/* Scripty dark theme: one cinematic system across landing + app.
+   Overrides tokens only; components keep using var(--*). */
+:root {
+  color-scheme: dark;
+  --background: #131417;
+  --surface: #191a1e;
+  --image-bed: #1f2025;
+  --text: #ededf0;
+  --cool-grey: #8a8a96;
+  --muted: #8a8a96;
+  --muted-strong: #a6a6b0;
+  --drift: #ff5a5f;
+  --pass: #3dd68c;
+  --pass-strong: #3dd68c;
+  --memory: #f5c451;
+  --memory-ink: #f5c451;
+  --memory-fill: rgba(245, 196, 81, 0.08);
+  --memory-border: rgba(245, 196, 81, 0.3);
+  --memory-detail: #e0b24a;
+  --memory-halo: rgba(245, 196, 81, 0.18);
+  --memory-glow: rgba(245, 196, 81, 0.35);
+  --memory-code-text: #f5d58a;
+  --memory-signal: #f5c451;
+  --memory-dot-glow: rgba(245, 196, 81, 0.9);
+  --code-surface: #0d0e11;
+  --paper-edge: #2a2a33;
+  --glass-sheet: rgba(17, 18, 22, 0.72);
+  --shadow-sheet: rgba(0, 0, 0, 0.5);
+  --drift-fill: #e5484d;
+  --drift-outline: #ff4d4f;
+  --focus-ring: #7aa2ff;
+  --hover: #27282e;
+  --border: #2c2d34;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --v2-glass: rgba(17, 18, 22, 0.7);
+  --v2-tone: #8a8a96;
+  --haze-violet: rgba(0, 0, 0, 0);
+  --haze-rose: rgba(0, 0, 0, 0);
+  --haze-violet-rich: rgba(0, 0, 0, 0);
+  --haze-rose-rich: rgba(0, 0, 0, 0);
+  --haze-warm: rgba(0, 0, 0, 0);
+  --glass-sheen: rgba(255, 255, 255, 0.04);
+  --glass-hud: rgba(14, 15, 18, 0.92);
+  --answer-pass: rgba(61, 214, 140, 0.1);
+  --answer-pass-border: rgba(61, 214, 140, 0.35);
+  --answer-pass-text: #7ee2ae;
+  --answer-drift: rgba(255, 77, 79, 0.1);
+  --answer-drift-border: rgba(255, 77, 79, 0.35);
+  --answer-drift-text: #ff8a8c;
+  --shadow-card-stack: rgba(0, 0, 0, 0.5);
+  --shadow-tint-subtle: rgba(0, 0, 0, 0.25);
+  --shadow-tint-soft: rgba(0, 0, 0, 0.3);
+  --shadow-tint: rgba(0, 0, 0, 0.35);
+  --shadow-tint-strong: rgba(0, 0, 0, 0.6);
+  --scrim-light: rgba(0, 0, 0, 0.35);
+  --scrim: rgba(0, 0, 0, 0.45);
+  --sheet-scrim: rgba(8, 9, 11, 0.6);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --glass-soft: rgba(17, 18, 22, 0.6);
+  --glass-nav: rgba(17, 18, 22, 0.7);
+  --glass-hover: rgba(28, 29, 34, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-opaque: rgba(17, 18, 22, 0.94);
+  --glass-label: rgba(14, 15, 18, 0.88);
+  --studio-haze: rgba(0, 0, 0, 0);
+  --studio-haze-soft: rgba(0, 0, 0, 0);
+  --studio-chart-fill: rgba(245, 196, 81, 0.15);
+  --chrome-edge: rgba(255, 255, 255, 0.08);
+  --chrome-lowlight: rgba(0, 0, 0, 0.3);
+  --chrome-sheen: linear-gradient(115deg, rgba(255,255,255,.05), rgba(255,255,255,0) 42%, rgba(255,255,255,.03) 72%);
+  --editorial-grade: saturate(0.8) contrast(1.1) brightness(0.82);
+  --editorial-cool-wash: rgba(0, 0, 0, 0.15);
+  --editorial-shadow: 0 16px 56px rgba(0, 0, 0, 0.5);
+  --work-canvas: #131417;
+  --work-memory-fill: rgba(245, 196, 81, 0.06);
+  --work-memory-halo: rgba(245, 196, 81, 0.08);
+  --work-memory-glow: rgba(245, 196, 81, 0.12);
+  --work-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --work-haze: rgba(0, 0, 0, 0);
+}
+html, body { background: var(--background); color: var(--text); }
+::selection { background: rgba(245, 196, 81, 0.3); }
+/* moody overhead light, not pure black */
+body { background: radial-gradient(1200px 520px at 58% -12%, rgba(255,226,190,.07), transparent 70%), radial-gradient(900px 600px at 100% 100%, rgba(120,150,200,.04), transparent 70%), var(--background); background-attachment: fixed; }
