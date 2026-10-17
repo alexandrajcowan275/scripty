@@ -118,3 +118,9 @@ The founder directly confirmed in Main that credited Unsplash/Pexels photographs
 ## October 17 morning — working Home and restrained workspace
 
 Make Home actionable: pending monitor-flagged shots first, followed by browser-owned productions, recent learned rules, recorded agent run times, and activity. Accepted/rejected shots leave the work queue while their original flags remain in Evidence. Move the historical take chart to Evidence; remove Home totals and slogans. Replace Home fashion imagery with a credited cinematic landscape. Agent cards explicitly show unavailable live status because the backend exposes recorded traces, not a running-agent service. Share quieter typography, compact metadata, neutral surfaces and short non-blurring transitions across Home/Studio/Review/Evidence, preserving existing controls, image evidence, keyboard actions and data contracts. New queue/contrast checks join the standard release tests. The landing hero remains a separate increment.
+
+## October 17 morning — cinematic landing sequence
+
+Use four credited Pexels photographs as cinematic atmosphere above the real Mara product section, with the exact founder-supplied headline. A CSS-only 32-second cycle crossfades the scenes; an explicit pause control and static first scene for reduced-motion users keep motion optional. Ship responsive 640px/1600px WebPs and retain source credits. Remove fashion imagery from rendering while preserving the unused files and their provenance. Product calls to action, real sample checks, all application routes, and Review/Evidence source images stay intact.
+
+Before publishing the landing sequence, raise the minimum photo overlay to58% of the existing ink color. A worst-case white-photo composite test verifies at least4.5:1 for small white text, so readability is preserved across all scene crossfades. Final combined92tests, build and typecheck pass.
