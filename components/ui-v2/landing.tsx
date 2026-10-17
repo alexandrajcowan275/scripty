@@ -17,7 +17,7 @@ import { ProductionProvider, useProduction } from "./provider";
 import { ShotCard } from "../ui/shot-card";
 
 function LandingContent() {
-  const { data, error, refresh } = useProduction();
+  const { data, error, refresh, loading } = useProduction();
   const batches = sortedBatches(data),
     first = batches[0],
     latest = batches.at(-1);
@@ -146,12 +146,12 @@ function LandingContent() {
                 </div>
               )}
             </section>
-          ) : (
+          ) : loading ? (
             <div
               className="v2-skeleton v2-hero-skeleton"
               aria-label="Loading sample shot"
             />
-          )}
+          ) : null}
           <section id="how" className="v2-contact-story">
             <div>
               <span className="v2-label">The contact sheet</span>

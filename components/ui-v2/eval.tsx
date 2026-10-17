@@ -16,7 +16,7 @@ import {
 } from "./evaluation";
 import { useProduction } from "./provider";
 export function EvalScreen() {
-  const { id, data, error: productionError } = useProduction();
+  const { id, data, refresh, error: productionError } = useProduction();
   const [labels, setLabels] = useState<LabelData | null>(null),
     [evaluation, setEvaluation] = useState<Evaluation | null>(null),
     [error, setError] = useState(""),
@@ -162,11 +162,19 @@ export function EvalScreen() {
       <div className="v2-eval-layout">
         <main className="v2-eval-main">
           {(error || productionError) && (
-            <ErrorNotice retry={() => void load()}>
+            <ErrorNotice
+              retry={() => {
+                void refresh()
+                  .then(() => {
+                    if (data && active.current) return load();
+                  })
+                  .catch(() => {});
+              }}
+            >
               {error || productionError}
             </ErrorNotice>
           )}
-          {loading ? (
+          {loading && !productionError ? (
             <div
               className="v2-skeleton v2-eval-skeleton"
               aria-label="Loading blind question"
@@ -225,14 +233,26 @@ export function EvalScreen() {
             </>
           ) : labels ? (
             <section className="v2-empty-production">
-              <h1>That’s a wrap.</h1>
-              <p>Your judgments are saved for this production.</p>
+              <h1>
+                {labels.questions.length
+                  ? "That’s a wrap."
+                  : "No shots to judge yet."}
+              </h1>
+              <p>
+                {labels.questions.length
+                  ? "Your judgments are saved for this production."
+                  : "Generate a take, then give it a second look."}
+              </p>
               <MotionLink
-                href={`/p/${id}/evidence`}
-                kind="evidence"
+                href={
+                  labels.questions.length ? `/p/${id}/evidence` : `/p/${id}`
+                }
+                kind={labels.questions.length ? "evidence" : "page"}
                 className="v2-button"
               >
-                See the evidence →
+                {labels.questions.length
+                  ? "See the evidence →"
+                  : "Open studio →"}
               </MotionLink>
             </section>
           ) : (

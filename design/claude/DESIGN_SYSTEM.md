@@ -97,3 +97,9 @@ Shared `LocationReference` reads the owner-scoped locations API and appears only
 Shared `RecoveryScreen` supplies branded missing-route and render-error states using the same headline, ambient, brand and navigation primitives. One action returns to the production catalog, where Mara remains available. Recovery does not replay a generation/review, expose an internal error or replace actual data with a fabricated result. Inline request errors continue to preserve the current work and provide their existing explicit retry.
 
 Flow01 names the landing hero stage and New reference zone as the same shared surface only during Start navigation. Its420ms geometry follows the supplied flow; the outgoing headline lifts12px. Other routes retain their shot-specific image continuity. Reduced motion skips geometry and preserves the150ms fade policy.
+
+Studio request failure uses an explicit failed-open heading, not the first-take empty state. Data-dependent mobile rails stay disabled until a production returns; the gold Memory signal requires a real learned rule. An empty/failed-image take uses the same recorded next-take index as the dock, so retry copy never promises Take1 after a failed take already exists.
+
+Empty Eval distinguishes a production with no questions from completed human judgments; only an actually completed queue says judgments were saved. Evidence does not present a failed project fetch as an empty first take. Landing/API skeletons end when the request ends, including failure, rather than implying an endless active load.
+
+A failed production read also ends Eval’s initial skeleton; retry reopens the production before requesting blind questions. This prevents a missing production from remaining in a permanent loading state.

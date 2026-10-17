@@ -322,14 +322,19 @@ export function StudioScreen() {
             <button
               className="v2-button v2-light"
               onClick={() => setDrawer("takes")}
+              disabled={!data}
             >
               Takes
             </button>
             <button
               className="v2-button v2-light"
               onClick={() => setDrawer("memory")}
+              disabled={!data}
             >
-              Memory <i className="v2-memory-dot" />
+              Memory
+              {data?.rules.some((rule) => rule.source !== "seed") && (
+                <i className="v2-memory-dot" />
+              )}
             </button>
           </div>
           <div className="v2-contact-heading">
@@ -344,6 +349,8 @@ export function StudioScreen() {
                 </>
               ) : loading ? (
                 "Opening the set…"
+              ) : error && !data ? (
+                "This production couldn’t open."
               ) : (
                 "Your first take."
               )}
@@ -413,7 +420,7 @@ export function StudioScreen() {
                 disabled={!!busy}
                 onClick={() => void action("generate")}
               >
-                Generate the first take
+                Generate take {nextTakeIndex(data)}
               </button>
             </section>
           )}

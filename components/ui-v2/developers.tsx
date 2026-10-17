@@ -8,7 +8,7 @@ import { useConfiguration } from "./config";
 import { ProductionProvider, useProduction } from "./provider";
 import { modelLabel, shotsFor, sortedBatches } from "./data";
 function ApiContent() {
-  const { data, error, refresh } = useProduction(),
+  const { data, error, refresh, loading } = useProduction(),
     { config } = useConfiguration();
   const [origin, setOrigin] = useState("");
   useEffect(() => {
@@ -132,11 +132,15 @@ function ApiContent() {
             <h2 className="v2-label">A real check. A continuity receipt.</h2>
             {data && shot ? (
               <ContinuityReceipt data={data} shot={shot} />
-            ) : (
+            ) : loading ? (
               <div
                 className="v2-skeleton v2-receipt-skeleton"
                 aria-label="Loading continuity receipt"
               />
+            ) : (
+              <p className="v2-muted">
+                {error ? "No receipt returned." : "No checks recorded yet."}
+              </p>
             )}
             <MotionLink href="/p/mara" kind="mara" className="v2-text-button">
               See the shot in Studio →

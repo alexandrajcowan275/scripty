@@ -268,7 +268,8 @@ export function EvidenceScreen() {
             </p>
           </section>
         ) : (
-          !loading && (
+          !loading &&
+          data && (
             <section className="v2-empty-production">
               <h2>The story starts with a take.</h2>
               <MotionLink href={`/p/${id}`} className="v2-button">
