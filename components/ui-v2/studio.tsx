@@ -318,13 +318,19 @@ export function StudioScreen() {
         productionName={data?.project.name}
         memoryRules={data?.rules}
         action={
-          <button
-            className="v2-button"
-            disabled={!!busy || !data}
-            onClick={() => void action("generate")}
-          >
-            Generate take {data ? nextTakeIndex(data) : "—"}
-          </button>
+          id === "mara" ? (
+            <MotionLink href="/new" kind="start" className="v2-button">
+              Start your own production
+            </MotionLink>
+          ) : (
+            <button
+              className="v2-button"
+              disabled={!!busy || !data}
+              onClick={() => void action("generate")}
+            >
+              Generate take {data ? nextTakeIndex(data) : "—"}
+            </button>
+          )
         }
       />
       <div className="v2-studio-grid">

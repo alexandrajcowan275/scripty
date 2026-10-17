@@ -68,7 +68,7 @@ export async function POST(
       const learned =
         input.decision === "reject"
           ? hasPaidAccess(request)
-            ? await learnRule(original, cached.data.project.characters[0], input.reason!, cached.data.rules)
+            ? await learnRule(original, cached.data.project.characters[0], input.reason!, cached.state.rules)
             : { ...localRejectionRule(original, cached.data.project.characters[0], input.reason!, cached.state.rules), provenance: "cached_local_rule", usage: emptyUsage(), error: undefined }
           : undefined;
       if (ownedRepair) await updateShotReview(id, input.decision, input.reason);

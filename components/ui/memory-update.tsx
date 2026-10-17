@@ -47,6 +47,7 @@ export function MemoryUpdate({
     [error, setError] = useState(""),
     [access, setAccess] = useState(false);
   const rule = receipt.newRule!;
+  const isSample = data.mode === "cached";
   useEffect(() => {
     if (open && !dialog.current?.open) {
       dialog.current?.showModal();
@@ -137,7 +138,7 @@ export function MemoryUpdate({
             From your note on {frameName(shot, data)}.{" "}
             {merged ? "Merged with canon." : "Saved to memory."}
           </p>
-          {receipt.provenance === "cached_local_rule" && (
+          {isSample && (
             <p className="v2-muted">
               Creator note saved in this browser. Original takes stay unchanged.
             </p>
@@ -155,13 +156,20 @@ export function MemoryUpdate({
                   type="checkbox"
                   checked
                   readOnly
-                  aria-label="Every future take: saved"
+                  aria-label={
+                    isSample
+                      ? "Browser sample memory: saved"
+                      : "Every future take: saved"
+                  }
                 />
                 <span>
-                  <strong>Every future take</strong>
+                  <strong>
+                    {isSample ? "Your sample memory" : "Every future take"}
+                  </strong>
                   <span>
-                    Saved for future prompts and checks. Nothing regenerates
-                    now.
+                    {isSample
+                      ? "Saved in this browser. Recorded takes stay unchanged."
+                      : "Saved for future prompts and checks. Nothing regenerates now."}
                   </span>
                 </span>
                 <span className="v2-mono">saved</span>
@@ -241,33 +249,35 @@ export function MemoryUpdate({
             · {data.rules.filter((r) => r.source !== "seed").length} learned
           </span>
           <div>
-            <button
-              className="v2-button"
-              disabled={!!busy}
-              onClick={async () => {
-                if (!config?.authorized) {
-                  setAccess(true);
-                  return;
-                }
-                setError("");
-                try {
-                  const result = await run("generate");
-                  if (operationIssue(result))
-                    throw new Error(operationIssue(result));
-                  const batchId = generatedBatchId("generate", result);
-                  if (batchId)
-                    navigate(
-                      `/p/${data.project.id}?take=${encodeURIComponent(batchId)}`,
-                      "memory",
-                    );
-                  else onSave();
-                } catch (e) {
-                  setError(message(e));
-                }
-              }}
-            >
-              Generate take {nextTakeIndex(data)} with this rule
-            </button>
+            {!isSample && (
+              <button
+                className="v2-button"
+                disabled={!!busy}
+                onClick={async () => {
+                  if (!config?.authorized) {
+                    setAccess(true);
+                    return;
+                  }
+                  setError("");
+                  try {
+                    const result = await run("generate");
+                    if (operationIssue(result))
+                      throw new Error(operationIssue(result));
+                    const batchId = generatedBatchId("generate", result);
+                    if (batchId)
+                      navigate(
+                        `/p/${data.project.id}?take=${encodeURIComponent(batchId)}`,
+                        "memory",
+                      );
+                    else onSave();
+                  } catch (e) {
+                    setError(message(e));
+                  }
+                }}
+              >
+                Generate take {nextTakeIndex(data)} with this rule
+              </button>
+            )}
             <button
               className="v2-button v2-light"
               disabled={!next || !!busy}
