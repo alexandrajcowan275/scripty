@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionLink } from "./ui/motion";
+import { ProductionCard } from "./ui/production-card";
 import { useEffect, useState } from "react";
 
 type SavedProduction = { project_id: string; projects: { name: string } };
@@ -41,43 +41,44 @@ export function SavedProductions() {
   }, [attempt]);
   if (loading)
     return (
-      <div
-        className="production-list-skeleton"
+      <li
+        className="v2-production-loading"
         role="status"
         aria-label="Opening your productions"
-      />
+      >
+        <div className="v2-skeleton" />
+      </li>
     );
   if (failed)
     return (
-      <div className="production-list-message">
+      <li className="v2-production-message">
         <p role="alert">Couldn't open your productions.</p>
         <button
-          className="pill secondary"
+          className="v2-button v2-light"
           onClick={() => setAttempt((value) => value + 1)}
         >
           Try again
         </button>
-      </div>
+      </li>
     );
   if (!items.length)
     return (
-      <div className="production-list-message">
-        <p>No productions yet.</p>
-      </div>
+      <li className="v2-production-message">
+        <p>Your own productions will appear here.</p>
+      </li>
     );
   return (
-    <ul className="production-list" aria-label="Saved productions">
-      {items.map((item) => (
-        <li key={item.project_id}>
-          <MotionLink href={`/p/${encodeURIComponent(item.project_id)}`}>
-            <span>{item.projects.name}</span>
-            <span className="production-open" aria-hidden="true">
-              →
-            </span>
-            <span className="sr-only">Open production</span>
-          </MotionLink>
-        </li>
-      ))}
-    </ul>
+    <>
+      {items
+        .filter((item) => item.project_id !== "mara")
+        .map((item) => (
+          <ProductionCard
+            key={item.project_id}
+            name={item.projects.name}
+            href={`/p/${encodeURIComponent(item.project_id)}`}
+            image={`/api/productions/${encodeURIComponent(item.project_id)}/reference`}
+          />
+        ))}
+    </>
   );
 }
