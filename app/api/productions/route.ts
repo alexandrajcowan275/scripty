@@ -8,7 +8,7 @@ import {
   claimCreation,
   rasterType,
   uploadReference,
-  generationLimitMessage,
+  referenceLimitMessage,
 } from "@/lib/productions";
 import { serverDatabase, getApiBudget } from "@/lib/db";
 import { generateImage } from "@/lib/generate";
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       requireGenerationCapacity();
       const budget = await getApiBudget();
       if (budget.remainingUsd < 1.5)
-        throw new HttpError(generationLimitMessage, 429);
+        throw new HttpError(referenceLimitMessage, 429);
       let uploadedPath = "";
       const generated = await generateImage(
         {

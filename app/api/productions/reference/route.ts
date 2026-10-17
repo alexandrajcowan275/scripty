@@ -9,7 +9,7 @@ import {
   referenceTicket,
   readReferenceTicket,
   downloadReferencePath,
-  generationLimitMessage,
+  referenceLimitMessage,
 } from "@/lib/productions";
 import { getApiBudget } from "@/lib/db";
 import { generateImage } from "@/lib/generate";
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     const owner = productionOwner(request, true);
     const budget = await getApiBudget();
     if (budget.remainingUsd < 1.5)
-      throw new HttpError(generationLimitMessage, 429);
+      throw new HttpError(referenceLimitMessage, 429);
     await claimCreation(request, owner.hash);
     const id = crypto.randomUUID();
     let path = "";

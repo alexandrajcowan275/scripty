@@ -97,7 +97,7 @@ export async function POST(request: Request) {
     }
     if (production) {
       checkOrigin(request);
-      requireGenerationCapacity();
+      requireGenerationCapacity(true);
       const budget = await getApiBudget();
       if (budget.remainingUsd < 9.6)
         throw new HttpError(generationLimitMessage, 429);

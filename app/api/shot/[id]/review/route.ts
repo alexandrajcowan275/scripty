@@ -56,7 +56,7 @@ export async function POST(
               original,
               cached.data.project.characters[0],
               input.reason!,
-              cached.data.rules,
+              cached.state.rules,
             )
           : undefined;
       cached.state.reviews = [

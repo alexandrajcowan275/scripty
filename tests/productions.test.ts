@@ -104,7 +104,8 @@ test("public paid generation is disabled by default and origin checks use the vi
   const previous = process.env.CANON_PUBLIC_GENERATION_ENABLED;
   delete process.env.CANON_PUBLIC_GENERATION_ENABLED;
   try {
-    assert.throws(() => requireGenerationCapacity(), /saved/);
+    assert.throws(() => requireGenerationCapacity(), /Upload an image/);
+    assert.throws(() => requireGenerationCapacity(true), /saved/);
   } finally {
     if (previous) process.env.CANON_PUBLIC_GENERATION_ENABLED = previous;
   }
@@ -178,4 +179,48 @@ test("fresh database reads retain the original scene order despite concurrent ra
     shots.map((shot) => shot.id),
   );
   assert.equal(reversed[0].id, shots.at(-1)!.id);
+});
+
+test("sample corrections cannot overwrite the original engine rule or its provenance", async () => {
+  const { GET } = await import("../app/api/productions/sample/route");
+  const { POST } = await import("../app/api/shot/[id]/review/route");
+  const initial = await GET(
+    new Request("https://scripty.test/api/productions/sample"),
+  );
+  const sample = await initial.json();
+  const original = sample.rules.find(
+    (rule: { source: string }) => rule.source === "rejection",
+  );
+  const reviewed = await POST(
+    new Request(
+      "https://scripty.test/api/shot/1fc48122-2b25-4841-b588-5554298bd339/review",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          cookie: initial.headers.get("set-cookie")!.split(";")[0],
+        },
+        body: JSON.stringify({
+          decision: "reject",
+          reason: "Mara always wears a silver ring on her RIGHT hand.",
+        }),
+      },
+    ),
+    { params: Promise.resolve({ id: "1fc48122-2b25-4841-b588-5554298bd339" }) },
+  );
+  assert.equal(reviewed.status, 200);
+  const correction = await reviewed.json();
+  assert.notEqual(correction.newRule.id, original.id);
+  const refreshed = await GET(
+    new Request("https://scripty.test/api/productions/sample", {
+      headers: { cookie: reviewed.headers.get("set-cookie")!.split(";")[0] },
+    }),
+  );
+  const data = await refreshed.json();
+  assert.equal(
+    data.rules.find((rule: { id: string }) => rule.id === original.id).text,
+    original.text,
+  );
+  assert.ok(data.recordedRuleIds.includes(original.id));
+  assert.ok(!data.recordedRuleIds.includes(correction.newRule.id));
 });

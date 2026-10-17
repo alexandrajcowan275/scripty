@@ -2,6 +2,8 @@
 
 Read this whole file before writing any code. Every agent on this repo follows it.
 
+**Current founder overrides (October16 night):** Main alone edits application code. Production-first entry and the final linear-flow Figma spec supersede the legacy layout below. Other chats provide Design/Figma, report-only judge/QA reviews, and completed pitch material. No paid calls, purchases or data deletion overnight. Preserve the working public URL; build/test and verify before release. Routine code/docs, private-repo pushes, Vercel deployment, Supabase changes, Figma uploads and browser use are approved without further questions.
+
 ## 1. What we're building
 **Scripty** is the AI script supervisor: on film sets, the “scripty” tracks continuity between shots. The product is the continuity memory and monitoring layer for AI-generated stories. Repo/folder and Vercel project stay `canon`.
 

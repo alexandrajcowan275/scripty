@@ -64,3 +64,5 @@ The live browser rehearsal produced six new frames while read-only polling displ
 - The designer is rebuilding a calm linear Batch → Review → Learned flow, with Memory in a drawer and Progress separately. Earlier dark layouts are superseded; no new layout embellishments will be added before the definitive spec.
 
 - Fresh database reads now restore original shot order from generation traces instead of random IDs from concurrent saves. Verified against all24 original shots; this keeps the forthcoming one-shot review counter meaningful without changing shared contracts or historical data.
+
+- Full sample history exposed a provenance edge case: a viewer correction could merge into the historical engine rule and change its text. Sample extraction now deduplicates only within that browser’s own notes. Original rule identity/text and18 original applications remain intact; a regression test verifies both origins.

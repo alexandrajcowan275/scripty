@@ -56,9 +56,12 @@ export function checkOrigin(request: Request) {
   }
 }
 /** Public paid calls stay off until explicitly enabled by the operator. */
-export function requireGenerationCapacity() {
+export function requireGenerationCapacity(productionSaved = false) {
   if (process.env.CANON_PUBLIC_GENERATION_ENABLED !== "true")
-    throw new HttpError(generationLimitMessage, 429);
+    throw new HttpError(
+      productionSaved ? generationLimitMessage : referenceLimitMessage,
+      429,
+    );
 }
 export const productionInput = z.object({
   name: z.string().trim().min(1).max(100),
@@ -200,3 +203,6 @@ export async function downloadReferencePath(path: string) {
   if (error || !data) throw new Error("Reference is unavailable");
   return data;
 }
+
+export const referenceLimitMessage =
+  "Reference generation is taking a breather. Upload an image to keep going, or explore Mara.";
