@@ -109,10 +109,11 @@ export function MotionLink({
     </Link>
   );
 }
-export function Ambient() {
+export function Ambient({ warm = false }: { warm?: boolean }) {
   return (
     <>
       <div className="v2-haze" aria-hidden="true" />
+      {warm && <div className="v2-haze-warm" aria-hidden="true" />}
       <div className="v2-grain" aria-hidden="true" />
     </>
   );
@@ -177,8 +178,8 @@ export function Tilt({
         const r = e.currentTarget.getBoundingClientRect(),
           x = (e.clientX - r.left) / r.width,
           y = (e.clientY - r.top) / r.height;
-        e.currentTarget.style.setProperty("--tilt-x", `${(0.5 - y) * 7}deg`);
-        e.currentTarget.style.setProperty("--tilt-y", `${(x - 0.5) * 9}deg`);
+        e.currentTarget.style.setProperty("--tilt-x", `${(0.5 - y) * 9}deg`);
+        e.currentTarget.style.setProperty("--tilt-y", `${(x - 0.5) * 11}deg`);
         e.currentTarget.style.setProperty("--pointer-x", `${x * 100}%`);
         e.currentTarget.style.setProperty("--pointer-y", `${y * 100}%`);
       }}
@@ -273,17 +274,48 @@ function ViewfinderCursor() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     )
       return;
-    const move = (e: PointerEvent) => {
+    let frame: number | null = null;
+    let currentX = 0,
+      currentY = 0,
+      targetX = 0,
+      targetY = 0,
+      initialized = false;
+    const follow = () => {
       const element = ref.current;
       if (!element) return;
-      element.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
+      currentX += (targetX - currentX) * 0.25;
+      currentY += (targetY - currentY) * 0.25;
+      element.style.transform = `translate3d(${currentX}px,${currentY}px,0)`;
+      frame =
+        Math.abs(targetX - currentX) + Math.abs(targetY - currentY) > 0.1
+          ? requestAnimationFrame(follow)
+          : null;
+    };
+    const move = (e: PointerEvent) => {
+      const element = ref.current;
+      if (
+        !element ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      )
+        return;
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!initialized) {
+        currentX = targetX;
+        currentY = targetY;
+        initialized = true;
+      }
       element.classList.toggle(
         "active",
         !!(e.target as Element).closest("[data-viewfinder]"),
       );
+      if (frame === null) frame = requestAnimationFrame(follow);
     };
     window.addEventListener("pointermove", move, { passive: true });
-    return () => window.removeEventListener("pointermove", move);
+    return () => {
+      window.removeEventListener("pointermove", move);
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
   }, []);
   return (
     <div ref={ref} className="v2-viewfinder-cursor" aria-hidden="true">
