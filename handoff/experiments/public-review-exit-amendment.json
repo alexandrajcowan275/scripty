@@ -1,0 +1,17 @@
+{
+  "deployment": "dpl_BAEjvkXeUGUTWkdnYknWq71x6fU4",
+  "application_commit": "911f854",
+  "public_url": "https://canon-woad.vercel.app/",
+  "checks": [
+    "Batch headline qualifies monitor output as flags",
+    "Back to shots leaves the pending shot unchanged",
+    "Focus returns to originating shot",
+    "Review bed unchanged: x182 y72 1076x640",
+    "Exit matches Figma: x182 y12 160x48, secondary text615E58",
+    "Mobile390px has no horizontal overflow",
+    "No captured browser warning/error",
+    "52 tests and production build pass"
+  ],
+  "pass": true,
+  "paid_calls": 0
+}

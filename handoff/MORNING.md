@@ -8,13 +8,13 @@ Open **http://localhost:3000**. This exact command was restarted and browser-ver
 
 # Scripty - morning handoff
 
-Updated **October17,2026,12:27am PT**, before the1am checkpoint. Overnight Main/QA/judge checks continue every90minutes through the7am handoff. **Official Devpost currently lists11:00am PT today (2:00pmEDT); use this earlier cutoff.** The founder’s supplied1:15pm target conflicts with the public listing; no extension is verified. Source: https://sephacks-2026.devpost.com/. No external submission has been made.
+Updated **October17,2026,12:31am PT**, before the1am checkpoint. Overnight Main/QA/judge checks continue every90minutes through the7am handoff. **Official Devpost currently lists11:00am PT today (2:00pmEDT); use this earlier cutoff.** The founder’s supplied1:15pm target conflicts with the public listing; no extension is verified. Source: https://sephacks-2026.devpost.com/. No external submission has been made.
 
 ## Release
 
-**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Application commit `9edc16a`, followed by capacity-copy cleanup `f2d6cfa`; both are pushed on main, with release documentation commit `a3486a6`. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
+**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Application foundation `9edc16a`; final review-exit and monitor-qualified wording amendment `911f854` is pushed on main. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
 
-Verified production deployment: **dpl_Bp27FCZzgXFkyG6ViBVYunJPBcRm**, https://canon-8xpto7m5u-archer-rag-dev.vercel.app (main `a3486a6`, READY; public alias verified). The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Subsequent documentation-only pushes may create a new deployment of the same application; the release above was verified against the canonical public URL.
+Verified production deployment: **dpl_BAEjvkXeUGUTWkdnYknWq71x6fU4**, https://canon-m933padwt-archer-rag-dev.vercel.app (main `911f854`, READY; public alias verified). The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Subsequent documentation-only pushes may create a new deployment of the same application; the release above was verified against the canonical public URL.
 
 Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Specification: [design-v3-implementation.md](design-v3-implementation.md). Desktop/mobile comparisons and public proof: [screenshots/verification](screenshots/verification/). Independent Design found no outstanding material mismatch in inspected views; QA passed the public sample flow and390px layout.
 
@@ -30,7 +30,7 @@ Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Speci
 - Graceful saved-capacity response, sample alternative, private ownership and server-side budget/rate guards. Public paid generation stays **disabled** under the no-spending instruction.
 -52 tests and production build pass. Final Supabase security advisor reports **No issues found**. All24 public image hashes, four-take replay, acceptance/rejection persistence and isolated sessions pass. Sample flow also works with server AI/database egress blocked.
 
-Evidence: [final main alias](experiments/public-main-release.json), [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
+Evidence: [public review amendment](experiments/public-review-exit-amendment.json), [final main alias](experiments/public-main-release.json), [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
 
 ## Real metrics
 
