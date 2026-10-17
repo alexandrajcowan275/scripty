@@ -4,13 +4,23 @@
 cd ~/canon && npm run dev
 ```
 
-Open http://localhost:3000. [Public production](https://canon-woad.vercel.app/) · [Private GitHub](https://github.com/alexandrajcowan275/canon).
+Open http://localhost:3000. [Public production](https://getscripty.vercel.app/) · [Home](https://getscripty.vercel.app/dashboard) · [Private GitHub](https://github.com/alexandrajcowan275/scripty).
 
-**Finalized at 6:18am PT, on the first heartbeat after the scheduled 6:15am checkpoint. The lead, judge-panel and QA heartbeats are now paused, not deleted.**
+**Morning visual release updated after the founder returned. Application code: `ea366f2`; later documentation-only commits may have a newer HEAD. The lead, judge-panel and QA heartbeats remain paused, not deleted. All deployments stop at 9:30am PT.**
 
-**Deadline conflict:** your latest target is October 17, **2:00pm PT**. The current official Devpost listing says **11:00am PDT today**. Submit by 11am unless you have an organizer-confirmed extension. [Official source](https://sephacks-2026.devpost.com/) · [recorded verification](../docs/verification-deadline.json).
+**Confirmed submission deadline: October 17, 11:00am PT/PDT.** The founder confirmed the official Devpost cutoff; earlier 2pm estimates are superseded. [Official source](https://sephacks-2026.devpost.com/) · [recorded verification](../docs/verification-deadline.json).
 
 ## What is live
+
+The working **Home** leads with pending flagged shots, then Productions, Recently learned, Agents and Activity. The historical chart is on **Evidence**. Recorded agent run times are real; live agent status is explicitly unavailable. Studio, Review and Evidence use the final restrained workspace styling. The landing has four credited cinematic photographs, the founder’s exact headline, pause/resume and a reduced-motion fallback; Mara remains the product content below it. No fashion imagery renders on landing/Home.
+
+**92 tests, typecheck, production build and CI pass.** Application `ea366f2` is READY as `dpl_HCcBbNgwSATzi4NGJTQdhRNpq3zB`; both `getscripty.vercel.app` and `canon-woad.vercel.app` serve it. Home/Studio/Review/Evidence were verified at 1440px and 390px; all four have no document overflow. Review/Evidence images have no editorial filter or transform. Landing verified at both sizes, all four responsive photos load, pause/resume works, and Open studio reaches Home. [Final design receipt](../docs/verification-design-final.json) · [green CI](https://github.com/alexandrajcowan275/scripty/actions/runs/39046238685).
+
+Browser ownership/access/labels are hostname-scoped. **Keep the existing blind-eval session on [the old hostname](https://canon-woad.vercel.app/p/mara/eval)**; the URL rebrand does not transfer its cookies. The old app URL and old GitHub URL continue working. No paid requests or human labels were submitted during the design pass.
+
+### Historical 6:18am checkpoint
+
+The following overnight receipt predates the URL and visual releases above.
 
 All eight application pages, final error/empty states and the optional location card are integrated. Production was READY on **main / c73a3a945b633a160720c1836b5396c648b4dfc2** for the final check; application changes are **c4c69d9**. [Verified deployment](https://canon-bsh2ki5tw-archer-rag-dev.vercel.app) · [green CI](https://github.com/alexandrajcowan275/canon/actions/runs/39031673533) · [final check receipt](../docs/verification-morning-final.json). The final handoff commit changes documentation only.
 
@@ -35,16 +45,16 @@ The separate public new-production UI loop had two real images, a new scarf-knot
 
 Founder-reported OpenAI baseline **$2.23**; credit balance **$32.29 at that checkpoint**. Post-baseline usage estimate **$0.832306**, total estimate **$3.062306**, not an invoice or a new dashboard reading. App cap **$30**; Main testing cap **$12**; A/B cap **$3** within testing. Old receipts survive reconciliation; stale holds release after 30 minutes, including before preflight. No purchase was made. [Operations](../docs/operations.md).
 
-Final Codex checkpoint: **35% weekly remaining**; five-hour figure unavailable; **0 resets used**, two available. No reset threshold was reached.
+Latest checked Codex usage: **22% weekly remaining**; five-hour figure unavailable; **0 resets used**, two available. No reset threshold was reached at that check.
 
 ## Exact two-minute sample path
 
-1. **0:00–0:15:** Landing → **Watch it on Mara** → **Take 1**. Open **T1·S02**, the frontal portrait with the ring-hand finding.
+1. **0:00–0:15:** Start at [Home](https://getscripty.vercel.app/dashboard) → **Mara** production card → **Take 1** → **T1·S02**, the frontal portrait with the ring-hand finding. Landing’s **Open studio** enters Home.
 2. **0:15–0:35:** **With reference**. Explain the finding as model-reported; visually verify the ring before filming.
 3. **0:35–1:00:** Edit **Your note** to “Keep the silver ring on Mara’s anatomical RIGHT hand.” → **Reject & remember**. Show the actual returned new/merged rule in **Memory update**. Future-take scope is already saved. Do not select recheck/fix unless intentionally spending.
 4. **1:00–1:20:** **Save to memory** → Studio. Show the original ring rule’s **18 prompts / 18 checks**, separately from today’s note: a new visitor note did not cause historical images.
 5. **1:20–1:45:** **Evidence**. Show original history and the matched **0/6 vs 0/6** result. Memory transfer is demonstrated; extra visual improvement is not.
-6. **1:45–2:00:** **Eval**. Show the study images queued first and human metrics awaiting judgments. Close on “Every correction carries forward.”
+6. **1:45–2:00:** **Eval**. Show the study images queued first and whatever human metrics are actually available in that browser; undefined denominators can remain blank. Close on “Every correction carries forward.”
 
 [235-word narration and recording plan](../docs/video-script.md). Use a separate private/incognito session for a clean sample; the shared in-app browser retains QA notes under the no-deletion instruction. Enter the private code before recording if narrating live extraction. Without it a free sample correction is a literal saved creator note, not live AI extraction.
 
@@ -52,8 +62,8 @@ The existing in-app browser owns **Night Train — workflow check**, with two re
 
 ## What you must do by hand
 
-1. **Check the deadline/extension now; plan to submit by 11am PDT.** No external submission was performed.
-2. **Add actual blind judgments.** Save one and refresh to confirm persistence first, then complete the first 48 questions for all 12 study images. Do not call model results human truth. Undefined metric denominators can legitimately remain blank even after 20 judgments.
+1. **Submit by the confirmed 11am PDT deadline.** No external submission was performed.
+2. **Finish or verify the blind judgments in your original eval browser/hostname.** Use its saved-answer count to confirm progress through the first 48 questions for all 12 study images. No agent-created ground truth exists. Undefined metric denominators can remain blank even after 20 judgments.
 3. **Rehearse, record and upload the two-minute video.** Confirm it opens without login; replace README’s video placeholder with the real link.
 4. **Arrange judge access to the private GitHub repository**, then submit the working app, repository and video links. The repo was not made public.
 

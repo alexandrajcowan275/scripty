@@ -1,0 +1,368 @@
+{
+  "applicationCommit": "ea366f28c957ddac17ca248ae2d7df7cba108ea9",
+  "deploymentId": "dpl_HCcBbNgwSATzi4NGJTQdhRNpq3zB",
+  "homeVerificationCommit": "7b05403036ee981c94ca19688a4c8996c117a25c",
+  "ci": "https://github.com/alexandrajcowan275/scripty/actions/runs/39046238685",
+  "testsPassed": 92,
+  "typecheck": "passed",
+  "build": "passed",
+  "homeWorkspace": {
+    "sha": "7b05403036ee981c94ca19688a4c8996c117a25c",
+    "checks": [
+      {
+        "banner": "url(\"https://getscripty.vercel.app/brand/cinema-mountains.webp\")",
+        "broken": 0,
+        "chartCount": 0,
+        "heading": "Home",
+        "page": "/dashboard",
+        "reviewCards": 3,
+        "scrollWidth": 1440,
+        "sections": [
+          "Needs review",
+          "Productions",
+          "Recently learned",
+          "Agents",
+          "Activity"
+        ],
+        "width": 1440
+      },
+      {
+        "banner": "url(\"https://getscripty.vercel.app/brand/cinema-mountains-small.webp\")",
+        "page": "/dashboard",
+        "reviewButtons": [
+          {
+            "href": "/p/mara/shot/46bebc3e-533f-4806-82ac-b625abb76114",
+            "text": "Review \u2192"
+          },
+          {
+            "href": "/p/mara/shot/9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+            "text": "Review \u2192"
+          },
+          {
+            "href": "/p/mara/shot/1fc48122-2b25-4841-b588-5554298bd339",
+            "text": "Review \u2192"
+          }
+        ],
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "alteredImages": [],
+        "controls": [
+          {
+            "disabled": false,
+            "text": "Reject & remember R"
+          },
+          {
+            "disabled": false,
+            "text": "Looks right A"
+          },
+          {
+            "disabled": false,
+            "text": "Fix this shot"
+          }
+        ],
+        "editorialLayers": 0,
+        "page": "/p/mara/shot/46bebc3e-533f-4806-82ac-b625abb76114",
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "page": "/p/mara/shot/46bebc3e-533f-4806-82ac-b625abb76114",
+        "scrollWidth": 1440,
+        "width": 1440
+      },
+      {
+        "broken": 0,
+        "grid": "176px 888px 280px",
+        "page": "/p/mara",
+        "scrollWidth": 1440,
+        "width": 1440
+      },
+      {
+        "page": "/p/mara",
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "check": "mobile Memory Escape",
+        "focused": "Memory",
+        "openDialogs": 0
+      },
+      {
+        "alteredImages": [],
+        "chartCount": 1,
+        "editorialLayers": 0,
+        "evidenceFrames": 24,
+        "page": "/p/mara/evidence",
+        "scrollWidth": 390,
+        "width": 390
+      },
+      {
+        "chartLabel": "Mara drift rate: Take 1, 33%; Take 2, 0%; Take 3, 0%; Take 4, 17%. Ring rule first applied in Take 2.",
+        "page": "/p/mara/evidence",
+        "scrollWidth": 1440,
+        "width": 1440
+      }
+    ]
+  },
+  "landing": {
+    "sha": "ea366f28c957ddac17ca248ae2d7df7cba108ea9",
+    "checks": [
+      {
+        "fashionLayers": 0,
+        "headline": "More of every film will be generated, shot by shot. Scripty keeps the story straight.",
+        "page": "/",
+        "scenes": [
+          {
+            "duration": "32s",
+            "loaded": true,
+            "opacity": "0",
+            "playState": "running",
+            "src": "https://getscripty.vercel.app/brand/cinema-mountains.webp"
+          },
+          {
+            "duration": "32s",
+            "loaded": true,
+            "opacity": "1",
+            "playState": "running",
+            "src": "https://getscripty.vercel.app/brand/cinema-dunes.webp"
+          },
+          {
+            "duration": "32s",
+            "loaded": true,
+            "opacity": "0",
+            "playState": "running",
+            "src": "https://getscripty.vercel.app/brand/cinema-camera.webp"
+          },
+          {
+            "duration": "32s",
+            "loaded": true,
+            "opacity": "0",
+            "playState": "running",
+            "src": "https://getscripty.vercel.app/brand/cinema-set.webp"
+          }
+        ],
+        "scrim": "linear-gradient(color(srgb 0.054902 0.0588235 0.0705882 / 0.7), color(srgb 0.054902 0.0588235 0.0705882 / 0.58) 28%, color(srgb 0.054902 0.0588235 0.0705882 / 0.88))",
+        "scrollWidth": 1440,
+        "width": 1440
+      },
+      {
+        "check": "pause scenes",
+        "pressed": "true",
+        "states": [
+          "paused",
+          "paused",
+          "paused",
+          "paused"
+        ]
+      },
+      {
+        "page": "/",
+        "productSection": true,
+        "scenes": [
+          {
+            "loaded": false,
+            "src": ""
+          },
+          {
+            "loaded": false,
+            "src": ""
+          },
+          {
+            "loaded": false,
+            "src": ""
+          },
+          {
+            "loaded": false,
+            "src": ""
+          }
+        ],
+        "scrollWidth": 390,
+        "watchMara": "/p/mara?take=e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+        "width": 390,
+        "check": "Immediate viewport switch: responsive sources pending; settled direct mobile load is recorded below"
+      },
+      {
+        "check": "resume scenes",
+        "states": [
+          "running",
+          "running",
+          "running",
+          "running"
+        ]
+      },
+      {
+        "broken": 0,
+        "check": "settled direct mobile load",
+        "headline": "More of every film will be generated, shot by shot. Scripty keeps the story straight.",
+        "scenes": [
+          {
+            "loaded": true,
+            "src": "https://getscripty.vercel.app/brand/cinema-mountains-small.webp"
+          },
+          {
+            "loaded": true,
+            "src": "https://getscripty.vercel.app/brand/cinema-dunes-small.webp"
+          },
+          {
+            "loaded": true,
+            "src": "https://getscripty.vercel.app/brand/cinema-camera-small.webp"
+          },
+          {
+            "loaded": true,
+            "src": "https://getscripty.vercel.app/brand/cinema-set-small.webp"
+          }
+        ],
+        "scrollWidth": 390,
+        "width": 390
+      }
+    ]
+  },
+  "http": {
+    "sha": "ea366f28c957ddac17ca248ae2d7df7cba108ea9",
+    "deployment": "dpl_HCcBbNgwSATzi4NGJTQdhRNpq3zB",
+    "checkedAt": "2026-10-17T15:44:41.089Z",
+    "results": [
+      {
+        "origin": "https://getscripty.vercel.app",
+        "pages": [
+          {
+            "path": "/",
+            "status": 200
+          },
+          {
+            "path": "/dashboard",
+            "status": 200
+          },
+          {
+            "path": "/p/mara",
+            "status": 200
+          },
+          {
+            "path": "/p/mara/evidence",
+            "status": 200
+          },
+          {
+            "path": "/p/mara/eval",
+            "status": 200
+          },
+          {
+            "path": "/brand/CREDITS.md",
+            "status": 200
+          }
+        ],
+        "images": [
+          {
+            "file": "cinema-mountains.webp",
+            "bytes": 97678
+          },
+          {
+            "file": "cinema-mountains-small.webp",
+            "bytes": 12900
+          },
+          {
+            "file": "cinema-dunes.webp",
+            "bytes": 36074
+          },
+          {
+            "file": "cinema-dunes-small.webp",
+            "bytes": 6364
+          },
+          {
+            "file": "cinema-camera.webp",
+            "bytes": 123922
+          },
+          {
+            "file": "cinema-camera-small.webp",
+            "bytes": 28200
+          },
+          {
+            "file": "cinema-set.webp",
+            "bytes": 205656
+          },
+          {
+            "file": "cinema-set-small.webp",
+            "bytes": 60056
+          }
+        ],
+        "sample": {
+          "takes": 4,
+          "shots": 24
+        }
+      },
+      {
+        "origin": "https://canon-woad.vercel.app",
+        "pages": [
+          {
+            "path": "/",
+            "status": 200
+          },
+          {
+            "path": "/dashboard",
+            "status": 200
+          },
+          {
+            "path": "/p/mara",
+            "status": 200
+          },
+          {
+            "path": "/p/mara/evidence",
+            "status": 200
+          },
+          {
+            "path": "/p/mara/eval",
+            "status": 200
+          },
+          {
+            "path": "/brand/CREDITS.md",
+            "status": 200
+          }
+        ],
+        "images": [
+          {
+            "file": "cinema-mountains.webp",
+            "bytes": 97678
+          },
+          {
+            "file": "cinema-mountains-small.webp",
+            "bytes": 12900
+          },
+          {
+            "file": "cinema-dunes.webp",
+            "bytes": 36074
+          },
+          {
+            "file": "cinema-dunes-small.webp",
+            "bytes": 6364
+          },
+          {
+            "file": "cinema-camera.webp",
+            "bytes": 123922
+          },
+          {
+            "file": "cinema-camera-small.webp",
+            "bytes": 28200
+          },
+          {
+            "file": "cinema-set.webp",
+            "bytes": 205656
+          },
+          {
+            "file": "cinema-set-small.webp",
+            "bytes": 60056
+          }
+        ],
+        "sample": {
+          "takes": 4,
+          "shots": 24
+        }
+      }
+    ]
+  },
+  "reducedMotion": "CSS static-first-scene rule reviewed; reduced-motion preference was not emulated in the public browser",
+  "paidCallsDuringVisualVerification": 0,
+  "humanLabelsSubmittedDuringVisualVerification": 0,
+  "nonblockingObservation": "Evidence chart retains a View evidence self-link; no data or demo-path impact; skipped during final freeze preparation",
+  "freeze": "2026-10-17T09:30:00-07:00"
+}

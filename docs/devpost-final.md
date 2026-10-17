@@ -16,7 +16,7 @@ Scripty sits in front of any image or video model and does three things:
 Try **Mara**, a real sample production: 4 takes, 24 generated shots, 162 attribute checks, the full learning history. Or start your own production — upload a reference, Scripty proposes the canon, you confirm left/right.
 
 ## How we built it
-Next.js 16 + TypeScript on Vercel; Supabase Postgres and private Storage with row-level security; OpenAI image generation conditioned on the reference; a separate vision monitor with Zod-validated structured output; 20 API routes; 79 automated tests with green CI. Rules, checks, traces, human labels and repair lineage are all persisted and append-only, so history is never rewritten. Paid calls are reserved against a hard budget before they run. Built solo in ~24 hours with a multi-agent workflow: Codex agents owning backend, UI, QA and a simulated judge panel, with Claude for product design.
+Next.js 16 + TypeScript on Vercel; Supabase Postgres and private Storage with row-level security; OpenAI image generation conditioned on the reference; a separate vision monitor with Zod-validated structured output; 20 API routes; 92 automated tests with green CI. Rules, checks, traces, human labels and repair lineage are all persisted and append-only, so history is never rewritten. Paid calls are reserved against a hard budget before they run. Built solo in ~24 hours with a multi-agent workflow: Codex agents owning backend, UI, QA and a simulated judge panel, with Claude for product design.
 
 ## Continual learning — and how we measured it
 The learning is per-production memory that compounds with use: a correction becomes a rule that shapes both what the model generates and what the monitor checks.

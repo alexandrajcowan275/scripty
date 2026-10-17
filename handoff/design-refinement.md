@@ -36,3 +36,32 @@ Natural's useful quality is proportion: a small title, one readable metric, a qu
 ## Subsequent rounds
 
 Record the next five visible issues after each corrected screenshot set, then fix and recheck them. A clean result should need less explanation, not more decoration.
+
+## Round 1 — hierarchy, then working Home (08:38 PT)
+
+Fixed the five issues through a shared workspace scope: quieter neutral backgrounds, small rectangular HUD labels, 30px working titles, wider Studio contact sheet, less inspector boxing, immediate image legibility, 180ms confidence transitions and smaller memory marks. The founder then replaced the dashboard reporting brief with a work-first Home. The earlier metric is removed entirely, and the actual take chart is now on Evidence.
+
+Home now answers the first-time user's question before anything else: **Needs review** displays only pending flagged shots, with real findings and direct Review links. Accepted and rejected flags remain historical evidence. Productions follows with Mara first, then recently learned non-seed rules, Agents and activity. Agent health is not exposed by the backend: the interface says status unavailable and uses real recorded run timestamps. No invented live/running state. The neutral mountain photograph is a shallow atmospheric header, not product evidence.
+
+Screens checked at 1440 and 390. No document overflow on Home, Studio or Review. Evidence retains all 24 original images with computed filter `none`. The review image also has filter `none`; no review labels or decisions were mutated. Home has a meaningful regression test for pending-only queue membership. Standard tests 91/91; build passes.
+
+Remaining visual concerns for the next pass: long raw monitor observations need a readable summary/full-detail hierarchy; long production names must not displace navigation; mobile activity needs an obvious scroll affordance; the new landing photograph must not compete with real product content; photo motion must be pausable and static under reduced motion.
+
+## Round 2 — cinematic introduction (08:40 PT)
+
+Founder explicitly replaces visor/fashion art with real cinematic photography. Four Pexels scenes use responsive 1600/640px WebP files, totaling approximately 452KB desktop or 106KB mobile across the complete four-scene sequence. Actual source pages and free-use license are recorded in public/brand/CREDITS.md; images are atmosphere, not generated Scripty outputs. Earlier fashion files are retained unused.
+
+The first viewport has one headline, the founder's exact wording, and a production action. White type and a steady dark scrim establish hierarchy over slowly crossfading scenes; there is no pan/zoom, blur, color effect or invented camera metadata. The header and footer align to a 1296px grid with 72px desktop gutters and 24px mobile gutters. A 32-second CSS loop provides two-second dissolves; Pause stops every layer, and reduced motion disables the sequence and shows the first photograph. No timer-driven React renders. One h1 on the page; the existing Mara scan is the next section under a smaller h2, separated from the atmospheric stock photography.
+
+At 390px the headline fits without overflow, the mobile picture sources are selected, and Open studio, Start a production and Watch it on Mara retain their destinations. Playback and Pause states verified through rendered computed animation states. Review/Evidence images are not changed by this pass.
+
+## Final restraint review — screen comparisons
+
+Final 1440px contact sheets are `compare-2-dashboard.png`, `compare-2-studio.png`, `compare-2-review.png`, and `compare-2-evidence.png`. The Natural reference is used for type scale, alignment and quiet surfaces; the moodboard is reference material only and contributes no assets. Home deliberately prioritizes the founder's work queue rather than reproducing Natural's financial metric/chart composition.
+
+- **Home:** the first actionable section is visually dominant and the other sections share one rhythm. Real monitor findings can be verbose; the queue caps their visual height and Review retains full detail. No synthetic data fills the unused column or adds productions. The shallow photographic band contributes atmosphere without displacing the queue. Agent status remains honestly unavailable.
+- **Studio:** the contact sheet is substantially wider; white HUD tags are small, memory orange appears only on learned rules, and the black action dock has a clear review action. Existing scene labels and status chips are retained to preserve the supplied rich demo rather than reduce it again. Source photographs appear immediately without entrance blur.
+- **Review:** the photograph occupies most of the page; the inspector is a quieter white working surface. Red attaches to the actual finding, the on-image annotation remains within the image, and keyboard shortcuts and loupe stay visible. The mobile callout sits away from Mara's face and the original image is ungraded.
+- **Evidence:** the small heading, flat data strip and chart precede the 24-image memory thread. The upward final rate remains visible (33/0/0/17), and the causal/human-label limitations remain present. The chart's small “View evidence” self-link is redundant after relocation; this is a non-blocking cleanup opportunity, not a data or navigation failure.
+
+No claim is made that these pages copy either reference or are visually indistinguishable from another product. Their strongest improvement is a consistent hierarchy: photograph, finding, next action. All feature work is handed to Main; remaining work is public verification only. Freeze remains 9:30am PT.
