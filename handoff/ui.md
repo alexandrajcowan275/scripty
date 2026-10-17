@@ -64,7 +64,7 @@ The mobile chart screenshot reflects the final layout refinement. The desktop sc
 - Landscape images retain landscape ratios. Filmstrip thumbnails use cover; selected images use contain to preserve evidence without distortion.
 - Sequential six-card arrival is 110ms with 25ms staggering (last card completes at 235ms). New rules land with a 220ms gold glow. Reduced-motion disables all animation and transition time.
 - Native images intentionally support arbitrary configured public Supabase/provider URLs and display a readable failure state, avoiding a fixed remote-host allowlist. No remote image/font dependency is required for layout.
-- Replay provenance is a persistent visible source badge plus server warning, not a transient tooltip alone. Cached corrections do not claim to change historical measurements.
+- Replay provenance is a persistent visible source badge plus server warning, not a transient tooltip alone. Cached corrections do not claim to change historical measurements or persist to the live Supabase project. They are explicitly labeled browser-local replay memory. `provenance:cache_unavailable` shows Cache not installed, setup empty copy, and disables generation until a recorded cache is installed.
 
 ## Run / exact next steps
 
