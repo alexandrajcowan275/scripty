@@ -282,20 +282,11 @@ export function NewProductionScreen() {
                   priority
                 />
               ) : (
-                <>
-                  <ShotImage
-                    src="/mara/reference.jpg"
-                    alt="Mara, an example reference. Upload your own character."
-                    priority
-                  />
-                  <span className="v2-upload-example v2-glass v2-mono">
-                    Example · Mara
-                  </span>
-                  <span className="v2-upload-prompt v2-glass">
-                    <strong>Cast your character.</strong>
-                    <span>Drop your reference or choose an image.</span>
-                  </span>
-                </>
+                <span className="v2-empty-upload">
+                  <Icon name="upload" size={28} />
+                  <strong>Drop a reference image or browse</strong>
+                  <span>PNG, JPG or WebP · up to 4 MB</span>
+                </span>
               )}
               {preview && attributes.length > 0 && (
                 <div className="v2-reference-hud v2-glass">
@@ -337,6 +328,15 @@ export function NewProductionScreen() {
               />
               {busy === "upload" || busy === "canon" ? <Scan /> : null}
             </label>
+            {!preview && (
+              <MotionLink
+                href="/p/mara"
+                kind="mara"
+                className="v2-upload-sample"
+              >
+                or try it with the Mara example →
+              </MotionLink>
+            )}
             <div className="v2-cast-tools">
               <label htmlFor="cast-name" className="v2-label">
                 Cast

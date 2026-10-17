@@ -229,3 +229,50 @@ html:has(.v2-app-shell)::view-transition-new(root) {
   color: var(--text);
   box-shadow: none;
 }
+
+.v2-app-shell .v2-upload:not(.has-reference) {
+  background: transparent;
+  border: 1px dashed var(--muted);
+  box-shadow: none;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v2-empty-upload {
+  padding: var(--space-32);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+}
+.v2-empty-upload > svg {
+  color: var(--muted);
+}
+.v2-empty-upload > strong {
+  font-size: var(--work-body);
+  font-weight: 500;
+}
+.v2-empty-upload > span {
+  font-size: var(--work-label);
+  color: var(--muted);
+}
+.v2-upload-sample {
+  display: inline-block;
+  font-size: var(--work-label);
+  color: var(--muted);
+  margin-top: var(--space-12);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.v2-upload:focus-within {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .v2-app-shell .v2-upload:not(.has-reference) {
+    min-height: 240px;
+  }
+}
