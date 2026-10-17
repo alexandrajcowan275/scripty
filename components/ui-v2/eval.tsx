@@ -239,8 +239,10 @@ export function EvalScreen() {
         <aside className="v2-eval-aside">
           <ConfusionMatrix
             evaluation={evaluation}
-            answered={labels ? new Set(labels.labels.map(questionKey)).size : 0}
-            total={labels?.questions.length ?? 0}
+            answered={
+              labels ? new Set(labels.labels.map(questionKey)).size : null
+            }
+            total={labels?.questions.length ?? null}
             updating={updated}
           />
           <p className="v2-calibration-note">

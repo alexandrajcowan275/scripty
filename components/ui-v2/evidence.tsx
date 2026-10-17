@@ -87,7 +87,7 @@ export function EvidenceScreen() {
           <Stat label="Rule reach" memory value={reach ?? "—"}>
             Prompts and checks carrying the same rule
           </Stat>
-          <Stat label="Merged, not duplicated" value={merged || "—"}>
+          <Stat label="Merged, not duplicated" value={merged ?? "—"}>
             Confirmed merge events
           </Stat>
           <Stat

@@ -3401,3 +3401,20 @@
 .v2-monitor-status i {
   background: var(--muted);
 }
+.v2-canon-row.has-side {
+  grid-template-columns: minmax(0, 1fr) 56px auto 26px;
+}
+@media (max-width: 800px) {
+  .v2-canon-row.has-side {
+    grid-template-columns: minmax(0, 1fr) 48px 26px;
+  }
+  .v2-canon-row.has-side > .v2-segment {
+    grid-column: 1/-1;
+    grid-row: 2;
+    justify-self: start;
+  }
+  .v2-canon-row.has-side > .v2-close {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
