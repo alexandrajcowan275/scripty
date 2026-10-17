@@ -176,3 +176,28 @@ These are inferred scores/voices, not actual judges’ opinions. No score change
 - **Done:** all eight supplied-design pages, real API receipt, controlled A/B disclosure and the honest private-world location card are integrated. Both current judge copy findings are closed.
 - **Done:** polished judge-facing result captions and recorded the primary-source deadline discrepancy. The public listing still says 11am PDT; no extension is claimed.
 - **Skipped:** further image generation, broad research or feature expansion. Existing real loop/A-B receipts suffice; human labels and final video are founder actions.
+
+## Run — 2026-10-17 05:48 AM PT — final candidate, no new blocker
+
+Read release-candidate MORNING (applicationc4c69d9, documented publicmain3817d17), README opening, current results/architecture. Same flat controlled0/6A vs0/6B and18/18historical transfer; no new human validation or efficacy claim. Deadline discrepancy is prominently attributed; submit by official11amunless confirmed extension, founder target2pm. No final video/judge repo access documented.
+
+Public GETconfig authorized:true, usage unchanged$3.062306estimate; no mutations/paidcalls/labels/session changes. Studio rendered original four-take data and true18/18rule memory; optional location card says Captured still/Private Marble world, without claiming world checking. Selected Take1 and opened T1S02 successfully, matching final recording route. Review now surfaces Ring needs a second look, model-reported confidence0.96, reference comparison, relevant ring note, collapsible check rows, visible Studio exit. Compare takes is explicitly disabled, not falsely functional. Did not press reject/save/fix in authorized session. Reference/filmstrip/image remain real. More compact check rows improve scanability without a new score change. No new screenshot needed; current HTML-flow/craft remains consistent with prior observed comparisons. Evidence/Eval/API were not completely repeated this run; prior completed checks/release evidence remain separately dated.
+
+| Inferred judge | Functionality | Continual Learning | Pitch | Design | First impression | Vote for / against |
+|---|---:|---:|---:|---:|---|---|
+| Kaushal Patel | 8 | 6 | 8 | 8 | “The evidence distinguishes propagation from improvement.” | For flat-study honesty; against a causal success claim not present in current docs. |
+| Michelle Liu | 8 | 6 | 8 | 9 | “The single-shot review has a clearer, quieter decision hierarchy.” | For crafted contact sheet/reference review; against a cluttered or unrehearsed recording. |
+| ShiaoFong Yin | 8 | 6 | 7 | 8 | “A specific workflow is working; paid demand is still a hypothesis.” | For focused buyer pilot; against overstated scale/pricing. |
+| Jerry Zhang | 8 | 7 | 8 | 8 | “The failure is inspectable and has a subsequent action path.” | For scoped rechecks/repair lineage; against calling a flagged repair fixed. |
+
+Scores/reactions inferred only. No new recommendations; all earlier panel UI/copy requests resolved. Remaining founder tasks: actual blind/anatomy verification,2minvideo upload,judgeGitHubaccess,deadlineconfirmation/submission. Continue to first scheduled run>=6:15for final judge-prep and monitor pause. Main owns exact6:15handoff.
+
+## Final run — October 17, 2026, 06:17 AM Pacific
+
+Final bounded public GET check: Evidence loads and retains18reach, original counts and “Matched test:0/6flags in both arms. Human review pending.” Config remains authorized:true; no writes, paidcalls,labels or cookies changed. Current MORNING/results match prior verified artifact. No new tiny safe issue or recommendation. Final scorecard unchanged: Patel8/6/8/8; Liu8/6/8/9; Yin8/6/7/8; Zhang8/7/8/8, all inferred. judge-prep.md delivered with12likely questions/answers, four video emphases, five submission/proof priorities. All panel UI/copy fixes resolved. Existing monitor to be PAUSED, not deleted; no new automation.
+
+## Main final handoff — 6:18am PT
+
+- **Done:** final bounded public readiness check on c73a3a9: all checked pages/APIs 200, original 24 images/four takes intact, 210 blind questions, first 48 same-origin study questions, image hash match, 10 visible Studio images loaded without overflow. CI green; 74 tests/build previously passed. No paid calls or human-label writes.
+- **Done:** final MORNING contains real A/B tie, usage estimates, exact two-minute path, private access-code location and manual submission/video/label/repo tasks. Official 11am vs founder 2pm deadline conflict is prominent.
+- **Skipped:** new features, paid repetitions and optional limit expansion; preserve the working release and human-only evaluation. Lead heartbeat pauses after final handoff; judge/QA asked to finish bounded read-only prep and pause their existing monitors.

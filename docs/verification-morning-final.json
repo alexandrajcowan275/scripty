@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-10-17T13:17:05.327Z",
+  "publicUrl": "https://canon-woad.vercel.app",
+  "sourceCommit": "c73a3a945b633a160720c1836b5396c648b4dfc2",
+  "deploymentId": "dpl_Cjgdiv7zWkoYzMSoiJgZg53PgDQ4",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/p/mara",
+      "status": 200
+    },
+    {
+      "path": "/p/mara/evidence",
+      "status": 200
+    },
+    {
+      "path": "/p/mara/eval",
+      "status": 200
+    },
+    {
+      "path": "/developers",
+      "status": 200
+    },
+    {
+      "path": "/productions",
+      "status": 200
+    },
+    {
+      "path": "/new",
+      "status": 200
+    },
+    {
+      "path": "/api/project/mara",
+      "status": 200
+    },
+    {
+      "path": "/api/project/mara/labels",
+      "status": 200
+    },
+    {
+      "path": "/api/eval?projectId=mara",
+      "status": 200
+    },
+    {
+      "path": "/api/project/mara/locations",
+      "status": 200
+    }
+  ],
+  "sample": {
+    "shots": 24,
+    "takes": 4
+  },
+  "blindStudy": {
+    "questions": 210,
+    "first48StudyImagesSameOrigin": true,
+    "blindPayloadExcludesPredictions": true
+  },
+  "freshSessionHumanMetrics": {
+    "humanLabels": 0,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "confusionMatrix": {
+      "truePositives": 0,
+      "falsePositives": 0,
+      "trueNegatives": 0,
+      "falseNegatives": 0
+    }
+  },
+  "studyImage": {
+    "url": "/api/study/images/f269554d-0f92-4178-91ef-5f8f655b02e5.png",
+    "status": 200,
+    "sha256": "04c734ff8148293c0e52218b535b0857b77835a0d33fd3919672d69d4d6b35a0",
+    "matchesLocal": true
+  },
+  "locationRecords": 1,
+  "paidCalls": 0,
+  "humanLabelsSubmitted": 0,
+  "browser": {
+    "page": "/p/mara?take=e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+    "loadedHeading": "Take 1 \u00b7 2 of 6 flagged \u00b7 2 rules applied",
+    "visibleImages": 10,
+    "brokenVisibleImages": 0,
+    "hiddenLazyImages": 2,
+    "horizontalOverflow": false,
+    "locationStatus": "Captured still / Private Marble world",
+    "historicalRingReach": {
+      "prompts": 18,
+      "checks": 18
+    }
+  },
+  "ci": {
+    "status": "success",
+    "url": "https://github.com/alexandrajcowan275/canon/actions/runs/39031673533"
+  },
+  "codex": {
+    "weeklyRemainingPercent": 35,
+    "fiveHourFigure": null,
+    "resetsUsed": 0,
+    "resetsAvailable": 2
+  }
+}
