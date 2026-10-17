@@ -373,3 +373,9 @@
 .futureH .fw { color: rgba(255,255,255,.12); display: inline; }
 .futureH .fw.fwOn { color: #fff; }
 .futureH .fw.fwOn.fwDim { color: rgba(255,255,255,.42); }
+
+/* Keep the final hero line and projected annotations inside narrow viewports. */
+@media (max-width: 760px) {
+  .h1 { right: 20px; }
+  .callout { left: 4%; right: 4%; top: 36%; }
+}

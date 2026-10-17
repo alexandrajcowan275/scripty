@@ -151,3 +151,5 @@ Replace only the public landing entry with the founder’s final `components/lan
 ## October17 — projected reveal and contact sheet
 
 Deploy the founder’s follow-up landing update: word-by-word cinema headline, a pinned Mara shot expanding from an inset to full screen, staged check overlays and a six-image contact-sheet step. These are presentation sequences using bundled images, not additional live AI runs or evaluation measurements. Preserve the working in-app routes and all original evidence. Production build/typecheck and92 tests pass before release.
+
+Public390px verification found the final hero line extending beyond its container and the drift callout intersecting Memory. Constrain the mobile headline with the same20px right inset and move only the mobile callout above Memory. Desktop, image assets, source evidence and the animation sequence are unchanged; rebuild and recheck before publishing this responsive correction.
