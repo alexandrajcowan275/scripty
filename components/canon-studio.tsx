@@ -5,6 +5,7 @@ import type { Batch, Project, Rule, Shot, TraceEvent } from "@/lib/types";
 import { Icon } from "./icons";
 import { LearningCurve } from "./learning-curve";
 import { ShotImage } from "./shot-image";
+import { batchEvidence, parseScenePrompts } from "./batch-evidence";
 
 type Metadata = { mode?: string; effectiveMode?: string; demoMode?: string; warning?: string; warnings?: string[]; provenance?: unknown };
 type ProjectData = Metadata & { project: Project; rules: Rule[]; batches: Batch[]; shots: Shot[]; traces: TraceEvent[] };
@@ -70,6 +71,8 @@ export function CanonStudio() {
   const [generating, setGenerating] = useState(false);
   const [reviewing, setReviewing] = useState(false);
   const [reason, setReason] = useState("");
+  const [sceneInput, setSceneInput] = useState("");
+  const [sceneError, setSceneError] = useState<string | null>(null);
   const [rejectOpen, setRejectOpen] = useState(false);
   const [traceOpen, setTraceOpen] = useState(false);
   const [traceFilter, setTraceFilter] = useState("all");
@@ -77,11 +80,15 @@ export function CanonStudio() {
   const [newBatchId, setNewBatchId] = useState<string | null>(null);
   const [newRuleId, setNewRuleId] = useState<string | null>(null);
   const reasonRef = useRef<HTMLTextAreaElement>(null);
+  const sceneEditorRef = useRef<HTMLDetailsElement>(null);
+  const sceneInputRef = useRef<HTMLTextAreaElement>(null);
+  const generationStartIndexRef = useRef(0);
   const dataRef = useRef(data);
   dataRef.current = data;
   const refresh = useCallback(async (signal?: AbortSignal) => {
     const incoming = await api<ProjectData>("/api/project/mara", { signal });
     if (!incoming.project || !Array.isArray(incoming.shots) || !Array.isArray(incoming.batches) || !Array.isArray(incoming.rules) || !Array.isArray(incoming.traces)) throw new Error("Project data is incomplete. Please reload the project.");
+    if (signal?.aborted) return;
     setData((previous) => mergeData(previous, incoming));
     setSelectedId((previous) => previous ?? incoming.shots.find((shot) => shot.flagged)?.id ?? incoming.shots[0]?.id ?? null);
   }, []);
@@ -102,20 +109,43 @@ export function CanonStudio() {
   const pending = allShots.filter((shot) => shot.status === "pending").length;
   const learned = (data?.rules ?? []).filter((rule) => rule.source !== "seed");
   const warnings = [...(data?.warnings ?? []), ...(data?.warning ? [data.warning] : [])];
+  const inProgressBatch = generating ? batches.find((batch) => batch.index > generationStartIndexRef.current) : undefined;
+  const savedGenerationShots = inProgressBatch ? allShots.filter((shot) => shot.batchId === inProgressBatch.id).length : 0;
+  useEffect(() => {
+    if (!generating || source.kind !== "live") return;
+    const controller = new AbortController();
+    let polling = false;
+    const interval = setInterval(() => {
+      if (polling) return;
+      polling = true;
+      // Read-only progress. The user action above is the sole batch POST.
+      void refresh(controller.signal).catch(() => { /* Keep the bounded POST's final result authoritative. */ }).finally(() => { polling = false; });
+    }, 4000);
+    return () => { clearInterval(interval); controller.abort(); };
+  }, [generating, source.kind, refresh]);
 
   async function generate() {
     if (busy || !data || source.kind === "unavailable") return;
+    let scenePrompts: string[] | undefined;
+    try { scenePrompts = source.kind === "live" ? parseScenePrompts(sceneInput) : undefined; setSceneError(null); }
+    catch (err) { setSceneError(err instanceof Error ? err.message : "Check your scene prompts."); if (sceneEditorRef.current) sceneEditorRef.current.open = true; requestAnimationFrame(() => sceneInputRef.current?.focus()); return; }
+    generationStartIndexRef.current = Math.max(0, ...data.batches.map((batch) => batch.index));
     setGenerating(true); setError(null); setNotice(null);
     try {
-      const result = await api<BatchResponse>("/api/batch", { method: "POST", body: JSON.stringify({ projectId: data.project.id }) });
+      const result = await api<BatchResponse>("/api/batch", { method: "POST", body: JSON.stringify({ projectId: data.project.id, ...(scenePrompts ? { scenePrompts } : {}) }) });
       if (!result.batch || !Array.isArray(result.shots)) throw new Error("The batch response was incomplete. Your existing shots are still available.");
       const alreadyExists = dataRef.current?.batches.some((batch) => batch.id === result.batch.id);
       setData((current) => current ? { ...current, ...result, batches: mergeById(current.batches, [result.batch]), shots: alreadyExists && isScaffold(current) ? mergeById(result.shots, current.shots) : mergeById(current.shots, result.shots) } : current);
       setSelectedId(result.shots.find((shot) => shot.flagged)?.id ?? result.shots[0]?.id ?? null);
       setRejectOpen(false); setReason(""); setNewBatchId(result.batch.id);
-      setNotice(alreadyExists ? "The API returned the existing batch. No new learning point has been added." : `Batch ${number(result.batch.index)} is ready. ${result.shots.filter((shot) => shot.flagged).length} of ${result.shots.length} shots flagged for review.`);
+      const evidence = batchEvidence(result.shots);
+      setNotice(alreadyExists ? "The API returned the existing batch. No new learning point has been added." : !evidence.complete ? `Batch ${number(result.batch.index)} has incomplete evidence and is excluded from the learning chart.` : `Batch ${number(result.batch.index)} is ready. ${result.shots.filter((shot) => shot.flagged).length} of ${result.shots.length} shots flagged; ${evidence.uncertainChecks} uncertain checks.`);
       try { await refresh(); } catch (err) { setError(`Batch saved, but project refresh failed. ${err instanceof Error ? err.message : "Try refreshing."}`); }
-    } catch (err) { setError(err instanceof Error ? err.message : "Could not generate a batch. Please try again."); }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not generate a batch. Please try again.");
+      // A timed-out request may still have persisted successful independent frames.
+      try { await refresh(); } catch { /* Preserve the original generation error and existing frames. */ }
+    }
     finally { setGenerating(false); }
   }
   async function review(decision: "accept" | "reject") {
@@ -154,6 +184,7 @@ export function CanonStudio() {
     <a className="skip-link" href="#workbench">Skip to shots</a>
     <header className="topbar"><a href="/" className="brand" aria-label="Canon home"><span className="brand-frame"><Icon name="frame" size={24}/></span>CANON</a><div className="workspace-path"><span className="path-divider"/><span>{data?.project.name ?? "Mara"}</span><Icon name="chevron" size={12}/><span className="muted-text">Continuity workspace</span></div><div className="topbar-right"><span className={`source-pill ${source.kind}`} title={source.description}><span className="status-dot"/>{source.title}</span><span className="project-avatar" title="Mara project">M</span></div></header>
     <div className="project-bar"><div><span className="eyebrow">PROJECT / 001</span><h1>The story stays yours.</h1><p>Generate freely. Keep every frame in canon.</p></div><button className="button primary generate-button" onClick={() => void generate()} disabled={busy || !data || source.kind === "unavailable"}><Icon name={generating ? "refresh" : "plus"} className={generating ? "spin" : ""}/>{generating ? "Generating batch…" : source.kind === "unavailable" ? "Cache not installed" : "Generate batch"}<kbd>6 shots</kbd></button></div>
+    {source.kind === "live" || source.kind === "cached" ? <details className="scene-editor" ref={sceneEditorRef}><summary><span>Scene prompts</span><span>{source.kind === "live" ? "Optional · six new scenes" : "Recorded scenes · read only"}</span><Icon name="chevron" size={12}/></summary>{source.kind === "live" ? <div className="scene-editor-body"><label htmlFor="scene-prompts">One scene per line · exactly six scenes</label><p id="scene-prompts-help">Leave blank for server defaults, or enter six different scenes to test how your correction transfers.</p><textarea id="scene-prompts" ref={sceneInputRef} value={sceneInput} onChange={(event) => { setSceneInput(event.target.value); setSceneError(null); }} rows={6} maxLength={12006} disabled={busy} placeholder={"Scene 1\nScene 2\nScene 3\nScene 4\nScene 5\nScene 6"} aria-describedby={`scene-prompts-help${sceneError ? " scene-prompts-error" : ""}`} aria-invalid={Boolean(sceneError)}/>{sceneError ? <p id="scene-prompts-error" className="scene-input-error" role="alert">{sceneError}</p> : null}</div> : <div className="scene-editor-body"><p>Playback uses the recorded prompts below. Custom scenes require the live engine.</p>{batches.length ? <ol>{allShots.filter((shot) => shot.batchId === batches[0].id).map((shot) => <li key={shot.id}>{shot.scenePrompt}</li>)}</ol> : <p>Recorded prompts appear after you load a batch.</p>}</div>}</details> : null}
     {error ? <div className="message-banner error-banner" role="alert"><Icon name="flag"/><span>{error}</span><button onClick={() => void retry()} disabled={busy || loading}>Retry project load</button><button className="icon-button" aria-label="Dismiss error" onClick={() => setError(null)}><Icon name="close"/></button></div> : null}
     {warnings.length ? <div className="message-banner warning-banner" role="status"><Icon name="flag"/><span>{[...new Set(warnings)].join(" ")}</span></div> : null}
     <div className="sr-only" role="status" aria-live="polite">{notice ?? (generating ? "Generating and checking six shots. This can take a few minutes." : "")}</div>
@@ -166,10 +197,11 @@ export function CanonStudio() {
         <div className="workspace-controls"><div className="segmented" aria-label="Filter shots">{[{id:"all", label:"All shots", count:allShots.length}, {id:"flagged", label:"Flagged", count:flagged}, {id:"pending", label:"To review", count:pending}].map((tab) => <button key={tab.id} className={filter === tab.id ? "active" : ""} aria-pressed={filter === tab.id} onClick={() => setFilter(tab.id)}>{tab.label}<span>{tab.count}</span></button>)}</div><span className="filmstrip-hint">SCROLL TO EXPLORE <Icon name="arrow" size={13}/></span></div>
         <div className="batch-list">{loading && !data ? <BatchSkeleton/> : !batches.length && !generating ? <div className="workspace-empty"><span className="empty-icon"><Icon name="frame" size={30}/></span><h3>{source.kind === "unavailable" ? "No recorded cache installed." : "Your first sequence starts here."}</h3><p>{source.kind === "unavailable" ? "Add a recorded Mara cache on the server to enable playback. Your character sheet is ready." : source.kind === "cached" ? "Load six recorded shots and their saved checks. Reviews update this browser’s replay memory; recorded results stay unchanged." : "Generate six shots. Canon checks each frame against your character sheet and project rules."}</p><button className="button secondary" disabled={!data || source.kind === "unavailable"} onClick={() => void generate()}><Icon name="plus"/>{source.kind === "unavailable" ? "Playback unavailable" : source.kind === "cached" ? "Load recorded batch" : "Generate first batch"}</button></div> : batches.map((batch) => {
           const shots = allShots.filter((shot) => shot.batchId === batch.id);
+          const evidence = batchEvidence(shots);
           const visibleShots = shots.filter((shot) => filter === "all" || filter === "flagged" && shot.flagged || filter === "pending" && shot.status === "pending");
-          return <section className="batch-row" key={batch.id} aria-label={`Batch ${batch.index}`}><div className="batch-heading"><div className="batch-title"><span className="batch-index">{number(batch.index)}</span><h3>Batch {number(batch.index)}</h3><span className="batch-rule-count">{batch.rulesApplied.length} rules applied</span></div><span className={`batch-drift ${batch.driftRate > 0 ? "drift-text" : "pass-text"}`}><Icon name={batch.driftRate > 0 ? "flag" : "check"} size={12}/>{pct(batch.driftRate)} drift</span></div><div className="filmstrip" tabIndex={0} role="region" aria-label={`Batch ${batch.index} shots, horizontally scrollable`}>{visibleShots.length ? visibleShots.map((shot, index) => <ShotCard key={shot.id} shot={shot} index={shots.indexOf(shot)} selected={selectedId === shot.id} onSelect={() => selectShot(shot.id)} animate={newBatchId === batch.id} animationIndex={index}/>) : <div className="filter-empty">No {filter === "flagged" ? "flagged" : "pending"} shots in this batch.</div>}</div></section>;
+          return <section className="batch-row" key={batch.id} aria-label={`Batch ${batch.index}`}><div className="batch-heading"><div className="batch-title"><span className="batch-index">{number(batch.index)}</span><h3>Batch {number(batch.index)}</h3><span className="batch-rule-count">{batch.rulesApplied.length} rules applied</span></div><span className={`batch-drift ${!evidence.complete ? "muted-text" : batch.driftRate > 0 ? "drift-text" : "muted-text"}`}><Icon name={!evidence.complete || batch.driftRate > 0 ? "flag" : "check"} size={12}/>{!evidence.complete ? "Incomplete evidence" : `${pct(batch.driftRate)} flags`}</span></div><p className="batch-evidence">{evidence.shotCount}/6 shots · {evidence.uncertainChecks} uncertain checks{evidence.unavailableChecks || evidence.missingCheckShots ? ` · ${evidence.unavailableChecks} unavailable checks${evidence.missingCheckShots ? ` · ${evidence.missingCheckShots} shots without checks` : ""}` : ""}{!evidence.complete ? " · excluded from chart" : ""}</p><div className="filmstrip" tabIndex={0} role="region" aria-label={`Batch ${batch.index} shots, horizontally scrollable`}>{visibleShots.length ? visibleShots.map((shot, index) => <ShotCard key={shot.id} shot={shot} index={shots.indexOf(shot)} selected={selectedId === shot.id} onSelect={() => selectShot(shot.id)} animate={newBatchId === batch.id} animationIndex={index}/>) : <div className="filter-empty">No {filter === "flagged" ? "flagged" : "pending"} shots in this batch.</div>}</div></section>;
         })}
-        {generating ? <section className="batch-row generating-row" aria-label="Generating next batch"><div className="batch-heading"><div className="batch-title"><span className="batch-index"><Icon name="refresh" size={13} className="spin"/></span><h3>Building the next sequence</h3></div></div><p className="generation-message">{source.kind === "cached" ? "Loading saved generations and monitor checks…" : "Generating frames, applying memory, and checking continuity…"}</p><div className="filmstrip">{Array.from({ length: 6 }, (_, i) => <div className="shot-skeleton pulse" key={i} style={{ animationDelay: `${i * 35}ms` }}><span>{number(i+1)}</span><Icon name="frame" size={22}/></div>)}</div></section> : null}
+        {generating ? <section className="batch-row generating-row" aria-label="Generating next batch"><div className="batch-heading"><div className="batch-title"><span className="batch-index"><Icon name="refresh" size={13} className="spin"/></span><h3>Building the next sequence</h3></div></div><p className="generation-message" role="status" aria-live="polite">{source.kind === "cached" ? "Loading saved generations and monitor checks…" : inProgressBatch ? `Running bounded batch · ${savedGenerationShots}/6 shots saved. Remaining frames are still processing…` : "Running bounded batch. Waiting for the first saved frame…"}</p><div className="filmstrip">{Array.from({ length: Math.max(0, 6 - savedGenerationShots) }, (_, i) => <div className="shot-skeleton pulse" key={i} style={{ animationDelay: `${i * 35}ms` }}><span>{number(i+1)}</span><Icon name="frame" size={22}/></div>)}</div></section> : null}
         </div><div className="workspace-footer"><span><span className="status-dot"/>{source.description}</span>{notice ? <p>{notice}</p> : <p>Select a frame to inspect its continuity.</p>}</div>
       </section>
       <aside className="inspector-pane panel" aria-labelledby="inspector-title"><div className="pane-heading"><div className="heading-with-icon"><Icon name="image"/><h2 id="inspector-title">Shot inspector</h2></div><span className="eyebrow">{selected ? `${number(selectedBatch?.index ?? 1)} / ${number(allShots.filter((shot) => shot.batchId === selected.batchId).findIndex((shot) => shot.id === selected.id) + 1)}` : "—"}</span></div>
@@ -177,7 +209,7 @@ export function CanonStudio() {
         <details className="prompt-details"><summary>Generation context <Icon name="chevron" size={12}/></summary><p className="detail-label">FINAL PROMPT</p><pre>{selected.finalPrompt}</pre>{provenanceText((selected as Shot & Metadata).provenance ?? data?.provenance) ? <><p className="detail-label">PROVENANCE</p><pre>{provenanceText((selected as Shot & Metadata).provenance ?? data?.provenance)}</pre></> : null}</details>
         </div><div className="review-panel">{selected.rejectReason && !rejectOpen ? <p className="saved-reason"><span>Review note</span>{selected.rejectReason}</p> : null}{rejectOpen ? <form onSubmit={(event) => { event.preventDefault(); void review("reject"); }}><label htmlFor="rejection-reason">What should Canon remember?</label><textarea id="rejection-reason" ref={reasonRef} value={reason} onChange={(event) => setReason(event.target.value)} placeholder="e.g. The scarf must stay red, even in cool lighting." rows={3} maxLength={1000} disabled={reviewing}/><div className="reject-form-actions"><button type="button" className="button quiet" onClick={() => setRejectOpen(false)} disabled={reviewing}>Cancel</button><button className="button danger" type="submit" disabled={busy || !reason.trim()}><Icon name="spark" size={14}/>{reviewing ? "Saving…" : "Reject & teach"}</button></div></form> : <><div className="review-actions"><button className="button accept-button" disabled={busy || selected.status === "accepted"} onClick={() => void review("accept")}><Icon name="check"/>{selected.status === "accepted" ? "Accepted" : reviewing ? "Saving…" : "Accept"}<kbd>A</kbd></button><button className="button reject-button" disabled={busy} onClick={() => { setRejectOpen(true); requestAnimationFrame(() => reasonRef.current?.focus()); }}><Icon name="close"/>Reject<kbd>R</kbd></button></div><p className="review-help">{source.kind === "cached" ? "Reviews update this browser’s replay memory." : "Accept reinforces. Reject teaches."}</p></>}</div></> : <div className="inspector-empty"><Icon name="frame" size={30}/><h3>A closer look.</h3><p>Select a frame to see its checks, review it, and teach Canon what matters.</p></div>}
       </aside>
-      <div className="learning-pane panel"><LearningCurve batches={data?.batches ?? []}/></div>
+      <div className="learning-pane panel"><LearningCurve batches={data?.batches ?? []} shots={allShots}/></div>
     </main>
     <footer className="bottom-bar"><span className="bottom-brand"><Icon name="frame" size={13}/> MEMORY IN EVERY FRAME</span><button className={traceOpen ? "trace-toggle active" : "trace-toggle"} aria-expanded={traceOpen} aria-controls="trace-drawer" onClick={() => setTraceOpen(!traceOpen)}><Icon name="terminal" size={14}/>Trace log<span className="count-badge">{data?.traces.length ?? 0}</span><Icon name="chevron" size={12} className={traceOpen ? "rotate-down" : "rotate-up"}/></button><span className="session-info">{batches.length} {batches.length === 1 ? "batch" : "batches"}<span>·</span>{allShots.length} shots</span></footer>
     {traceOpen ? <section className="trace-drawer" id="trace-drawer" aria-labelledby="trace-title"><div className="trace-header"><div className="heading-with-icon"><Icon name="terminal"/><h2 id="trace-title">Monitor trace</h2><span className="count-badge">{data?.traces.length ?? 0}</span></div><div className="trace-header-actions"><label className="sr-only" htmlFor="trace-filter">Filter trace events</label><select id="trace-filter" value={traceFilter} onChange={(event) => setTraceFilter(event.target.value)}><option value="all">All events</option><option value="failures">Failures & drift</option><option value="memory">Memory</option></select><button className="icon-button" aria-label="Close trace log" onClick={() => setTraceOpen(false)}><Icon name="close"/></button></div></div><div className="trace-events">{filteredTraces.length ? filteredTraces.map((trace) => <div className={`trace-event trace-${trace.type}`} key={trace.id}><time dateTime={trace.createdAt}>{new Date(trace.createdAt).toLocaleTimeString("en-US", {hour12:false})}</time><span className="trace-type">{humanize(trace.type)}</span><p>{trace.message}{trace.category ? <span className="trace-category">{humanize(trace.category)}</span> : null}</p>{trace.shotId ? <button onClick={() => { selectShot(trace.shotId!); setTraceOpen(false); }}>View shot<Icon name="arrow" size={12}/></button> : null}</div>) : <div className="small-empty">No {traceFilter === "all" ? "trace" : traceFilter} events yet. Generation and review activity will appear here.</div>}</div></section> : null}

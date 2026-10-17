@@ -10,7 +10,7 @@ The complete Canon workspace uses the shared API contracts without importing any
 - Shot selection, review states, expected/observed checks, confidence bars, image failures, project loading/retry, generation loading, empty data, empty filters, API errors, source warnings, and review notifications are represented.
 - Generate has a 310-second client deadline, aligned with the Engine's 260-second shared deadline / 300-second route budget. Project reads time out after 20 seconds.
 - Reviews call `POST /api/shot/:id/review`; generation calls `POST /api/batch`; both merge their returned records and then fetch `GET /api/project/mara` to refresh memory, traces, rule usage, and history. Selection is retained through project refresh.
-- The learning chart uses ONLY returned `Batch.driftRate` values. Its delta compares the first and latest returned batch. One batch has one point and explicitly asks for another batch. Repeated IDs do not create extra chart points.
+- The learning chart uses ONLY returned `Batch.driftRate` values from batches with exactly six shots, nonempty checks for every shot, and no unavailable (zero/nonfinite confidence) monitor checks. Incomplete batches have no point; an incomplete latest batch has a dash and Incomplete evidence instead of a percentage. There is no improvement/delta claim. Repeated IDs do not create extra chart points. Low-confidence checks above zero remain available and their uncertain count is shown separately.
 - Additive `mode`, `effectiveMode`, `demoMode`, `warning`, `warnings`, and `provenance` fields are supported without changing shared types. `mode:cached` visibly says Cached playback; live says Live engine. Cached review messages explicitly say recorded results remain unchanged. Missing provenance is never described as a live model check.
 - Incomplete evidence (`confidence < 0.6`, `observed:unclear`, or missing checks) is labeled Unclear / Evidence incomplete rather than a green pass. This does not alter the engine's flag threshold or historical drift metric.
 
@@ -20,7 +20,7 @@ This worktree still contains TASK 0 scaffold API handlers and SVG slates because
 
 The scaffold returns stateless snapshots and the same batch ID on every generation. The UI recognizes mock IDs, retains explicit review responses across those snapshots, and reports when generation returned an already-loaded batch. It does not manufacture a second batch or call that improvement. Real Engine snapshots take precedence for matching shot IDs. All arrays merge by ID to retain returned history; no server deletion/reset workflow is implemented or exposed.
 
-Root should integrate Data + Engine, replace SVGs with supplied real assets, then retest cached finite replay, signed-cookie review persistence across a reload, and a live generation where one correction affects different scenes. Those backend and live-model boundaries were deliberately not tested here; no API budget was spent. There is no custom-scene editor in this UI version, so generation uses the API's default scene set. Root may add its already-discussed alternate scene prompts at the generation boundary if needed for the unseen-scene demonstration.
+Root should integrate Data + Engine, replace SVGs with supplied real assets, then retest cached finite replay, signed-cookie review persistence across a reload, and a live generation where one correction affects different scenes. Those backend and live-model boundaries were deliberately not tested here; no API budget was spent. The collapsed live-only Scene prompts editor is blank by default (server defaults). Entering prompts requires exactly six nonempty lines; valid custom prompts are sent as `scenePrompts`. Invalid input opens and focuses the editor before any network call. Cached playback instead exposes the most recently loaded batch's recorded prompts as a read-only list and never sends custom input.
 
 ## Verification evidence
 
@@ -75,3 +75,22 @@ The mobile chart screenshot reflects the final layout refinement. The desktop sc
 5. Integrate backend/data/assets; browser-test the main demo and different-scene transfer; replace layout-only fixture screenshots with final real-image screenshots.
 
 No API routes, lib files, seed data, package files, shared types, or environment settings were changed by the UI commits. The local verification server has been stopped.
+
+
+## MVP integrity follow-up
+
+Added `components/batch-evidence.ts` so batch rows and the chart share the same evidence gate. `confidence <= 0`, missing checks, nonfinite confidence, or a shot count other than six means **Incomplete evidence**. Those rows show counts and exclusion, never a green 0% badge. The latest incomplete batch has no percentage in the chart headline even if an earlier completed batch remains plotted. Available low-confidence/occluded checks remain measurements with a separate uncertainty count. The chart caption now states that these are operational monitor flags, learned rules change the monitor, and human-reviewed labels under fixed criteria are needed to verify improvement.
+
+Focused verification: `node --import tsx --test components/batch-evidence.test.tsx` → 4/4 passing tests, no warnings. Cases cover five-shot partial batches; one zero-confidence check; six low-confidence occlusions; a 50% recorded batch followed by an unavailable 0% batch (the latter is not plotted or presented as improvement); and blank / valid-six / invalid scene inputs. `npm run typecheck` passes. `npm run build -- --webpack` passes.
+
+The production scaffold browser was inspected in Chrome at 1440px. The new recorded-scene disclosure is read-only, the batch row shows 6/6 shots and uncertainty count, the chart preserves the existing returned 50% fixture rate, and the metric limitation caption is visible. Console warn/error logs were empty. Additional screenshots are `ui-recorded-scenes.png` and `ui-monitor-metrics.png`; both remain explicitly Scaffold preview. No live calls were made. Root now has authenticated model access, so the old 401 limitation is no longer current outside this isolated worktree.
+
+Exact integrated QA steps for root/reviewer:
+
+1. In live mode, open Scene prompts: confirm blank editor means server defaults. Enter two lines and press Generate: expect inline six-line validation, focus in editor, and no request. Enter six nonempty new scenes: expect POST body `scenePrompts` with exactly those six strings.
+2. Reload in cached mode: confirm Scene prompts has only a recorded list, no editable textarea; generating uses the recorded cache and omits custom prompts.
+3. Load a project snapshot with five shots for a batch, then one with six shots containing a confidence-zero monitor check: both must show Incomplete evidence, excluded from chart, no numeric latest percentage.
+4. Load six available shots with low-confidence occlusion (>0): expect the actual returned operational flag rate plus explicit uncertain-check count, not an unavailable batch.
+5. Compare a valid recorded batch with an unavailable later 0% batch after GET refresh: only the valid recorded point remains; the latest headline is a dash/Incomplete evidence, and no green decline claim appears.
+
+Progress follow-up: while a live generation POST is active, one read-only project refresh runs every four seconds (overlap guarded, aborted and interval cleared on completion/unmount/mode change). No additional generation POST is triggered. New persisted batch rows expose actual saved shots; the bounded-batch loader reports saved shots out of six only when the new batch has appeared. On a generation POST error, one final project refresh attempts to surface independently saved successful frames. Evidence gating excludes partial batches throughout. Root/reviewer should verify this against the real Engine because the stateless scaffold cannot expose in-flight persisted shots.

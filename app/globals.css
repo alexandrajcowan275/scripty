@@ -310,3 +310,19 @@ h2 { font-size: 12px; font-weight: 550; letter-spacing: -.1px; }
   .curve { height: 125px; }
   .chart-label { font-size: 14px; }
 }
+.scene-editor { margin: 0 26px 16px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); }
+.scene-editor summary { display: flex; align-items: center; gap: 12px; padding: 10px 13px; cursor: pointer; font-size: 12px; list-style: none; }
+.scene-editor summary > span:nth-child(2) { color: var(--muted); font-size: 11px; margin-left: auto; }
+.scene-editor[open] summary svg { transform: rotate(90deg); }
+.scene-editor-body { padding: 0 13px 13px; max-width: 850px; }
+.scene-editor-body label { display: block; font-size: 12px; margin: 4px 0 7px; }
+.scene-editor-body p, .scene-editor-body li { font-size: 11px; color: var(--muted-strong); line-height: 1.7; }
+.scene-editor-body ol { padding-left: 20px; margin: 9px 0 0; }
+.scene-editor-body textarea { width: 100%; resize: vertical; background: var(--background); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 10px; margin-top: 9px; font-size: 12px; line-height: 1.7; }
+.scene-editor-body textarea::placeholder { color: var(--muted); }
+.scene-editor-body .scene-input-error { color: var(--drift-text); margin-top: 6px; }
+.batch-evidence { padding: 0 20px 11px; margin-top: -5px; color: var(--muted-strong); font-size: 10px; line-height: 1.6; }
+.chart-caption { line-height: 1.6; }
+@media (min-width: 901px) { .studio-grid { grid-template-rows: minmax(360px,1fr) 228px; } }
+@media (min-width: 601px) and (max-width: 900px) { .learning-pane { height: 235px; } }
+@media (max-width: 600px) { .scene-editor { margin: 0 16px 16px; } .scene-editor summary { gap: 8px; } .scene-editor summary > span:nth-child(2) { font-size: 10px; } .batch-evidence { padding-inline: 16px; } .learning-pane { height: 326px; } }
