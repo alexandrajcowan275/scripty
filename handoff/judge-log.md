@@ -123,3 +123,7 @@ README outdated frontend integration paragraph: resolved in rewrite. Clean recor
 
 - **Done — real refined Memory:** publicdd95173 re-used the existing correction, returned the same rule as a merge, preserved1prompt/1check reach and one saved rule. Save action was visible at665px in a720px viewport. Additional mini-model usage estimate$0.000404, zero new images. Captured actual public screenshot; no human labels.
 - **Forwarded P2 — production-list consistency:** saved owned-production navigation works after reload, but the legacy `/productions` list lacks the founder's Mara-first card and shared visual styling. Design can reuse existing navigation/card elements after priority pages; no backend change or new feature requested.
+
+### Requested location data — 04:10am PT
+
+- **Done — backend data:** Studio, Review and Memory are live, satisfying the founder's prerequisite. Added read-only Mara location metadata and a same-origin route for the already captured platform PNG plus the existing Marble URL. No world generation, reference injection, location accuracy or learned-environment claim. Design owns the optional existing-Memory card. Copied only the missing `/tmp` spike document; all existing experiment artifacts were preserved.
