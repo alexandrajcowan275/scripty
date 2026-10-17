@@ -4,8 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Canon — Memory in every frame",
-  description: "Continuity memory and monitoring for AI-generated stories. Generate freely. Keep every frame in canon.",
+  title: "Scripty — Your AI script supervisor",
+  description: "Your AI script supervisor. Catch continuity drift across generated shots and turn creator corrections into project memory.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

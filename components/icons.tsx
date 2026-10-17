@@ -1,9 +1,10 @@
 import type { CSSProperties } from "react";
 
-export type IconName = "frame" | "plus" | "check" | "flag" | "close" | "arrow" | "chevron" | "spark" | "activity" | "layers" | "play" | "refresh" | "image" | "terminal";
+export type IconName = "frame" | "slate" | "plus" | "check" | "flag" | "close" | "arrow" | "chevron" | "spark" | "activity" | "layers" | "play" | "refresh" | "image" | "terminal";
 export function Icon({ name, size = 16, className = "", style }: { name: IconName; size?: number; className?: string; style?: CSSProperties }) {
   const paths: Record<IconName, React.ReactNode> = {
     frame: <><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><path d="M8 8h8v8H8z"/></>,
+    slate: <><path d="M3 9h18v11H3zM3 9l-1-5 18-3 1 5zM7 3l4 4m3-5 4 4M3 14h18M8 14v6m8-6v6"/></>,
     plus: <path d="M12 5v14M5 12h14"/>,
     check: <path d="m5 12 4 4L19 6"/>,
     flag: <><path d="M5 21V4m0 0c5-5 9 5 14 0v10c-5 5-9-5-14 0"/></>,

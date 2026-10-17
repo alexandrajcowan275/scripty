@@ -1,5 +1,5 @@
-import { CanonStudio } from "@/components/canon-studio";
+import { ScriptyStudio } from "@/components/canon-studio";
 
 export default function Home() {
-  return <CanonStudio/>;
+  return <ScriptyStudio/>;
 }
