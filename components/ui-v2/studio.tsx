@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { Batch } from "@/lib/types";
 import { ScreenSkeleton } from "../ui/skeleton";
+import { LocationReference } from "../ui/location-reference";
 import { RuleCard } from "../ui/rule-card";
 import { ShotCard } from "../ui/shot-card";
 import { ShotImage } from "../shot-image";
@@ -91,6 +92,7 @@ export function MemoryPanel({
           Review a shot. Your continuity notes collect here.
         </p>
       )}
+      <LocationReference projectId={data.project.id} />
       <p className="v2-memory-note">
         Notes collect here first. Nothing regenerates until you choose.
       </p>
