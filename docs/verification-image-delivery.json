@@ -1,0 +1,450 @@
+{
+  "checkedAt": "2026-10-17T14:51:21.952Z",
+  "sourceCommit": "a384827970331fe0396e633a2bf43b47f6e31ace",
+  "redirects": [
+    {
+      "from": "/studio",
+      "status": 307,
+      "to": "/p/mara"
+    },
+    {
+      "from": "/learning",
+      "status": 307,
+      "to": "/p/mara/evidence"
+    },
+    {
+      "from": "/productions",
+      "status": 307,
+      "to": "/projects"
+    },
+    {
+      "from": "/productions/new",
+      "status": 307,
+      "to": "/new"
+    },
+    {
+      "from": "/studio?id=mara&view=progress&take=example",
+      "status": 307,
+      "to": "/p/mara/evidence?take=example"
+    }
+  ],
+  "staticWebpAssets": 76,
+  "totalDisplayBytes": 2715160,
+  "cacheControl": "public, max-age=31536000, immutable",
+  "allAssetsByteMatchLocal": true,
+  "originalPng": {
+    "status": 200,
+    "cacheControl": "public, max-age=31536000, immutable"
+  },
+  "assets": [
+    {
+      "url": "/images/renditions/e198dc9be501b61e4cc27fc9-1200.webp",
+      "bytes": 32144,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/a303873b449fa69acae9571f-480.webp",
+      "bytes": 7402,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/f020ac598de82d130c3e8c04-1200.webp",
+      "bytes": 41634,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/7faed1aa830bd005d85d6479-1200.webp",
+      "bytes": 25612,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/f020ac598de82d130c3e8c04-480.webp",
+      "bytes": 11762,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/7faed1aa830bd005d85d6479-480.webp",
+      "bytes": 5372,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/a303873b449fa69acae9571f-1200.webp",
+      "bytes": 37934,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e198dc9be501b61e4cc27fc9-480.webp",
+      "bytes": 7442,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/7298d976f11843ef84b51e73-480.webp",
+      "bytes": 6378,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e357b093914c371a298f2ccf-480.webp",
+      "bytes": 15134,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/fc32e64fcb2a05f23104f031-480.webp",
+      "bytes": 11870,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e357b093914c371a298f2ccf-1200.webp",
+      "bytes": 66380,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/fc32e64fcb2a05f23104f031-1200.webp",
+      "bytes": 52670,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/37d2fd9a936f83e5872ed75d-480.webp",
+      "bytes": 9790,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/7298d976f11843ef84b51e73-1200.webp",
+      "bytes": 27810,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/37d2fd9a936f83e5872ed75d-1200.webp",
+      "bytes": 38570,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/4da0037b071e03584af4d52b-480.webp",
+      "bytes": 17104,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/800b921c52a54d7702e1503e-1200.webp",
+      "bytes": 62518,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/800b921c52a54d7702e1503e-480.webp",
+      "bytes": 12960,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/4da0037b071e03584af4d52b-1200.webp",
+      "bytes": 75752,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/41df1dfe24c5a8ccaddcf5db-480.webp",
+      "bytes": 15312,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/41df1dfe24c5a8ccaddcf5db-1200.webp",
+      "bytes": 62384,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/d83698bc2eb1c7f243f05c28-480.webp",
+      "bytes": 10336,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/d83698bc2eb1c7f243f05c28-1200.webp",
+      "bytes": 47380,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/8cbcf24629d6e8ce432c0c9e-1200.webp",
+      "bytes": 56334,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/d4fcd40e19708a4e69e7dfaa-480.webp",
+      "bytes": 15560,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/087f211385a0a2f075b6db91-1200.webp",
+      "bytes": 58354,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/d4fcd40e19708a4e69e7dfaa-1200.webp",
+      "bytes": 71146,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/8cbcf24629d6e8ce432c0c9e-480.webp",
+      "bytes": 11736,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/087f211385a0a2f075b6db91-480.webp",
+      "bytes": 14274,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e50961fdf598d1b77cf04c8b-1200.webp",
+      "bytes": 65872,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e50961fdf598d1b77cf04c8b-480.webp",
+      "bytes": 13894,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/367efe823247186e5705bdf0-480.webp",
+      "bytes": 23810,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/595df418c3fee623c753999a-480.webp",
+      "bytes": 12610,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/595df418c3fee623c753999a-1200.webp",
+      "bytes": 62368,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/0cde9af91ff2502deec87e78-480.webp",
+      "bytes": 20818,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/2c620ba367c9e69e1bb53fe3-1200.webp",
+      "bytes": 51442,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/0cde9af91ff2502deec87e78-1200.webp",
+      "bytes": 88442,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/367efe823247186e5705bdf0-1200.webp",
+      "bytes": 106192,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/2c620ba367c9e69e1bb53fe3-480.webp",
+      "bytes": 11884,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/a99f5ca430dd14fed3accecc-480.webp",
+      "bytes": 18134,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/7e8a5f22f9fc765c53dd51b2-480.webp",
+      "bytes": 11282,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/6284be5d486e416df7a481bb-480.webp",
+      "bytes": 18726,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/22095fd0a63f8f0603f1b95e-480.webp",
+      "bytes": 12968,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/22095fd0a63f8f0603f1b95e-1200.webp",
+      "bytes": 64174,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/6284be5d486e416df7a481bb-1200.webp",
+      "bytes": 78482,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/7e8a5f22f9fc765c53dd51b2-1200.webp",
+      "bytes": 49938,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/a99f5ca430dd14fed3accecc-1200.webp",
+      "bytes": 77066,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/ed83947d2c3eaf16ce58a17a-1200.webp",
+      "bytes": 63754,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/ed83947d2c3eaf16ce58a17a-480.webp",
+      "bytes": 13488,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/5118ecbfce2d5494eba90e42-1200.webp",
+      "bytes": 62242,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/5118ecbfce2d5494eba90e42-480.webp",
+      "bytes": 13740,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/6073d0eae782a820499aec1a-480.webp",
+      "bytes": 12728,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/68075a449c7e4072faac4ce4-1200.webp",
+      "bytes": 69592,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/6073d0eae782a820499aec1a-1200.webp",
+      "bytes": 58540,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/68075a449c7e4072faac4ce4-480.webp",
+      "bytes": 14662,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/2292f48b7d9e40dab332be70-480.webp",
+      "bytes": 14432,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/8cac88b6398878459912212a-480.webp",
+      "bytes": 12808,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/c843d029f9cbb637edbd88c1-1200.webp",
+      "bytes": 59540,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/c843d029f9cbb637edbd88c1-480.webp",
+      "bytes": 12502,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/df398ea838bc36502718e7fd-1200.webp",
+      "bytes": 65432,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/2292f48b7d9e40dab332be70-1200.webp",
+      "bytes": 68232,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/8cac88b6398878459912212a-1200.webp",
+      "bytes": 57744,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/df398ea838bc36502718e7fd-480.webp",
+      "bytes": 14318,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/579468310e99173003e43a3a-1200.webp",
+      "bytes": 49426,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/27c3cdbb5f1b82cd82ef5a74-480.webp",
+      "bytes": 12460,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/579468310e99173003e43a3a-480.webp",
+      "bytes": 10936,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e97e4ae12e0fa550db28ca4e-480.webp",
+      "bytes": 12494,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/84e6be017d41c430dd81bc7c-480.webp",
+      "bytes": 12688,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/e97e4ae12e0fa550db28ca4e-1200.webp",
+      "bytes": 56976,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/27c3cdbb5f1b82cd82ef5a74-1200.webp",
+      "bytes": 57630,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/84e6be017d41c430dd81bc7c-1200.webp",
+      "bytes": 60526,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/69ec13c54e7d7929d8e2c095-480.webp",
+      "bytes": 10784,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/69ec13c54e7d7929d8e2c095-1200.webp",
+      "bytes": 45716,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/0be381eaa3153c8dcf896dab-480.webp",
+      "bytes": 9562,
+      "cacheControl": "public, max-age=31536000, immutable"
+    },
+    {
+      "url": "/images/renditions/0be381eaa3153c8dcf896dab-1200.webp",
+      "bytes": 45052,
+      "cacheControl": "public, max-age=31536000, immutable"
+    }
+  ],
+  "tests": {
+    "passed": 79,
+    "typecheck": "passed",
+    "build": "passed",
+    "ci": "https://github.com/alexandrajcowan275/canon/actions/runs/39042368194"
+  },
+  "studio": {
+    "take": 4,
+    "shotCount": 6,
+    "originalBytes": 13720257,
+    "thumbnailBytes": 97530,
+    "loadedImages": 6,
+    "allGridImages480Webp": true,
+    "pngImgRequestsOnInitialPage": 0,
+    "horizontalOverflow": false
+  },
+  "review": {
+    "display": "1200px WebP",
+    "filmstrip": "480px WebP",
+    "loupeInitiallyOff": true,
+    "originalPngOnlyAfterExplicitLoupe": true
+  },
+  "coldIncognito": {
+    "verified": false,
+    "underTwoSeconds": null,
+    "reason": "Chrome native automation repeatedly timed out after preparing an isolated blank Incognito window. Browser extension does not expose that window. Awaiting human focus of the prepared window; no timing claim is made."
+  },
+  "paidCalls": 0,
+  "humanLabelsSubmitted": 0
+}

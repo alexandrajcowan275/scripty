@@ -27,3 +27,7 @@ The public-UI verification production has used2of3take attempts; one remains. Ma
 ## Marble viewer permission — optional location link
 
 The real existing Marble URL opened a permission-denied message in the verification browser: “You don't have permission to view this world.” The captured platform still and Scripty metadata endpoint work publicly and match the original artifact. No login, world creation or sharing/permission changes were attempted. The optional card must mark the external world as private/requiring permission and avoid a misleading working-public-viewer action. Founder can decide whether to share the world after waking; this does not block Mara or the core loop.
+
+## October 17 morning — cold Incognito timing verification
+
+Image compression and redirects are deployed and verified (a384827;79tests/typecheck/build/CI pass). All76static WebPs match local bytes and have immutable cache headers. Studio displays six compressed shots without PNG requests; Review requests the preserved original only after Loupe is explicitly enabled. The exact under-two-second fresh Incognito criterion is unverified: native Chrome control repeatedly timed out, while the browser extension cannot see the prepared Incognito window. The founder was asked to bring that blank window forward; no browser permissions or security settings were changed, and no timing was fabricated.
