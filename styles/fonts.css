@@ -1,58 +1,58 @@
 @font-face {
-  font-family: 'Funnel Display';
+  font-family: "Funnel Display";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/funnel-display-400.ttf) format('truetype');
+  src: url(/fonts/funnel-display-400.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Funnel Display';
+  font-family: "Funnel Display";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/fonts/funnel-display-500.ttf) format('truetype');
+  src: url(/fonts/funnel-display-500.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Funnel Display';
+  font-family: "Funnel Display";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(/fonts/funnel-display-600.ttf) format('truetype');
+  src: url(/fonts/funnel-display-600.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Funnel Sans';
+  font-family: "Funnel Sans";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/funnel-sans-400.ttf) format('truetype');
+  src: url(/fonts/funnel-sans-400.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Funnel Sans';
+  font-family: "Funnel Sans";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/fonts/funnel-sans-500.ttf) format('truetype');
+  src: url(/fonts/funnel-sans-500.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Funnel Sans';
+  font-family: "Funnel Sans";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(/fonts/funnel-sans-600.ttf) format('truetype');
+  src: url(/fonts/funnel-sans-600.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Martian Mono';
+  font-family: "Martian Mono";
   font-style: normal;
   font-weight: 400;
   font-stretch: normal;
   font-display: swap;
-  src: url(/fonts/martian-mono-400.ttf) format('truetype');
+  src: url(/fonts/martian-mono-400.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Martian Mono';
+  font-family: "Martian Mono";
   font-style: normal;
   font-weight: 500;
   font-stretch: normal;
   font-display: swap;
-  src: url(/fonts/martian-mono-500.ttf) format('truetype');
+  src: url(/fonts/martian-mono-500.ttf) format("truetype");
 }

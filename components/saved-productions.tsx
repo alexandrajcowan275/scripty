@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionLink } from "./ui/motion";
 import { useEffect, useState } from "react";
 
 type SavedProduction = { project_id: string; projects: { name: string } };
@@ -68,13 +69,13 @@ export function SavedProductions() {
     <ul className="production-list" aria-label="Saved productions">
       {items.map((item) => (
         <li key={item.project_id}>
-          <a href={`/studio?id=${encodeURIComponent(item.project_id)}`}>
+          <MotionLink href={`/p/${encodeURIComponent(item.project_id)}`}>
             <span>{item.projects.name}</span>
             <span className="production-open" aria-hidden="true">
               →
             </span>
             <span className="sr-only">Open production</span>
-          </a>
+          </MotionLink>
         </li>
       ))}
     </ul>

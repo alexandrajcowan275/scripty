@@ -1,7 +1,20 @@
-import type { AttributeCheck, Batch, Project, Rule, Shot, TraceEvent } from "@/lib/types";
+import type {
+  AttributeCheck,
+  Batch,
+  Project,
+  Rule,
+  Shot,
+  TraceEvent,
+} from "@/lib/types";
 
 export type Check = AttributeCheck & {
-  location?: { x: number; y: number; width: number; height: number; units?: "normalized" | "pixels" };
+  location?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    units?: "normalized" | "pixels";
+  };
 };
 export type ProductionData = {
   project: Project;
@@ -14,9 +27,23 @@ export type ProductionData = {
   generationEnabled?: boolean;
   recordedRuleIds?: string[];
   scenePrompts?: string[];
-  pricing?: { generatePerShotUsd?: number; recheckPerShotUsd?: number; model?: string };
+  pricing?: {
+    generatePerShotUsd?: number;
+    recheckPerShotUsd?: number;
+    model?: string;
+  };
   capabilities?: { recheck?: boolean; fix?: boolean; undo?: boolean };
-  monitorRuns?: { id: string; shot_id: string; checks: Check[]; flagged: boolean; drift_score: number; rule_ids: string[]; model: string; version: string; created_at: string }[];
+  monitorRuns?: {
+    id: string;
+    shot_id: string;
+    checks: Check[];
+    flagged: boolean;
+    drift_score: number;
+    rule_ids: string[];
+    model: string;
+    version: string;
+    created_at: string;
+  }[];
   repairs?: { shot_id: string; source_shot_id: string; created_at: string }[];
   repairShots?: Shot[];
 };
@@ -27,83 +54,229 @@ export type ReviewReceipt = {
   undoToken?: string;
   provenance?: string;
   warning?: string;
-  usage?: { estimatedUsd?: number; pricedRequests?: number; reservedUsd?: number };
+  usage?: {
+    estimatedUsd?: number;
+    pricedRequests?: number;
+    reservedUsd?: number;
+  };
   mode?: string;
 };
 export class RequestError extends Error {
-  constructor(message: string, public status: number, public details?: Record<string, unknown>) {
+  constructor(
+    message: string,
+    public status: number,
+    public details?: Record<string, unknown>,
+  ) {
     super(message);
     this.name = "RequestError";
   }
 }
-export async function request<T>(url: string, init: RequestInit = {}): Promise<T> {
+export async function request<T>(
+  url: string,
+  init: RequestInit = {},
+): Promise<T> {
   const controller = new AbortController();
   const abort = () => controller.abort();
   init.signal?.addEventListener("abort", abort, { once: true });
   if (init.signal?.aborted) controller.abort();
-  const timer = setTimeout(abort, init.method && init.method !== "GET" ? 310_000 : 25_000);
+  const timer = setTimeout(
+    abort,
+    init.method && init.method !== "GET" ? 310_000 : 25_000,
+  );
   try {
     const response = await fetch(url, {
-      ...init, cache: "no-store", signal: controller.signal,
-      headers: { ...(init.body instanceof FormData ? {} : { "Content-Type": "application/json" }), ...init.headers },
+      ...init,
+      cache: "no-store",
+      signal: controller.signal,
+      headers: {
+        ...(init.body instanceof FormData
+          ? {}
+          : { "Content-Type": "application/json" }),
+        ...init.headers,
+      },
     });
     const payload = await response.json().catch(() => ({}));
-    if (!response.ok) throw new RequestError(
-      typeof payload.error === "string" ? payload.error : response.status === 404 ? "This part of the set isn’t ready yet." : "That didn’t land. Try again.",
-      response.status, payload,
-    );
+    if (!response.ok)
+      throw new RequestError(
+        typeof payload.error === "string"
+          ? payload.error
+          : response.status === 404
+            ? "This part of the set isn’t ready yet."
+            : "That didn’t land. Try again.",
+        response.status,
+        payload,
+      );
     return payload as T;
   } catch (error) {
-    if (controller.signal.aborted && !init.signal?.aborted) throw new RequestError("The set is taking a moment. Your work is safe; try again.", 408);
+    if (controller.signal.aborted && !init.signal?.aborted)
+      throw new RequestError(
+        "The set is taking a moment. Your work is safe; try again.",
+        408,
+      );
     throw error;
   } finally {
     clearTimeout(timer);
     init.signal?.removeEventListener("abort", abort);
   }
 }
-export const post = <T,>(url: string, body: unknown = {}) => request<T>(url, { method: "POST", body: JSON.stringify(body) });
-export const message = (error: unknown) => error instanceof Error ? error.message : "That didn’t land. Try again.";
-export const number = (value: number | undefined | null) => value == null || !Number.isFinite(value) ? "—" : String(value);
-export const percent = (value: number | undefined | null) => value == null || !Number.isFinite(value) ? "—" : `${Math.round(value * 100)}%`;
-export const confidence = (value: number | undefined | null) => value == null || !Number.isFinite(value) || value <= 0 ? "—" : value.toFixed(2);
-export const money = (value: number | undefined | null) => value == null || !Number.isFinite(value) ? "—" : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value);
-export const sortedBatches = (data?: ProductionData | null) => [...(data?.batches ?? [])].sort((a, b) => a.index - b.index);
-export const shotsFor = (data: ProductionData | null | undefined, batchId?: string) => (data?.shots ?? []).filter(s => s.batchId === batchId);
-export const unclear = (check: AttributeCheck) => !Number.isFinite(check.confidence) || check.confidence < .6 || /unclear|not visible|occluded|cannot determine/i.test(check.observed);
-export const failedCheck = (shot: Shot): Check | undefined => (shot.checks.find(c => !c.key.startsWith("rule:") && !c.pass && !unclear(c)) ?? shot.checks.find(c => !c.pass && !unclear(c))) as Check | undefined;
-export const checkLabel = (key: string, data?: ProductionData | null) => data?.project.characters.flatMap(c => c.attributes).find(a => a.key === key)?.label ?? key.replace(/^rule:/, "Rule ").replaceAll("_", " ");
+export const post = <T>(url: string, body: unknown = {}) =>
+  request<T>(url, { method: "POST", body: JSON.stringify(body) });
+export const message = (error: unknown) =>
+  error instanceof Error ? error.message : "That didn’t land. Try again.";
+export const number = (value: number | undefined | null) =>
+  value == null || !Number.isFinite(value) ? "—" : String(value);
+export const percent = (value: number | undefined | null) =>
+  value == null || !Number.isFinite(value)
+    ? "—"
+    : `${Math.round(value * 100)}%`;
+export const confidence = (value: number | undefined | null) =>
+  value == null || !Number.isFinite(value) || value <= 0
+    ? "—"
+    : value.toFixed(2);
+export const money = (value: number | undefined | null) =>
+  value == null || !Number.isFinite(value)
+    ? "—"
+    : new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2,
+      }).format(value);
+export const sortedBatches = (data?: ProductionData | null) =>
+  [...(data?.batches ?? [])].sort((a, b) => a.index - b.index);
+export const shotsFor = (
+  data: ProductionData | null | undefined,
+  batchId?: string,
+) => (data?.shots ?? []).filter((s) => s.batchId === batchId);
+export const unclear = (check: AttributeCheck) =>
+  !Number.isFinite(check.confidence) ||
+  check.confidence < 0.6 ||
+  /unclear|not visible|occluded|cannot determine/i.test(check.observed);
+export const failedCheck = (shot: Shot): Check | undefined =>
+  (shot.checks.find(
+    (c) => !c.key.startsWith("rule:") && !c.pass && !unclear(c),
+  ) ?? shot.checks.find((c) => !c.pass && !unclear(c))) as Check | undefined;
+export const checkLabel = (key: string, data?: ProductionData | null) =>
+  data?.project.characters
+    .flatMap((c) => c.attributes)
+    .find((a) => a.key === key)?.label ??
+  key.replace(/^rule:/, "Rule ").replaceAll("_", " ");
 export function shotStatus(shot: Shot) {
   const failed = failedCheck(shot);
-  if (shot.flagged) return { kind: "drift" as const, label: failed ? checkLabel(failed.key) : "Flagged", detail: failed ? confidence(failed.confidence) : "—" };
+  if (shot.flagged)
+    return {
+      kind: "drift" as const,
+      label: failed ? checkLabel(failed.key) : "Flagged",
+      detail: failed ? confidence(failed.confidence) : "—",
+    };
   const count = shot.checks.filter(unclear).length;
-  if (!shot.checks.length) return { kind: "unclear" as const, label: "Check pending", detail: "—" };
-  if (count) return { kind: "unclear" as const, label: `${count} unclear`, detail: "?" };
+  if (!shot.checks.length)
+    return { kind: "unclear" as const, label: "Check pending", detail: "—" };
+  if (count)
+    return { kind: "unclear" as const, label: `${count} unclear`, detail: "?" };
   return { kind: "pass" as const, label: "on-model", detail: "✓" };
 }
 export function ruleReach(rule: Rule, shots: Shot[]) {
-  return new Set(shots.filter(s => s.finalPrompt.includes(rule.text) && s.checks.some(c => c.key === `rule:${rule.id}`)).map(s => s.id)).size;
+  return new Set(
+    shots
+      .filter(
+        (s) =>
+          s.finalPrompt.includes(rule.text) &&
+          s.checks.some((c) => c.key === `rule:${rule.id}`),
+      )
+      .map((s) => s.id),
+  ).size;
 }
-export function rulePromptReach(rule: Rule, shots: Shot[]) { return new Set(shots.filter(s => s.finalPrompt.includes(rule.text)).map(s => s.id)).size; }
-export function ruleCheckReach(rule: Rule, shots: Shot[]) { return new Set(shots.filter(s => s.checks.some(c => c.key === `rule:${rule.id}`)).map(s => s.id)).size; }
+export function rulePromptReach(rule: Rule, shots: Shot[]) {
+  return new Set(
+    shots.filter((s) => s.finalPrompt.includes(rule.text)).map((s) => s.id),
+  ).size;
+}
+export function ruleCheckReach(rule: Rule, shots: Shot[]) {
+  return new Set(
+    shots
+      .filter((s) => s.checks.some((c) => c.key === `rule:${rule.id}`))
+      .map((s) => s.id),
+  ).size;
+}
 export function frameName(shot: Shot, data: ProductionData): string {
-  const sourceId = data.repairs?.find(r => r.shot_id === shot.id)?.source_shot_id;
-  const source = sourceId ? data.shots.find(s => s.id === sourceId) : undefined;
+  const sourceId = data.repairs?.find(
+    (r) => r.shot_id === shot.id,
+  )?.source_shot_id;
+  const source = sourceId
+    ? data.shots.find((s) => s.id === sourceId)
+    : undefined;
   if (source) return `${frameName(source, data)}·fix`;
-  const batch = data.batches.find(b => b.id === shot.batchId);
-  const index = shotsFor(data, shot.batchId).findIndex(s => s.id === shot.id);
+  const batch = data.batches.find((b) => b.id === shot.batchId);
+  const index = shotsFor(data, shot.batchId).findIndex((s) => s.id === shot.id);
   return `T${number(batch?.index)}·S${index < 0 ? "—" : String(index + 1).padStart(2, "0")}`;
 }
-export const sharedShot = (id: string) => `shot-${id.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
-export const sceneTitle = (shot: Shot) => shot.scenePrompt.replace(/^(wide establishing shot|close-up portrait|low-angle shot|profile medium shot|over-the-shoulder shot|high-angle shot|medium shot|shot) of /i, "").replace(/^[^ ]+ /, "").replace(/[.]$/, "");
-export function modelFor(data: ProductionData, batch: Batch | undefined, field: "image_model" | "monitor_model") {
-  const ids = new Set(shotsFor(data, batch?.id).map(s => s.id));
-  const traces = data.traces.filter(t => ids.has(t.shotId ?? "") || t.message.includes(`Batch ${batch?.index},`));
-  return traces.map(t => t.message.match(new RegExp(`${field}=([^;\\s]+)`))?.[1]).find(Boolean) ?? "—";
+export const sharedShot = (id: string) =>
+  `shot-${id.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
+export const sceneTitle = (shot: Shot) =>
+  shot.scenePrompt
+    .replace(
+      /^(wide establishing shot|close-up portrait|low-angle shot|profile medium shot|over-the-shoulder shot|high-angle shot|medium shot|shot) of /i,
+      "",
+    )
+    .replace(/^[^ ]+ /, "")
+    .replace(/[.]$/, "");
+export function modelFor(
+  data: ProductionData,
+  batch: Batch | undefined,
+  field: "image_model" | "monitor_model",
+) {
+  const ids = new Set(shotsFor(data, batch?.id).map((s) => s.id));
+  const traces = data.traces.filter(
+    (t) =>
+      ids.has(t.shotId ?? "") || t.message.includes(`Batch ${batch?.index},`),
+  );
+  return (
+    traces
+      .map((t) => t.message.match(new RegExp(`${field}=([^;\\s]+)`))?.[1])
+      .find(Boolean) ?? "—"
+  );
 }
-export function reviewReason(shot: Shot) { const check = failedCheck(shot); return shot.rejectReason ?? (check ? `Keep ${check.expected}.` : ""); }
-export function primaryRule(data: ProductionData) { return data.rules.find(r => r.source !== "seed" && ruleReach(r, data.shots) > 0) ?? data.rules.find(r => r.source !== "seed"); }
-export function allShots(data: ProductionData) { return [...new Map([...data.shots, ...(data.repairShots ?? [])].map(s => [s.id, s])).values()]; }
+export function reviewReason(shot: Shot) {
+  const check = failedCheck(shot);
+  return shot.rejectReason ?? (check ? `Keep ${check.expected}.` : "");
+}
+export function primaryRule(data: ProductionData) {
+  return (
+    data.rules.find(
+      (r) => r.source !== "seed" && ruleReach(r, data.shots) > 0,
+    ) ?? data.rules.find((r) => r.source !== "seed")
+  );
+}
+export function allShots(data: ProductionData) {
+  return [
+    ...new Map(
+      [...data.shots, ...(data.repairShots ?? [])].map((s) => [s.id, s]),
+    ).values(),
+  ];
+}
 export function currentShot(shot: Shot, data: ProductionData): Shot {
-  const run = data.monitorRuns?.find(r => r.shot_id === shot.id);
-  return run ? { ...shot, checks: run.checks, flagged: run.flagged, driftScore: run.drift_score } : shot;
+  const run = data.monitorRuns?.find((r) => r.shot_id === shot.id);
+  return run
+    ? {
+        ...shot,
+        checks: run.checks,
+        flagged: run.flagged,
+        driftScore: run.drift_score,
+      }
+    : shot;
+}
+
+export function operationIssue(value: unknown): string {
+  if (!value || typeof value !== "object") return "";
+  const result = value as {
+    warning?: unknown;
+    results?: { error?: string }[];
+    repaired?: { error?: string }[];
+  };
+  if (typeof result.warning === "string" && result.warning)
+    return result.warning;
+  return [...(result.results ?? []), ...(result.repaired ?? [])]
+    .map((item) => item.error)
+    .filter(Boolean)
+    .join(" ");
 }
