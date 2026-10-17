@@ -78,7 +78,6 @@ export function CinematicHero({ children }: { children: ReactNode }) {
       <div className="v2-cinema-foot">
         <a href="#product">See Scripty at work ↓</a>
         <div>
-          <a href="/brand/CREDITS.md">Photography credits</a>
           <button
             className="v2-cinema-pause"
             aria-pressed={paused}
