@@ -1,0 +1,67 @@
+{
+  "monitorVersion": "canon-monitor-v3",
+  "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+  "reason": "Final calibration spot check of visually correct scar side and genuinely misplaced left-hand ring; no new image generated.",
+  "checks": [
+    {
+      "key": "scarf_color",
+      "expected": "red wool scarf",
+      "observed": "red wool scarf visible around neck",
+      "pass": true,
+      "confidence": 0.99
+    },
+    {
+      "key": "scar_side",
+      "expected": "scar over the LEFT eye",
+      "observed": "frontal face facing viewer; scar is visible on image-right side of face, which corresponds to the character's LEFT eye",
+      "pass": true,
+      "confidence": 0.97
+    },
+    {
+      "key": "hair",
+      "expected": "short black hair",
+      "observed": "short black hair visible, cut above the neck and around the jawline",
+      "pass": true,
+      "confidence": 0.99
+    },
+    {
+      "key": "ring_hand",
+      "expected": "silver ring on the right hand",
+      "observed": "frontal pose facing viewer; ring is visible on image-right hand, which corresponds to the character's LEFT hand, not the right hand",
+      "pass": false,
+      "confidence": 0.96,
+      "note": "Visible ring is on the character's left hand in this frontal view, contradicting the expected right hand."
+    },
+    {
+      "key": "rule:seed-scarf",
+      "expected": "Mara always wears a red wool scarf.",
+      "observed": "red wool scarf visible",
+      "pass": true,
+      "confidence": 0.99
+    },
+    {
+      "key": "rule:seed-scar",
+      "expected": "Mara’s scar is always over the LEFT eye.",
+      "observed": "scar visible over the LEFT eye in a frontal view",
+      "pass": true,
+      "confidence": 0.97
+    }
+  ],
+  "driftScore": 0.16,
+  "flagged": true,
+  "failures": [
+    {
+      "key": "ring_hand",
+      "category": "attribute_drift"
+    }
+  ],
+  "usage": {
+    "imageRequests": 0,
+    "textRequests": 1,
+    "inputTokens": 4437,
+    "outputTokens": 431,
+    "reservedUsd": 0.05
+  },
+  "provenance": "live_monitor",
+  "monitorModel": "gpt-5.4-mini-2026-03-17"
+}

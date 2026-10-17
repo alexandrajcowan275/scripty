@@ -23,3 +23,10 @@ No verified improvement or monitor-accuracy claim exists yet. Human labels must 
 ## Remaining work
 
 Freeze checkerv2, recheck baseline transparently, generate different scenes with the saved rule, inspect actual failures, produce3–4 complete real batches, capture hashes/provenance, create10-shot draft-label worksheet, evaluate drafts separately, and verify public cached deployment.
+
+## Latest completed evidence
+
+- Final frozen checkerv3 correctly identified the scar as anatomicalLEFT and the ring as anatomicalLEFT/incorrect in the known close-up spot check. Rechecked baseline: **2/6 flagged (33.3%)**, preserving originalv1/v2 **6/6** diagnostics.
+- Batch2: six different new scenes; **0/6 flagged**, six uncertain checks out of42, zero unavailable checks. All six final prompts include the learned ring rule and all six monitor outputs include its rulecheck.
+- Model/style changed atbatch2 per quality steering: baselineimages1.5medium; later2.5Sunbursthigh +fixed cinematiclens/grade. This is not a controlled memory-only improvement experiment.
+- Two latest-model quality samples were visually inspected before expansion; excluded from batchrates.

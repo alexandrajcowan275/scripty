@@ -1,0 +1,35 @@
+{
+  "purpose": "Two-shot quality inspection before scaling; excluded from batch metrics.",
+  "results": [
+    {
+      "scene": "Wide establishing shot of Mara walking across a misty pedestrian bridge at dawn.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/3bbee575-4e4b-4fce-81fe-f828bd607deb-quality-1.png",
+      "provenance": "openai",
+      "errors": [],
+      "usage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1735,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75
+      },
+      "imageModel": "gpt-image-2.5-sunburst-2026-09-08",
+      "imageQuality": "high"
+    },
+    {
+      "scene": "Close-up portrait of Mara seated beside a library window in soft daylight.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/a7a571db-8bc2-438e-b7a9-eabda27dcde6-quality-2.png",
+      "provenance": "openai",
+      "errors": [],
+      "usage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1734,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75
+      },
+      "imageModel": "gpt-image-2.5-sunburst-2026-09-08",
+      "imageQuality": "high"
+    }
+  ]
+}
