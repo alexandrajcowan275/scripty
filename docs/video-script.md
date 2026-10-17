@@ -10,7 +10,7 @@ Meet Scripty: your AI script supervisor. A generator can return success while a 
 
 Start a production, add a reference, and confirm what stays true. Vision can suggest the details; you confirm anatomical left and right.
 
-This is Mara, our sample production. The monitor questions the scar’s side. That is a finding to review, not certified anatomy.
+This is Mara, our sample production. The monitor questions which hand wears the ring. That is a finding to review, not certified anatomy.
 
 I can edit the note and save it to Memory. Scripty shows the actual returned rule and whether it merged with an existing one. Future generation gets that constraint. The monitor checks it too.
 
@@ -30,13 +30,13 @@ Scripty. Keep the story straight.
 | --- | --- |
 | 0:00–0:12 | Film-set hook over a real Mara contact sheet. |
 | 0:12–0:28 | Reference/canon setup. Use only a shipped form; confirm laterality visibly. |
-| 0:28–0:45 | Studio → Review T4·S05; inspect the image/reference and real expected/observed evidence. |
+| 0:28–0:45 | Studio Take1 → Review T1·S02; inspect the image/reference and real expected/observed evidence. |
 | 0:45–1:08 | Edit Your note → Reject & remember → returned Memory update → Save to memory. |
 | 1:08–1:28 | Studio Memory: new note0/0 versus original ring18 prompts/18 checks. Show rule reach options without triggering an unplanned paid job. |
 | 1:28–1:45 | Matched A/B:0/6versus0/6; original rates stay separate. Blind accuracy remains blank until human labels exist. |
 | 1:45–2:00 | Buyer/pilot metric, product name and public URL. |
 
-Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed recording duration. The narration is 233 words; speak naturally and shorten if the screen actions need more room.
+Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed recording duration. The narration is 235 words; speak naturally and shorten if the screen actions need more room.
 
 ## Honesty and recording safety
 
@@ -46,4 +46,4 @@ Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed rec
 - The real flagged-only repair test produced a new image that was still monitor-flagged. Demonstrate selective repair and lineage, not guaranteed correction.
 - Do not label model judgments as human truth, show invented metrics, or count automated test submissions as human labels.
 - All eight pages are integrated; use only the current publicly verified release when filming. Use the current handoff for the exact release.
-- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit before the founder-supplied **2:00pm PT** deadline. No external submission is authorized here.
+- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit by the current public **11:00am PDT** cutoff unless an organizer confirms the founder’s **2:00pm PT** extension. No external submission is authorized here.

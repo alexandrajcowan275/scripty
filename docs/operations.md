@@ -26,7 +26,7 @@ Every completed response settles against actual returned token usage and pinned 
 
 Main integrates Design's page commits, runs typecheck/tests/build, pushes to private main, then verifies the production alias resolves to the intended SHA. Preserve the previous ready deployment for immediate rollback. A release check covers landing, Mara Studio, Review, Memory, Evidence, Eval and API. Only repeat paid tests for a concrete changed-flow need. Historical verification receipts identify what was tested at their recorded release; they are not a claim that every later screen was exercised.
 
-Final overnight handoff is6:15am PT. The latest founder-supplied submission deadline is **October17,2026,2:00pm PT**. Earlier official11am listings remain historical sources. No automated submission or public-repository conversion is authorized. Founder must record/upload the final video, arrange judge access to the private repo, supply human blind judgments, and submit.
+Final overnight handoff is6:15am PT. The latest founder-supplied submission deadline is **October17,2026,2:00pm PT**. The official listing was rechecked and still says11:00am PDT; the founder target2pm PT conflicts with it. Confirm an organizer extension or submit by the earlier11am cutoff. No automated submission or public-repository conversion is authorized. Founder must record/upload the final video, arrange judge access to the private repo, supply human blind judgments, and submit.
 
 ## Current verification costs
 

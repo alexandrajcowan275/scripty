@@ -25,7 +25,7 @@ Built with Next.js, TypeScript, Supabase, reference-based image generation, and 
 
 ## Evidence caption
 
-Controlled six-pair test: canon-only A0/6and canon-plus-memory B0/6targeted flagged shots;0/12ring/scar and0/24overall failed checks in each arm. Same scenes/reference/model/settings/fixed checker; no additional measured reduction and human verification pending. All12images are queued first in blind Eval. [Protocol and artifacts](../docs/results.md).
+Controlled six-pair test: canon-only A 0/6 and canon-plus-memory B 0/6 targeted flagged shots; 0/12 ring/scar and 0/24 overall failed checks in each arm. Same scenes/reference/model/settings/fixed checker; no additional measured reduction and human verification pending. All 12 images are queued first in blind Eval. [Protocol and artifacts](../docs/results.md).
 
 24 real images, four six-shot batches: monitor flags **2/6 → 0/6 → 0/6 → 1/6**. Baseline is a disclosed v3 recheck; original checker outputs are retained. Image model, quality, style, and scenes changed; rules also changed monitoring, and batch four added an accepted reference. Uncertain checks were 4/36, 6/42, 8/42, and 6/42. These are operational results, not human-verified accuracy or causal improvement. See [recorded results](results.md). The final rate increased; no batch was discarded.
 
@@ -57,4 +57,4 @@ Scripty. Keep the story straight.
 - Put the evidence caption beside the four-batch chart or in the video caption. No accuracy headline from provisional agent labels.
 - Use the short landing line and quiet workspace labels; technical detail belongs in Evidence.
 - Rehearse and trim the recording to exactly two minutes. Confirm the video and GitHub links are accessible to judges.
-- Rechecked October17: [official Devpost](https://sephacks-2026.devpost.com/) currently lists2pmEDT, which is11amPacific today. Latest founder instruction sets2:00pm PT as the operational deadline; the11am listing above is retained as historical attribution. Requirements: two-minute demo/pitch video, working GitHub and project links.
+- Rechecked October17: [official Devpost](https://sephacks-2026.devpost.com/) currently lists 11:00am PDT, equivalent to 2:00pm EDT today. Latest founder instruction sets 2:00pm PT as the operational deadline; the public listing was rechecked and still says 11am PDT. Confirm the extension or submit by 11am. Requirements: two-minute demo/pitch video, working GitHub and project links.

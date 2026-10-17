@@ -10,7 +10,7 @@ On a film set, the script supervisor tracks the costume, prop and continuity det
 
 Start a production with a character reference, creator-confirmed canon details and one to six scenes. Review each shot against those requirements. A correction becomes one short continuity rule, persisted and deduplicated in Scripty Memory. Future generation prompts receive it; future monitoring checks it. Accepted shots can become positive references.
 
-Mara is a pre-filled sample production with four original takes and24 real images. Its complete learning history opens without waiting for AI calls. Sample edits stay in the viewer's browser; original prompts and traces preserve the real engine history. New productions have separate Supabase state and private reference storage.
+Mara is a pre-filled sample production with four original takes and 24 real images. Its complete learning history opens without waiting for AI calls. Sample edits stay in the viewer's browser; original prompts and traces preserve the real engine history. New productions have separate Supabase state and private reference storage.
 
 ## How we built it
 
@@ -20,11 +20,11 @@ Learning is persistent project memory and prompt adaptation; foundation-model we
 
 ## Evidence and limits
 
-**Controlled A/B:0/6 targeted-attribute flagged shots with canon only,0/6 with canon + learned memory.** The fixed checker found0/12 ring/scar failures and0/24 overall failures in each arm, with no uncertain checks. Adding the learned ring rule produced no additional reduction in this six-pair test; canon-only generation already passed the rubric. These are monitor judgments, pending human blind validation. The run cost an estimated **$0.710364** from returned usage.
+**Controlled A/B: 0/6 targeted-attribute flagged shots with canon only, 0/6 with canon + learned memory.** The fixed checker found 0/12 ring/scar failures and 0/24 overall failures in each arm, with no uncertain checks. Adding the learned ring rule produced no additional reduction in this six-pair test; canon-only generation already passed the rubric. These are monitor judgments, pending human blind validation. The run cost an estimated **$0.710364** from returned usage.
 
-Both arms used identical scenes, reference, model, high quality,1536×1024 size and checker version. Only learned-rule injection into generation changed; the checker used fixed canon-only requirements in both arms. All12study images are queued first for blind human review. [Artifacts](../seed/experiments/ab-test/) / [protocol and results](results.md).
+Both arms used identical scenes, reference, model, high quality, 1536×1024 size and checker version. Only learned-rule injection into generation changed; the checker used fixed canon-only requirements in both arms. All 12 study images are queued first for blind human review. [Artifacts](../seed/experiments/ab-test/) / [protocol and results](results.md).
 
-One ring correction persisted after refresh, merged on repeat, and reached all18 later new-scene generation prompts and monitor outputs. An accepted portrait was an extra reference for the final six shots.
+One ring correction persisted after refresh, merged on repeat, and reached all 18 later new-scene generation prompts and monitor outputs. An accepted portrait was an extra reference for the final six shots.
 
 | Original take | Flagged shots | Uncertain checks |
 | --- | --- | --- |
@@ -33,7 +33,7 @@ One ring correction persisted after refresh, merged on repeat, and reached all18
 | 3 | 0/6 | 8/42 |
 | 4, latest | 1/6 | 6/42 |
 
-These are operational monitor results, **not human-verified accuracy or causal image improvement**. Model, quality, style and scenes changed after take1; later rules changed the monitor and take4 added a positive reference. The final rate worsened and remains visible. Original checker v1/v2 each flagged6/6 before disclosed calibration. The final scar-side flag may itself be a checker error. Human review is pending. Full evidence: `handoff/results.md`.
+These are operational monitor results, **not human-verified accuracy or causal image improvement**. Model, quality, style and scenes changed after take 1; later rules changed the monitor and take 4 added a positive reference. The final rate worsened and remains visible. Original checker v1/v2 each flagged 6/6 before disclosed calibration. The final scar-side flag may itself be a checker error. Human review is pending. Full evidence: `handoff/results.md`.
 
 ## Continual Learning
 

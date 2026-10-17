@@ -132,3 +132,47 @@ README outdated frontend integration paragraph: resolved in rewrite. Clean recor
 
 - **Done — captured still:** public metadata200 and PNG200 exactly match the saved capture; no provider calls.
 - **Skipped/blocked — public Marble viewer:** the actual external link reports permission denied. No sharing change or new generation attempted. Forwarded to Design: keep the real still, mark the external world permission-required, and avoid a broken public-viewer promise. Founder may decide on sharing in the morning.
+
+## Run — 2026-10-17 04:28 AM PT — headline resolved; Evidence disclosure pending
+
+Read current README, ARCHITECTURE status, MORNING, Devpost/pitch copy and hash-linked A/B summary. Confirmed summary.sourceSha256 exactly matches saved result.json. Controlled result remains0/6A vs0/6B; humanVerified=false. README/Devpost/pitch first line now “Every correction carries forward”; earlier unsupported less-drift opener is RESOLVED. Clean-recording/session distinction is now explicit in MORNING. No new efficacy or business result.
+
+Public GETconfig authorized:true; only GET navigation used, no paid actions/review submissions/human labels or cookie changes. Evidence renders real original four takes and18reach plus noncausal caveat; completed controlled-study sentence still absent in this inspected release. This is the previously forwarded item, not a new regression; Design is finishing Evidence/Eval/API per current handoff. Current plan retains real A/B0vs0and never promises a better image. No extra screenshot or repeated model testing. Studio/Review/Eval/API craftsmanship from preceding release review remains the basis of design score; those unchanged screens were not fully retested this run.
+
+| Inferred judge lens | Functionality | Continual Learning | Pitch | Design | First impression this checkpoint | Vote for / against |
+|---|---:|---:|---:|---:|---|---|
+| Kaushal Patel | 8 | 6 | 8 | 8 | “The repo now leads with a claim the experiment can support.” | For transparent flat study; against implying extra measured reduction. |
+| Michelle Liu | 8 | 6 | 8 | 9 | “Keep the quiet image-led flow and a clean recording session.” | For craft/real contact sheet; against QA-note clutter during the demo. |
+| ShiaoFong Yin | 8 | 6 | 7 | 8 | “The buyer hypothesis is clear; the paid pilot is still next.” | For scoped production workflow; against unvalidated unit-economics or moat assertions. |
+| Jerry Zhang | 8 | 7 | 8 | 8 | “An inspectable action loop matters more than a guaranteed repair slogan.” | For preserved traces and failed repair; against equating returned images with semantic success. |
+
+All reactions are rehearsal inferences, not the people’s words or actual scores. No new recommendation this run. Previous Evidence-copy request remains open/forwarded; no duplicate request sent. Human labels/video/repo-access readiness remain founder tasks. Final prep will use flat controlled numbers, not the older confounded series as causal evidence.
+
+### Public landing verification
+
+- **Done — real entry/imagery:**9visible landing images loaded, Watch it on Mara/Open studio point to the real first take, and public OG bytes match the supplied cover exactly.
+- **Forwarded P2 — hero status semantics:** accessibility text contains both “CHECKING” and “FLAGGED” for an already stored final result. Asked Design to use a completed-state label or hide the outgoing animation label from accessibility while retaining its motion. No new UI panel or live-call claim requested.
+
+### Current deadline verification
+
+- **Done — primary-source check:** official Devpost currently displays October17,11:00am PDT, conflicting with the founder's2pm PT target. Recorded both with attribution in MORNING/operations/pitch; no extension claimed without confirmation. Recommended earlier submission unless the founder has organizer confirmation. No registration/submission or external message was performed; Main still finalizes the overnight handoff at6:15am.
+
+## Run — 2026-10-17 05:08 AM PT — both controlled-result copy requests resolved
+
+Read current MORNING/README/ARCHITECTURE/results and public GETconfig (authorized:true; no mutations). Live Evidence now shows24real shots/four takes,18/18rule reach,1merge and checker accuracy—. Its actual footer says “Matched test:0/6flags in both arms. Human review pending.” This RESOLVES the last controlled-result disclosure request. Historical series remains33→0→0→17and explicit noncausal qualifier. README/Devpost/pitch opener remains supported memory carry-forward wording. No fake or unsupported metric observed. No new screenshot was needed; prior Claude craft comparison remains valid for the unchanged contact-sheet/review language. Other path segments were not fully repeated: no review mutation allowed in this shared paid session, and existing UI/API verification supports their operation.
+
+| Inferred judge | Functionality | Continual Learning | Pitch | Design | Rehearsal first impression | Vote for / against |
+|---|---:|---:|---:|---:|---|---|
+| Kaushal Patel | 8 | 6 | 8 | 8 | “The flat controlled answer is now visible in the product.” | For test transparency; against interpreting0vs0as an efficacy win. |
+| Michelle Liu | 8 | 6 | 8 | 9 | “The evidence stays quiet while preserving the creative contact sheet.” | For crafted hierarchy; against clutter or unrelated test notes during recording. |
+| ShiaoFong Yin | 8 | 6 | 7 | 8 | “A usable buyer workflow needs a paid pilot next.” | For specific production buyer; against unvalidated pricing/savings/TAM claims. |
+| Jerry Zhang | 8 | 7 | 8 | 8 | “Feedback reaches prompts and checks; semantic success still needs validation.” | For traceable actions and preserved failed repair; against claiming a successful visual fix from request completion. |
+
+These are inferred scores/voices, not actual judges’ opinions. No score changes or new recommendations. Prior visible-exit, qualified-headline, README status, unsupported slogan and controlled-result disclosure findings are all resolved. Human verification, final video and judge repository access remain morning actions. Official11amlisting vs founder2pm target remains explicit in MORNING; no confirmed extension inferred. Final prep due first scheduled run>=6:15; Main owns exact6:15handoff.
+
+## Main release decisions — 5:11am PT
+
+- **Done:** integrated Design’s bounded recovery and empty-state fixes (c4c69d9; 74 tests and production build pass). Failed reads no longer resemble a first take or completed human evaluation. No paid behavior changed.
+- **Done:** all eight supplied-design pages, real API receipt, controlled A/B disclosure and the honest private-world location card are integrated. Both current judge copy findings are closed.
+- **Done:** polished judge-facing result captions and recorded the primary-source deadline discrepancy. The public listing still says 11am PDT; no extension is claimed.
+- **Skipped:** further image generation, broad research or feature expansion. Existing real loop/A-B receipts suffice; human labels and final video are founder actions.

@@ -1,6 +1,6 @@
 # Scripty: Codex task prompts
 
-**Current execution target (founder update, October17):** finalize handoff at6:15am PT; submission deadline2:00pm PT. Main coordinates backend/repo/docs/deploys; Design owns the application UI. Original task phases below are retained as process history. Do not submit externally without direct user authorization.
+**Current execution target (founder update, October17):** finalize handoff at6:15am PT; founder target2:00pm PT. The current public listing still says11am PDT; confirm extension or submit by11am (see MORNING.md). Main coordinates backend/repo/docs/deploys; Design owns the application UI. Original task phases below are retained as process history. Do not submit externally without direct user authorization.
 
 MVP proof: a real creator correction on one shot survives refresh, becomes one deduplicated rule, and appears in generation and monitoring of a different new scene. Keep the baseline intact. Operational monitor flags alone do not prove improvement; report fixed-criteria, human-reviewed results with sample counts, or clearly label draft evidence. Defer video, multiple characters, accounts, collaboration, billing, and extra providers.
 

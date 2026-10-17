@@ -1,3 +1,31 @@
+# Current verdict — 2026-10-17 05:08 AM PT
+
+All panel-requested small UI/copy fixes are publicly resolved. Live Evidence now explicitly shows the matched0/6vs0/6result with human review pending. No measured extra drift reduction or verified checker accuracy is established. Scores remain unchanged; no new recommendation. Human anatomy verification, final video and judge repository access are the remaining high-impact morning tasks. Full named-panel trend and source boundaries: judge-log.md.
+
+---
+
+# Current review update — 2026-10-17 04:28 AM PT
+
+Unsupported README/Devpost/pitch opener is resolved: “Every correction carries forward.” A/B summary source hash matches the completed artifact. Public Evidence still shows only historical four-take results; the short controlled0/6vs0/6 disclosure remains with Design. No new recommendation or score change. Human validation and causal improvement remain unverified. See judge-log.md for the current trend and inferred reactions.
+
+---
+
+# Current controlled-study checkpoint
+
+Verified 2026-10-17 03:48 AM PT: completed six-pair A/B shows **canon-only0/6 versus memory0/6 targeted flagged shots**,0/12targeted failures per arm,0/24overall failures per arm,0unclear. Human validation remains pending. This supersedes earlier statements that no controlled A/B exists; it does not establish image improvement. Actual prompts/rule IDs/settings and24settled receipts checked. See judge-log.md for scores, assumptions and two latest recommendations: qualify README’s less-drift promise and surface flat controlled result in live Evidence. Prior Review-exit/flag-wording findings remain resolved.
+
+---
+
+# Current checkpoint — October 17, 2026, about 2:00 a.m. Pacific
+
+**Both prior actionable UI findings are resolved in the public app.** The batch headline reads “1 of6 shots flagged.” A pending shot opens Review with visible Back to shots; clicking Back returned to the same pending shot and restored focus without a decision. No review was saved.
+
+The public Review also has a labeled400-character Continuity note field and explains it saves only on rejection. I did not type/save or test persistence under the read-only restriction; Main’s recorded tests support custom-note persistence/deduplication. Productions navigation opens the owned-production list; this reviewer browser correctly shows “No productions yet.” No owned production was created.
+
+No new material UI defect found. Existing light-v3 scorecard below remains unchanged; new notes did not establish causal image improvement or human-verified labels. Current remaining priorities are human verification of the demo defect, final video and judge repository access before11amPT. Public paid generation remains off; no paid calls, writes to application data, code or other files were made.
+
+---
+
 # Current verdict — public light-v3 Scripty
 
 Reviewed October 17, 2026, about 12:25 a.m. Pacific. Public https://canon-woad.vercel.app/ opened without Vercel login. This supersedes the earlier dark-dashboard checkpoint. Four simulated perspectives only, not actual judges’ opinions. No paid calls or application/data changes; only this report is updated.
@@ -24,12 +52,10 @@ Reviewed October 17, 2026, about 12:25 a.m. Pacific. Public https://canon-woad.v
 
 Pitch scores assess written copy and observed product story, not final video/delivery. Continual Learning scores remain6 because presentation changes do not establish new learning efficacy.
 
-## Highest-impact remaining fixes — at most five
+## Highest-impact remaining fixes
 
-1. **Provide a visible noncommittal exit from single-shot Review.** Observed view exposes only Reject & remember / Looks right. Acceptance: Back to shots/Close returns to the same take and selection without writing a review; keyboard return remains available. Avoid forcing a creator to approve/reject just to navigate.
-2. **Use monitor-qualified batch language.** “1 of6 shots drifted” asserts visual truth despite known laterality uncertainty. Acceptance: headline such as “1 of6 shots flagged for review,” keeping per-shot “seems” wording; avoid implying every unflagged/uncertain shot is correct. Progress already handles this honestly.
-3. **Have the human confirm the actual pitch defect, then preserve the confidence limit.** The shown locker/profile flag may itself be wrong and the original close-up ring finding is disputed. Acceptance: founder inspects the exact reference/shot in full frame, selects a confirmed/unclear label, and chooses only a confirmed defect for the two-minute story. If ambiguous, demonstrate rule persistence/propagation rather than claiming visual repair. No automatic promotion of DRAFT labels or draft100% scores.
-4. **Finish submission artifacts/access and reconcile the deadline note.** MORNING.md records no uploaded final video and a private repo; pitch-final.md still warns of conflicting11am/1:15pm schedules. Acceptance: human confirms organizer/Devpost cutoff, verifies the final two-minute video URL and judge repository access, and uses the public canonical app URL. Do not change repo visibility or submit from this audit.
+1. **Human verification of the exact pitch defect.** Founder should inspect the exact reference and candidate shot at full frame and choose confirmed/unclear. If ambiguous, demonstrate saved memory and prompt/check transfer rather than visual repair. DRAFT labels remain excluded from verified accuracy; no new paid study is required.
+2. **Submission readiness.** Verify final uploaded two-minute video and private-repository judge access before the conservative official11amPT cutoff. No final uploaded video is documented in MORNING.md. This reviewer will not change access or submit.
 
 ## Boundaries
 

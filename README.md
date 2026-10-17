@@ -14,7 +14,7 @@ An image generator can return success while a character's ring changes hands or 
 
 ## Try it in 30 seconds
 
-Open **Sample production: Mara** for24real images, four takes and the full saved learning history. Review a shot with its reference, edit a rejection note, and watch the constraint become Scripty Memory. **Start a new production** adds your own reference, confirmed canon and scenes; authorized live actions generate, check, learn and regenerate.
+Open **Sample production: Mara** for 24 real images, four takes and the full saved learning history. Review a shot with its reference, edit a rejection note, and watch the constraint become Scripty Memory. **Start a new production** adds your own reference, confirmed canon and scenes; authorized live actions generate, check, learn and regenerate.
 
 ## How it works
 
@@ -40,7 +40,7 @@ Each creator correction becomes persistent, inspectable production memory. The s
 
 ## Results
 
-**Controlled A/B:0/6 targeted-attribute flagged shots with canon only,0/6 with canon + learned memory.** The fixed checker found0/12 ring/scar failures and0/24 overall failures in each arm, with no uncertain checks. Adding the learned ring rule produced no additional reduction in this six-pair test; canon-only generation already passed the rubric. These are monitor judgments, pending human blind validation. The run cost an estimated **$0.710364** from returned usage.
+**Controlled A/B: 0/6 targeted-attribute flagged shots with canon only, 0/6 with canon + learned memory.** The fixed checker found 0/12 ring/scar failures and 0/24 overall failures in each arm, with no uncertain checks. Adding the learned ring rule produced no additional reduction in this six-pair test; canon-only generation already passed the rubric. These are monitor judgments, pending human blind validation. The run cost an estimated **$0.710364** from returned usage.
 
 The original production history remains available:
 
@@ -65,7 +65,7 @@ The original production history remains available:
 | Structured continuity monitor | OpenAI GPT-5.4 mini + Zod |
 | Rule extraction and deduplication | GPT-4.1 mini + transactional memory writes |
 | Deployment and checks | Vercel + GitHub Actions |
-| Optional location experiment | World Labs Marble; reviewed still + external world |
+| Optional location experiment | World Labs Marble; captured still + private Marble world |
 
 ## API and architecture
 

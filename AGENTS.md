@@ -25,7 +25,7 @@ Scripty sits in front of any image or video generator and does three things:
 6. Generate different new scenes with the learned rule, compare against the same fixed character criteria, and inspect the applied-rule trace. The **Learning curve** shows the actual flagged rate per batch; the **Trace log** shows checks, rules, and failures. Never deliberately weaken the baseline or promise a falling curve. Human-reviewed labels on new scenes are needed to establish improvement; operational flagged rates alone are insufficient because learned rules also change the monitor.
 
 ## 3. Hard constraints
-- Submission timing: latest founder-supplied deadline is October17,2026 **2:00pm PT**, with final handoff at **6:15am PT**. Earlier public listings are historical and superseded for this execution plan. Do not submit externally without explicit user authorization.
+- Submission timing: latest founder-supplied deadline is October17,2026 **2:00pm PT**, with final handoff at **6:15am PT**. The current public Devpost listing still says11:00am PDT; confirm an extension or submit by that earlier cutoff. Do not submit externally without explicit user authorization.
 - Must deploy on **Vercel** with a public URL. Must work in a desktop browser at 1440px and stay usable at 390px.
 - No GPU hosting. APIs only. Keep the total API budget under $25.
 - **Never commit secrets.** Read keys from env vars only. Keep `.env.example` up to date.

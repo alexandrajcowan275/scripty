@@ -1,3 +1,43 @@
+# Scheduled GET-only QA — 2026-10-17 03:36 AM Pacific
+
+**Public changed views PASS; one P2 offline-dependency finding for Main.** Latest READY production metadata: `dpl_HovCGmcqkDuo3Z1tvm4NXWPNTUov` /bdca71c8d300e26d32c2736d00d7b66d370d4402. Local head241f899 was inspected only as source context. Strict GET-only browser navigation; no reviews, batch/recheck/fix/generate/canon/reference actions, new?start=1, labels, cookie manipulation/logout, data deletion, paid calls or app edits. Only this report updated.
+
+## Changed public views
+
+- Landing loads and links to sample Studio. Sample Studio shows original takes33%,0%,0%,17%, six actual baseline frames, recorded rule reach18prompts/18checks and existing browser-local notes. No action submitted.
+- Review navigation opens the correct original ring-flagged frame with expected/observed details, model confidence, editable note and visible Studio exit. Paid fix/review buttons were observed only; not invoked because shared browser is authorized.
+- Evidence shows33→0→0→17 original monitor flags,18rule reach, one confirmed merge, checker accuracy dash/Needs your labels and explicit changing-scene/checker causal-limit caveat.
+- Blind Eval shows Question1of210, silver-ring question, MONITOR VERDICT HIDDEN, generic image description and no current A/B condition, prediction or confidence. Accuracy remains dash until20judgments. No human labels submitted. First48study questions are Main's reported queue contract; only the first visible card was independently inspected to avoid labels or unnecessary traversal.
+- Eval has no horizontal overflow at the existing viewport; all6loaded HTML images are complete, zero captured browser warning/error. No new screenshots/full tests/full secret scan or24image downloads.
+
+## P2 — blind Eval study images still require external Storage
+
+On public `/p/mara/eval`,3HTML images load from `ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/...`; one is the visible independent-judgment shot and two have empty alt text. They load successfully online, so this is not a current public outage. However, that page cannot be certified offline-from-external-storage: a fresh no-internet local Eval session would need those images already cached by the browser.
+
+Repository has the12raster copies under `seed/experiments/ab-test/`. `lib/blind-study.ts` passes each result.json `shot.imageUrl` directly into blindQuestions rather than mapping study images to a bundled same-origin route. Main should either serve those local assets for the offline Eval path or explicitly scope offline readiness to the original24-shot sample. QA makes no fix. Do not count this as an AI/provider call or claim the original24-shot cache is broken.
+
+## Continuing limits
+
+Main's prior backend/live-loop/A-B receipts are not new QA paid tests. Original take history is unchanged; A0/6vsB0/6does not show additional reduction and human verification remains pending. Existing90-minute GET-only monitor continues to final6:15amPT, then pauses. Founder latest2pmPT submission is Main/user responsibility. Report only actionable changes or final readiness.
+
+## Historical findings below
+
+# Scheduled QA — October17,2026 1:59a.m. Pacific
+
+**PASS for restored custom correction and saved-production navigation; no new actionable issue.** Production READY `dpl_7DheyafGaeZejQNh9rZMLvWwUgyA`, source6c58d50 (documentation/evidence on applicatione881d86). This records the post1am QA checkpoint; prior Main checkpoint evidence remains in MORNING.md. Report-only90-minute monitor continues through7amPT.
+
+## Focused changed-boundary check
+
+- Public landing exposes Your productions. Following it opens `/productions`, completes loading and shows this browser's No productions yet state with Start a new production. Landing return, sample entry and workspace Productions link work. No new production/live database record created.
+- Latest Mara Take4 opens with the qualified1of6 flagged headline. Review of the recorded locker shot exposes Continuity note with maxlength400. Blank text disables Reject & remember. Typing the literal A/R inside the field leaves the review open without triggering accept/reject shortcuts.
+- Entered `QA replay: Keep Mara's scarf knot loose. A/R`. Rejection confirmation preserves exact intent as `Creator correction: QA replay: Keep Mara's scarf knot loose. A/R`, rather than substituting character-sheet text. Refresh preserves the exact note in Memory.
+- Repeated the identical rejection on the same sample shot: exactly one matching Memory entry remains. No captured browser warning/error; no crash/blank view.
+- All review writes were browser-local sample cookies, not live Supabase production edits. No paid/provider/generation requests, data deletions, purchases, code/assets/git/deployment/protection changes. Only this report updated.
+
+Owned production isolation, uploaded-reference persistence and saved-capacity Open your production path were not independently live-tested because those scenarios require live records; Main's evidence remains separately attributed. No repeated screenshots, full test suite, historical secret scan or24image downloads; cache was unchanged. Earlier full replay/mobile/failure/no-egress evidence below remains dated, not claimed as newly repeated. Human accuracy/causal improvement remains unverified.
+
+## Historical findings below
+
 ## Scheduled checkpoint — October17,2026 12:26a.m. Pacific
 
 **PASS, no new actionable issue.** READY production `dpl_9pok1QeiDp9RfZvQeKzrsfcafMUt` / e854bc92a279fc2c7e579bbf07edc6656cce24d3. Since the prior9edc16a browser check, application changes are capacity/error-copy cleanup in batch/project routes; all other changes are documentation/evidence. Cached assets and interface components are unchanged.
