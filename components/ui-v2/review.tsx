@@ -1,24 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Shot } from "@/lib/types";
 import { ScreenSkeleton } from "../ui/skeleton";
 import { InspectImage, CheckList } from "../ui/inspection";
 import { SharedShotImage } from "../ui/shot-card";
-import { LearnedRuleCard } from "../ui/rule-card";
+import { MemoryUpdate } from "../ui/memory-update";
 import { ShotImage } from "../shot-image";
 import { AccessDialog, ErrorNotice, Kbd } from "../ui/chrome";
-import {
-  Ambient,
-  Brackets,
-  MotionLink,
-  Scan,
-  useMotionNavigation,
-} from "../ui/motion";
+import { Ambient, MotionLink, useMotionNavigation } from "../ui/motion";
 import {
   allShots,
   checkLabel,
-  confidence,
   currentShot,
   failedCheck,
   frameName,
@@ -26,13 +19,9 @@ import {
   operationIssue,
   money,
   reviewReason,
-  sharedShot,
   shotsFor,
   sortedBatches,
   unclear,
-  type Check,
-  type ProductionData,
-  type ReviewReceipt,
 } from "./data";
 import { useProduction } from "./provider";
 import { useConfiguration } from "./config";
@@ -452,217 +441,5 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
         }}
       />
     </div>
-  );
-}
-function MemoryUpdate({
-  open,
-  receipt,
-  shot,
-  data,
-  merged,
-  onClose,
-  onNext,
-  onSave,
-}: {
-  open: boolean;
-  receipt: ReviewReceipt;
-  shot: Shot;
-  data: ProductionData;
-  merged: boolean;
-  onClose: () => void;
-  onNext: () => void;
-  onSave: () => void;
-}) {
-  const dialog = useRef<HTMLDialogElement>(null),
-    { run, busy } = useProduction(),
-    { config, refreshConfig } = useConfiguration();
-  const [recheck, setRecheck] = useState(false),
-    [fix, setFix] = useState(false),
-    [error, setError] = useState(""),
-    [access, setAccess] = useState(false);
-  const rule = receipt.newRule!;
-  useEffect(() => {
-    if (open && !dialog.current?.open) dialog.current?.showModal();
-    if (!open) dialog.current?.close();
-  }, [open]);
-  async function save() {
-    if ((recheck || fix) && !config?.authorized) {
-      setAccess(true);
-      return;
-    }
-    setError("");
-    try {
-      let targets = data.shots
-        .filter((s) => currentShot(s, data).flagged)
-        .map((s) => s.id);
-      if (recheck) {
-        const result = (await run("recheck", { ruleIds: [rule.id] })) as {
-          results?: { shotId?: string; flagged?: boolean }[];
-          failed?: number;
-        };
-        if (result.failed)
-          throw new Error(
-            `${result.failed} checks could not finish. Your rule is saved; try again.`,
-          );
-        if (result.results)
-          targets = result.results
-            .filter((r) => r.flagged && r.shotId)
-            .map((r) => r.shotId!);
-      }
-      if (fix && targets.length) {
-        const fixed = await run("fix", { shotIds: targets });
-        if (operationIssue(fixed)) throw new Error(operationIssue(fixed));
-      }
-      onSave();
-    } catch (e) {
-      setError(message(e));
-    }
-  }
-  const next = data.shots.some(
-      (s) =>
-        currentShot(s, data).flagged &&
-        s.status === "pending" &&
-        s.id !== shot.id,
-    ),
-    flagged = data.shots.filter((s) => currentShot(s, data).flagged).length;
-  return (
-    <>
-      <dialog
-        ref={dialog}
-        className="v2-memory-sheet v2-glass"
-        aria-labelledby="memory-update-title"
-        onCancel={onClose}
-        onClose={onClose}
-      >
-        <div className="v2-memory-sheet-heading">
-          <h2 id="memory-update-title" className="v2-label">
-            Memory update · from your note on {frameName(shot, data)}
-          </h2>
-          <button
-            className="v2-close"
-            onClick={onClose}
-            aria-label="Close memory update"
-          >
-            ×
-          </button>
-        </div>
-        <LearnedRuleCard rule={rule} shot={shot} merged={merged} />
-        {receipt.provenance === "cached_local_rule" && (
-          <p className="v2-muted">
-            Creator note saved in this browser. Original takes stay unchanged.
-          </p>
-        )}
-        {receipt.warning &&
-          /unavailable|failed|could not|error|retry/i.test(receipt.warning) && (
-            <ErrorNotice>{receipt.warning}</ErrorNotice>
-          )}
-        <fieldset className="v2-rule-reach">
-          <legend className="v2-label">Apply this rule to</legend>
-          <label className="v2-reach-option on">
-            <input
-              type="checkbox"
-              checked
-              readOnly
-              aria-label="Every future take: saved"
-            />
-            <span>
-              <strong>Every future take</strong>
-              <span>
-                Saved for future prompts and checks. Nothing regenerates now.
-              </span>
-            </span>
-            <span className="v2-mono">saved</span>
-          </label>
-          <label className={`v2-reach-option ${recheck ? "on" : ""}`}>
-            <input
-              type="checkbox"
-              checked={recheck}
-              onChange={(e) => setRecheck(e.target.checked)}
-            />
-            <span>
-              <strong>
-                Re-check the {data.shots.length} shots you already have
-              </strong>
-              <span>Checks your existing images. No new generation.</span>
-            </span>
-            <span className="v2-mono">—</span>
-          </label>
-          <label className={`v2-reach-option ${fix ? "on" : ""}`}>
-            <input
-              type="checkbox"
-              checked={fix}
-              disabled={!flagged}
-              onChange={(e) => setFix(e.target.checked)}
-            />
-            <span>
-              <strong>Fix shots that break it</strong>
-              <span>Generates only flagged shots. Keeps the originals.</span>
-            </span>
-            <span className="v2-mono">
-              {flagged} shots ·{" "}
-              {money(
-                config?.observedImageCostUsd == null
-                  ? null
-                  : config.observedImageCostUsd * flagged,
-              )}
-            </span>
-          </label>
-        </fieldset>
-        <div className="v2-memory-diffs">
-          <div>
-            <span>// next prompt · preview</span>
-            <pre>
-              ACTIVE CANON CONSTRAINTS:{"\n"}
-              {data.rules
-                .filter((r) => r.id !== rule.id)
-                .map((r) => `- ${r.text}`)
-                .join("\n")}
-              {"\n"}
-              <mark>+ {rule.text}</mark>
-            </pre>
-          </div>
-          <div>
-            <span>// next check · preview</span>
-            <pre>
-              {JSON.stringify(
-                { key: `rule:${rule.id}`, expected: rule.text },
-                null,
-                2,
-              )}
-            </pre>
-          </div>
-        </div>
-        {error && <ErrorNotice>{error}</ErrorNotice>}
-        <footer>
-          <span>
-            Memory: <strong>{data.rules.length} rules</strong> ·{" "}
-            {data.rules.filter((r) => r.source !== "seed").length} learned
-          </span>
-          <div>
-            <button
-              className="v2-button v2-light"
-              disabled={!next || !!busy}
-              onClick={onNext}
-            >
-              Next flagged shot
-            </button>
-            <button
-              className="v2-button"
-              disabled={!!busy}
-              onClick={() => void save()}
-            >
-              {busy ? "Applying…" : "Save to memory"}
-            </button>
-          </div>
-        </footer>
-      </dialog>
-      <AccessDialog
-        open={access}
-        onClose={() => setAccess(false)}
-        onGranted={() => {
-          void refreshConfig();
-        }}
-      />
-    </>
   );
 }
