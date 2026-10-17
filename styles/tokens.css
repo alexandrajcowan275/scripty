@@ -90,4 +90,17 @@
   --space-48: 48px;
   --space-64: 64px;
   --space-96: 96px;
+  --studio-canvas: #f3f5f6;
+  --studio-ink-soft: #5e6972;
+  --studio-haze: rgba(175, 196, 213, 0.48);
+  --studio-haze-soft: rgba(217, 227, 235, 0.65);
+  --studio-chart-fill: rgba(151, 176, 196, 0.32);
+  --chrome-edge: rgba(255, 255, 255, 0.95);
+  --chrome-lowlight: rgba(104, 125, 140, 0.12);
+  --chrome-sheen: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(224, 232, 238, 0.3) 42%,
+    rgba(255, 255, 255, 0.7) 72%
+  );
 }

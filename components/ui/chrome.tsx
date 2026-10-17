@@ -5,9 +5,15 @@ import { ShotImage } from "../shot-image";
 import { MotionLink } from "./motion";
 import { message, post, type ProductionData } from "../ui-v2/data";
 
-export function Brand({ api = false }: { api?: boolean }) {
+export function Brand({
+  api = false,
+  href = "/dashboard",
+}: {
+  api?: boolean;
+  href?: string;
+}) {
   return (
-    <MotionLink href="/" className="v2-brand">
+    <MotionLink href={href} className="v2-brand">
       <img src="/brand/scripty.svg" width="28" height="28" alt="" />
       scripty{api && <span>api</span>}
     </MotionLink>
@@ -52,7 +58,7 @@ export function Nav({
           </button>
           {menu && (
             <div className="v2-switch-menu v2-glass">
-              <MotionLink href="/projects">Your productions</MotionLink>
+              <MotionLink href="/dashboard">Your productions</MotionLink>
               <MotionLink href="/p/mara" onNavigate={() => setMenu(false)}>
                 Mara · sample
               </MotionLink>
