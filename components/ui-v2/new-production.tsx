@@ -249,6 +249,7 @@ export function NewProductionScreen() {
         </MotionLink>
       </header>
       <main className="v2-setup-wrap">
+        <h2 className="v2-section-title">Start with the canon.</h2>
         <label className="sr-only" htmlFor="production-title">
           Production name
         </label>
@@ -258,7 +259,7 @@ export function NewProductionScreen() {
           value={name}
           maxLength={100}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Your next production"
+          placeholder="Production name"
         />
         <p className="v2-muted">
           Drop a reference. Confirm what must stay the same.

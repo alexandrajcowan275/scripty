@@ -58,10 +58,6 @@ export function EvidenceScreen() {
     studyA.flaggedShots === studyB.flaggedShots && studyA.shots === studyB.shots
       ? `${studyA.flaggedShots}/${studyA.shots} flags in both arms`
       : `${studyA.flaggedShots}/${studyA.shots} vs ${studyB.flaggedShots}/${studyB.shots} flags`;
-  const merged = data?.traces.filter(
-    (t) =>
-      t.type === "rule_learned" && /merged|merge=true|reused/i.test(t.message),
-  ).length;
   return (
     <div className="v2-screen v2-workspace v2-evidence">
       <Ambient />
@@ -71,7 +67,7 @@ export function EvidenceScreen() {
         productionName={data?.project.name}
       />
       <main className="v2-detail-wrap">
-        <p className="v2-muted">Original shots. Real checks.</p>
+        <h2 className="v2-section-title">Evidence</h2>
         {error && (
           <ErrorNotice
             retry={() => {
@@ -82,39 +78,6 @@ export function EvidenceScreen() {
           </ErrorNotice>
         )}
         <div className="v2-stats">
-          <Stat
-            label="Monitor flags"
-            value={
-              batches.length
-                ? batches.map((batch, index) => {
-                    const shots = shotsFor(data, batch.id),
-                      measured =
-                        shots.length &&
-                        shots.every((s) =>
-                          s.checks.some((c) => c.confidence > 0),
-                        );
-                    return (
-                      <span key={batch.id}>
-                        {index > 0 && <span className="v2-stat-arrow">→</span>}
-                        <span
-                          className={batch.driftRate > 0 ? "v2-drift-text" : ""}
-                        >
-                          <CountUp
-                            value={
-                              measured
-                                ? Math.round(batch.driftRate * 100)
-                                : null
-                            }
-                          />
-                        </span>
-                      </span>
-                    );
-                  })
-                : "—"
-            }
-          >
-            % flagged per original take
-          </Stat>
           <Stat
             label="Rule reach"
             memory
@@ -133,23 +96,42 @@ export function EvidenceScreen() {
             Later prompts + checks carrying it
           </Stat>
           <Stat
-            label="Merged, not duplicated"
-            value={<CountUp value={merged ?? null} />}
+            label="Shots checked"
+            value={<CountUp value={data?.shots.length ?? null} />}
           >
-            Confirmed merge events
+            {data
+              ? data.shots.reduce(
+                  (total, shot) => total + shot.checks.length,
+                  0,
+                )
+              : "—"}{" "}
+            attribute checks
           </Stat>
           <Stat
-            label="Checker accuracy"
+            label="Blind labels"
             value={
-              metricsVisible(evaluation) ? percent(evaluation?.accuracy) : "—"
+              metricsVisible(evaluation) && evaluation
+                ? `${evaluation.confusionMatrix.truePositives + evaluation.confusionMatrix.trueNegatives} / ${evaluation.evaluatedLabels}`
+                : "—"
             }
           >
             <MotionLink href={`/p/${id}/eval`} kind="eval">
-              Needs your labels →
+              Agreement with saved labels →
             </MotionLink>
           </Stat>
+          <Stat
+            label="Matched A/B flags"
+            value={
+              id === "mara" && matchedStudy.status === "completed"
+                ? `${studyA.flaggedShots} vs ${studyB.flaggedShots}`
+                : "—"
+            }
+          >
+            {id === "mara" && matchedStudy.status === "completed"
+              ? `${studyA.shots} / ${studyB.shots} shots · ${matchedStudy.humanVerified ? "human reviewed" : "human review pending"}`
+              : "No matched run"}
+          </Stat>
         </div>
-        {data && id === "mara" && <ProductionDriftChart data={data} />}
         {loading ? (
           <div
             className="v2-skeleton v2-evidence-skeleton"
@@ -251,8 +233,7 @@ export function EvidenceScreen() {
               );
             })}
             <p className="v2-evidence-caveat">
-              Memory carry-forward is visible here. Changing scenes and checker
-              settings prevent a causal improvement claim.
+              Scene and checker changes prevent a causal improvement claim.
               {id === "mara" && matchedStudy.status === "completed" && (
                 <span className="v2-matched-note">
                   Matched test: {matchedRead}.{" "}
@@ -273,6 +254,12 @@ export function EvidenceScreen() {
               </MotionLink>
             </section>
           )
+        )}
+        {data && id === "mara" && (
+          <details className="v2-evidence-chart">
+            <summary>Drift rate by take</summary>
+            <ProductionDriftChart data={data} />
+          </details>
         )}
       </main>
     </div>

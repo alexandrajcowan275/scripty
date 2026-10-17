@@ -28,7 +28,7 @@ function ApiContent() {
       <Ambient />
       <AppPageHeader title="API" productionName={data?.project.name} />
       <main className="v2-detail-wrap v2-api-wrap">
-        <p className="v2-muted">Same canon. Every prompt and check.</p>
+        <h2 className="v2-section-title">API</h2>
         {error && (
           <ErrorNotice
             retry={() => {
@@ -82,9 +82,7 @@ function ApiContent() {
               </button>
             </div>
             <CodeBlock code={code} />
-            <p className="v2-muted">
-              Live generation uses your production. Mara stays a sample.
-            </p>
+
             {copyError && <ErrorNotice>{copyError}</ErrorNotice>}
             <div className="v2-endpoints">
               {[
