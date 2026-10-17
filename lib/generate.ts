@@ -4,6 +4,7 @@ import {
   emptyUsage,
   reserve,
   safeError,
+  settleUsage,
   type Usage,
 } from "./engine-ai";
 import { imageConfiguration, IMAGE_ATTEMPT_RESERVATION } from "./engine-config";
@@ -147,6 +148,7 @@ export async function generateImage(
           input.deadline,
         );
         const data = await response.json();
+        await settleUsage(usage, model, data.usage);
         base64 = data.data?.[0]?.b64_json;
         usage.inputTokens += data.usage?.input_tokens ?? 0;
         usage.outputTokens += data.usage?.output_tokens ?? 0;

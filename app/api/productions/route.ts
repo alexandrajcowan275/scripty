@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     } else if (bytes && mime)
       referencePath = await uploadReference(bytes, id, mime);
     else {
-      requireGenerationCapacity();
+      requireGenerationCapacity(false, request);
       const budget = await getApiBudget();
       if (budget.remainingUsd < 1.5)
         throw new HttpError(referenceLimitMessage, 429);

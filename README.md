@@ -4,30 +4,72 @@
 cd ~/canon && npm run dev
 ```
 
-Open **http://localhost:3000**. This exact startup command was browser-verified on the founder’s Mac. Public app: [Scripty](https://canon-woad.vercel.app/). Current release and verification: [morning handoff](handoff/MORNING.md).
+Open **http://localhost:3000**. Public app: [Scripty](https://canon-woad.vercel.app/). [Current release and two-minute walkthrough](handoff/MORNING.md).
 
 **Your AI script supervisor. Every correction carries forward.**
 
-On a film set, the scripty keeps continuity between shots. Scripty brings that production memory to AI filmmaking: review a shot, save a correction, and carry the rule into future generation and monitoring.
+In 30 seconds: an image generator can return success while a costume, prop or scar changes. Scripty checks each shot against a character reference and production canon. A creator edits a rejection note; Scripty extracts and deduplicates a rule, remembers it, and adds it to later image prompts **and** vision checks. Re-check an existing shot without generating an image, or regenerate only the shots the monitor flags.
 
-## Two ways in
+## Try it
 
-**Start a new production.** Name the production and character, upload a private reference image or explicitly request reference creation, add canon details, and choose six scene prompts. Production data, checks, corrections and memory belong to that production in Supabase. Access is tied to a signed, HttpOnly browser cookie; accounts and cross-device recovery are outside this release.
+- **Sample production: Mara** opens four original takes and 24 real images with prompts, checks, memory and traces. It needs no AI call. New sample notes belong to your browser; they do not rewrite the original experiment.
+- **Start a new production** saves a private character reference, creator-confirmed canon and scenes in Supabase. A vision call can propose canon; anatomical left/right needs human confirmation. Live actions require the production access code.
+- **Blind evaluation** saves human yes/no/unclear judgments before revealing the model verdict. The evaluation API uses only those human submissions, never agent-written seed drafts. Accuracy remains unverified until people actually label images.
 
-**Explore a sample production: Mara.** The complete history opens immediately: four takes,24 genuine images, original prompts, monitor checks and rule traces. Sample reviews are saved for this browser. They do not rewrite existing images or establish a new engine run.
+The backend endpoints are implemented; the Design thread is integrating the new Studio, Review, Memory and Eval pages. See the morning handoff for the UI currently deployed.
 
-Public paid generation is disabled during the founder's overnight no-spending window. A generation request preserves the production and offers Mara. The implementation also has persistent creation/generation limits and a global atomic$24 API reservation cap. No purchase or extra generation is needed to explore the sample.
+## The learning loop
 
-## Run and check
+```mermaid
+flowchart LR
+  C[Reference + confirmed canon] --> G[Generate shot]
+  M[(Scripty Memory)] --> G
+  G --> V[Vision continuity check]
+  M --> V
+  V --> R[Creator review + editable note]
+  R --> L[Extract one rule + deduplicate]
+  L --> M
+  M --> Q[Re-check stored shots]
+  Q --> F[Fix flagged shots only]
+  F --> V
+  H[Blind human labels] --> E[Precision / recall / F1]
+  V --> E
+```
 
-Node24.x and npm are required. Dependencies and local credentials are already installed on the founder's Mac. On a new checkout:
+Learning here is **persistent production memory and prompt adaptation**. Foundation-model weights do not change. The monitor receives learned constraints too; its flag rate alone cannot prove better images.
+
+## Honest results
+
+| Original take | Monitor-flagged shots | Uncertain checks |
+| --- | --- | --- |
+| 1, final checker v3 | 2/6 | 4/36 |
+| 2 | 0/6 | 6/42 |
+| 3 | 0/6 | 8/42 |
+| 4 | 1/6 | 6/42 |
+
+One original ring rule reached **18 later image prompts and 18 corresponding monitor outputs**. An accepted portrait was an additional reference for the final six shots. These are real saved artifacts, not simulated counters.
+
+**Visual improvement and checker accuracy are unverified.** Models/settings, scenes, references and monitor requirements changed between takes. The final flag rate rose. Earlier checker versions flagged 6/6 before disclosed calibration. Some anatomical-side flags may be false alarms. The original history stays intact when new checks or repairs are saved. [Full results](handoff/results.md).
+
+## Run locally
+
+Node 24.x and npm are required. On the founder's Mac, dependencies and private local credentials already exist. For another checkout:
 
 ```sh
 npm ci
 cp .env.example .env.local
-# Supply server credentials privately; never commit .env.local.
+# Fill credentials privately, then:
 npm run dev
 ```
+
+For local live access set these **server-only** lines in `.env.local`:
+
+```dotenv
+SCRIPTY_ACCESS_CODE=choose-a-private-code
+CANON_PUBLIC_GENERATION_ENABLED=true
+```
+
+An access code has been generated privately in the founder's existing `.env.local`; its value is never committed. Keep `OPENAI_API_KEY`, `CANON_SESSION_SECRET` and Supabase service credentials private. To change production settings, use [Vercel → canon → Environment Variables](https://vercel.com/archer-rag-dev/canon/settings/environment-variables), select **Production**, set the same two variables and redeploy. `POST /api/access` exchanges the code for a signed HttpOnly cookie. Developer calls may use `Authorization: Bearer YOUR_ACCESS_CODE`. No secret belongs in a `NEXT_PUBLIC_` variable or URL.
 
 ```sh
 npm test
@@ -35,34 +77,36 @@ npm run build
 npm start
 ```
 
-Supabase migrations are in `supabase/migrations/`. Tables have RLS enabled and no browser write access. Character references use a private Storage bucket and an ownership-checked server endpoint. Service credentials never enter the client bundle. The sample's own images are bundled locally and require no AI or database request.
+Migrations: `supabase/migrations/`. References are private, owner-checked Storage objects. Productions are tied to a signed 30-day browser cookie; accounts, cross-device recovery and collaboration are outside this release. The sample is bundled locally and works without AI/database access.
 
-Return through **Your productions** on the landing/setup screens or **Productions** in the workspace. Review supports an editable continuity note up to400 characters; exact repeated local notes merge.
+## API reference
 
-## What learning means here
+| Route | Purpose |
+| --- | --- |
+| `GET /api/access`, `POST /api/access` | Access status; exchange `{code}` for paid-access cookie |
+| `GET /api/config` | Real model settings, observed usage estimate, authorized budget |
+| `GET /api/productions`, `POST /api/productions` | List this browser's productions; create from multipart reference/canon/scenes |
+| `POST /api/productions/reference/upload` | Private upload → reference ticket |
+| `POST /api/production/canon` | Vision suggestions from `{referenceTicket,characterName?}`; suggestions need confirmation |
+| `GET /api/productions/sample` | Mara's full original history |
+| `GET /api/project/:id` | Production, rules, shots, batches, traces and separate new check/repair evidence |
+| `POST /api/batch` | `{projectId,scenePrompts?:string[]}`; 1–6 live shots |
+| `POST /api/shot/:id/review` | `{projectId,decision,reason?}`; exact note → extracted/deduplicated memory |
+| `POST /api/project/:id/recheck` | `{shotIds?,ruleIds?}`; monitor only, zero image requests |
+| `POST /api/project/:id/fix` | `{shotIds?}`; new replacement shots for flagged sources only |
+| `GET /api/project/:id/labels`, `POST .../labels` | Blind questions; save `{shotId,attributeKey,pass:boolean|null,note?}` |
+| `POST /api/eval` | `{projectId}`; human-only metrics and confusion matrix, no AI call |
 
-A rejection becomes one short, testable rule. Repeated constraints merge. Generation receives the character canon and active rules; the monitor checks those rules too. Accepted shots can become positive visual references. These are persistent production memory and prompt adaptation; model weights stay fixed.
+[Request/response details](docs/api.md) · [Architecture and security](ARCHITECTURE.md).
 
-The sample's ring rule appears in all18 later generation prompts and corresponding monitor outputs. Correction reach requires both the exact rule text in the prompt and the same rule ID in checks; it counts unique shot IDs.
+## Cost controls
 
-| Take | Flagged shots | Uncertain checks |
-| --- | --- | --- |
-| 1, final v3 recheck | 2/6 | 4/36 |
-| 2 | 0/6 | 6/42 |
-| 3 | 0/6 | 8/42 |
-| 4, latest | 1/6 | 6/42 |
+The founder authorized a **$40 application cap**, starting from their reported **$2.05 OpenAI dashboard spend**. The old $20.58 reservation history is preserved separately; it was never a billing receipt. New successful responses settle their preflight holds to estimates from actual returned token usage and published model prices. Unknown usage, timeouts and failed calls retain conservative holds. Usage-derived estimates may differ from the provider invoice.
 
-**Visual improvement remains unverified.** Generator settings, scenes and references changed, and learned rules also changed monitoring. The final flag rate rose. Earlier baseline checker versions flagged6/6 before disclosed calibration. Human-verified accuracy is unavailable; draft labels are excluded from authoritative evaluation. See [results](handoff/results.md).
-
-## Operator notes
-
-- `CANON_PUBLIC_GENERATION_ENABLED=false` is the default overnight. Do not enable paid calls or raise limits without the founder's permission.
-- `DEMO_MODE=cached` keeps the original internal sample adapter. This implementation identifier is retained for compatibility.
-- Private operator requests to the original engine require its existing server-only admin token. Never put that token in browser code or URLs.
-- `npm run eval` excludes unverified labels by default. Do not publish draft-only accuracy.
-- `npm run cache:demo -- --capture-existing --batches 4 --base-url http://127.0.0.1:3017` is a read-only export of existing evidence; it does not generate new images.
-- Repo/folder and Vercel project remain `canon`; the product is **Scripty**. The GitHub repository remains private as requested.
+Operator verification uses `SCRIPTY_BUDGET_SCOPE=verification` with a separate atomic **$6 additional ceiling**. Every retry reserves first. New-production image generation also has a per-production claim/lease limit; public paid calls need both the access gate and the enable switch. No purchases occur. [Implementation](ARCHITECTURE.md#budget-accounting).
 
 ## Submission material
 
-[Devpost copy](docs/devpost.md) · [video script](docs/video-script.md) · [brand guide](docs/brand-guide.md) · [design decisions](DECISIONS.md) · [limits and skipped work](BLOCKED.md).
+[Devpost](docs/devpost.md) · [Video script](docs/video-script.md) · [Pitch](handoff/pitch-final.md) · [Design decisions](DECISIONS.md) · [Blockers](BLOCKED.md).
+
+The product is Scripty; repo/folder and Vercel project remain `canon`. The GitHub repository remains private. Official submission cutoff: **October 17, 2026, 11:00am PT** unless the organizer confirms otherwise. The founder's code freeze is **8:00am PT**.

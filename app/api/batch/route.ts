@@ -48,7 +48,7 @@ const requestSchema = z.strictObject({
   projectId: projectIdSchema,
   scenePrompts: z
     .array(z.string().trim().min(1).max(2000))
-    .length(6)
+    .min(1).max(6)
     .optional(),
 });
 export async function POST(request: Request) {
@@ -98,9 +98,9 @@ export async function POST(request: Request) {
     }
     if (production) {
       checkOrigin(request);
-      requireGenerationCapacity(true);
+      requireGenerationCapacity(true, request);
       const budget = await getApiBudget();
-      if (budget.remainingUsd < 9.6)
+      if (budget.remainingUsd < (input.scenePrompts?.length ?? 6) * 1.6)
         throw new HttpError(generationLimitMessage, 429);
       const { data: claimed, error } = await serverDatabase().rpc(
         "claim_production_generation",
