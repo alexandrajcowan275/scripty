@@ -10,10 +10,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Brand } from "./chrome";
 import { Icon, type IconName } from "../icons";
-import { MotionLink, useMotionNavigation } from "./motion";
+import { MotionLink } from "./motion";
 import { OverviewDialog } from "./production-overview";
 import { LocationReference } from "./location-reference";
 
@@ -21,7 +21,7 @@ const ShellContext = createContext<{
   register: (id: string, name: string) => void;
 } | null>(null);
 export function AppShell({ children }: { children: ReactNode }) {
-  const navigate = useMotionNavigation();
+  const router = useRouter();
   const path = usePathname(),
     content = useRef<HTMLDivElement>(null);
   const [names, setNames] = useState<Record<string, string>>({}),
@@ -100,8 +100,16 @@ export function AppShell({ children }: { children: ReactNode }) {
                     ? window.location.search
                     : "",
                 );
+                if (path === base) {
+                  window.dispatchEvent(
+                    new CustomEvent("scripty:open-memory", {
+                      detail: { projectId: productionId },
+                    }),
+                  );
+                  return;
+                }
                 query.set("panel", "memory");
-                navigate(`${base}?${query}`, "page");
+                router.push(`${base}?${query}`, { scroll: false });
               }}
             >
               <Icon name="layers" />

@@ -306,6 +306,16 @@ export function StudioScreen() {
   useEffect(() => {
     if (search.get("panel") === "memory") setDrawer("memory");
   }, [search.get("panel")]);
+  useEffect(() => {
+    const openMemory = (event: Event) => {
+      if (
+        (event as CustomEvent<{ projectId: string }>).detail?.projectId === id
+      )
+        setDrawer("memory");
+    };
+    window.addEventListener("scripty:open-memory", openMemory);
+    return () => window.removeEventListener("scripty:open-memory", openMemory);
+  }, [id]);
   const closeDrawer = () => {
     setDrawer(null);
     if (search.get("panel") === "memory") {
