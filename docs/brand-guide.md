@@ -26,4 +26,4 @@
 
 **Message hierarchy.** Lead with “Your AI script supervisor.” Explain the loop with “Check the shot. Keep the correction. Carry it forward.” Close with “Scripty. Keep the story straight.” Treat reduced rework and better continuity as goals until measured.
 
-**Production note.** This Markdown is one-page handout content; PDF export and final layout verification remain pending. The app's CSS tokens are the implementation source of truth. Internal repository names and environment-variable prefixes retain their existing spelling for compatibility.
+**Production note.** The companion `docs/brand-guide.pdf` is a one-page handout, rendered and visually verified. The app's CSS tokens are the implementation source of truth. Internal repository names and environment-variable prefixes retain their existing spelling for compatibility.

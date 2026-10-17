@@ -2,7 +2,7 @@
 
 **Your AI script supervisor.** Continuity memory and monitoring for AI-generated stories.
 
-> Submission draft. Final measurements and the current deployed URL must come from `handoff/results.md` and the final deployment handoff. Draft labels need human verification. Do not claim a lower drift rate until a fixed-criteria review supports it.
+> Evidence snapshot: October 17, 2026. Measurements are operational monitor results, not human-verified continuity or accuracy. The current public app is [Scripty](https://canon-woad.vercel.app); deployment of the latest real cache is pending verification.
 
 ## Inspiration
 
@@ -30,11 +30,12 @@ A falling chart alone cannot prove learning: rules change the monitor as well as
 
 ## Accomplishments
 
-- A real raster reference and a real six-shot baseline, with original results retained.
-- A real wrong-hand ring correction converted to a rule; a repeated correction merged into the same rule ID, and a fresh database read confirmed persistence.
-- An inspectable loop connecting a shot, its correction, memory, and later generation/monitor context.
-- Final new-scene results, monitor calibration, and evaluation: **pending final measured results in `handoff/results.md`**. No verified improvement or human-ground-truth accuracy claim yet.
-- Public demo: **[TODO: latest tested Vercel URL from final deployment handoff]**.
+- A real raster reference, six-shot baseline, and completed six-shot batch of different new scenes.
+- A wrong-hand ring correction converted to one rule; repeating the correction merged into the same rule ID, and refresh confirmed persistence.
+- The learned ring rule appears in all six new-scene generation prompts and all six corresponding monitor outputs.
+- Frozen calibrated checker v3 reports **2/6 flagged** in the baseline recheck and **0/6 flagged** in batch 2, with **6/42 uncertain checks** in batch 2. Original v1/v2 baseline checks remain retained at 6/6 flagged.
+- A third six-shot batch is running on different scenes with the frozen checker and later image/style settings. Its result is not yet included.
+- Public app: [Scripty](https://canon-woad.vercel.app), confirmed accessible; the latest real-cache deployment still needs verification.
 
 ## What we learned
 
@@ -48,7 +49,9 @@ Human-verified labels and larger comparisons, temporal checks across video frame
 
 One correction becomes reusable project memory. The rule is deduplicated, persisted, injected into a different scene's generation prompt, and checked during monitoring. This is an application-level learning loop with fixed model weights.
 
-The chart reports operational `flagged shots / total shots` per batch. It does not establish true drift reduction, particularly across monitor versions. Final report fields: **[TODO: measured batch/shot counts, scene sets, monitor versions, actual flag rates, and human verification status from `handoff/results.md`]**. Compare outputs with fixed character criteria and human-reviewed labels before making an improvement claim. Agent-drafted labels are provisional.
+The chart reports operational `flagged shots / total shots` per batch. With frozen calibrated checker v3, the baseline recheck is **2/6 flagged (33.3%)** and batch 2 is **0/6 flagged**, with **6 of 42 checks uncertain** and zero unavailable checks in batch 2. The original baseline checks with v1 and v2 each flagged 6/6; those diagnostics are preserved separately.
+
+Batch 2 changes both the scene set and the image generation settings: baseline images used version 1.5 at medium quality; later images use version 2.5 Sunburst at high quality with cinematic lens/grade instructions. This confounds a memory-only comparison. Batch 3 is running with six different new scenes, the later settings, and the same frozen checker; no batch-3 result is claimed here. Fixed character criteria are retained throughout. These runs establish memory application to new scenes; they do not establish that memory caused better images. Human-verified continuity, precision, recall, and improvement remain unmeasured. Agent-drafted labels are provisional.
 
 ## Design track
 
@@ -64,7 +67,7 @@ A successful API response can hide a failed creative requirement. Scripty checks
 
 The initial buyer hypothesis is a small AI production team making recurring characters for ads, episodic stories, or micro-dramas. Repeated output gives continuity memory a reason to accumulate. A proposed commercial model combines creative-review seats with usage per checked generation; an API could serve larger production platforms later. There are no claimed customers, validated prices, measured savings, or revenue.
 
-The first asset is each project's creator-approved continuity memory and review history. Retention and lower rework are hypotheses to test with creator interviews and paid pilots. Cross-customer failure-pattern analysis would require explicit permission and privacy controls. The model adapter creates a route toward keeping production memory when a team changes generators; broad provider coverage remains future work.
+The first asset is each project's creator-approved continuity memory and review history. Retention and lower rework are hypotheses to test with creator interviews and paid pilots. The proposed pilot compares review minutes and generation cost per approved shot under a fixed review standard, including uncertain checks and failed attempts in the accounting. Cross-customer failure-pattern analysis would require explicit permission and privacy controls. The model adapter creates a route toward keeping production memory when a team changes generators; broad provider coverage remains future work.
 
 ## Competitive context
 
