@@ -6,15 +6,40 @@
 
 [![CI](https://github.com/alexandrajcowan275/scripty/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandrajcowan275/scripty/actions/workflows/ci.yml)
 
-![Scripty Studio: a cinematic contact sheet with continuity checks and production memory](docs/images/scripty-studio-clean.png)
+![Live Scripty Studio: shot review, continuity checks, contact sheet and production memory](docs/images/scripty-studio-dark.png)
 
 ## The problem
 
 An image generator can return success while a character's ring changes hands or a scar changes sides. Filmmakers catch the slip, correct the prompt, then repeat that correction on the next shot. Scripty gives AI productions a script supervisor's memory: check the shot, capture the correction, carry it forward.
 
+## Who it is for and the gap we are testing
+
+Our initial customer hypothesis is a small AI production team making recurring characters for advertisements, storyboards or episodic stories. The recurring task is keeping characters consistent across scenes while recording and reusing creator decisions.
+
+The gap we are testing is the connection between a correction and subsequent work: a review note should stay attached to the production, become an inspectable constraint, reach future generation prompts and checks, and retain a trace to its source. Scripty connects those steps. This is a product hypothesis, not a verified claim that competing tools lack continuity, references or memory. Willingness to pay and competitive advantage remain unvalidated.
+
+## Why now
+
+AI tools are moving into established filmmaking workflows. In June 2026, [Runway and Lionsgate announced an expanded partnership](https://runway.com/news/company-news/runway-and-lionsgate-expand-partnership), including a planned short-form episodic series using Lionsgate IP and Runway models. This supports the relevance of AI production workflows; it does not establish demand or a market-size estimate for Scripty.
+
+Our proposed opportunity is production-specific review and memory as teams create more shots and revisions. Creator pilots must establish whether carrying decisions forward saves work.
+
+## Current product scope
+
+A creator starts a production, uploads a PNG, JPEG or WebP character reference, confirms the details that must stay consistent, and enters one scene prompt per line for one to six shots. Generation happens inside Scripty through an image-generation service. A separate monitor checks the images and presents findings for creator review. Live AI actions require the private access code and available budget.
+
+The prototype supports editable review notes, deduplicated memory, later prompt/check application, monitor-only rechecks and flagged-shot replacement preserving original-image lineage. Mara offers recorded history without waiting for generation. Visitor sample notes stay in that browser and do not change the historical images or evidence.
+
+Uploading finished videos for analysis, temporal video checking, team collaboration and cross-provider continuity are outside this release. The optional World Labs location still is a reference experiment, not a demonstrated location-checking or video pipeline.
+
 ## Try it in 30 seconds
 
-Open **Sample production: Mara** for 24 real images, four takes and the full saved learning history. Review a shot with its reference, edit a rejection note, and watch the constraint become Scripty Memory. **Start a new production** adds your own reference, confirmed canon and scenes; authorized live actions generate, check, learn and regenerate.
+1. Open [Scripty](https://getscripty.vercel.app/) and choose **Open the studio** in the hero, or use [Home](https://getscripty.vercel.app/dashboard) to open Mara from the productions table.
+2. In **Take4**, select **T4·S05**, the locker shot. Inspect the monitor finding and edit the continuity note.
+3. Choose **Reject & remember**. The **Rule learned** card shows the returned rule and its next-prompt/check previews. Repeated notes merge.
+4. Open **Evidence** for24original images, all four takes,18/18rule reach and the matched six-pair result.
+
+Mara is a sample production with real recorded history. Visitor notes stay in that browser and leave original images and evidence unchanged. [Start a production](https://getscripty.vercel.app/new) to add your own reference, confirmed canon and scenes; live AI actions require authorized access and budget. The current release generates still images. Video continuity and broader generator integrations are roadmap work.
 
 ## How it works
 
@@ -54,6 +79,12 @@ The original production history remains available:
 **18/18 rule reach:** one learned ring correction reached all 18 later image prompts and corresponding monitor outputs. These four takes changed models/settings, scenes, references and monitoring requirements, so their flag curve does not establish causal visual improvement. A real live-loop verification also preserved a repair that remained flagged. Checker accuracy comes only from actual blind human judgments; agent-written drafts never count.
 
 [Full measurements and limitations](docs/results.md) · [Experiment artifacts](seed/experiments/ab-test/).
+
+## Business hypothesis and next steps
+
+We would test review seats plus checked-generation usage as a pricing model. No price, paying customer or savings figure is validated. A first pilot would measure reviewer minutes, total generation/checking cost per human-approved shot, repeated-error frequency and willingness to pay under a consistent review standard. Costs must include failed attempts and human review.
+
+Next priorities are creator pilots and human-reviewed evaluation, followed by temporal video continuity and additional generator integrations. A possible later product is a continuity API carrying customer-approved production memory into other tools. These are plans, not shipped capabilities. TAM and SAM remain unestimated; defensible sizing requires a defined buyer population and plausible annual spending assumptions.
 
 ## Stack
 

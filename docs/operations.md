@@ -26,7 +26,7 @@ Every completed response settles against actual returned token usage and pinned 
 
 Main integrates Design's page commits, runs typecheck/tests/build, pushes to private main, then verifies the production alias resolves to the intended SHA. Preserve the previous ready deployment for immediate rollback. A release check covers landing, Mara Studio, Review, Memory, Evidence, Eval and API. Only repeat paid tests for a concrete changed-flow need. Historical verification receipts identify what was tested at their recorded release; they are not a claim that every later screen was exercised.
 
-Final overnight handoff is6:15am PT. The latest founder-supplied submission deadline is **October17,2026,2:00pm PT**. The official listing was rechecked and still says11:00am PDT; the founder target2pm PT conflicts with it. Confirm an organizer extension or submit by the earlier11am cutoff. No automated submission or public-repository conversion is authorized. Founder must record/upload the final video, arrange judge access to the private repo, supply human blind judgments, and submit.
+The confirmed submission deadline is **October17,2026 at11:00am PDT**. The founder authorized public GitHub access after a credential/history audit. The app is frozen on5e0bb6d; the founder is recording/uploading the video and retains final submission control. Do not submit externally without explicit instruction. New blind labels are useful follow-up evaluation, not a prerequisite to honestly reporting the existing results.
 
 ## Current verification costs
 
@@ -36,6 +36,6 @@ Local startup was re-verified on the current UI with the exact `npm run dev` com
 
 ## Public URLs and repository rebrand
 
-Production: https://getscripty.vercel.app (the first available founder-requested alias; `scripty.vercel.app` and `scripty-ai.vercel.app` were already in use). The existing https://canon-woad.vercel.app remains attached to the same Vercel `canon` project. The private repository is https://github.com/alexandrajcowan275/scripty; GitHub redirects the old repository URL. The local folder and Vercel project remain `canon`.
+Production: https://getscripty.vercel.app (the first available founder-requested alias; `scripty.vercel.app` and `scripty-ai.vercel.app` were already in use). The existing https://canon-woad.vercel.app remains attached to the same Vercel `canon` project. The source repository is https://github.com/alexandrajcowan275/scripty; GitHub redirects the old repository URL. The local folder and Vercel project remain `canon`.
 
 Browser ownership and access cookies are hostname-scoped. Existing private productions and in-progress blind labels remain accessible through their original browser on the old hostname; opening the new hostname does not migrate those cookies. Mara remains available on either hostname.

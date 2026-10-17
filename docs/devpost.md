@@ -41,7 +41,7 @@ A creator decision becomes inspectable, reusable production memory. Its exact te
 
 ## Design
 
-A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The current Studio, Review and Memory update use a cinematic contact sheet, quiet glass controls and shared typography/color tokens from the supplied design handoff. Desktop and mobile public screenshots verify the main flow. All eight application pages are integrated; visual refinement continues incrementally and `handoff/MORNING.md` identifies the actual release. Design decisions are recorded in `DECISIONS.md` and the current backend decisions in `docs/backend-decisions.md`. No reference-site logos, media or layouts are copied into Scripty.
+A script supervisor’s workflow guides the final dark interface: a charcoal workspace with shared header/sidebar, real production table, full-shot Studio review, editable correction and a gold Rule learned card. Memory is available on demand; Evidence retains original imagery, rule reach and the matched comparison. The cinematic landing has an opening sequence and projected Mara reveal. Public1440/390 checks verified the review-to-memory flow. Design decisions are recorded in `DECISIONS.md`; the current release is identified in `handoff/MORNING.md`.
 
 ## Agent Monitoring — Lemma
 

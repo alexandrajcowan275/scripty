@@ -1,6 +1,6 @@
 # Scripty — two-minute product pitch
 
-Record the real product. Keep original experiment evidence separate from the new note being entered. No finished recording/upload exists yet. Current verified entry: **https://getscripty.vercel.app/p/mara**. The final page-by-page click path is maintained in `handoff/MORNING.md`.
+Record the real product. Keep original experiment evidence separate from the new note being entered. No finished recording/upload exists yet. Current verified entry: **https://getscripty.vercel.app/** → top-right **Open studio** → Home productions table → **Mara** → Take4/T4·S05 → Reject & remember → Rule learned → Evidence → New production. The final page-by-page click path is maintained in `handoff/MORNING.md`.
 
 ## Narration
 
@@ -46,4 +46,4 @@ Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed rec
 - The real flagged-only repair test produced a new image that was still monitor-flagged. Demonstrate selective repair and lineage, not guaranteed correction.
 - Do not label model judgments as human truth, show invented metrics, or count automated test submissions as human labels.
 - All eight pages are integrated; use only the current publicly verified release when filming. Use the current handoff for the exact release.
-- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit by the current public **11:00am PDT** cutoff unless an organizer confirms the founder’s **2:00pm PT** extension. No external submission is authorized here.
+- Verify the final uploaded video opens without login. Confirm public GitHub access and submit by the confirmed **11:00am PDT** cutoff. No external submission is authorized here.
