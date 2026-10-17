@@ -1,0 +1,45 @@
+{
+  "world_id": "d7e28850-0064-48f1-8b3d-e4210ec4ea02",
+  "display_name": "Scripty — Mara foggy platform (draft)",
+  "tags": null,
+  "assets": {
+    "mesh": {
+      "collider_mesh_url": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/7d3eac8b.glb",
+      "hq_mesh_url": null,
+      "full_res_mesh_url": null
+    },
+    "imagery": {
+      "pano_url": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/447920be-9be7-4dd8-ad9a-6efcd163f16f_pano/rgb_0.png"
+    },
+    "splats": {
+      "spz_urls": {
+        "500k": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/f89d16d3-0a6b-4775-8454-027c67c7781b_sand_500k.spz",
+        "100k": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/e8999d8a-7806-432a-b4ae-a323fecca19a_sand_100k.spz",
+        "full_res": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/b2bc073f-de6a-4c7d-9af5-5a28b51e1acd_sand.spz"
+      },
+      "semantics_metadata": null
+    },
+    "thumbnail_url": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/3318aff8-56ad-408c-a28f-2ac275b6d349_sand_mpi/thumbnail.webp",
+    "caption": "The scene is a cinematic, highly realistic railway station panorama rendered in cool blue-gray tones, with a restrained, melancholic calm that settles over every surface. Its mood is quiet and suspended, shaped by wet paving, warm lamp glow, and the measured geometry of rail infrastructure. A long island platform stretches through the station, its slick concrete broken by narrow drainage seams and bordered by pale tactile guidance strips that run in unwavering lines beside the track edges. Parallel rails flank the platform and continue in both directions, their dark steel bands set into coarse ballast and punctuated by sleepers that repeat with mechanical regularity. Along one side, a passenger train remains standing beside the platform, its muted bodywork carrying a horizontal stripe and a sequence of windows that recede beneath the catenary network. Overhead gantries stride across the tracks at even intervals, their lattice beams and suspended wires forming a rigid grid that binds the station from end to end. On the opposite side, a low shelter with a flat roof stands near a cluster of poles and timetable boards, while a row of benches rests beneath it in ordered stillness. Warm platform lamps rise at measured distances along the paving, each lamp casting a soft amber pool that gathers around the shelter, the railings, and the textured curb stones. Farther along the station, signal lights punctuate the corridor with small red points, marking the route where the tracks narrow toward a vanishing junction. Metal fencing lines the outer edge beyond the shelter, separating the platform from service paths, utility cabinets, and a sparse strip of gravel. At the ends of the panorama, the station broadens into additional platform lengths, repeating the same disciplined arrangement of lamps, signs, rails, and overhead wiring until the architecture dissolves into the hush of distance. "
+  },
+  "created_at": "2026-10-17T09:24:25Z",
+  "updated_at": "2026-10-17T09:24:53Z",
+  "permission": {
+    "public": false,
+    "allowed_readers": [],
+    "allowed_writers": [],
+    "allow_id_access": false
+  },
+  "world_prompt": {
+    "text_prompt": "The scene is a cinematic, highly realistic railway station panorama rendered in cool blue-gray tones, with a restrained, melancholic calm that settles over every surface. Its mood is quiet and suspended, shaped by wet paving, warm lamp glow, and the measured geometry of rail infrastructure. A long island platform stretches through the station, its slick concrete broken by narrow drainage seams and bordered by pale tactile guidance strips that run in unwavering lines beside the track edges. Parallel rails flank the platform and continue in both directions, their dark steel bands set into coarse ballast and punctuated by sleepers that repeat with mechanical regularity. Along one side, a passenger train remains standing beside the platform, its muted bodywork carrying a horizontal stripe and a sequence of windows that recede beneath the catenary network. Overhead gantries stride across the tracks at even intervals, their lattice beams and suspended wires forming a rigid grid that binds the station from end to end. On the opposite side, a low shelter with a flat roof stands near a cluster of poles and timetable boards, while a row of benches rests beneath it in ordered stillness. Warm platform lamps rise at measured distances along the paving, each lamp casting a soft amber pool that gathers around the shelter, the railings, and the textured curb stones. Farther along the station, signal lights punctuate the corridor with small red points, marking the route where the tracks narrow toward a vanishing junction. Metal fencing lines the outer edge beyond the shelter, separating the platform from service paths, utility cabinets, and a sparse strip of gravel. At the ends of the panorama, the station broadens into additional platform lengths, repeating the same disciplined arrangement of lamps, signs, rails, and overhead wiring until the architecture dissolves into the hush of distance. The 360 scene is faultless.",
+    "type": "image",
+    "image_prompt": {
+      "uri": "https://cdn.marble.worldlabs.ai/api/media-assets/AU4143GzBcXvowaxb1yy60FLbyp1/809cb613-623e-4208-9c7f-3371ad7d65ed/scripty-mara-foggy-platform.png",
+      "data_base64": null,
+      "extension": "png"
+    },
+    "is_pano": false
+  },
+  "world_marble_url": "https://marble.worldlabs.ai/world/d7e28850-0064-48f1-8b3d-e4210ec4ea02",
+  "model": "marble-1.0-draft"
+}

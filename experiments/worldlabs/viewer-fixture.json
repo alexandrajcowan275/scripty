@@ -1,0 +1,9 @@
+{
+  "fixture": true,
+  "world_id": "spark-butterfly-renderer-test-only",
+  "model": "Public Spark test asset",
+  "splat_urls": {
+    "100k": "https://sparkjs.dev/assets/splats/butterfly.spz"
+  },
+  "note": "NOT a Scripty generation. Public Spark asset used only to verify rendering, orbit controls and PNG capture without paid API calls."
+}

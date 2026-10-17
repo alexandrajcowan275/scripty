@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "attempts": [
+    {
+      "stage": "draft",
+      "model": "marble-1.0-draft",
+      "reserved_credits": 230,
+      "started_at": "2026-10-17T09:24:11.812Z",
+      "status": "complete",
+      "operation_id": "cf1ef26e-7717-4f1f-9426-4bf2e8b1ad3c",
+      "settled_credits": 230
+    },
+    {
+      "stage": "standard",
+      "model": "marble-1.1",
+      "reserved_credits": 1580,
+      "started_at": "2026-10-17T09:26:38.345Z",
+      "status": "complete",
+      "assessment": "Inspected full panorama and two Spark camera angles. Platform, train, shelter, gantries and lamps form a usable persistent station. Draft is soft and Mara is baked into the static splat; use background-only captures and do not treat it as character canon. Draft scale metadata absent.",
+      "operation_id": "1c9db137-af64-47d4-864e-d9e8ae1520a2",
+      "settled_credits": 1580
+    }
+  ],
+  "media_asset_id": "809cb613-623e-4208-9c7f-3371ad7d65ed"
+}

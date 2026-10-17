@@ -1,0 +1,112 @@
+{
+  "status": "generated",
+  "stage": "standard",
+  "model": "marble-1.1",
+  "operation_id": "1c9db137-af64-47d4-864e-d9e8ae1520a2",
+  "world_id": "f5a75d9d-c071-4a91-a167-e92d192d8858",
+  "world_marble_url": "https://marble.worldlabs.ai/world/f5a75d9d-c071-4a91-a167-e92d192d8858",
+  "thumbnail": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/3471b74a-3398-4794-b554-047147b6b60e_sand_mpi/thumbnail.webp",
+  "pano_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/96a5a063-6653-4b1f-bc52-c187b274529d_panos/rgb_0.png",
+  "splat_urls": {
+    "500k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/592e8d84-9103-46bd-b75c-099049a7d172_ceramic_500k.spz",
+    "100k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/92f10696-3c61-4f47-a2d9-e61c2cce240b_dust_100k.spz",
+    "150k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/88238620-b7ab-45d8-b212-e88cd9867bb2_ceramic_150k.spz",
+    "full_res": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/e6cffa63-ba0b-4d2c-adec-57863cf343a2_ceramic.spz"
+  },
+  "collider_glb_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/45390b79.glb",
+  "semantics_metadata": {
+    "metric_scale_factor": 2.7923693656921387,
+    "ground_plane_offset": 1.5571990013122559
+  },
+  "caption": "The scene is cinematic and highly realistic, shaped by restrained color, wet surfaces, and a quiet, introspective mood. Its atmosphere feels still and suspended, as though the station has settled into an hour between departures. Parallel railway tracks continue in both directions, their steel lines flanking long platforms surfaced in dark, rain-soaked paving and bordered by pale safety strips. A passenger train extends along one side of the station, its silver body marked by a muted horizontal band and a sequence of rectangular windows that repeat down the length of the carriages. Opposite the train, a low shelter stands on the platform with a flat roof, dark supports, and glazed side panels that frame an empty waiting area. Warm lamps rise at intervals beside the shelter and along the platform edge, casting amber pools across the damp concrete and punctuating the cooler blue tones of the station. Overhead gantries stride across the tracks in a regular rhythm, carrying catenary wires that stitch the full breadth of the rail yard together. The platform surface is divided into long linear sections of asphalt, concrete, and tactile paving, with narrow seams and drainage channels guiding water toward the edges. Farther along the station, signal lights and utility poles gather near the converging rails, while secondary sidings branch away toward service areas lined with metal fencing and equipment cabinets. On the outer perimeter, simple railings, squat posts, and sparse station fixtures maintain an orderly geometry that echoes the straight tracks and platform margins. At the opposite end of the shelter, a modest station building and additional covered waiting bays continue the same practical design, their dark roofs and subdued materials reinforcing the austere character of the place. ",
+  "settled_cost": {
+    "total_credits": 1580,
+    "line_items": [
+      {
+        "name": "Pano generation (image, non-pano)",
+        "credits": 80
+      },
+      {
+        "name": "World generation",
+        "credits": 1500
+      }
+    ]
+  },
+  "estimated_credits": 1580,
+  "completed_at": "2026-10-17T09:32:32.521Z",
+  "runs": {
+    "draft": {
+      "stage": "draft",
+      "model": "marble-1.0-draft",
+      "operation_id": "cf1ef26e-7717-4f1f-9426-4bf2e8b1ad3c",
+      "world_id": "d7e28850-0064-48f1-8b3d-e4210ec4ea02",
+      "world_marble_url": "https://marble.worldlabs.ai/world/d7e28850-0064-48f1-8b3d-e4210ec4ea02",
+      "thumbnail": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/3318aff8-56ad-408c-a28f-2ac275b6d349_sand_mpi/thumbnail.webp",
+      "pano_url": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/447920be-9be7-4dd8-ad9a-6efcd163f16f_pano/rgb_0.png",
+      "splat_urls": {
+        "500k": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/f89d16d3-0a6b-4775-8454-027c67c7781b_sand_500k.spz",
+        "100k": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/e8999d8a-7806-432a-b4ae-a323fecca19a_sand_100k.spz",
+        "full_res": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/b2bc073f-de6a-4c7d-9af5-5a28b51e1acd_sand.spz"
+      },
+      "collider_glb_url": "https://cdn.marble.worldlabs.ai/d7e28850-0064-48f1-8b3d-e4210ec4ea02/7d3eac8b.glb",
+      "semantics_metadata": null,
+      "caption": "The scene is a cinematic, highly realistic railway station panorama rendered in cool blue-gray tones, with a restrained, melancholic calm that settles over every surface. Its mood is quiet and suspended, shaped by wet paving, warm lamp glow, and the measured geometry of rail infrastructure. A long island platform stretches through the station, its slick concrete broken by narrow drainage seams and bordered by pale tactile guidance strips that run in unwavering lines beside the track edges. Parallel rails flank the platform and continue in both directions, their dark steel bands set into coarse ballast and punctuated by sleepers that repeat with mechanical regularity. Along one side, a passenger train remains standing beside the platform, its muted bodywork carrying a horizontal stripe and a sequence of windows that recede beneath the catenary network. Overhead gantries stride across the tracks at even intervals, their lattice beams and suspended wires forming a rigid grid that binds the station from end to end. On the opposite side, a low shelter with a flat roof stands near a cluster of poles and timetable boards, while a row of benches rests beneath it in ordered stillness. Warm platform lamps rise at measured distances along the paving, each lamp casting a soft amber pool that gathers around the shelter, the railings, and the textured curb stones. Farther along the station, signal lights punctuate the corridor with small red points, marking the route where the tracks narrow toward a vanishing junction. Metal fencing lines the outer edge beyond the shelter, separating the platform from service paths, utility cabinets, and a sparse strip of gravel. At the ends of the panorama, the station broadens into additional platform lengths, repeating the same disciplined arrangement of lamps, signs, rails, and overhead wiring until the architecture dissolves into the hush of distance. ",
+      "settled_cost": {
+        "total_credits": 230,
+        "line_items": [
+          {
+            "name": "Pano generation (image, non-pano)",
+            "credits": 80
+          },
+          {
+            "name": "Draft world generation",
+            "credits": 150
+          }
+        ]
+      },
+      "estimated_credits": 230,
+      "completed_at": "2026-10-17T09:25:54.329Z"
+    },
+    "standard": {
+      "stage": "standard",
+      "model": "marble-1.1",
+      "operation_id": "1c9db137-af64-47d4-864e-d9e8ae1520a2",
+      "world_id": "f5a75d9d-c071-4a91-a167-e92d192d8858",
+      "world_marble_url": "https://marble.worldlabs.ai/world/f5a75d9d-c071-4a91-a167-e92d192d8858",
+      "thumbnail": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/3471b74a-3398-4794-b554-047147b6b60e_sand_mpi/thumbnail.webp",
+      "pano_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/96a5a063-6653-4b1f-bc52-c187b274529d_panos/rgb_0.png",
+      "splat_urls": {
+        "500k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/592e8d84-9103-46bd-b75c-099049a7d172_ceramic_500k.spz",
+        "100k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/92f10696-3c61-4f47-a2d9-e61c2cce240b_dust_100k.spz",
+        "150k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/88238620-b7ab-45d8-b212-e88cd9867bb2_ceramic_150k.spz",
+        "full_res": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/e6cffa63-ba0b-4d2c-adec-57863cf343a2_ceramic.spz"
+      },
+      "collider_glb_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/45390b79.glb",
+      "semantics_metadata": {
+        "metric_scale_factor": 2.7923693656921387,
+        "ground_plane_offset": 1.5571990013122559
+      },
+      "caption": "The scene is cinematic and highly realistic, shaped by restrained color, wet surfaces, and a quiet, introspective mood. Its atmosphere feels still and suspended, as though the station has settled into an hour between departures. Parallel railway tracks continue in both directions, their steel lines flanking long platforms surfaced in dark, rain-soaked paving and bordered by pale safety strips. A passenger train extends along one side of the station, its silver body marked by a muted horizontal band and a sequence of rectangular windows that repeat down the length of the carriages. Opposite the train, a low shelter stands on the platform with a flat roof, dark supports, and glazed side panels that frame an empty waiting area. Warm lamps rise at intervals beside the shelter and along the platform edge, casting amber pools across the damp concrete and punctuating the cooler blue tones of the station. Overhead gantries stride across the tracks in a regular rhythm, carrying catenary wires that stitch the full breadth of the rail yard together. The platform surface is divided into long linear sections of asphalt, concrete, and tactile paving, with narrow seams and drainage channels guiding water toward the edges. Farther along the station, signal lights and utility poles gather near the converging rails, while secondary sidings branch away toward service areas lined with metal fencing and equipment cabinets. On the outer perimeter, simple railings, squat posts, and sparse station fixtures maintain an orderly geometry that echoes the straight tracks and platform margins. At the opposite end of the shelter, a modest station building and additional covered waiting bays continue the same practical design, their dark roofs and subdued materials reinforcing the austere character of the place. ",
+      "settled_cost": {
+        "total_credits": 1580,
+        "line_items": [
+          {
+            "name": "Pano generation (image, non-pano)",
+            "credits": 80
+          },
+          {
+            "name": "World generation",
+            "credits": 1500
+          }
+        ]
+      },
+      "estimated_credits": 1580,
+      "completed_at": "2026-10-17T09:32:32.521Z"
+    }
+  },
+  "budget": {
+    "max_credits": 1810,
+    "reserved_credits": 1810,
+    "settled_credits": 1810
+  }
+}

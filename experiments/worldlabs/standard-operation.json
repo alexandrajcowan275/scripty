@@ -1,0 +1,70 @@
+{
+  "operation_id": "1c9db137-af64-47d4-864e-d9e8ae1520a2",
+  "created_at": "2026-10-17T09:26:51Z",
+  "updated_at": "2026-10-17T09:32:32Z",
+  "expires_at": "2026-10-17T12:26:51Z",
+  "done": true,
+  "error": null,
+  "metadata": {
+    "progress": {
+      "status": "SUCCEEDED",
+      "description": "World generation completed successfully"
+    },
+    "world_id": "f5a75d9d-c071-4a91-a167-e92d192d8858",
+    "operation_type": "world_generation",
+    "public_model_name": "marble-1.1"
+  },
+  "response": {
+    "world_id": "f5a75d9d-c071-4a91-a167-e92d192d8858",
+    "display_name": "",
+    "tags": null,
+    "assets": {
+      "mesh": {
+        "collider_mesh_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/45390b79.glb",
+        "hq_mesh_url": null,
+        "full_res_mesh_url": null
+      },
+      "imagery": {
+        "pano_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/96a5a063-6653-4b1f-bc52-c187b274529d_panos/rgb_0.png"
+      },
+      "splats": {
+        "spz_urls": {
+          "500k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/592e8d84-9103-46bd-b75c-099049a7d172_ceramic_500k.spz",
+          "100k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/92f10696-3c61-4f47-a2d9-e61c2cce240b_dust_100k.spz",
+          "150k": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/88238620-b7ab-45d8-b212-e88cd9867bb2_ceramic_150k.spz",
+          "full_res": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/e6cffa63-ba0b-4d2c-adec-57863cf343a2_ceramic.spz"
+        },
+        "semantics_metadata": {
+          "metric_scale_factor": 2.7923694,
+          "ground_plane_offset": 1.557199
+        }
+      },
+      "thumbnail_url": "https://cdn.marble.worldlabs.ai/f5a75d9d-c071-4a91-a167-e92d192d8858/3471b74a-3398-4794-b554-047147b6b60e_sand_mpi/thumbnail.webp",
+      "caption": "The scene is cinematic and highly realistic, shaped by restrained color, wet surfaces, and a quiet, introspective mood. Its atmosphere feels still and suspended, as though the station has settled into an hour between departures. Parallel railway tracks continue in both directions, their steel lines flanking long platforms surfaced in dark, rain-soaked paving and bordered by pale safety strips. A passenger train extends along one side of the station, its silver body marked by a muted horizontal band and a sequence of rectangular windows that repeat down the length of the carriages. Opposite the train, a low shelter stands on the platform with a flat roof, dark supports, and glazed side panels that frame an empty waiting area. Warm lamps rise at intervals beside the shelter and along the platform edge, casting amber pools across the damp concrete and punctuating the cooler blue tones of the station. Overhead gantries stride across the tracks in a regular rhythm, carrying catenary wires that stitch the full breadth of the rail yard together. The platform surface is divided into long linear sections of asphalt, concrete, and tactile paving, with narrow seams and drainage channels guiding water toward the edges. Farther along the station, signal lights and utility poles gather near the converging rails, while secondary sidings branch away toward service areas lined with metal fencing and equipment cabinets. On the outer perimeter, simple railings, squat posts, and sparse station fixtures maintain an orderly geometry that echoes the straight tracks and platform margins. At the opposite end of the shelter, a modest station building and additional covered waiting bays continue the same practical design, their dark roofs and subdued materials reinforcing the austere character of the place. The 360 scene is faultless."
+    },
+    "created_at": null,
+    "updated_at": null,
+    "permission": {
+      "public": false,
+      "allowed_readers": [],
+      "allowed_writers": [],
+      "allow_id_access": false
+    },
+    "world_prompt": null,
+    "world_marble_url": "https://marble.worldlabs.ai/world/f5a75d9d-c071-4a91-a167-e92d192d8858",
+    "model": null
+  },
+  "cost": {
+    "total_credits": 1580,
+    "line_items": [
+      {
+        "name": "Pano generation (image, non-pano)",
+        "credits": 80
+      },
+      {
+        "name": "World generation",
+        "credits": 1500
+      }
+    ]
+  }
+}
