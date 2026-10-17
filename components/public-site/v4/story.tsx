@@ -11,6 +11,8 @@ export function ScrollStory({
   useEffect(() => {
     const story = root.current;
     if (!story) return;
+    // Public stories always open on their first screen after client navigation.
+    window.scrollTo({ top: 0, behavior: "instant" });
     const beats = Array.from(story.querySelectorAll<HTMLElement>(".beat"));
     const dots = Array.from(
       story.querySelectorAll<HTMLButtonElement>(".prog button"),
