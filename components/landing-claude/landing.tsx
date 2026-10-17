@@ -143,7 +143,7 @@ export function LandingClaude() {
         <nav className={s.navLinks} aria-label="Scripty">
           <a href="#how">Product</a>
           <Link href="/developers">API</Link>
-          <Link href="/p/mara/evidence">Evidence</Link>
+          <Link href="/evidence">Evidence</Link>
           <Link href="/dashboard" className={s.navCta}>Open studio</Link>
         </nav>
       </header>
@@ -168,7 +168,7 @@ export function LandingClaude() {
         </div>
         <h1 className={s.h1}>Every shot,<span>held to the story.</span></h1>
         <div className={`${s.ctas} ${s.heroCtas}`}>
-          <Link href="/p/mara" className={s.btnLight}>Open the studio</Link>
+          <Link href="/dashboard" className={s.btnLight}>Open the studio</Link>
           <a href="#how" className={s.btnText}>Watch it work →</a>
         </div>
         <p className={`${s.mono} ${s.heroCap}`}>THE SCRIPT SUPERVISOR<br />FOR GENERATED FILM</p>
@@ -277,7 +277,7 @@ ACTIVE CANON CONSTRAINTS:
           <h2 className={s.h2}>One layer in front of<span> any generator.</span></h2>
           <div className={s.ctas}>
             <Link href="/developers" className={s.btnLight}>Read the API</Link>
-            <Link href="/p/mara/evidence" className={s.btnText}>View a trace →</Link>
+            <Link href="/evidence" className={s.btnText}>View a trace →</Link>
           </div>
           <pre className={s.codeDark}>{`POST /api/batch
 { "projectId": "mara", "scenePrompts": ["night train"] }`}{"\n"}<span className={s.gd}>→ rules applied</span> · <span className={s.ok}>checked</span> · <span className={s.bad}>flagged</span> · traced</pre>
@@ -308,7 +308,7 @@ ACTIVE CANON CONSTRAINTS:
         <div className={s.closeInner}>
           <h2 className={s.closeH}>Every correction<span>carries forward.</span></h2>
           <div className={s.ctas}>
-            <Link href="/p/mara" className={s.btnLight}>Open the studio</Link>
+            <Link href="/dashboard" className={s.btnLight}>Open the studio</Link>
             <Link href="/new" className={s.btnGhost}>Start a production</Link>
           </div>
         </div>

@@ -11,6 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import type { Rule } from "@/lib/types";
+import { isStudioRoute } from "@/lib/navigation";
 import { usePathname, useRouter } from "next/navigation";
 import { Brand } from "./chrome";
 import { Icon, type IconName } from "../icons";
@@ -43,8 +44,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     [],
   );
   const value = useMemo(() => ({ register, remember }), [register, remember]);
-  const isApp =
-    /^\/(dashboard|projects|productions|new|developers|p)(\/|$)/.test(path);
+  const isApp = isStudioRoute(path);
   const id = path.match(/^\/p\/([^/]+)/)?.[1],
     productionId = id ?? "mara";
   useEffect(() => {
