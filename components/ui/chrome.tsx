@@ -19,7 +19,9 @@ export function Nav({
   id = "mara",
   active = "studio",
   data,
+  context,
 }: {
+  context?: string;
   id?: string;
   active?: "studio" | "evidence" | "eval" | "api";
   data?: ProductionData | null;
@@ -91,8 +93,13 @@ export function Nav({
       </nav>
       <div className="v2-top-right">
         <span className="v2-monitor-status v2-mono">
-          <i />
-          {data ? (id === "mara" ? "Sample production" : "Monitor ready") : "—"}
+          {!context && <i />}
+          {context ??
+            (data
+              ? id === "mara"
+                ? "Sample production"
+                : "Monitor ready"
+              : "—")}
         </span>
         <MotionLink href="/new" kind="start" className="v2-button v2-small">
           + New

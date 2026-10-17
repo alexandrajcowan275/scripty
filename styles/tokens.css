@@ -15,6 +15,8 @@
   --memory-halo: rgba(243, 220, 151, 0.28);
   --memory-glow: rgba(245, 196, 81, 0.35);
   --memory-code-text: #f5d27a;
+  --memory-signal: #f5c451;
+  --memory-dot-glow: rgba(245, 196, 81, 0.9);
   --code-surface: #1a1917;
   --code-text: #e8e4dd;
   --code-muted: #8d877e;

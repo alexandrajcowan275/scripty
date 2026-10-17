@@ -32,7 +32,9 @@ export function EvalScreen() {
         `/api/project/${encodeURIComponent(id)}/labels`,
       );
       if (active.current) setLabels(result);
-      const stats = await post<Evaluation>("/api/eval", { projectId: id });
+      const stats = await request<Evaluation>(
+        `/api/eval?projectId=${encodeURIComponent(id)}`,
+      );
       if (active.current) setEvaluation(stats);
     } catch (e) {
       if (active.current) setError(message(e));
@@ -91,7 +93,9 @@ export function EvalScreen() {
           : previous,
       );
       setDirection("");
-      const stats = await post<Evaluation>("/api/eval", { projectId: id });
+      const stats = await request<Evaluation>(
+        `/api/eval?projectId=${encodeURIComponent(id)}`,
+      );
       if (active.current) {
         setEvaluation(stats);
         setUpdated(true);
