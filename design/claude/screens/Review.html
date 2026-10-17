@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scripty — Review</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;family=Funnel+Sans:wght@300..800&amp;family=Martian+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<style>
+h1,.disp{font-family:'Funnel Display','Funnel Sans',sans-serif}
+.mono{letter-spacing:-0.02em}
+body{margin:0;background:#FBFAF8}
+.pg{position:relative;overflow:hidden;min-height:1000px;background:#FBFAF8;color:#111;font-family:'Funnel Sans',system-ui,sans-serif;display:flex;flex-direction:column}
+.mono{font-family:'Martian Mono',monospace}
+.top{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px}
+.glass{background:rgba(255,255,255,.68);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.75);box-shadow:0 10px 40px rgba(17,17,17,.12)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#111;color:#fff;border:none;border-radius:999px;padding:12px 18px;font:inherit;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn.light{background:#fff;color:#111;border:1px solid rgba(17,17,17,.1)}
+.kbd{font-family:'Martian Mono',monospace;font-size:10.5px;padding:1px 6px;border-radius:5px;border:1px solid currentColor;opacity:.55}
+.lbl{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.08em;color:#777;text-transform:uppercase}
+.seg{display:inline-flex;padding:3px;border-radius:999px;background:#EFECE7}
+.seg span{font-size:13px;padding:6px 12px;border-radius:999px;color:#555}
+.seg .on{background:#fff;color:#111;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.br{position:absolute;width:20px;height:20px;border-color:#FF4D4F;border-style:solid}
+.ck{display:grid;grid-template-columns:1fr auto;gap:6px 10px;padding:11px 0;border-bottom:1px solid rgba(17,17,17,.06);font-size:13.5px}
+.bar{grid-column:1 / -1;height:3px;border-radius:2px;background:#EEEAE4;overflow:hidden}
+.bar i{display:block;height:100%;background:#111}
+.th{width:104px;aspect-ratio:3/2;border-radius:10px;overflow:hidden;flex:none;opacity:.7}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+textarea{font:inherit;font-size:14px;line-height:1.5;color:#111;width:100%;box-sizing:border-box;border:1px solid rgba(17,17,17,.12);border-radius:14px;padding:12px 14px;background:#fff;resize:none}
+textarea:focus{outline:2px solid #111;outline-offset:1px}
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div class="pg">
+  <header class="top">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="Batch.html" class="btn light" style="padding:8px 14px;font-size:13.5px">← Studio <span class="kbd">Esc</span></a>
+      <span style="font-size:14px;color:#777">Mara · Take 4 · <b style="color:#111;font-weight:500">Shot 5 of 6</b></span>
+      <span class="mono" style="font-size:12px;color:#999">‹ J · K ›</span>
+    </div>
+    <div class="seg"><span class="on">Shot</span><span>Side by side with reference</span><span>Take 1 vs 4</span></div>
+  </header>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;padding:4px 24px 24px;flex:1">
+    <main style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div style="position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/2;background:#222">
+        <img src="../img/de2c61a4b138.jpg" alt="Take 4 shot 5: Mara opening a wooden locker, over the shoulder" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;left:45%;top:14%;width:15%;height:24%"><span class="br" style="top:0;left:0;border-width:2px 0 0 2px"></span><span class="br" style="top:0;right:0;border-width:2px 2px 0 0"></span><span class="br" style="bottom:0;left:0;border-width:0 0 2px 2px"></span><span class="br" style="bottom:0;right:0;border-width:0 2px 2px 0"></span></div>
+        <div class="glass" style="position:absolute;left:61.5%;top:15%;border-radius:16px;padding:10px 14px"><div style="font-size:14px;font-weight:500;color:#C42A2F">Scar is by her right eye</div><div class="mono" style="font-size:11px;color:#555;margin-top:2px">canon: LEFT eye · confidence 0.83</div></div>
+        <div class="glass mono" style="position:absolute;left:18px;top:18px;border-radius:999px;padding:6px 12px;font-size:11.5px;color:#333">T4·S05 · over-the-shoulder · opening a wooden locker</div>
+        <div style="position:absolute;left:22px;bottom:22px;display:flex;align-items:flex-end;gap:12px">
+          <div style="width:190px;height:190px;border-radius:50%;border:3px solid #fff;box-shadow:0 12px 40px rgba(0,0,0,.35);background-image:url('../img/de2c61a4b138.jpg');background-size:420%;background-position:52% 17%"></div>
+          <span class="glass mono" style="border-radius:999px;padding:5px 10px;font-size:11px;margin-bottom:8px">LOUPE 4× · scar_side</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="th"><img src="../img/32102f4cb12f.jpg" alt=""></div>
+        <div class="th"><img src="../img/c572629800c7.jpg" alt=""></div>
+        <div class="th"><img src="../img/08c322d07e20.jpg" alt=""></div>
+        <div class="th"><img src="../img/8a7badfdfd08.jpg" alt=""></div>
+        <div class="th" style="opacity:1;outline:2px solid #FF4D4F;outline-offset:2px"><img src="../img/de2c61a4b138.jpg" alt=""></div>
+        <div class="th"><img src="../img/10d9365ff40a.jpg" alt=""></div>
+      </div>
+    </main>
+
+    <aside style="display:flex;flex-direction:column;gap:18px;background:#fff;border-radius:22px;padding:22px;box-shadow:0 0 0 1px rgba(17,17,17,.06)">
+      <div>
+        <div class="lbl" style="color:#C42A2F">Drift · attribute_drift</div>
+        <div style="font-size:22px;font-weight:500;letter-spacing:-0.02em;margin-top:6px">The scar switched sides.</div>
+      </div>
+      <div>
+        <div class="ck"><span>Scar · <span style="color:#777">LEFT eye →</span> <b style="color:#C42A2F;font-weight:500">right</b></span><span class="mono" style="color:#C42A2F">✕ 0.83</span><span class="bar"><i style="width:83%;background:#FF4D4F"></i></span></div>
+        <div class="ck"><span>Scarf · <span style="color:#777">red wool</span></span><span class="mono" style="color:#1F7A4D">✓</span><span class="bar"><i style="width:96%"></i></span></div>
+        <div class="ck"><span>Hair · <span style="color:#777">short black</span></span><span class="mono" style="color:#1F7A4D">✓</span><span class="bar"><i style="width:95%"></i></span></div>
+        <div class="ck"><span>Ring · <span style="color:#777">right hand</span> <span style="color:#B07800">●</span></span><span class="mono" style="color:#1F7A4D">✓</span><span class="bar"><i style="width:80%"></i></span></div>
+        <div style="font-size:12px;color:#888;padding-top:8px"><span style="color:#B07800">●</span> checked because of a rule you taught in Take 1</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <label class="lbl" for="n">Your note</label>
+        <textarea id="n" rows="3">Scar should be over her LEFT eye, even when she's turned away.</textarea>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span style="font-size:12px;padding:5px 10px;border-radius:999px;background:#F3F0EB">Wrong side</span>
+          <span style="font-size:12px;padding:5px 10px;border-radius:999px;background:#F3F0EB">Missing</span>
+          <span style="font-size:12px;padding:5px 10px;border-radius:999px;background:#F3F0EB">Monitor is wrong</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto">
+        <a href="Learned.html" class="btn">Reject &amp; remember <span class="kbd" style="border-color:#fff">R</span></a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <a href="Batch.html" class="btn light">Looks right <span class="kbd">A</span></a>
+          <button class="btn light">Fix this shot</button>
+        </div>
+        <span class="mono" style="font-size:11px;color:#999;text-align:center">Fix regenerates only S05 with your note · ~$0.05</span>
+      </div>
+    </aside>
+  </div>
+</div>
+</body>
+</html>

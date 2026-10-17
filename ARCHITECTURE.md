@@ -33,8 +33,8 @@ Additive tables:
 | `monitor_runs` | Owner-scoped append-only checks, rule IDs, checker model/version and timestamp |
 | `shot_repairs` | New shot → original source lineage, owner/project scope |
 | `human_labels` | Append-only human yes/no/unclear judgments and frozen model prediction |
-| `api_budget_v2` | Reported historical baseline, usage-derived new spend, outstanding holds, $40 cap |
-| `api_attempts` | Unique preflight reservation, production/verification scope, returned token usage and settlement |
+| `api_budget_v2` | Reported historical baseline, usage-derived new spend, outstanding holds, $30 cap |
+| `api_attempts` | Unique preflight reservation, production/verification/ab_test scope, returned token usage and settlement |
 
 The original budget tables remain unchanged for auditability. No historical data is deleted by the new migration.
 
@@ -62,9 +62,9 @@ Access code attempts, reference upload/creation, canon suggestions, rechecks and
 
 ## Budget accounting
 
-The authorized cap is $40. The founder-reported historical provider spend is $2.05; its source is recorded. Old pessimistic reservations are preserved and are not subtracted again as actual spend.
+The authorized cap is $30. The founder-reported historical provider spend is $2.23; its source is recorded. Old pessimistic reservations are preserved and are not subtracted again as actual spend.
 
-Before every provider attempt (including retry), a database transaction locks the budget row, checks baseline + settled usage estimate + held reservations + new hold against $40, then inserts a unique attempt. Verification attempts also check their aggregate settled cost plus held reservations against $6. The application fails closed if accounting is unavailable.
+Before every provider attempt (including retry), a database transaction locks the budget row, checks baseline + settled usage estimate + held reservations + new hold against $30, then inserts a unique attempt. Verification attempts also check their aggregate settled cost plus held reservations against $12. The A/B scope has its own $3 ceiling inside the $12 testing allowance. Reconciliation snapshots retain old receipts and exclude already-covered settled costs from the new baseline. Stale unresolved holds are released after30minutes with an audit timestamp; late returned usage still settles once. The application fails closed if accounting is unavailable; operators repair stale accounting rather than treating an old hold as a provider billing error.
 
 Completed OpenAI responses settle from their returned token counts and pinned standard model prices. Sunburst text/image inputs have separate rates; unknown modality split uses the higher input rate. Cached-input discounts are ignored conservatively. Unknown models or missing usage retain their hold. Failed requests/timeouts retain a hold because billing is ambiguous. Settlement failure never triggers another paid generation. The provider dashboard remains authoritative for actual invoices.
 
@@ -74,4 +74,26 @@ Pricing sources checked October 17, 2026: [Sunburst](https://developers.openai.c
 
 Provider requests have timeouts and bounded retries. Generation fallback is explicit; it cannot enter the immutable real-image cache as a successful new shot. Failed monitoring produces uncertain checks. Repair failures preserve the source. Partial rechecks return per-shot errors rather than reporting complete evaluation.
 
-Main coordinates page commits from Design, runs `npm test` and `npm run build`, deploys the existing `archer-rag-dev/canon` project and verifies the public alias. No public repository conversion or external submission is performed. Code freeze: 8am PT; official deadline: 11am PT on October 17.
+Main coordinates page commits from Design, runs `npm test` and `npm run build`, deploys the existing `archer-rag-dev/canon` project and verifies the public alias. No public repository conversion or external submission is performed. Final handoff:6:15am PT; latest founder-supplied submission deadline:2:00pm PT on October17.
+
+## Request architecture
+
+```mermaid
+flowchart TB
+  U[Browser: Studio / Review / Memory / Eval] --> A[Next.js route handlers]
+  A --> S[Ownership + access + validation]
+  S --> B[Atomic budget reservation]
+  B --> G[Reference-conditioned image provider]
+  B --> V[Independent structured vision monitor]
+  S --> R[Rule extraction + deduplication]
+  G --> D[(Supabase Storage + Postgres)]
+  V --> D
+  R --> D
+  D --> A
+  C[Bundled Mara history] --> A
+  H[Human blind submissions] --> F[Frozen-prediction evaluation]
+  A --> F
+  F --> D
+```
+
+The controlled study is a separate evaluation corpus: twelve saved shots are prepended to Mara's blind questions, with ring/scar requirements first. Neither condition nor model verdict is included in those cards. Study shots never alter the original take count or learning curve. Its checker uses the same fixed canon-only requirements for A and B, excluding learned-rule checks and calibration to avoid changing the rubric between arms.

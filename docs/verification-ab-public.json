@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-17T10:24:31.401Z",
+  "release": "cb84f34",
+  "questions": 210,
+  "first48AreStudy": true,
+  "uniqueStudyShotsFirst": 12,
+  "hiddenVerdicts": true,
+  "humanLabels": 0,
+  "originalShots": 24,
+  "originalTakes": 4,
+  "originalFlags": [
+    2,
+    0,
+    0,
+    1
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "checkedAt": "2026-10-17T10:29:04.621Z",
+  "release": "cb84f34 to d26e3ad",
+  "projectId": "dee6c976-74e3-4780-ad1e-d9cd435be23b",
+  "steps": [
+    "private reference upload persisted",
+    "real vision returned side-neutral stable keys/headings",
+    "creator edited expected values and explicitly confirmed LEFT scar/RIGHT ring",
+    "created production through public new-production form",
+    "generated first real image",
+    "edited rejection note and live extracted new rule",
+    "saved Memory sheet and returned to same take",
+    "generated second real image with learned constraint"
+  ],
+  "rule": {
+    "id": "535193a1-09d5-4626-8774-6eea69b79ebb",
+    "projectId": "dee6c976-74e3-4780-ad1e-d9cd435be23b",
+    "text": "The red wool scarf must be tied in a single loose knot at all times during the production.",
+    "attributeKey": "scarf_color_style",
+    "source": "rejection",
+    "createdAt": "2026-10-17T10:25:26.19+00:00",
+    "timesApplied": 1
+  },
+  "canon": [
+    {
+      "key": "hair_style_color",
+      "label": "Hair style and color",
+      "expected": "Short, straight black hair with bangs",
+      "weight": 1
+    },
+    {
+      "key": "face_marks_pattern",
+      "label": "Facial marks pattern",
+      "expected": "Small scar over the LEFT eye",
+      "weight": 1
+    },
+    {
+      "key": "scarf_color_style",
+      "label": "Scarf color and style",
+      "expected": "Thick knitted red scarf wrapped around neck with fringes",
+      "weight": 1
+    },
+    {
+      "key": "coat_style_color",
+      "label": "Coat style and color",
+      "expected": "Gray, buttoned, knee length coat with lapels",
+      "weight": 1
+    },
+    {
+      "key": "hand_accessory",
+      "label": "Hand accessory",
+      "expected": "Silver ring on the RIGHT hand",
+      "weight": 0.5
+    }
+  ],
+  "batches": [
+    {
+      "index": 1,
+      "rulesApplied": [],
+      "shots": 1,
+      "flagged": 0
+    },
+    {
+      "index": 2,
+      "rulesApplied": [
+        "535193a1-09d5-4626-8774-6eea69b79ebb"
+      ],
+      "shots": 1,
+      "flagged": 0
+    }
+  ],
+  "laterPromptContainsRule": true,
+  "laterCheckContainsRule": true,
+  "laterChecks": [
+    {
+      "key": "hair_style_color",
+      "expected": "Short, straight black hair with bangs",
+      "observed": "Short, straight black hair with bangs visible; hair is chin-length and straight with fringe across forehead.",
+      "pass": true,
+      "confidence": 0.99
+    },
+    {
+      "key": "face_marks_pattern",
+      "expected": "Small scar over the LEFT eye",
+      "observed": "Frontal facing orientation; a small scar is visible on the image-right side near the left eye area, consistent with a scar over the character's LEFT eye.",
+      "pass": true,
+      "confidence": 0.93
+    },
+    {
+      "key": "scarf_color_style",
+      "expected": "Thick knitted red scarf wrapped around neck with fringes",
+      "observed": "A thick knitted red scarf is wrapped around the neck; fringes are visible hanging down.",
+      "pass": true,
+      "confidence": 0.99
+    },
+    {
+      "key": "coat_style_color",
+      "expected": "Gray, buttoned, knee length coat with lapels",
+      "observed": "Gray buttoned coat with lapels is visible; coat appears long and extends below the frame toward knee length.",
+      "pass": true,
+      "confidence": 0.9
+    },
+    {
+      "key": "hand_accessory",
+      "expected": "Silver ring on the RIGHT hand",
+      "observed": "Frontal facing orientation; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand.",
+      "pass": true,
+      "confidence": 0.96
+    },
+    {
+      "key": "rule:535193a1-09d5-4626-8774-6eea69b79ebb",
+      "expected": "The red wool scarf must be tied in a single loose knot at all times during the production.",
+      "observed": "The red scarf is tied in a single loose knot at the front in the shot.",
+      "pass": true,
+      "confidence": 0.94
+    }
+  ],
+  "usageReceipts": [
+    {
+      "model": "gpt-4.1-mini",
+      "cost_usd": 0.001432,
+      "scope": "production",
+      "created_at": "2026-10-17T10:22:28.544237+00:00"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "cost_usd": 0.054568,
+      "scope": "production",
+      "created_at": "2026-10-17T10:23:59.048288+00:00"
+    },
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "cost_usd": 0.004904,
+      "scope": "production",
+      "created_at": "2026-10-17T10:24:29.483387+00:00"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "cost_usd": 0.000326,
+      "scope": "production",
+      "created_at": "2026-10-17T10:25:24.16597+00:00"
+    },
+    {
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "cost_usd": 0.054668,
+      "scope": "production",
+      "created_at": "2026-10-17T10:27:17.609824+00:00"
+    },
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "cost_usd": 0.00564,
+      "scope": "production",
+      "created_at": "2026-10-17T10:27:49.39414+00:00"
+    }
+  ],
+  "usageEstimatedUsd": 0.12153800000000001,
+  "humanLabelsAdded": 0,
+  "remainingIssue": "After GenerateTake2 the selected take initially stayed Take1 and CTA still said GenerateTake2; forwarded P1 to Design. New take itself persisted and opened manually.",
+  "navigationFollowup": {
+    "release": "241f899",
+    "verifiedPublicly": "Viewing old Take1 now offers GenerateTake3; choosing savedTake2 changes URL to its batch ID and displays Take2. No extra generation performed.",
+    "automaticGenerationSelection": "Returned-batch selection covered by regression test; not re-spent on another paid generation."
+  }
+}

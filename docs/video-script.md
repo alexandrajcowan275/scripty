@@ -18,7 +18,7 @@ Rules do not force a new image. Re-check the shots you already have, or replace 
 
 Here is the original ring correction. It reached eighteen later image prompts and eighteen monitor outputs across different scenes. The new note has its own application count.
 
-Across four takes, flags were two, zero, zero, then one. Settings and scenes changed, so improved images are unverified. Blind human labels measure the checker; without those labels, accuracy stays blank.
+Our matched six-pair test passed with and without memory: no extra measured reduction. The original four-take history stays intact. Blind human labels measure the checker; without them, accuracy stays blank.
 
 Our first buyer is an AI production team making recurring characters. A pilot would measure review time and cost per approved shot.
 
@@ -33,17 +33,17 @@ Scripty. Keep the story straight.
 | 0:28–0:45 | Studio → Review T4·S05; inspect the image/reference and real expected/observed evidence. |
 | 0:45–1:08 | Edit Your note → Reject & remember → returned Memory update → Save to memory. |
 | 1:08–1:28 | Studio Memory: new note0/0 versus original ring18 prompts/18 checks. Show rule reach options without triggering an unplanned paid job. |
-| 1:28–1:45 | Four original rates and their limitation; human-only evaluation remains blank until people label. |
+| 1:28–1:45 | Matched A/B:0/6versus0/6; original rates stay separate. Blind accuracy remains blank until human labels exist. |
 | 1:45–2:00 | Buyer/pilot metric, product name and public URL. |
 
-Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed recording duration. The initial narration is about260 words; speak naturally and shorten if the screen actions need more room.
+Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed recording duration. The narration is 233 words; speak naturally and shorten if the screen actions need more room.
 
 ## Honesty and recording safety
 
 - Enter the private access code **before** recording, if showing live extraction. Never capture the code, API keys, terminal credentials or private environment files.
-- A free sample correction is a literal creator note; do not narrate it as live AI extraction. Live extraction and the real generation loop have separate saved verification in `docs/verification-live.json`.
+- A free sample correction is a literal creator note; do not narrate it as live AI extraction. Live extraction and the real generation loop have saved verification in `docs/verification-ui-live-loop.json`.
 - Existing original images were not caused by a visitor’s new note. Do not imply otherwise with editing.
 - The real flagged-only repair test produced a new image that was still monitor-flagged. Demonstrate selective repair and lineage, not guaranteed correction.
 - Do not label model judgments as human truth, show invented metrics, or count automated test submissions as human labels.
-- Pending navigation/pages must be shipped and publicly verified before filming them. Use the current handoff for the exact release.
-- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit before the official **11am PT** cutoff unless an organizer confirms an extension. No external submission is authorized here.
+- All eight pages are integrated; use only the current publicly verified release when filming. Use the current handoff for the exact release.
+- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit before the founder-supplied **2:00pm PT** deadline. No external submission is authorized here.

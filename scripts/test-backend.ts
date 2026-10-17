@@ -78,3 +78,16 @@ test("provisional laterality never leaks into stable canon identifiers or labels
   assert.equal(corrected[0].label, "Ring on hand"); assert.equal(corrected[0].expected, original[0].expected);
   assert.equal(original[0].key, "ring_left_hand");
 });
+
+import { blindQuestions, validatedStudyShots } from '../lib/blind-study';
+test('incomplete studies never enter blind evaluation and completed cards hide conditions and predictions', () => {
+ const shots=Array.from({length:12},(_,i)=>({...shot,id:`study-${i}`,projectId:'mara',condition:i<6?'A':'B',checks:['ring_hand','scar_side','scarf_color','hair'].map(key=>({...check,key}))}));
+ assert.deepEqual(validatedStudyShots({status:'running',projectId:'mara',shots}),[]);
+ assert.deepEqual(validatedStudyShots({status:'completed',projectId:'mara',shots:[...shots.slice(0,11),shots[0]]}),[]);
+ const valid=validatedStudyShots({status:'completed',projectId:'mara',shots});
+ assert.equal(valid.length,12);
+ const questions=blindQuestions(valid,'/reference.png');
+ assert.equal(questions.length,48);
+ assert.deepEqual(questions.slice(0,2).map(q=>q.attributeKey),['ring_hand','scar_side']);
+ for(const card of questions){ assert.equal('condition' in card,false);assert.equal('pass' in card,false);assert.equal('confidence' in card,false);assert.equal('flagged' in card,false); }
+});

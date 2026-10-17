@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scripty — Flow &amp; transitions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;family=Funnel+Sans:wght@300..800&amp;family=Martian+Mono:wght@300..500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F5F2}
+.bd0{}
+.pg{position:relative;width:2760px;height:1640px;background:#F6F5F2;color:#121212;font-family:'Funnel Sans',sans-serif;overflow:hidden}
+.haze{position:absolute;right:-300px;top:-300px;width:1200px;height:900px;background:radial-gradient(closest-side,rgba(196,181,253,.35),rgba(251,207,232,.25) 45%,rgba(246,245,242,0) 75%);filter:blur(30px)}
+.mono{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:-0.01em}
+.fr{position:absolute;width:440px;text-decoration:none;color:#121212;display:flex;flex-direction:column;gap:10px}
+.fl{display:flex;justify-content:space-between;gap:8px}
+.th{width:440px;height:306px;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(18,18,18,.08),0 18px 40px rgba(18,18,18,.08)}
+.th img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.bd{position:absolute;width:30px;height:30px;border-radius:50%;background:#121212;color:#fff;font-family:'Martian Mono',monospace;font-size:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px #F6F5F2;z-index:2}
+.bd.s{position:static;flex:none;box-shadow:none}
+.tr{display:grid;grid-template-columns:30px 260px 1fr 190px;gap:18px;align-items:start;padding:16px 0;border-bottom:1px solid rgba(18,18,18,.08)}
+.tok{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(18,18,18,.07);font-size:14px}
+</style>
+</head>
+<body>
+<div class="pg">
+  <div class="haze"></div>
+  <svg width="2760" height="1100" style="position:absolute;left:0;top:0" aria-hidden="true">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#121212"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B07800"/></marker></defs>
+    <g fill="none" stroke="#121212" stroke-width="1.6">
+      <path d="M484 300H594" marker-end="url(#a)"/>
+      <path d="M1044 300H1154" marker-end="url(#a)"/>
+      <path d="M1604 300H1714" marker-end="url(#a)"/>
+      <path d="M2164 300H2274" marker-end="url(#a)"/>
+      <path d="M260 134V62H1380V130" marker-end="url(#a)" stroke-dasharray="5 6"/>
+      <path d="M1380 478V690" marker-end="url(#a)"/>
+      <path d="M1604 860H1714" marker-end="url(#a)"/>
+      <path d="M1880 478C1880 540 2000 540 2000 478" marker-end="url(#a)"/>
+    </g>
+    <path d="M2500 134V28H1440V130" fill="none" stroke="#B07800" stroke-width="2" marker-end="url(#g)"/>
+  </svg>
+  <a href="Main.html" class="fr" style="left:40px;top:140px"><div class="fl"><span class="mono">01 · LANDING</span><span class="mono" style="color:#9A958E">/</span></div><div class="th"><img src="../img/scr_Main.jpg" alt="Landing screen"></div></a><a href="NewProduction.html" class="fr" style="left:600px;top:140px"><div class="fl"><span class="mono">02 · NEW PRODUCTION</span><span class="mono" style="color:#9A958E">/new</span></div><div class="th"><img src="../img/scr_NewProduction.jpg" alt="New production screen"></div></a><a href="Batch.html" class="fr" style="left:1160px;top:140px"><div class="fl"><span class="mono">03 · STUDIO</span><span class="mono" style="color:#9A958E">/p/mara</span></div><div class="th"><img src="../img/scr_Batch.jpg" alt="Studio screen"></div></a><a href="Review.html" class="fr" style="left:1720px;top:140px"><div class="fl"><span class="mono">04 · REVIEW</span><span class="mono" style="color:#9A958E">/p/mara/shot/T4-S05</span></div><div class="th"><img src="../img/scr_Review.jpg" alt="Review screen"></div></a><a href="Learned.html" class="fr" style="left:2280px;top:140px"><div class="fl"><span class="mono">05 · MEMORY UPDATE</span><span class="mono" style="color:#9A958E">sheet over Review</span></div><div class="th"><img src="../img/scr_Learned.jpg" alt="Memory update screen"></div></a><a href="Progress.html" class="fr" style="left:1160px;top:700px"><div class="fl"><span class="mono">06 · EVIDENCE</span><span class="mono" style="color:#9A958E">/p/mara/evidence</span></div><div class="th"><img src="../img/scr_Progress.jpg" alt="Evidence screen"></div></a><a href="Eval.html" class="fr" style="left:1720px;top:700px"><div class="fl"><span class="mono">07 · BLIND EVAL</span><span class="mono" style="color:#9A958E">/p/mara/eval</span></div><div class="th"><img src="../img/scr_Eval.jpg" alt="Blind eval screen"></div></a><a href="Developers.html" class="fr" style="left:2280px;top:700px"><div class="fl"><span class="mono">08 · API</span><span class="mono" style="color:#9A958E">/developers</span></div><div class="th"><img src="../img/scr_Developers.jpg" alt="API screen"></div></a>
+  <span class="bd" style="left:525px;top:285px">1</span><span class="bd" style="left:805px;top:47px">2</span><span class="bd" style="left:1085px;top:285px">3</span><span class="bd" style="left:1645px;top:285px">4</span><span class="bd" style="left:2205px;top:285px">5</span><span class="bd" style="left:1955px;top:13px">6</span><span class="bd" style="left:1925px;top:505px">7</span><span class="bd" style="left:1365px;top:585px">8</span><span class="bd" style="left:1645px;top:845px">9</span><span class="bd" style="left:1925px;top:1065px">10</span><span class="bd" style="left:2485px;top:1065px">11</span>
+  <div style="position:absolute;left:40px;top:700px;width:1040px;display:flex;flex-direction:column;gap:18px">
+    <div class="mono" style="color:#77736C">PRODUCT FLOW · SCRIPTY</div>
+    <div style="font-family:'Funnel Display',sans-serif;font-size:56px;line-height:1;letter-spacing:-0.045em">Every transition keeps the shot in your hands. <span style="color:#B8B3AB">The image you clicked is the image you land on.</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:10px">
+      <div><div class="mono" style="color:#77736C;margin-bottom:6px">MOTION TOKENS</div>
+        <div class="tok"><span>--dur-fast</span><span class="mono">180ms · tabs, chips</span></div>
+        <div class="tok"><span>--dur-base</span><span class="mono">280–360ms · panels</span></div>
+        <div class="tok"><span>--dur-slow</span><span class="mono">420–520ms · shared element</span></div>
+        <div class="tok"><span>--ease-out</span><span class="mono">cubic-bezier(.2,.8,.2,1)</span></div>
+        <div class="tok"><span>--ease-spring</span><span class="mono">cubic-bezier(.2,1.3,.3,1)</span></div>
+        <div class="tok"><span>--stagger</span><span class="mono">40–70ms</span></div></div>
+      <div><div class="mono" style="color:#77736C;margin-bottom:6px">RULES</div>
+        <div class="tok"><span>Animate transform and opacity only</span></div>
+        <div class="tok"><span>Shared element for every image you click</span></div>
+        <div class="tok"><span>Red motion means drift, gold means memory</span></div>
+        <div class="tok"><span>Esc reverses the last transition</span></div>
+        <div class="tok"><span>Reduced motion: 150ms crossfades only</span></div>
+        <div class="tok"><span>Ambient: haze drift 26s, grain 7%</span></div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:40px;top:1180px;width:2680px">
+    <div class="mono" style="color:#77736C;margin-bottom:6px">TRANSITIONS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:60px"><div class="tr"><span class="bd s">1</span><div><div style="font-weight:500;font-size:15px">Landing → New production</div><div class="mono" style="color:#8A857D;margin-top:3px">Start a production</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Hero stage shrinks into the reference drop zone (shared element). Headline lifts 12px and fades.</div><div class="mono" style="color:#7E5A00;text-align:right">420ms · ease-out</div></div><div class="tr"><span class="bd s">2</span><div><div style="font-weight:500;font-size:15px">Landing → Studio</div><div class="mono" style="color:#8A857D;margin-top:3px">Watch it on Mara</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Hero portrait flies into its slot on the contact sheet. The other five shots stagger in.</div><div class="mono" style="color:#7E5A00;text-align:right">480ms · stagger 40ms</div></div><div class="tr"><span class="bd s">3</span><div><div style="font-weight:500;font-size:15px">New production → Studio</div><div class="mono" style="color:#8A857D;margin-top:3px">Generate take 1</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">The dock button becomes a progress pill. Six frames develop like Polaroids (blur 20 → 0), then a scanline checks each one and its status chip flips.</div><div class="mono" style="color:#7E5A00;text-align:right">600ms per shot, as each returns</div></div><div class="tr"><span class="bd s">4</span><div><div style="font-weight:500;font-size:15px">Studio → Review</div><div class="mono" style="color:#8A857D;margin-top:3px">Click a shot · R</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">The card expands into the review stage (FLIP). Inspector slides in 24px from the right, filmstrip rises. Brackets lock on with overshoot.</div><div class="mono" style="color:#7E5A00;text-align:right">360ms · brackets 450ms spring</div></div><div class="tr"><span class="bd s">5</span><div><div style="font-weight:500;font-size:15px">Review → Memory update</div><div class="mono" style="color:#8A857D;margin-top:3px">Reject & remember · R</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Stage blurs back 14px. The sheet rises 40px on a spring. The rule card pulses gold once.</div><div class="mono" style="color:#7E5A00;text-align:right">420ms spring · glow 1.2s</div></div><div class="tr"><span class="bd s">6</span><div><div style="font-weight:500;font-size:15px">Memory update → Studio</div><div class="mono" style="color:#8A857D;margin-top:3px">Save to memory</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">The rule card shrinks and flies into the Memory panel, landing with a gold ring. Takes that will carry it get a gold dot.</div><div class="mono" style="color:#7E5A00;text-align:right">520ms · ease-out</div></div><div class="tr"><span class="bd s">7</span><div><div style="font-weight:500;font-size:15px">Review → next shot</div><div class="mono" style="color:#8A857D;margin-top:3px">J / K · filmstrip</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Horizontal slide 24px with crossfade. Loupe and brackets re-lock on the new drift.</div><div class="mono" style="color:#7E5A00;text-align:right">220ms · re-lock 450ms</div></div><div class="tr"><span class="bd s">8</span><div><div style="font-weight:500;font-size:15px">Studio → Evidence</div><div class="mono" style="color:#8A857D;margin-top:3px">Evidence tab</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Crossfade. Drift numbers count up, then gold dots light along the memory thread.</div><div class="mono" style="color:#7E5A00;text-align:right">200ms · dots 70ms stagger</div></div><div class="tr"><span class="bd s">9</span><div><div style="font-weight:500;font-size:15px">Evidence → Blind eval</div><div class="mono" style="color:#8A857D;margin-top:3px">Needs your labels</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Shot cards deal in from the right as a stack.</div><div class="mono" style="color:#7E5A00;text-align:right">60ms stagger · spring</div></div><div class="tr"><span class="bd s">10</span><div><div style="font-weight:500;font-size:15px">Answer a question</div><div class="mono" style="color:#8A857D;margin-top:3px">Y / N / U</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">Card swipes left (yes), right (no) or down (can't tell) with 8° tilt. The matching matrix cell bumps.</div><div class="mono" style="color:#7E5A00;text-align:right">260ms · bump 1.08×</div></div><div class="tr"><span class="bd s">11</span><div><div style="font-weight:500;font-size:15px">Open API</div><div class="mono" style="color:#8A857D;margin-top:3px">API tab</div></div><div style="font-size:14px;line-height:1.5;color:#3d3a35">The continuity receipt prints out of the slot line by line.</div><div class="mono" style="color:#7E5A00;text-align:right">1.6s · steps(18)</div></div></div>
+  </div>
+</div>
+</body>
+</html>
