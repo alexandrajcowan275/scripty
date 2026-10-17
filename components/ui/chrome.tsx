@@ -30,7 +30,7 @@ export function Nav({
   return (
     <header className="v2-top">
       <div className="v2-top-left">
-        <Brand />
+        <Brand api={active === "api"} />
         <div className="v2-project-switch">
           <button
             className="v2-button v2-light v2-project-button"

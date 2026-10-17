@@ -3283,61 +3283,6 @@
   box-shadow: var(--shadow);
   font: 10px/1.65 var(--font-mono);
   transform: rotate(1deg);
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 98%,
-    98% 100%,
-    96% 98%,
-    94% 100%,
-    92% 98%,
-    90% 100%,
-    88% 98%,
-    86% 100%,
-    84% 98%,
-    82% 100%,
-    80% 98%,
-    78% 100%,
-    76% 98%,
-    74% 100%,
-    72% 98%,
-    70% 100%,
-    68% 98%,
-    66% 100%,
-    64% 98%,
-    62% 100%,
-    60% 98%,
-    58% 100%,
-    56% 98%,
-    54% 100%,
-    52% 98%,
-    50% 100%,
-    48% 98%,
-    46% 100%,
-    44% 98%,
-    42% 100%,
-    40% 98%,
-    38% 100%,
-    36% 98%,
-    34% 100%,
-    32% 98%,
-    30% 100%,
-    28% 98%,
-    26% 100%,
-    24% 98%,
-    22% 100%,
-    20% 98%,
-    18% 100%,
-    16% 98%,
-    14% 100%,
-    12% 98%,
-    10% 100%,
-    8% 98%,
-    6% 100%,
-    4% 98%,
-    2% 100%,
-    0 98%
-  );
   animation: v2-receipt-print 1.6s steps(18) both;
 }
 .v2-receipt > header {
@@ -3406,14 +3351,12 @@
 }
 @keyframes v2-receipt-print {
   from {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-16px) rotate(1.5deg);
   }
   to {
-    max-height: 1200px;
-    opacity: 1;
-    overflow: hidden;
+    clip-path: inset(-80px -80px -100px -80px);
+    transform: translateY(0) rotate(1.5deg);
   }
 }
 @media (max-width: 900px) {
@@ -3952,5 +3895,184 @@
 @media (max-width: 700px) {
   .v2-eval-card.behind {
     width: 90%;
+  }
+}
+
+/* API: source-sized pipeline, copyable syntax and a real printed check. */
+.v2-api-wrap {
+  max-width: 1304px;
+  padding-top: var(--space-24);
+  gap: 36px;
+}
+.v2-developers .v2-haze {
+  top: 300px;
+}
+.v2-pipeline > li {
+  align-items: flex-start;
+  text-align: left;
+  gap: var(--space-4);
+  padding: var(--space-16) 18px;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px var(--v2-stroke),
+    0 8px 24px var(--shadow-tint-subtle);
+}
+.v2-pipeline strong {
+  font-size: 14px;
+}
+.v2-pipeline span {
+  font: 11px/1.5 var(--font-mono);
+}
+.v2-pipeline > li:not(:last-child):after {
+  content: "";
+  left: 100%;
+  top: 50%;
+  width: var(--space-40);
+  height: 1.5px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--paper-edge) 0 6px,
+    transparent 6px 11px
+  );
+}
+.v2-pipeline .memory {
+  box-shadow:
+    0 0 0 1px var(--memory-border),
+    0 0 40px var(--memory-glow);
+}
+.v2-pipeline .v2-pipeline-drift {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--drift-outline) 40%, transparent),
+    0 8px 24px var(--shadow-tint-subtle);
+}
+.v2-code {
+  background: var(--code-surface);
+  color: var(--code-text);
+  font: 12.5px/1.75 var(--font-mono);
+  white-space: pre;
+  overflow: auto;
+  overflow-wrap: normal;
+}
+.v2-code > code {
+  white-space: inherit;
+  overflow-wrap: normal;
+}
+.v2-code-comment {
+  color: var(--code-muted);
+}
+.v2-code-string {
+  color: var(--code-string);
+}
+.v2-endpoints > div {
+  border: 1px solid var(--v2-stroke);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  padding: 14px var(--space-16);
+}
+.v2-endpoints code {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.v2-method {
+  background: var(--text);
+  color: var(--surface);
+  font-size: 10px;
+}
+.v2-method-get {
+  background: var(--answer-pass);
+  color: var(--answer-pass-text);
+}
+.v2-receipt-section {
+  align-items: stretch;
+  padding: 10px;
+}
+.v2-receipt-section > .v2-text-button {
+  align-self: center;
+  margin-top: var(--space-16);
+}
+.v2-receipt-printer {
+  position: relative;
+  width: 100%;
+  padding-top: var(--space-12);
+}
+.v2-printer-slot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5px;
+  background: var(--text);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 5px var(--shadow-sheet);
+}
+.v2-receipt {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  padding: 26px 26px 34px;
+  font: 12.5px/1.8 var(--font-mono);
+  transform: rotate(1.5deg);
+  box-shadow: 0 24px 60px var(--shadow-card-stack);
+}
+.v2-receipt:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  background:
+    linear-gradient(-45deg, transparent 7px, var(--surface) 0) 0 0/14px 10px,
+    linear-gradient(45deg, transparent 7px, var(--surface) 0) 0 0/14px 10px;
+}
+.v2-receipt-printer.v2-awaiting .v2-receipt {
+  animation: none;
+  opacity: 0;
+}
+.v2-receipt > header > strong {
+  font: 600 16px var(--font-ui);
+}
+.v2-receipt-meta {
+  font-size: 10px;
+}
+.v2-receipt-checks,
+.v2-receipt > footer {
+  border-color: var(--paper-edge);
+}
+.v2-receipt-checks small {
+  font-size: 10px;
+}
+.v2-receipt-rules p {
+  font-size: 11px;
+}
+.v2-receipt > footer {
+  font-size: 15px;
+  padding-bottom: 0;
+}
+@media (max-width: 900px) {
+  .v2-pipeline > li:not(:last-child):after {
+    width: var(--space-24);
+  }
+  .v2-code {
+    padding: var(--space-16);
+    font-size: 11px;
+  }
+  .v2-receipt {
+    padding: var(--space-20);
+    font-size: 11px;
+  }
+}
+@media (max-width: 650px) {
+  .v2-api-wrap {
+    gap: var(--space-28);
+  }
+  .v2-pipeline > li {
+    padding: var(--space-16);
+  }
+  .v2-pipeline span {
+    font-size: 10px;
+  }
+  .v2-receipt-section {
+    padding: 8px;
   }
 }
