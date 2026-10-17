@@ -221,3 +221,24 @@
     display: none;
   }
 }
+
+.v2-cinema-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+.v2-cinema .v2-cinema-secondary {
+  background: transparent;
+  color: var(--surface);
+  border: 1px solid var(--glass-border);
+}
+.v2-cinema .v2-cinema-secondary:hover {
+  background: var(--glass-highlight);
+}
+@media (max-width: 760px) {
+  .v2-cinema-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}

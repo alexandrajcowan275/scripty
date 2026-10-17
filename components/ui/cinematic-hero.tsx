@@ -62,9 +62,18 @@ export function CinematicHero({ children }: { children: ReactNode }) {
           More of every film will be generated, shot by shot.{" "}
           <span>Scripty keeps the story straight.</span>
         </h1>
-        <MotionLink href="/new" kind="start" className="v2-button">
-          Start a production →
-        </MotionLink>
+        <div className="v2-cinema-actions">
+          <MotionLink href="/new" kind="start" className="v2-button">
+            Start a production →
+          </MotionLink>
+          <MotionLink
+            href="/p/mara"
+            kind="mara"
+            className="v2-button v2-cinema-secondary"
+          >
+            Explore the sample: Mara →
+          </MotionLink>
+        </div>
       </div>
       <div className="v2-cinema-foot">
         <a href="#product">See Scripty at work ↓</a>
