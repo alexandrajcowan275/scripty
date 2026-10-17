@@ -4,7 +4,7 @@
 cd ~/canon && npm run dev
 ```
 
-Open http://localhost:3000. This is the one-command local cached demo on this Mac after setup.
+Open http://localhost:3000. This exact one-command cached run was verified on this Mac. Public demo: [Scripty](https://canon-woad.vercel.app).
 
 The continuity memory and monitoring layer for AI-generated stories. One creator correction becomes a persistent, deduplicated constraint on later image generation and monitoring. This is project memory and prompt adaptation—not model-weight training.
 

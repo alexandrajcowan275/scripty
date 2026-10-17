@@ -35,7 +35,7 @@ A falling chart alone cannot prove learning: rules change the monitor as well as
 - The learned ring rule appears in all18 later new-scene generation prompts and all18 corresponding monitor outputs. An accepted portrait was an extra reference in all6 deployed batch4 generations.
 - Frozen calibrated checker v3 reports **2/6 flagged** in the baseline recheck and **0/6 flagged** in batch 2, with **6/42 uncertain checks** in batch 2. Original v1/v2 baseline checks remain retained at 6/6 flagged.
 - Batch3 returned0/6 flags with8/42 uncertain checks; batch4 returned1/6 flags with6/42 uncertain checks. The final operational rate worsened; no further tuning or selective exclusion was performed.
-- Public app: [Scripty](https://canon-woad.vercel.app), publicly accessible; follow the final release verification in `handoff/MORNING.md`.
+- Public app: [Scripty](https://canon-woad.vercel.app), verified publicly without login, with all4 recorded batches,24 matching image hashes, local review persistence, and a no-egress backup rehearsal. Release evidence is in `handoff/MORNING.md`.
 
 ## What we learned
 

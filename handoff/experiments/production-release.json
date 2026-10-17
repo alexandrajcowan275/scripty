@@ -1,0 +1,33 @@
+{
+  "verifiedAt": "2026-10-17T03:44:01.253Z",
+  "sourceCommit": "c33da80",
+  "deploymentId": "dpl_FKtFzCjnse9DzsxysVev43MnN4sj",
+  "deploymentUrl": "https://canon-fzsksxhlw-archer-rag-dev.vercel.app",
+  "publicUrl": "https://canon-woad.vercel.app",
+  "publicDefaultStatus": 200,
+  "publicMode": "cached",
+  "publicCacheAvailable": true,
+  "publicHeaderCannotEnableLive": true,
+  "loginOrBypassCredentialsUsed": false,
+  "allFourBatchHttpReplayPassed": true,
+  "all24ImageHashesPassed": true,
+  "noEgressReplayPassed": true,
+  "outboundAttemptCount": 0,
+  "browser": {
+    "fourBatches24Shots": true,
+    "desktopWidth": 1440,
+    "desktopPageWidth": 1435,
+    "mobileWidth": 390,
+    "mobilePageWidth": 385,
+    "brokenImages": 0,
+    "capturedWarningsOrErrors": 0
+  },
+  "budget": {
+    "reservedUsd": 20.58,
+    "limitUsd": 24,
+    "remainingUsd": 3.4200000000000017
+  },
+  "build": "passed",
+  "tests": "40/40 passed",
+  "limitations": "Operational flagged rates are confounded; DRAFT agent labels require human verification. No verified accuracy or causal improvement claim."
+}

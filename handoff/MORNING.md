@@ -10,7 +10,9 @@ Open **http://localhost:3000**. This exact one-command startup was verified on t
 
 ## Status
 
-All build phases, integration, two independent review rounds, real experiments, cache capture, draft evaluation and pitch/design assets are complete. Final production release verification is in progress; its result will be recorded here before work stops. Public access without Vercel login was independently verified. Production stays cached, with no public AI spending.
+All build phases, integration, two independent review rounds, real experiments, cache capture, draft evaluation and pitch/design assets are complete. **Final production is deployed and verified.** All4 batches/24 image hashes, review/accept persistence, session isolation and exhaustion pass on the public URL with no login, cookies from a prior account, auth headers or bypass credentials. Public desktop1440px/mobile390px have zero broken images or captured browser errors/warnings. Production stays cached, with no public AI spending.
+
+Release: `dpl_FKtFzCjnse9DzsxysVev43MnN4sj`, application source `c33da80`; immutable deployment https://canon-fzsksxhlw-archer-rag-dev.vercel.app (may be protected; use the public URL at the top). Final release evidence: `experiments/production-release.json`, `production-replay-final.json`, `no-egress-replay-final.json`. No-egress replay passed all4 genuine batches with **zero attempted outbound requests**. Public headers cannot enable live generation; reservations stayed$20.58 after rehearsal. Nothing remains in progress for the application release.
 
 ## What works
 
