@@ -131,7 +131,7 @@ export async function seedProject(input: Project, inputRules: Rule[]): Promise<v
  * failures without usage retain their hold. Original ledger remains untouched. */
 export async function reserveAiBudget(reservationId: string, amount: number): Promise<boolean> {
   id.parse(reservationId); z.number().positive().max(10).finite().parse(amount);
-  const { data, error } = await db().rpc("reserve_api_attempt", { p_id: reservationId, p_amount: Math.ceil(amount * 1e6) / 1e6, p_scope: process.env.SCRIPTY_BUDGET_SCOPE === "verification" ? "verification" : "production" });
+  const { data, error } = await db().rpc("reserve_api_attempt", { p_id: reservationId, p_amount: Math.ceil(amount * 1e6) / 1e6, p_scope: ["verification", "ab_test"].includes(process.env.SCRIPTY_BUDGET_SCOPE ?? "") ? process.env.SCRIPTY_BUDGET_SCOPE : "production" });
   fail(error, "reserveApiBudget"); return z.boolean().parse(data);
 }
 export async function reserveApiBudget(amount: number): Promise<boolean> { return reserveAiBudget(crypto.randomUUID(), amount); }
