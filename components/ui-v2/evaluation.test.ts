@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   pendingQuestions,
+  changedMatrixCell,
   metricsVisible,
   type Evaluation,
 } from "./evaluation";
@@ -34,4 +35,27 @@ test("accuracy requires both backend readiness and twenty evaluated human judgme
     false,
   );
   assert.equal(metricsVisible(null), false);
+});
+
+test("a saved judgment bumps only the actual increased matrix cell; uncertainty does not invent one", () => {
+  const before = {
+    confusionMatrix: {
+      truePositives: 0,
+      falsePositives: 0,
+      falseNegatives: 0,
+      trueNegatives: 0,
+    },
+  } as Evaluation;
+  assert.equal(
+    changedMatrixCell(before, {
+      ...before,
+      confusionMatrix: { ...before.confusionMatrix, falsePositives: 1 },
+    }),
+    "falsePositives",
+  );
+  assert.equal(
+    changedMatrixCell(before, { ...before, uncertainHumanLabels: 1 }),
+    null,
+  );
+  assert.equal(changedMatrixCell(null, before), null);
 });

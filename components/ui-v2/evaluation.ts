@@ -39,3 +39,23 @@ export function pendingQuestions(data: LabelData) {
 }
 export const metricsVisible = (evaluation?: Evaluation | null) =>
   !!evaluation?.metricsReady && evaluation.evaluatedLabels >= 20;
+
+export type MatrixCell = keyof Evaluation["confusionMatrix"];
+/** A saved human judgment can highlight only a cell whose real count increased. */
+export function changedMatrixCell(
+  previous: Evaluation | null,
+  next: Evaluation,
+): MatrixCell | null {
+  if (!previous) return null;
+  const cells: MatrixCell[] = [
+    "truePositives",
+    "falsePositives",
+    "falseNegatives",
+    "trueNegatives",
+  ];
+  return (
+    cells.find(
+      (cell) => next.confusionMatrix[cell] > previous.confusionMatrix[cell],
+    ) ?? null
+  );
+}

@@ -3,10 +3,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ShotImage } from "../shot-image";
 import { ErrorNotice, Kbd, Nav } from "../ui/chrome";
 import { Ambient, MotionLink } from "../ui/motion";
+import { QuestionDeck, type AnswerMotion } from "../ui/question-deck";
 import { ConfusionMatrix } from "../ui/metrics";
-import { frameName, message, post, request } from "./data";
+import { frameName, sceneCaption, message, post, request } from "./data";
 import {
   pendingQuestions,
+  changedMatrixCell,
+  type MatrixCell,
   questionKey,
   type Evaluation,
   type LabelData,
@@ -19,8 +22,8 @@ export function EvalScreen() {
     [error, setError] = useState(""),
     [loading, setLoading] = useState(true),
     [busy, setBusy] = useState(false),
-    [direction, setDirection] = useState(""),
-    [updated, setUpdated] = useState(false);
+    [direction, setDirection] = useState<AnswerMotion>(""),
+    [updated, setUpdated] = useState<MatrixCell | null>(null);
   const pending = useRef(false),
     active = useRef(true),
     keyAction = useRef<(pass: boolean | null) => void>(() => {});
@@ -28,6 +31,7 @@ export function EvalScreen() {
     setLoading(true);
     setError("");
     try {
+      // The label read establishes the owner cookie used by the metrics query.
       const result = await request<LabelData>(
         `/api/project/${encodeURIComponent(id)}/labels`,
       );
@@ -98,7 +102,7 @@ export function EvalScreen() {
       );
       if (active.current) {
         setEvaluation(stats);
-        setUpdated(true);
+        setUpdated(changedMatrixCell(evaluation, stats));
       }
     } catch (e) {
       if (active.current) {
@@ -110,6 +114,11 @@ export function EvalScreen() {
       if (active.current) setBusy(false);
     }
   }
+  useEffect(() => {
+    if (!updated) return;
+    const timer = setTimeout(() => setUpdated(null), 260);
+    return () => clearTimeout(timer);
+  }, [updated]);
   keyAction.current = (pass) => {
     void answer(pass);
   };
@@ -122,7 +131,8 @@ export function EvalScreen() {
         e.metaKey ||
         e.altKey ||
         document.querySelector("dialog[open]") ||
-        /INPUT|TEXTAREA|SELECT/.test((e.target as HTMLElement).tagName)
+        /INPUT|TEXTAREA|SELECT/.test((e.target as HTMLElement).tagName) ||
+        (e.target as HTMLElement).isContentEditable
       )
         return;
       const key = e.key.toLowerCase();
@@ -143,7 +153,12 @@ export function EvalScreen() {
   return (
     <div className="v2-screen v2-eval">
       <Ambient />
-      <Nav id={id} data={data} active="eval" />
+      <Nav
+        id={id}
+        data={data}
+        active="eval"
+        context="Blind review · monitor verdict hidden"
+      />
       <div className="v2-eval-layout">
         <main className="v2-eval-main">
           {(error || productionError) && (
@@ -158,55 +173,39 @@ export function EvalScreen() {
             />
           ) : question ? (
             <>
-              <div>
+              <div className="v2-eval-question">
                 <span className="v2-label">
                   Question {new Set(labels?.labels.map(questionKey)).size + 1}{" "}
-                  of {labels?.questions.length ?? "—"} · monitor verdict hidden
+                  of {labels?.questions.length ?? "—"}
                 </span>
                 <h1>
-                  Does this shot show
-                  <br />
-                  <span>{question.expected}?</span>
+                  Does this shot show <span>{question.expected}?</span>
                 </h1>
               </div>
-              <div className="v2-eval-stack">
-                {upcoming.reverse().map((item, index) => (
-                  <div
-                    key={questionKey(item)}
-                    className={`v2-eval-card behind behind-${index}`}
-                    aria-hidden="true"
-                  >
-                    <ShotImage src={item.imageUrl} alt="" />
-                  </div>
-                ))}
-                <div
-                  className={`v2-eval-card current ${direction ? `swipe-${direction}` : ""}`}
-                  key={questionKey(question)}
-                >
-                  <ShotImage
-                    src={question.imageUrl}
-                    alt="Shot for your independent continuity judgment"
-                    priority
-                  />
-                  <span className="v2-frame-tag v2-glass v2-mono">
-                    {current && data ? frameName(current, data) : "—"}
-                  </span>
-                </div>
-              </div>
+              <QuestionDeck
+                question={question}
+                upcoming={upcoming}
+                direction={direction}
+                frameLabel={
+                  current && data
+                    ? `${frameName(current, data)} · ${sceneCaption(current)}`
+                    : "Study frame"
+                }
+              />
               <div className="v2-answer-row">
                 <button
                   className="v2-answer yes"
                   disabled={busy}
                   onClick={() => void answer(true)}
                 >
-                  Yes <Kbd>Y</Kbd>
+                  Yes, matches <Kbd>Y</Kbd>
                 </button>
                 <button
                   className="v2-answer no"
                   disabled={busy}
                   onClick={() => void answer(false)}
                 >
-                  No <Kbd>N</Kbd>
+                  No, differs <Kbd>N</Kbd>
                 </button>
                 <button
                   className="v2-answer"
@@ -247,7 +246,7 @@ export function EvalScreen() {
               labels ? new Set(labels.labels.map(questionKey)).size : null
             }
             total={labels?.questions.length ?? null}
-            updating={updated}
+            updatedCell={updated}
           />
           <p className="v2-calibration-note">
             Your disagreements teach this production’s checker what it missed.
