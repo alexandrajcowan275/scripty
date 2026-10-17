@@ -126,6 +126,7 @@
   --work-metric: 64px;
   --work-counter: 32px;
   --radius-tag: 4px;
+  --radius-preview: 24px;
 }
 @media (max-width: 760px) {
   :root {

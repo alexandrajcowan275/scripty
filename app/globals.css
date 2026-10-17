@@ -6,6 +6,7 @@
 @import "../styles/workspace.css";
 @import "../styles/cinematic.css";
 @import "../styles/app-shell.css";
+@import "../styles/landing-story.css";
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--text);
