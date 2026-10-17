@@ -7,3 +7,10 @@ out/
 *.tsbuildinfo
 .DS_Store
 npm-debug.log*
+.vercel
+
+supabase/.temp/
+
+supabase/.branches/
+
+.canon-cache/
