@@ -2,15 +2,192 @@
 
 import { Brand, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
-import { checkLabel, confidence, failedCheck, frameName, primaryRule, ruleReach, shotsFor, sortedBatches, unclear } from "./data";
+import {
+  checkLabel,
+  confidence,
+  failedCheck,
+  frameName,
+  primaryRule,
+  ruleReach,
+  shotsFor,
+  sortedBatches,
+  unclear,
+} from "./data";
 import { ProductionProvider, useProduction } from "./provider";
 import { ShotCard } from "../ui/shot-card";
 
 function LandingContent() {
   const { data, error, refresh } = useProduction();
-  const batches = sortedBatches(data), first = batches[0], latest = batches.at(-1);
-  const hero = data && (shotsFor(data, first?.id).find(s => s.flagged) ?? data.shots[0]);
-  const rule = data && primaryRule(data), reach = data && rule ? ruleReach(rule, data.shots) : null;
-  return <div className="v2-screen v2-landing"><Ambient /><div className="v2-page-wrap"><header className="v2-public-nav"><Brand /><nav aria-label="Scripty"><a href="#how">How it works</a><MotionLink href="/developers" kind="receipt">API</MotionLink><MotionLink href="/p/mara/evidence" kind="evidence">Evidence</MotionLink><MotionLink href="/p/mara" kind="mara" className="v2-button v2-small">Open studio</MotionLink></nav></header><main><section className="v2-landing-intro"><MotionLink href="/p/mara/evidence" kind="evidence" className="v2-live-pill v2-mono"><i className="v2-memory-dot" />{data ? `${data.shots.length} sample shots · ${reach ?? "—"} prompts and checks carried a rule` : "Opening the contact sheet…"} →</MotionLink><RevealHeadline lead="Scripty remembers your story." continuation="Every detail your AI forgets. Caught. Corrected. Carried forward." /><div className="v2-cta-row"><MotionLink href="/new" kind="start" className="v2-button">Start a production →</MotionLink><MotionLink href="/p/mara" kind="mara" className="v2-button v2-light">Watch it on Mara</MotionLink></div></section>{error && <ErrorNotice retry={() => { void refresh().catch(() => {}); }}>{error}</ErrorNotice>}{data && hero ? <section className="v2-landing-hero" aria-label="A real continuity check"><ShotCard shot={hero} data={data} /><aside className="v2-hero-checklist v2-glass"><div className="v2-rail-heading"><span className="v2-label">{frameName(hero, data)} · continuity check</span><span className="v2-label v2-drift-text">{failedCheck(hero) ? "Flagged" : "Checked"}</span></div>{hero.checks.filter(c => !c.key.startsWith("rule:")).map(check => <div className="v2-hero-check" key={check.key}><span>{checkLabel(check.key, data)}</span><span className={`v2-mono ${!check.pass && !unclear(check) ? "v2-drift-text" : "v2-muted"}`}>{unclear(check) ? "?" : check.pass ? "✓" : "✕"} {confidence(check.confidence)}</span></div>)}</aside>{rule && <div className="v2-hero-rule v2-glass"><i className="v2-memory-dot" /><div><strong>{rule.text}</strong><p className="v2-mono">Carried into {reach ?? "—"} prompts and checks</p></div></div>}</section> : <div className="v2-skeleton v2-hero-skeleton" aria-label="Loading sample shot" />}<section id="how" className="v2-contact-story"><div><span className="v2-label">The contact sheet</span><h2>Your AI script supervisor.</h2><p>Spot the slip. Leave a note. Keep the story straight.</p></div><div className="v2-shot-grid">{data && shotsFor(data, latest?.id).map((shot, index) => <ShotCard key={shot.id} shot={shot} data={data} index={index} />)}</div></section><section className="v2-principles" aria-label="How Scripty works">{[{label:"01 · Catch",text:"Checks every detail. Says ‘unclear’ when it can’t tell."},{label:"02 · Correct",text:"One note becomes a rule. Your call, always."},{label:"03 · Carry",text:"Memory travels into future prompts and checks."}].map(item => <div key={item.label}><span className="v2-label">{item.label}</span><h3>{item.text}</h3></div>)}</section></main><footer className="v2-public-footer"><Brand /><span>Continuity. Now part of the crew.</span><MotionLink href="/productions">Your productions →</MotionLink></footer></div></div>;
+  const batches = sortedBatches(data),
+    first = batches[0],
+    latest = batches.at(-1);
+  const hero =
+    data && (shotsFor(data, first?.id).find((s) => s.flagged) ?? data.shots[0]);
+  const studioHref = first ? `/p/mara?take=${first.id}` : "/p/mara";
+  const rule = data && primaryRule(data),
+    reach = data && rule ? ruleReach(rule, data.shots) : null;
+  return (
+    <div className="v2-screen v2-landing">
+      <Ambient />
+      <div className="v2-page-wrap">
+        <header className="v2-public-nav">
+          <Brand />
+          <nav aria-label="Scripty">
+            <a href="#how">How it works</a>
+            <MotionLink href="/developers" kind="receipt">
+              API
+            </MotionLink>
+            <MotionLink href="/p/mara/evidence" kind="evidence">
+              Evidence
+            </MotionLink>
+            <MotionLink
+              href={studioHref}
+              kind="mara"
+              className="v2-button v2-small"
+            >
+              Open studio
+            </MotionLink>
+          </nav>
+        </header>
+        <main>
+          <section className="v2-landing-intro">
+            <MotionLink
+              href="/p/mara/evidence"
+              kind="evidence"
+              className="v2-live-pill v2-mono"
+            >
+              <i className="v2-memory-dot" />
+              {data
+                ? `${data.shots.length} sample shots · ${reach ?? "—"} prompts and checks carried a rule`
+                : "Opening the contact sheet…"}{" "}
+              →
+            </MotionLink>
+            <RevealHeadline
+              lead="Scripty remembers your story."
+              continuation="Every detail your AI forgets. Caught. Corrected. Carried forward."
+            />
+            <div className="v2-cta-row">
+              <MotionLink href="/new" kind="start" className="v2-button">
+                Start a production →
+              </MotionLink>
+              <MotionLink
+                href={studioHref}
+                kind="mara"
+                className="v2-button v2-light"
+              >
+                Watch it on Mara
+              </MotionLink>
+            </div>
+          </section>
+          {error && (
+            <ErrorNotice
+              retry={() => {
+                void refresh().catch(() => {});
+              }}
+            >
+              {error}
+            </ErrorNotice>
+          )}
+          {data && hero ? (
+            <section
+              className="v2-landing-hero"
+              aria-label="A real continuity check"
+            >
+              <ShotCard shot={hero} data={data} />
+              <aside className="v2-hero-checklist v2-glass">
+                <div className="v2-rail-heading">
+                  <span className="v2-label">
+                    {frameName(hero, data)} · continuity check
+                  </span>
+                  <span className="v2-label v2-drift-text">
+                    {failedCheck(hero) ? "Flagged" : "Checked"}
+                  </span>
+                </div>
+                {hero.checks
+                  .filter((c) => !c.key.startsWith("rule:"))
+                  .map((check) => (
+                    <div className="v2-hero-check" key={check.key}>
+                      <span>{checkLabel(check.key, data)}</span>
+                      <span
+                        className={`v2-mono ${!check.pass && !unclear(check) ? "v2-drift-text" : "v2-muted"}`}
+                      >
+                        {unclear(check) ? "?" : check.pass ? "✓" : "✕"}{" "}
+                        {confidence(check.confidence)}
+                      </span>
+                    </div>
+                  ))}
+              </aside>
+              {rule && (
+                <div className="v2-hero-rule v2-glass">
+                  <i className="v2-memory-dot" />
+                  <div>
+                    <strong>{rule.text}</strong>
+                    <p className="v2-mono">
+                      Carried into {reach ?? "—"} prompts and checks
+                    </p>
+                  </div>
+                </div>
+              )}
+            </section>
+          ) : (
+            <div
+              className="v2-skeleton v2-hero-skeleton"
+              aria-label="Loading sample shot"
+            />
+          )}
+          <section id="how" className="v2-contact-story">
+            <div>
+              <span className="v2-label">The contact sheet</span>
+              <h2>Your AI script supervisor.</h2>
+              <p>Spot the slip. Leave a note. Keep the story straight.</p>
+            </div>
+            <div className="v2-shot-grid">
+              {data &&
+                shotsFor(data, latest?.id).map((shot, index) => (
+                  <ShotCard
+                    key={shot.id}
+                    shot={shot}
+                    data={data}
+                    index={index}
+                  />
+                ))}
+            </div>
+          </section>
+          <section className="v2-principles" aria-label="How Scripty works">
+            {[
+              {
+                label: "01 · Catch",
+                text: "Checks every detail. Says ‘unclear’ when it can’t tell.",
+              },
+              {
+                label: "02 · Correct",
+                text: "One note becomes a rule. Your call, always.",
+              },
+              {
+                label: "03 · Carry",
+                text: "Memory travels into future prompts and checks.",
+              },
+            ].map((item) => (
+              <div key={item.label}>
+                <span className="v2-label">{item.label}</span>
+                <h3>{item.text}</h3>
+              </div>
+            ))}
+          </section>
+        </main>
+        <footer className="v2-public-footer">
+          <Brand />
+          <span>Continuity. Now part of the crew.</span>
+          <MotionLink href="/productions">Your productions →</MotionLink>
+        </footer>
+      </div>
+    </div>
+  );
 }
-export function LandingScreen() { return <ProductionProvider id="mara"><LandingContent /></ProductionProvider>; }
+export function LandingScreen() {
+  return (
+    <ProductionProvider id="mara">
+      <LandingContent />
+    </ProductionProvider>
+  );
+}

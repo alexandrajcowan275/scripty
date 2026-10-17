@@ -1,7 +1,73 @@
 "use client";
 import type { Shot } from "@/lib/types";
-import { checkLabel, confidence, frameName, unclear, type ProductionData } from "../ui-v2/data";
-export function ContinuityReceipt({ shot, data }: { shot: Shot; data: ProductionData }) {
- const trace = [...data.traces].reverse().find(t => t.shotId === shot.id && t.type === "check"), batch = data.batches.find(b => b.id === shot.batchId);
- return <article className="v2-receipt"><header><strong>scripty</strong><span>{frameName(shot,data)}</span></header><p className="v2-receipt-meta">{data.project.name} · {trace?.createdAt ?? "—"}</p><div className="v2-receipt-checks">{shot.checks.filter(c => !c.key.startsWith("rule:")).map(check => <div className={!check.pass && !unclear(check) ? "v2-drift-text" : ""} key={check.key}><span>{checkLabel(check.key,data)}</span><span>{unclear(check) ? "?" : check.pass ? "✓" : "✕"} {confidence(check.confidence)}</span><small>{check.observed}</small></div>)}</div><div className="v2-receipt-rules"><div><span>Rules applied</span><span>{batch?.rulesApplied.length ?? "—"}</span></div>{data.rules.filter(rule => batch?.rulesApplied.includes(rule.id) && rule.source !== "seed").map(rule => <p key={rule.id}>{rule.text}</p>)}</div><footer><span>CONTINUITY</span><strong className={shot.flagged ? "v2-drift-text" : ""}>{shot.flagged ? "FLAGGED" : shot.checks.some(unclear) ? "UNCLEAR" : "ON-MODEL"}</strong></footer></article>;
+import {
+  checkLabel,
+  confidence,
+  frameName,
+  unclear,
+  type ProductionData,
+} from "../ui-v2/data";
+export function ContinuityReceipt({
+  shot,
+  data,
+}: {
+  shot: Shot;
+  data: ProductionData;
+}) {
+  const trace = [...data.traces]
+      .reverse()
+      .find((t) => t.shotId === shot.id && t.type === "check"),
+    batch = data.batches.find((b) => b.id === shot.batchId);
+  return (
+    <article className="v2-receipt">
+      <header>
+        <strong>scripty</strong>
+        <span>{frameName(shot, data)}</span>
+      </header>
+      <p className="v2-receipt-meta">
+        {data.project.name} · {trace?.createdAt ?? "—"}
+      </p>
+      <div className="v2-receipt-checks">
+        {shot.checks
+          .filter((c) => !c.key.startsWith("rule:"))
+          .map((check) => (
+            <div
+              className={!check.pass && !unclear(check) ? "v2-drift-text" : ""}
+              key={check.key}
+            >
+              <span>{checkLabel(check.key, data)}</span>
+              <span>
+                {unclear(check) ? "?" : check.pass ? "✓" : "✕"}{" "}
+                {confidence(check.confidence)}
+              </span>
+              <small>{check.observed}</small>
+            </div>
+          ))}
+      </div>
+      <div className="v2-receipt-rules">
+        <div>
+          <span>Rules applied</span>
+          <span>{batch?.rulesApplied.length ?? "—"}</span>
+        </div>
+        {data.rules
+          .filter(
+            (rule) =>
+              batch?.rulesApplied.includes(rule.id) && rule.source !== "seed",
+          )
+          .map((rule) => (
+            <p key={rule.id}>{rule.text}</p>
+          ))}
+      </div>
+      <footer>
+        <span>CONTINUITY</span>
+        <strong className={shot.flagged ? "v2-drift-text" : ""}>
+          {shot.flagged
+            ? "FLAGGED"
+            : !shot.checks.length || shot.checks.some(unclear)
+              ? "UNCLEAR"
+              : "ON-MODEL"}
+        </strong>
+      </footer>
+    </article>
+  );
 }
