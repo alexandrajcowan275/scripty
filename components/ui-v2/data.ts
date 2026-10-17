@@ -141,6 +141,29 @@ export const money = (value: number | undefined | null) =>
         currency: "USD",
         maximumFractionDigits: 2,
       }).format(value);
+/** Only generation selects a new take; repair/recheck keep the source take in view. */
+export function generatedBatchId(
+  action: string,
+  result: unknown,
+): string | null {
+  if (
+    action !== "generate" ||
+    !result ||
+    typeof result !== "object" ||
+    !("batch" in result)
+  )
+    return null;
+  const batch = result.batch;
+  return batch &&
+    typeof batch === "object" &&
+    "id" in batch &&
+    typeof batch.id === "string" &&
+    batch.id
+    ? batch.id
+    : null;
+}
+export const nextTakeIndex = (data?: ProductionData | null) =>
+  Math.max(0, ...(data?.batches ?? []).map((batch) => batch.index)) + 1;
 export const sortedBatches = (data?: ProductionData | null) =>
   [...(data?.batches ?? [])].sort((a, b) => a.index - b.index);
 export const shotsFor = (

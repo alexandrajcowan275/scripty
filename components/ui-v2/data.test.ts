@@ -7,6 +7,8 @@ import {
   confidence,
   failedCheck,
   frameName,
+  generatedBatchId,
+  nextTakeIndex,
   modelFor,
   money,
   operationIssue,
@@ -212,4 +214,26 @@ test("all shared glass, atmosphere and semantic tokens resolve as individual CSS
       `${name} has no shared token definition`,
     );
   }
+});
+
+test("generation selects the returned take while fixes and rechecks preserve source context", () => {
+  assert.equal(
+    generatedBatchId("generate", { batch: { id: "new-take" } }),
+    "new-take",
+  );
+  assert.equal(
+    generatedBatchId("fix", { batch: { id: "repair-batch" } }),
+    null,
+  );
+  assert.equal(
+    generatedBatchId("recheck", { batch: { id: "source-take" } }),
+    null,
+  );
+  assert.equal(generatedBatchId("generate", { error: "failed" }), null);
+  assert.equal(generatedBatchId("generate", { batch: { id: "" } }), null);
+  assert.equal(
+    nextTakeIndex({ batches: [{ index: 2 }, { index: 1 }] } as ProductionData),
+    3,
+  );
+  assert.equal(nextTakeIndex({ batches: [] } as unknown as ProductionData), 1);
 });

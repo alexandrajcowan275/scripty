@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Batch } from "@/lib/types";
 import { ScreenSkeleton } from "../ui/skeleton";
 import { RuleCard } from "../ui/rule-card";
@@ -20,6 +20,8 @@ import {
   allShots,
   currentShot,
   frameName,
+  generatedBatchId,
+  nextTakeIndex,
   message,
   operationIssue,
   modelFor,
@@ -198,7 +200,8 @@ export function StudioScreen() {
     useProduction();
   const { config, refreshConfig } = useConfiguration(),
     navigate = useMotionNavigation(),
-    search = useSearchParams();
+    search = useSearchParams(),
+    router = useRouter();
   const [activeId, setActiveId] = useState<string | null>(null),
     [localError, setLocalError] = useState(""),
     [access, setAccess] = useState(false),
@@ -229,7 +232,7 @@ export function StudioScreen() {
     first = pending[0] ?? flagged[0] ?? shots[0];
   useEffect(() => {
     document.title = `${data?.project.name ?? "Scripty"} — Studio`;
-  }, [data?.project.name]);
+  }, [data?.project.name, search]);
   useEffect(() => {
     if (drawer) railDialog.current?.showModal();
     else railDialog.current?.close();
@@ -270,6 +273,14 @@ export function StudioScreen() {
             ? { shotIds: shots.map((s) => s.id) }
             : {},
       );
+      const newBatchId = generatedBatchId(kind, result);
+      if (newBatchId) {
+        setActiveId(newBatchId);
+        const query = new URLSearchParams(search.toString());
+        query.set("take", newBatchId);
+        query.delete("start");
+        router.replace(`/p/${id}?${query.toString()}`, { scroll: false });
+      }
       setLocalError(operationIssue(result));
     } catch (e) {
       setLocalError(message(e));
@@ -290,6 +301,10 @@ export function StudioScreen() {
   }, [data, search, config?.authorized]);
   const choose = (batch: Batch) => {
     setActiveId(batch.id);
+    const query = new URLSearchParams(search.toString());
+    query.set("take", batch.id);
+    query.delete("start");
+    router.replace(`/p/${id}?${query.toString()}`, { scroll: false });
     setDrawer(null);
   };
   return (
@@ -471,7 +486,7 @@ export function StudioScreen() {
                   disabled={!!busy}
                   onClick={() => void action("generate")}
                 >
-                  Generate take {active ? active.index + 1 : "—"}{" "}
+                  Generate take {nextTakeIndex(data)}{" "}
                   <span aria-hidden="true">⌄</span>
                 </button>
               )}
