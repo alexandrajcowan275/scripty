@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-border: var(--border);
+  --color-foreground: var(--text);
+  --color-muted: var(--muted);
+  --color-drift: var(--drift);
+  --color-pass: var(--pass);
+  --color-memory: var(--memory);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-mono);
+}
+
+body { margin: 0; background: var(--background); color: var(--text); font-family: var(--font-ui); }
+:focus-visible { outline: 2px solid var(--memory); outline-offset: 4px; }
+a { text-underline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-duration: 0ms; }
+}

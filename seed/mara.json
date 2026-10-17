@@ -1,0 +1,67 @@
+{
+  "project": {
+    "id": "mara",
+    "name": "Mara",
+    "characters": [
+      {
+        "id": "mara-character",
+        "name": "Mara",
+        "referenceImageUrl": "/seed/mara-reference.svg",
+        "attributes": [
+          {
+            "key": "scarf_color",
+            "label": "Scarf",
+            "expected": "red wool scarf",
+            "weight": 1
+          },
+          {
+            "key": "scar_side",
+            "label": "Scar",
+            "expected": "scar over the LEFT eye",
+            "weight": 1
+          },
+          {
+            "key": "hair",
+            "label": "Hair",
+            "expected": "short black hair",
+            "weight": 1
+          },
+          {
+            "key": "ring_hand",
+            "label": "Ring",
+            "expected": "silver ring on the right hand",
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
+  "scenePrompts": [
+    "Wide establishing shot of Mara crossing a foggy railway platform at dawn.",
+    "Close-up portrait of Mara looking toward camera in soft window light.",
+    "Low-angle shot of Mara climbing a fire escape at golden hour.",
+    "Profile medium shot of Mara reading a map under a cool streetlamp at night.",
+    "Over-the-shoulder shot of Mara opening a door in a warmly lit room.",
+    "High-angle shot of Mara reaching across a table in bright midday light."
+  ],
+  "rules": [
+    {
+      "id": "seed-scarf",
+      "projectId": "mara",
+      "text": "Mara always wears a red wool scarf.",
+      "attributeKey": "scarf_color",
+      "source": "seed",
+      "createdAt": "2026-10-16T12:00:00.000Z",
+      "timesApplied": 0
+    },
+    {
+      "id": "seed-scar",
+      "projectId": "mara",
+      "text": "Mara’s scar is always over the LEFT eye.",
+      "attributeKey": "scar_side",
+      "source": "seed",
+      "createdAt": "2026-10-16T12:00:00.000Z",
+      "timesApplied": 0
+    }
+  ]
+}

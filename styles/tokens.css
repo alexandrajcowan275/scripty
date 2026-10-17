@@ -1,0 +1,16 @@
+:root {
+  color-scheme: dark;
+  --background: #0B0B0D;
+  --surface: #141418;
+  --raised: #1C1C22;
+  --border: #2A2A33;
+  --text: #EDEDF0;
+  --muted: #8A8A96;
+  --drift: #E5484D;
+  --pass: #3DD68C;
+  --memory: #F5C451;
+  --font-ui: Inter, Geist, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --motion-duration: 200ms;
+  --motion-easing: ease-out;
+}
