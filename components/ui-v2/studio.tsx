@@ -1,4 +1,5 @@
 "use client";
+import { ReviewScreen } from "./review";
 import { AppPageHeader } from "../ui/app-shell";
 
 import { useEffect, useRef, useState } from "react";
@@ -210,7 +211,8 @@ export function StudioScreen() {
     [localError, setLocalError] = useState(""),
     [access, setAccess] = useState(false),
     [drawer, setDrawer] = useState<"takes" | "memory" | null>(null),
-    [dockOpen, setDockOpen] = useState(false);
+    [dockOpen, setDockOpen] = useState(false),
+    [selectedShotId, setSelectedShotId] = useState<string | null>(null);
   const railDialog = useRef<HTMLDialogElement>(null),
     started = useRef(false);
   const batches = sortedBatches(data),
@@ -241,27 +243,6 @@ export function StudioScreen() {
     if (drawer) railDialog.current?.showModal();
     else railDialog.current?.close();
   }, [drawer]);
-  useEffect(() => {
-    const key = (e: KeyboardEvent) => {
-      if (
-        e.defaultPrevented ||
-        e.metaKey ||
-        e.ctrlKey ||
-        e.altKey ||
-        e.repeat ||
-        /INPUT|TEXTAREA|SELECT/.test((e.target as HTMLElement).tagName) ||
-        (e.target as HTMLElement).isContentEditable ||
-        document.querySelector("dialog[open]")
-      )
-        return;
-      if (e.key.toLowerCase() === "r" && first) {
-        e.preventDefault();
-        navigate(`/p/${id}/shot/${first.id}`, "shot");
-      }
-    };
-    window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
-  }, [id, first, navigate]);
   async function action(kind: "recheck" | "fix" | "generate") {
     setLocalError("");
     if (!config?.authorized) {
@@ -341,12 +322,21 @@ export function StudioScreen() {
         title="Studio"
         id={id}
         productionName={data?.project.name}
+        action={
+          <button
+            className="v2-button"
+            disabled={!!busy || !data}
+            onClick={() => void action("generate")}
+          >
+            Generate take {data ? nextTakeIndex(data) : "—"}
+          </button>
+        }
       />
       <div className="v2-studio-grid">
         <div className="v2-desktop-rail">
           {data && <TakeRail data={data} active={active} choose={choose} />}
         </div>
-        <main className="v2-contact-sheet">
+        <div className="v2-contact-sheet">
           <div className="v2-mobile-rail-actions">
             <button
               className="v2-button v2-light"
@@ -413,12 +403,15 @@ export function StudioScreen() {
             </ErrorNotice>
           )}
           {loading && <ScreenSkeleton />}
-          <div className="v2-shot-grid">
-            {data &&
-              shots.map((shot, i) => (
-                <ShotCard key={shot.id} shot={shot} data={data} index={i} />
-              ))}
-          </div>
+          {data && first && (
+            <ReviewScreen
+              shotId={
+                shots.find((s) => s.id === selectedShotId)?.id ?? first.id
+              }
+              embedded
+              onSelectShot={setSelectedShotId}
+            />
+          )}
           {data && repaired.length > 0 && (
             <section className="v2-repaired-shots">
               <h2 className="v2-label">Repaired shots · originals retained</h2>
@@ -465,7 +458,7 @@ export function StudioScreen() {
               </span>
             </div>
           )}
-        </main>
+        </div>
         <div className="v2-desktop-rail">
           {data && (
             <MemoryPanel data={data} landedRuleId={receipt?.newRule?.id} />

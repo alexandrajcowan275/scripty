@@ -4,6 +4,7 @@ import type { Shot } from "@/lib/types";
 import { LearnedRuleCard } from "./rule-card";
 import { AccessDialog, ErrorNotice } from "./chrome";
 import {
+  nextTakeIndex,
   frameName,
   currentShot,
   operationIssue,
@@ -112,7 +113,7 @@ export function MemoryUpdate({
             id="memory-update-title"
             className="v2-label"
           >
-            Memory update · from your note on {frameName(shot, data)}
+            Rule learned
           </h2>
           <button
             className="v2-close"
@@ -129,6 +130,10 @@ export function MemoryUpdate({
           tabIndex={0}
         >
           <LearnedRuleCard rule={rule} shot={shot} merged={merged} />
+          <p className="v2-learned-source">
+            From your note on {frameName(shot, data)}.{" "}
+            {merged ? "Merged with canon." : "Saved to memory."}
+          </p>
           {receipt.provenance === "cached_local_rule" && (
             <p className="v2-muted">
               Creator note saved in this browser. Original takes stay unchanged.
@@ -138,59 +143,66 @@ export function MemoryUpdate({
             /unavailable|failed|could not|error|retry/i.test(
               receipt.warning,
             ) && <ErrorNotice>{receipt.warning}</ErrorNotice>}
-          <fieldset className="v2-rule-reach">
-            <legend className="v2-label">Apply this rule to</legend>
-            <label className="v2-reach-option on">
-              <input
-                type="checkbox"
-                checked
-                readOnly
-                aria-label="Every future take: saved"
-              />
-              <span>
-                <strong>Every future take</strong>
+          <details className="v2-rule-options">
+            <summary>Rule options</summary>
+            <fieldset className="v2-rule-reach">
+              <legend className="v2-label">Apply this rule to</legend>
+              <label className="v2-reach-option on">
+                <input
+                  type="checkbox"
+                  checked
+                  readOnly
+                  aria-label="Every future take: saved"
+                />
                 <span>
-                  Saved for future prompts and checks. Nothing regenerates now.
+                  <strong>Every future take</strong>
+                  <span>
+                    Saved for future prompts and checks. Nothing regenerates
+                    now.
+                  </span>
                 </span>
-              </span>
-              <span className="v2-mono">saved</span>
-            </label>
-            <label className={`v2-reach-option ${recheck ? "on" : ""}`}>
-              <input
-                type="checkbox"
-                checked={recheck}
-                onChange={(e) => setRecheck(e.target.checked)}
-              />
-              <span>
-                <strong>
-                  Re-check the {data.shots.length}{" "}
-                  {data.shots.length === 1 ? "shot" : "shots"} you already have
-                </strong>
-                <span>Checks your existing images. No new generation.</span>
-              </span>
-              <span className="v2-mono">—</span>
-            </label>
-            <label className={`v2-reach-option ${fix ? "on" : ""}`}>
-              <input
-                type="checkbox"
-                checked={fix}
-                disabled={!flagged}
-                onChange={(e) => setFix(e.target.checked)}
-              />
-              <span>
-                <strong>Fix shots that break it</strong>
-                <span>Generates only flagged shots. Keeps the originals.</span>
-              </span>
-              <span className="v2-mono">
-                {flagged} {flagged === 1 ? "shot" : "shots"} ·{" "}
-                {money(
-                  config?.observedImageCostUsd == null
-                    ? null
-                    : config.observedImageCostUsd * flagged,
-                )}
-              </span>
-            </label>
-          </fieldset>
+                <span className="v2-mono">saved</span>
+              </label>
+              <label className={`v2-reach-option ${recheck ? "on" : ""}`}>
+                <input
+                  type="checkbox"
+                  checked={recheck}
+                  onChange={(e) => setRecheck(e.target.checked)}
+                />
+                <span>
+                  <strong>
+                    Re-check the {data.shots.length}{" "}
+                    {data.shots.length === 1 ? "shot" : "shots"} you already
+                    have
+                  </strong>
+                  <span>Checks your existing images. No new generation.</span>
+                </span>
+                <span className="v2-mono">—</span>
+              </label>
+              <label className={`v2-reach-option ${fix ? "on" : ""}`}>
+                <input
+                  type="checkbox"
+                  checked={fix}
+                  disabled={!flagged}
+                  onChange={(e) => setFix(e.target.checked)}
+                />
+                <span>
+                  <strong>Fix shots that break it</strong>
+                  <span>
+                    Generates only flagged shots. Keeps the originals.
+                  </span>
+                </span>
+                <span className="v2-mono">
+                  {flagged} {flagged === 1 ? "shot" : "shots"} ·{" "}
+                  {money(
+                    config?.observedImageCostUsd == null
+                      ? null
+                      : config.observedImageCostUsd * flagged,
+                  )}
+                </span>
+              </label>
+            </fieldset>
+          </details>
           <div className="v2-memory-diffs">
             <div>
               <span>// next prompt · preview</span>
@@ -227,6 +239,27 @@ export function MemoryUpdate({
           </span>
           <div>
             <button
+              className="v2-button"
+              disabled={!!busy}
+              onClick={async () => {
+                if (!config?.authorized) {
+                  setAccess(true);
+                  return;
+                }
+                setError("");
+                try {
+                  const result = await run("generate");
+                  if (operationIssue(result))
+                    throw new Error(operationIssue(result));
+                  onSave();
+                } catch (e) {
+                  setError(message(e));
+                }
+              }}
+            >
+              Generate take {nextTakeIndex(data)} with this rule
+            </button>
+            <button
               className="v2-button v2-light"
               disabled={!next || !!busy}
               onClick={onNext}
@@ -234,11 +267,15 @@ export function MemoryUpdate({
               Next flagged shot
             </button>
             <button
-              className="v2-button"
+              className="v2-button v2-light"
               disabled={!!busy}
               onClick={() => void save()}
             >
-              {busy ? "Applying…" : "Save to memory"}
+              {busy
+                ? "Applying…"
+                : recheck || fix
+                  ? "Apply options"
+                  : "Back to Studio"}
             </button>
           </div>
         </footer>

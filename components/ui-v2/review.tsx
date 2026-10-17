@@ -28,7 +28,15 @@ import { useProduction } from "./provider";
 import { useConfiguration } from "./config";
 
 type Mode = "shot" | "reference" | "comparison";
-export function ReviewScreen({ shotId }: { shotId: string }) {
+export function ReviewScreen({
+  shotId,
+  embedded = false,
+  onSelectShot,
+}: {
+  shotId: string;
+  embedded?: boolean;
+  onSelectShot?: (id: string) => void;
+}) {
   const {
     id,
     data,
@@ -76,7 +84,8 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
     const next = strip[index + delta];
     if (next) {
       setMemoryOpen(false);
-      navigate(`/p/${id}/shot/${next.id}`, "shot-step");
+      if (onSelectShot) onSelectShot(next.id);
+      else navigate(`/p/${id}/shot/${next.id}`, "shot-step");
     }
   };
   async function decide(decision: "accept" | "reject") {
@@ -196,13 +205,17 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
         ? shotsFor(data, before.id)[Math.max(0, index)]
         : undefined);
   return (
-    <div className="v2-screen v2-workspace v2-review">
+    <div
+      className={`v2-screen v2-workspace v2-review ${embedded ? "v2-review-embedded" : ""}`}
+    >
       <Ambient />
-      <AppPageHeader
-        title="Review"
-        id={id}
-        productionName={data?.project.name}
-      />
+      {!embedded && (
+        <AppPageHeader
+          title="Review"
+          id={id}
+          productionName={data?.project.name}
+        />
+      )}
       <header className="v2-review-top">
         <div className="v2-review-top-left">
           <button className="v2-button v2-light v2-small" onClick={goBack}>
@@ -323,21 +336,40 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
               </div>
             )}
             <nav className="v2-filmstrip" aria-label="Shots in this take">
-              {strip.map((item) => (
-                <MotionLink
-                  key={item.id}
-                  href={`/p/${id}/shot/${item.id}`}
-                  kind="shot-step"
-                  className={item.id === (sourceId ?? shotId) ? "on" : ""}
-                  title={item.scenePrompt}
-                >
-                  <ShotImage
-                    src={item.imageUrl}
-                    alt={frameName(item, data)}
-                    variant="thumbnail"
-                  />
-                </MotionLink>
-              ))}
+              {strip.map((item) =>
+                onSelectShot ? (
+                  <button
+                    key={item.id}
+                    onClick={() => onSelectShot(item.id)}
+                    className={`${item.id === (sourceId ?? shotId) ? "on" : ""} ${item.flagged ? "flagged" : ""}`}
+                    title={item.scenePrompt}
+                    aria-label={frameName(item, data)}
+                  >
+                    <ShotImage
+                      src={item.imageUrl}
+                      alt={frameName(item, data)}
+                      variant="thumbnail"
+                    />
+                    <span className="v2-filmstrip-frame v2-mono">
+                      {frameName(item, data)} {item.flagged ? "· drift" : "✓"}
+                    </span>
+                  </button>
+                ) : (
+                  <MotionLink
+                    key={item.id}
+                    href={`/p/${id}/shot/${item.id}`}
+                    kind="shot-step"
+                    className={item.id === (sourceId ?? shotId) ? "on" : ""}
+                    title={item.scenePrompt}
+                  >
+                    <ShotImage
+                      src={item.imageUrl}
+                      alt={frameName(item, data)}
+                      variant="thumbnail"
+                    />
+                  </MotionLink>
+                ),
+              )}
             </nav>
           </main>
           <aside className="v2-inspector">

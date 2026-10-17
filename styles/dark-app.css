@@ -262,3 +262,319 @@ body:has(.v2-app-shell),
     padding: 24px 16px;
   }
 }
+/* Studio is a monitor, an inspector, and one contact strip. */
+.v2-app-shell .v2-studio-grid {
+  display: block;
+  padding: 16px 18px 24px;
+  min-height: calc(100svh - 56px);
+}
+.v2-app-shell .v2-studio-grid > .v2-desktop-rail:first-child {
+  display: block;
+}
+.v2-app-shell .v2-takes {
+  display: flex;
+  gap: 2px;
+  width: fit-content;
+  padding: 3px;
+  background: var(--image-bed);
+  border-radius: 7px;
+  margin-bottom: 14px;
+}
+.v2-app-shell .v2-takes > :is(h2, p, .v2-sparkline),
+.v2-app-shell .v2-take .v2-mini-map {
+  display: none;
+}
+.v2-app-shell .v2-take {
+  display: flex;
+  width: auto;
+  gap: 5px;
+  padding: 5px 10px;
+  min-height: 26px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  font-size: 12px;
+  color: var(--muted);
+}
+.v2-app-shell .v2-take.on {
+  background: var(--hover);
+  color: var(--text);
+  box-shadow: none;
+}
+.v2-app-shell .v2-take > .v2-mono {
+  font-size: 10px;
+}
+.v2-app-shell .v2-studio .v2-contact-heading,
+.v2-app-shell .v2-studio .v2-mobile-rail-actions,
+.v2-app-shell .v2-studio > .v2-action-dock {
+  display: none;
+}
+.v2-app-shell .v2-review-embedded .v2-review-top {
+  display: none;
+}
+.v2-app-shell .v2-review-embedded .v2-review-grid {
+  padding: 0;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 14px;
+  min-height: 0;
+}
+.v2-app-shell .v2-review-embedded .v2-review-main {
+  display: contents;
+}
+.v2-app-shell .v2-review-embedded .v2-inspect-stage {
+  height: calc(100svh - 240px);
+  min-height: 420px;
+  border-radius: 8px;
+  background: var(--image-bed);
+}
+.v2-app-shell .v2-review-embedded .v2-inspect-stage > img {
+  object-fit: contain;
+  filter: none;
+}
+.v2-app-shell .v2-review-embedded .v2-inspector {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  gap: 14px;
+}
+.v2-app-shell .v2-review-embedded .v2-inspector h2 {
+  font-size: 22px;
+  margin: 6px 0 12px;
+  font-weight: 400;
+}
+.v2-app-shell .v2-check-list {
+  gap: 0;
+}
+.v2-app-shell .v2-check summary {
+  font-size: 12px;
+  min-height: 37px;
+}
+.v2-app-shell .v2-review-note textarea {
+  padding: 11px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--image-bed);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.v2-app-shell .v2-review-embedded .v2-note-chips,
+.v2-app-shell .v2-review-embedded .v2-review-note > label {
+  display: none;
+}
+.v2-app-shell .v2-review-actions {
+  margin-top: auto;
+}
+.v2-app-shell .v2-review-actions .v2-button {
+  min-height: 38px;
+  font-size: 12px;
+}
+.v2-app-shell .v2-filmstrip {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  padding: 0;
+  gap: 8px;
+  overflow: visible;
+}
+.v2-app-shell .v2-filmstrip > :is(button, a) {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 106px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.v2-app-shell .v2-filmstrip > .flagged {
+  border-color: var(--drift);
+}
+.v2-app-shell .v2-filmstrip > .on {
+  box-shadow: 0 0 0 1px var(--text);
+}
+.v2-filmstrip-frame {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  font-size: 9px;
+  line-height: 1.5;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: var(--glass-label);
+  color: var(--text);
+}
+.v2-app-shell .v2-studio-grid > .v2-desktop-rail:last-child {
+  display: block;
+  position: fixed;
+  left: 12px;
+  bottom: 16px;
+  width: 198px;
+  max-height: 30vh;
+  overflow: auto;
+  z-index: 30;
+}
+.v2-app-shell .v2-studio-grid > .v2-desktop-rail:last-child .v2-memory {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.v2-app-shell
+  .v2-studio-grid
+  > .v2-desktop-rail:last-child
+  .v2-memory
+  > :not(.v2-rule.gold) {
+  display: none;
+}
+.v2-app-shell .v2-rule.gold {
+  color: var(--memory-code-text);
+  background: var(--memory-fill);
+  border: 1px solid var(--memory-border);
+  font-size: 12px;
+}
+.v2-memory-sheet {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(80svh, 740px);
+  border: 1px solid var(--memory-border);
+  border-radius: 12px;
+  box-shadow: 0 0 60px var(--memory-halo);
+  padding: 22px 24px;
+  animation: dark-rule-land 220ms ease-out both;
+}
+.v2-memory-sheet::backdrop {
+  background: var(--sheet-scrim);
+}
+.v2-memory-sheet .v2-memory-sheet-heading {
+  padding: 0 0 12px;
+  border: 0;
+}
+.v2-memory-sheet .v2-memory-sheet-heading h2 {
+  color: var(--memory);
+  font: 400 10px/1.6 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.v2-memory-sheet .v2-memory-sheet-body {
+  padding: 0;
+}
+.v2-memory-sheet .v2-learned-card {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+.v2-memory-sheet .v2-learned-card > img,
+.v2-memory-sheet .v2-learned-card .v2-mono {
+  display: none;
+}
+.v2-memory-sheet .v2-learned-card h3 {
+  font: 400 26px/1.2 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+.v2-learned-source {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+.v2-memory-sheet .v2-memory-diffs {
+  margin: 16px 0;
+}
+.v2-memory-sheet .v2-memory-diffs mark {
+  color: var(--memory-code-text);
+  background: var(--memory-fill);
+}
+@keyframes dark-rule-land {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (max-width: 1100px) {
+  .v2-app-shell .v2-review-embedded .v2-review-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .v2-app-shell .v2-review-embedded .v2-inspect-stage {
+    height: auto;
+    aspect-ratio: 4/3;
+    min-height: 0;
+  }
+  .v2-app-shell .v2-filmstrip {
+    grid-row: 2;
+    grid-template-columns: repeat(6, minmax(80px, 1fr));
+    overflow-x: auto;
+  }
+  .v2-app-shell .v2-filmstrip > :is(button, a) {
+    height: 80px;
+  }
+}
+@media (max-width: 760px) {
+  .v2-app-shell .v2-studio-grid {
+    padding: 16px;
+  }
+  .v2-app-shell .v2-studio-grid > .v2-desktop-rail:last-child {
+    display: none;
+  }
+  .v2-app-shell .v2-takes {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .v2-app-shell .v2-take {
+    flex-shrink: 0;
+    padding: 6px 8px;
+  }
+  .v2-app-shell .v2-filmstrip {
+    grid-template-columns: repeat(6, 88px);
+  }
+  .v2-memory-sheet {
+    padding: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v2-memory-sheet {
+    animation: none;
+  }
+}
+.v2-memory-sheet .v2-learned-card {
+  display: block;
+}
+.v2-memory-sheet .v2-rule-options {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.v2-memory-sheet .v2-rule-options > summary {
+  min-height: 28px;
+  cursor: pointer;
+}
+.v2-memory-sheet footer {
+  padding: 16px 0 0;
+  display: block;
+  border-color: var(--border);
+}
+.v2-memory-sheet footer > span {
+  display: none;
+}
+.v2-memory-sheet footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.v2-memory-sheet footer .v2-button {
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+.v2-app-shell .v2-takes { flex-direction: row; }
+.v2-app-shell .v2-review-embedded .v2-inspect-stage { grid-column: 1; grid-row: 1; width: 100%; min-width: 0; }
+.v2-app-shell .v2-review-embedded .v2-inspector { grid-column: 2; grid-row: 1; }
+.v2-app-shell .v2-review-embedded .v2-filmstrip { grid-row: 2; }
+.v2-app-shell .v2-studio-grid > .v2-desktop-rail:last-child { max-height: 124px; }
+.v2-app-shell .v2-studio-grid > .v2-desktop-rail:last-child .v2-rule.gold ~ .v2-rule.gold { display: none; }
+@media(max-width:1100px) { .v2-app-shell .v2-review-embedded .v2-inspector { grid-column: 1; grid-row: 3; } }
