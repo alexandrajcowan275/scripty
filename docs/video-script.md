@@ -1,49 +1,51 @@
-# Scripty — two-minute product pitch
+# Scripty — final two-minute demo
 
-Record the real product. Keep original experiment evidence separate from the new note being entered. No finished recording/upload exists yet. Current verified entry: **https://getscripty.vercel.app/** → top-right **Open studio** → Home productions table → **Mara** → Take4/T4·S05 → Reject & remember → Rule learned → Evidence → New production. The final page-by-page click path is maintained in `handoff/MORNING.md`.
+App frozen on5e0bb6d. Start at [getscripty.vercel.app](https://getscripty.vercel.app/). Record screen and voice together; read this from a phone outside the captured area. The final upload URL is pending from the founder. Use the current controls below; older review-queue scripts describe a superseded interface.
 
-## Narration
+## Before recording
 
-On a film set, the script supervisor—the scripty—keeps continuity between shots. Same costume. Same prop. Same hand. AI filmmakers need one too.
+Use a fresh private tab at desktop width. Start recording before loading the landing if you want the opening title. The top-right **Open studio** opens Home; the hero’s **Open the studio** opens Mara directly. This route uses the top-right button so the productions table is shown. Do not invoke Generate, Re-check or Fix during the two-minute recording.
 
-Meet Scripty: your AI script supervisor. A generator can return success while a character detail changes. Scripty checks the image against a reference and the production’s canon.
+## Read aloud
 
-Start a production, add a reference, and confirm what stays true. Vision can suggest the details; you confirm anatomical left and right.
+On a film set, the scripty keeps continuity straight. AI filmmakers need that memory too: a successful generation can still produce the wrong character.
 
-This is Mara, our sample production. The monitor questions which hand wears the ring. That is a finding to review, not certified anatomy.
+Scripty brings productions and their shots into one workspace. Mara is our sample: twenty-four real images across four takes.
 
-I can edit the note and save it to Memory. Scripty shows the actual returned rule and whether it merged with an existing one. Future generation gets that constraint. The monitor checks it too.
+Here, the monitor flags a possible scar-side mismatch. Its confidence is a model judgment; the creator decides.
 
-Rules do not force a new image. Re-check the shots you already have, or replace only the shots still flagged. Originals stay available.
+I reject the shot with one precise correction. That note becomes a saved rule. In this sample, new notes stay in this browser; original production history stays unchanged.
 
-Here is the original ring correction. It reached eighteen later image prompts and eighteen monitor outputs across different scenes. The new note has its own application count.
+The rule has two jobs: constrain future generation and become a future monitoring check. That is our learning mechanism: production memory changes subsequent behavior while foundation-model weights stay fixed.
 
-Our matched six-pair test passed with and without memory: no extra measured reduction. The original four-take history stays intact. Blind human labels measure the checker; without them, accuracy stays blank.
+Here is recorded evidence from an earlier ring correction: it reached eighteen later prompts and eighteen checks. All four original takes remain visible, including remaining drift. Our matched six-pair comparison found zero flagged shots in both conditions, so we do not claim measured visual improvement.
 
-Our first buyer is an AI production team making recurring characters. A pilot would measure review time and cost per approved shot.
+Creators can start their own production with a reference, confirmed canon and new scenes. Our first buyers would be small AI production teams; seats plus checked-generation usage is the pricing hypothesis.
 
-Scripty. Keep the story straight.
+Scripty. Every correction carries forward.
 
-## Recording plan
+## Exact clicks — do not read aloud
 
-| Time | Real screen and claim |
+| Time | Click/show |
 | --- | --- |
-| 0:00–0:12 | Film-set hook over a real Mara contact sheet. |
-| 0:12–0:28 | Reference/canon setup. Use only a shipped form; confirm laterality visibly. |
-| 0:28–0:45 | Studio Take1 → Review T1·S02; inspect the image/reference and real expected/observed evidence. |
-| 0:45–1:08 | Edit Your note → Reject & remember → returned Memory update → Save to memory. |
-| 1:08–1:28 | Studio Memory: new note0/0 versus original ring18 prompts/18 checks. Show rule reach options without triggering an unplanned paid job. |
-| 1:28–1:45 | Matched A/B:0/6versus0/6; original rates stay separate. Blind accuracy remains blank until human labels exist. |
-| 1:45–2:00 | Buyer/pilot metric, product name and public URL. |
+|0:00–0:12|Landing opening and headline, then top-right **Open studio**.|
+|0:12–0:25|Home productions table and real contact sheet. Click **Mara** in the table.|
+|0:25–0:40|Choose **Take4** and **T4·S05**, the locker shot. Point to the scar finding.|
+|0:40–1:00|Replace the note with **Keep Mara’s scar over her LEFT eye in every shot.** Click **Reject & remember**.|
+|1:00–1:15|Hold on **Rule learned**, its returned text and next-prompt/check previews. If it says merged, explain that repeated constraints merge. Close the card with **×**.|
+|1:15–1:45|Sidebar **Evidence**. Point to18/18, all four original takes and0vs0matchedA/B. The historical18/18belongs to the earlier ring rule, not the new scar note.|
+|1:45–2:00|Click **New production**. Show the reference upload, confirmed-canon and scene fields. Finish before generating.|
 
-Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed recording duration. The narration is 235 words; speak naturally and shorten if the screen actions need more room.
+## Visual cues
 
-## Honesty and recording safety
+![Landing: top-right Open studio opens Home](images/scripty-landing-dark.png)
 
-- Enter the private access code **before** recording, if showing live extraction. Never capture the code, API keys, terminal credentials or private environment files.
-- A free sample correction is a literal creator note; do not narrate it as live AI extraction. Live extraction and the real generation loop have saved verification in `docs/verification-ui-live-loop.json`.
-- Existing original images were not caused by a visitor’s new note. Do not imply otherwise with editing.
-- The real flagged-only repair test produced a new image that was still monitor-flagged. Demonstrate selective repair and lineage, not guaranteed correction.
-- Do not label model judgments as human truth, show invented metrics, or count automated test submissions as human labels.
-- All eight pages are integrated; use only the current publicly verified release when filming. Use the current handoff for the exact release.
-- Verify the final uploaded video opens without login. Confirm public GitHub access and submit by the confirmed **11:00am PDT** cutoff. No external submission is authorized here.
+![Studio: Take4, T4·S05, editable note and Reject & remember](images/scripty-studio-dark.png)
+
+![Rule learned: returned rule and prompt/check previews](images/scripty-rule-learned-dark.png)
+
+![Evidence:18/18propagation and honest0vs0comparison](images/scripty-evidence-dark.png)
+
+## Submission
+
+Upload the finished recording to an accepted video host, verify playback without login, and paste the hosted URL into Devpost’s **Video demo link**. The confirmed deadline is October17,2026 at11:00am PDT. Only the founder authorizes the final external submission.

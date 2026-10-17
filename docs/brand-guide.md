@@ -2,31 +2,31 @@
 
 **Your AI script supervisor. Every correction carries forward.**
 
-On a film set, the script supervisor—the “scripty”—tracks the detail an editor needs between shots. Scripty brings that memory to AI production. Pronounced “script-ee”; lowercase **scripty** in the interface wordmark. Repository, folder and Vercel project remain `canon`.
+On a film set, the script supervisor—the “scripty”—tracks the detail an editor needs between shots. Scripty brings that memory to AI production. Pronounced “script-ee”; lowercase **scripty** in the interface wordmark. The public repository is `scripty`; the local folder and Vercel project remain `canon`.
 
 ## Current direction
 
-A script supervisor's contact sheet, in glass: real cinematic frames, generous space, frosted image labels, restrained lavender/rose haze and tactile production notes. Runway informed the image-led restraint; Natural informed the editorial voice. Their logos, layouts and assets are not reused.
+A charcoal, image-first workspace with one persistent56px header, grouped224px sidebar and real production contact sheets. Studio pairs the full shot and monitor checks with an editable correction. A gold Rule learned card makes saved memory visible; Evidence preserves original frames and measured history. The cinematic landing uses an opening title sequence, word reveal and an expanding Mara shot with illustrative check overlays.
 
-[Claude design handoff](../design/claude/DESIGN_HANDOFF.md) and [shared design system](../design/claude/DESIGN_SYSTEM.md) are the current implementation references. [Live token source](../styles/tokens.css) is authoritative for exact values; earlier light-v3 explorations and the older PDF handout are retained as history.
+[Final dark tokens](../design/dark/dark-tokens.css) and [workspace styles](../styles/dark-app.css) are authoritative. [Landing source](../components/landing-claude/landing.tsx) supplies the final public opening. Earlier light/glass prototypes and the older PDF are retained as design history.
 
-| Role | Current token | Meaning |
+| Role | Live token | Meaning |
 | --- | --- | --- |
-| Canvas | `#FBFAF8` | Warm contact sheet |
-| Surface / ink | `#FFFFFF` / `#111111` | Quiet controls and confident type |
-| Secondary | `#615E58` | Supporting copy |
-| Drift ink / fill / outline | `#B4232C` / `#D93A3F` / `#FF4D4F` | Model-reported flags |
-| Pass | `#147A42` | On-model finding, not human truth |
-| Memory fill / ink | `#FFF8E1` / `#8A5D00` | Learned constraints |
-| Focus | `#2858B8` | Keyboard accessibility |
+| Canvas | `#131417` | Charcoal workspace |
+| Surface / image bed | `#191A1E` / `#1F2025` | Quiet materials |
+| Text / supporting | `#EDEDF0` / `#8A8A96` | Hierarchy |
+| Drift | `#FF5A5F` | Model-reported concern |
+| Pass | `#3DD68C` | Monitor finding, not human truth |
+| Memory | `#F5C451` | Remembered constraint |
+| Focus | `#7AA2FF` | Keyboard navigation |
 
-Funnel Display leads headlines; Funnel Sans carries UI; Martian Mono identifies actual frame numbers, model versions, costs and traces. Fonts are served locally. Use the existing primitives, spacing, radii and responsive rules instead of one-off styling. Desktop rails become mobile drawers; the Memory sheet keeps its header/actions visible while the evidence body scrolls.
+Funnel Display leads headlines; Funnel Sans carries UI; Martian Mono identifies actual frames, model versions and traces. Fonts are local. The shared sidebar becomes a horizontal navigation strip on mobile; production tables scroll within their container and the contact sheet uses two columns.
 
 ## Images and motion
 
-Studio uses real contact-sheet crops; Review preserves the full image and offers a reference comparison and loupe. Use location-based brackets only when actual coordinates exist; otherwise outline the frame. Unclear evidence stays distinct from a confident pass or failure. Example references are explicitly labeled and cannot enable generation until a real upload is supplied.
+Real Mara images supply product content. Credited Pexels photographs supply landing atmosphere; credits are in [public/brand/CREDITS.md](../public/brand/CREDITS.md). Review and Evidence images have no editorial filter or transformation. The loupe preserves access to original-resolution detail. The empty production form asks for an actual reference image and confirmed canon.
 
-Motion follows the supplied transition prototype and reduced-motion setting: staged shot entry, restrained glass sheen, a settling gold Memory card, a moving loupe and short shot-step transitions. Source timings and easing live in shared tokens/components; no invented live counters or success before a saved response.
+Application routes use a restrained200ms content fade with reduced-motion handling. The landing opening and projected reveal explain the product visually; they are presentation, not new live AI runs. The learned card appears only after a real review response. Public1440/390 checks exercised the actual reject-to-rule flow and repeated-note merging.
 
 ## Voice and evidence
 
