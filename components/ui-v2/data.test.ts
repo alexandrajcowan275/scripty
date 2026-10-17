@@ -1,4 +1,6 @@
 import test from "node:test";
+import { readFileSync } from "node:fs";
+import postcss from "postcss";
 import assert from "node:assert/strict";
 import {
   currentShot,
@@ -182,4 +184,32 @@ test("partial repair and recheck failures remain visible after successful HTTP r
     "Original images were retained.",
   );
   assert.equal(operationIssue({ shots: [] }), "");
+});
+
+test("all shared glass, atmosphere and semantic tokens resolve as individual CSS declarations", () => {
+  const tokens = readFileSync(
+    new URL("../../styles/tokens.css", import.meta.url),
+    "utf8",
+  );
+  const styles = readFileSync(
+    new URL("../../styles/ui-v2.css", import.meta.url),
+    "utf8",
+  );
+  const declared = new Set<string>();
+  postcss.parse(tokens).walkDecls((declaration) => {
+    if (!declaration.prop.startsWith("--")) return;
+    assert.equal(
+      /\s--[a-z-]+\s*:/.test(declaration.value),
+      false,
+      `${declaration.prop} swallowed a following token declaration`,
+    );
+    declared.add(declaration.prop);
+  });
+  for (const [, name] of styles.matchAll(/var\((--[a-z0-9-]+)\)/gi)) {
+    assert.equal(
+      declared.has(name),
+      true,
+      `${name} has no shared token definition`,
+    );
+  }
 });
