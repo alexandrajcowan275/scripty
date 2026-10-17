@@ -124,3 +124,23 @@ export async function seedProject(input: Project, inputRules: Rule[]): Promise<v
   if (rules.some((rule) => rule.projectId !== project.id)) throw new Error("Seed rule belongs to another project.");
   const { error } = await db().rpc("seed_project", { p_project: project, p_rules: rules }); fail(error, "seedProject");
 }
+
+/** Reserve a conservative upper bound BEFORE every paid attempt, including retries.
+ * Returns false at the fixed $24 DB cap. Never refund network failures automatically. */
+export async function reserveAiBudget(reservationId: string, amount: number): Promise<boolean> {
+  id.parse(reservationId);
+  z.number().positive().max(24).finite().parse(amount);
+  // Round upward: numeric(10,4) must never round a tiny reservation down to zero.
+  const rounded = Math.ceil(amount * 10000) / 10000;
+  const { data, error } = await db().rpc("reserve_api_budget", { p_amount: rounded, p_reservation_id: reservationId });
+  fail(error, "reserveApiBudget"); return z.boolean().parse(data);
+}
+export async function reserveApiBudget(amount: number): Promise<boolean> {
+  return reserveAiBudget(crypto.randomUUID(), amount);
+}
+export async function getApiBudget(): Promise<{ reservedUsd: number; limitUsd: 24; remainingUsd: number }> {
+  const { data, error } = await db().from("api_budget").select("reserved_usd").eq("id", "canon-demo").single();
+  fail(error, "getApiBudget");
+  const reservedUsd = z.coerce.number().min(0).max(24).parse(data?.reserved_usd);
+  return { reservedUsd, limitUsd: 24, remainingUsd: Math.max(0, 24 - reservedUsd) };
+}
