@@ -11,3 +11,6 @@ The Supabase connector lacks database permissions, but the already authenticated
 The design chat's automatic approval review rejected removal of ten temporary Figma source-image nodes as data deletion. They remain in the file. This cleanup is skipped; it does not block the new screens or implementation. No permission request is needed because the founder instructed all deletion to be skipped overnight.
 
 Automatic approval review rejected moving the unused saved-productions component out of the project under the no-deletion instruction. The component was retained and subsequently restored to the app for saved-production navigation; that historical cleanup rejection is resolved.
+
+## UI rollout in progress
+The new Studio/Review/Memory checkpoint is deployed at `/p/mara`. Evidence/Eval/developer/new-production navigation targets are awaiting Design page integration; use the documented direct Studio walkthrough until those pages ship. Design is fixing sample wording/actions and partial-batch plotting during its shared-component consolidation. No Main edits to Design-owned UI paths. Existing browser-local QA notes are retained under the no-deletion instruction; a fresh browser session gives a clean sample history.

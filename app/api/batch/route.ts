@@ -109,7 +109,9 @@ export async function POST(request: Request) {
       );
       if (error || !claimed)
         throw new HttpError(
-          "The next take is still getting ready. Try again in a few minutes, or explore Mara.",
+          production.generation_count >= 3
+            ? "This production has reached its live-take allowance. Your shots and memory are saved; keep reviewing, or explore Mara."
+            : "The next take is still getting ready. Try again in a few minutes, or explore Mara.",
           429,
         );
       finish = async () => {

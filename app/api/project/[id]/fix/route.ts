@@ -31,7 +31,10 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       const finalPrompt = buildFinalPrompt(source.scenePrompt, character, data.rules);
       const generated = await generateImage({ finalPrompt, referenceImageUrl: character.referenceImageUrl, acceptedReferenceUrl: accepted[0], fallbackImageUrl: source.imageUrl, filename: `${id}.png`, deadline });
       addUsage(usage, generated.usage);
-      if (generated.provenance === "cached_fallback") return { sourceShotId: source.id, error: generated.errors.join("; "), provenance: generated.provenance };
+      if (generated.provenance === "cached_fallback") {
+        await addTrace({ id: crypto.randomUUID(), projectId: source.projectId, shotId: source.id, type: "error", category: "api_error", message: `Repair unavailable; original retained: ${generated.errors.join("; ")}`, createdAt: new Date().toISOString() });
+        return { sourceShotId: source.id, error: generated.errors.join("; "), provenance: generated.provenance };
+      }
       const checked = await monitorImage({ imageUrl: generated.imageUrl, character, rules: data.rules, calibration: data.checkerCalibration, deadline });
       addUsage(usage, checked.usage);
       const shot = { ...source, id, batchId: batch.id, finalPrompt, imageUrl: generated.imageUrl, checks: checked.checks, flagged: checked.flagged, driftScore: checked.driftScore, status: "pending" as const, rejectReason: undefined };
@@ -45,6 +48,6 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     batch.driftRate = shots.length ? shots.filter(shot => shot.flagged).length / shots.length : 0;
     await saveBatch(batch);
     if (shots.length) await incrementRuleUsage(data.project.id, batch.rulesApplied);
-    return Response.json({ batch, shots, repaired: results, usage, originalHistoryUnchanged: true, warning: shots.length !== selected.length ? "Some repairs failed; original shots remain available." : undefined }, { headers: { "Cache-Control": "no-store" } });
+    return Response.json({ batch, shots, repaired: results, usage, originalHistoryUnchanged: true, provenance: results.some(result => "error" in result || "warning" in result) ? "live_with_fallback" : "real_engine", completed: results.filter(result => "shot" in result && !("warning" in result)).length, warning: shots.length !== selected.length ? "Some repairs failed; original shots remain available." : undefined }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) { return apiError(error); }
 }

@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-17T09:45:47.034471+00:00",
+  "sourceCommit": "3e0c8b8",
+  "deploymentId": "dpl_C4D7c2LBvDAGPqCjnkVWn1eVkq8B",
+  "url": "https://canon-woad.vercel.app/p/mara",
+  "checks": [
+    "Studio renders all6 latest shots, real models, original timeline and18/18 ring reach",
+    "Review opens actual T4S05 source and editable note",
+    "Submitted existing scarf correction merges, exact returned rule shown",
+    "Save returns to same Take4, note remains in Memory",
+    "Desktop1440 verified",
+    "Mobile390:scrollWidth390,6loadedcacheimages,0failedimages"
+  ],
+  "paidCalls": 0,
+  "originalFlagCounts": [
+    2,
+    0,
+    0,
+    1
+  ],
+  "pending": [
+    "Evidence/Eval/developer/new-production page integration",
+    "Design consolidation and sample wording/actions fixes"
+  ]
+}
