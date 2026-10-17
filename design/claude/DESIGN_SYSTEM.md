@@ -4,19 +4,19 @@ Implementation source: `/styles/tokens.css`. Screen/layout rules: `/styles/ui-v2
 
 ## Tokens
 
-| Purpose            | Tokens                                                                                                                                                                                         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Canvas and imagery | `--background` warm off-white, `--surface` white, `--image-bed` neutral image backdrop                                                                                                         |
-| Text and hierarchy | `--text`, `--muted`, `--muted-strong`, `--v2-tone` (large secondary headline text only)                                                                                                        |
-| Meaning            | `--drift` accessible red text, `--drift-fill` accessible filled action, `--drift-outline` bright image brackets; `--pass` green; `--memory`, `--memory-fill/border/detail` gold rule materials |
-| Interaction        | `--focus-ring`, `--hover`, `--border`, `--v2-stroke`, `--v2-soft`                                                                                                                              |
-| Optical materials  | `--v2-glass`, `--glass-soft/nav/hover/border/opaque/label/highlight`, `--scrim`, `--scrim-light`, `--sheet-scrim`                                                                              |
-| Ambient            | `--haze-violet`, `--haze-rose`; one low-opacity haze per screen, grain is a shared SVG texture                                                                                                 |
-| Depth              | `--shadow`, `--shadow-tint`, `--shadow-tint-subtle/soft/strong`; focus and semantic rule glow remain separate                                                                                  |
-| Fonts              | `--font-display`: Funnel Display; `--font-ui`: Funnel Sans; `--font-mono`: Martian Mono                                                                                                        |
-| Space              | `--space-4/8/12/16/20/24/28/32/40/48/64/96`; 8-point base, 4-point optical adjustments                                                                                                         |
-| Radius             | `--radius-small` 12, `--radius-card` 16, `--radius-large` 22, `--radius-sheet` 30, `--radius-pill` 999                                                                                         |
-| Motion             | `--dur-fast` 180 ms, `--dur-base` 360 ms, `--dur-slow` 520 ms, `--ease-out`, `--ease-spring`; reduced motion uses 150 ms opacity changes                                                       |
+| Purpose            | Tokens                                                                                                                                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Canvas and imagery | `--background` warm off-white, `--surface` white, `--image-bed` neutral image backdrop                                                                                                                                         |
+| Text and hierarchy | `--text`, `--muted`, `--muted-strong`, `--v2-tone` (large secondary headline text only)                                                                                                                                        |
+| Meaning            | `--drift` accessible red text, `--drift-fill` accessible filled action, `--drift-outline` bright image brackets; `--pass` green; `--memory`, `--memory-fill/border/detail`, `--memory-halo/glow/code-text` gold rule materials |
+| Interaction        | `--focus-ring`, `--hover`, `--border`, `--v2-stroke`, `--v2-soft`                                                                                                                                                              |
+| Optical materials  | `--v2-glass`, `--glass-soft/nav/hover/border/opaque/label/highlight/sheet`, `--scrim`, `--scrim-light`, `--sheet-scrim`                                                                                                        |
+| Ambient            | `--haze-violet`, `--haze-rose`; one low-opacity haze per screen, grain is a shared SVG texture                                                                                                                                 |
+| Depth              | `--shadow`, `--shadow-tint`, `--shadow-tint-subtle/soft/strong`, `--shadow-sheet`; focus and semantic rule glow remain separate                                                                                                |
+| Fonts              | `--font-display`: Funnel Display; `--font-ui`: Funnel Sans; `--font-mono`: Martian Mono                                                                                                                                        |
+| Space              | `--space-4/8/12/16/20/24/28/32/40/48/64/96`; 8-point base, 4-point optical adjustments                                                                                                                                         |
+| Radius             | `--radius-small` 12, `--radius-card` 16, `--radius-large` 22, `--radius-sheet` 30, `--radius-pill` 999                                                                                                                         |
+| Motion             | `--dur-fast` 180 ms, `--dur-base` 360 ms, `--dur-slow` 520 ms, `--ease-out`, `--ease-spring`; reduced motion uses 150 ms opacity changes                                                                                       |
 
 Desktop page wrap: max 1320 px including 40 px margins. Studio: 24 px margins, 220 px take rail / flexible contact sheet / 300 px Memory, 24 px gutters. Review: flexible image + 380 px inspector, 24 px margins/gutters. At 390 px, margins are 16 px, Studio images use two columns, rails become dialogs, dock becomes a bottom sheet, Review stacks. Headlines use tight tracking; body remains normal tracking. Mono is reserved for frame numbers, check confidence, costs and machine receipts.
 
@@ -59,3 +59,7 @@ Canvas is the supplied warm `#FBFAF8`; near-black is `#111111`. Bright image bra
 ## Reference fidelity — Review
 
 The complete check list uses compact rows: canon and model-reported confidence are visible; keyboard-native details expose the full observation and note. Failed checks appear first. Actual uncertainty remains neutral. Confidence fills from zero over one second; reduced motion shows the final value immediately. The 4× loupe includes a 14px reticle and samples only the actual image. Without returned coordinates it rests at the image center and follows the pointer, rather than inventing a defect location. Filmstrip entry rises 12px; both filmstrip and J/K use the 220ms shot transition.
+
+## Reference fidelity — Memory update
+
+`/components/ui/memory-update.tsx` owns the shared native sheet, real returned rule, three reach choices, prompt/check previews, errors and permission-aware action. The heading receives initial programmatic focus; a keyboard-focusable content region scrolls independently, leaving Close and both footer actions visible at 390px and on short desktop screens. No code is painted beneath a floating footer. Source gold halo, pale paper fill, 24px glass blur and settle animation are shared tokens. IDs are abbreviated visually with the full saved identifier on hover. Re-check and repair remain opt-in and estimates remain unavailable until measured; saving future memory never silently regenerates. Native modal focus containment and Escape are retained.

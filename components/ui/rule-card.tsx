@@ -66,8 +66,10 @@ export function LearnedRuleCard({
       <div>
         <h3>{rule.text}</h3>
         <p className="v2-mono">
-          {rule.id} ·{" "}
-          {merged ? "merged, not duplicated" : "new continuity rule"}
+          <span title={rule.id}>
+            {rule.id.length > 16 ? `${rule.id.slice(0, 8)}…` : rule.id}
+          </span>{" "}
+          · {merged ? "merged, not duplicated" : "new continuity rule"}
         </p>
       </div>
     </div>

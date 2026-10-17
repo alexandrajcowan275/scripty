@@ -12,6 +12,14 @@
   --memory-fill: #fff8e1;
   --memory-border: #f3dc97;
   --memory-detail: #7a5a00;
+  --memory-halo: rgba(243, 220, 151, 0.28);
+  --memory-glow: rgba(245, 196, 81, 0.35);
+  --memory-code-text: #f5d27a;
+  --code-surface: #1a1917;
+  --code-text: #e8e4dd;
+  --code-muted: #8d877e;
+  --glass-sheet: rgba(255, 255, 255, 0.72);
+  --shadow-sheet: rgba(17, 17, 17, 0.18);
   --drift-fill: #d93a3f;
   --drift-outline: #ff4d4f;
   --focus-ring: #2858b8;
