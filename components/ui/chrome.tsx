@@ -7,14 +7,21 @@ import { message, post, type ProductionData } from "../ui-v2/data";
 
 export function Brand({
   api = false,
+  light = false,
   href = "/dashboard",
 }: {
   api?: boolean;
+  light?: boolean;
   href?: string;
 }) {
   return (
     <MotionLink href={href} className="v2-brand">
-      <img src="/brand/scripty.svg" width="28" height="28" alt="" />
+      <img
+        src={light ? "/brand/scripty-light.svg" : "/brand/scripty.svg"}
+        width="28"
+        height="28"
+        alt=""
+      />
       scripty{api && <span>api</span>}
     </MotionLink>
   );

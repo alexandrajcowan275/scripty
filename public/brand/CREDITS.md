@@ -33,3 +33,16 @@ WebP SHA-256 / size:
 - Source: https://www.pexels.com/photo/drone-shot-of-foggy-mountains-12404363/
 - License: [Pexels License](https://www.pexels.com/license/) — free website/app and commercial use; resizing/compression allowed. No endorsement implied.
 - Local files: `cinema-mountains.webp`, `cinema-mountains-small.webp`. Resized/compressed from the source photograph, no AI generation or composite content.
+
+## Cinematic landing sequence
+
+All four scenes are real photographs licensed for free website/app use under the [Pexels License](https://www.pexels.com/license/), reviewed October 17, 2026. No movie stills, AI imagery, or moodboard images are used. Files are resized and compressed to WebP, with responsive 640px versions. Photographer/subject endorsement is not implied. Original Mara generation/check evidence is separate and unchanged.
+
+| Local asset | Photographer | Source | Provenance |
+| --- | --- | --- | --- |
+| `cinema-mountains.webp` / `cinema-mountains-small.webp` | Andreas Ebner | https://www.pexels.com/photo/drone-shot-of-foggy-mountains-12404363/ | Fog crossing a forested mountain range, landscape photography |
+| `cinema-dunes.webp` / `cinema-dunes-small.webp` | Stephen Leonardi | https://www.pexels.com/photo/dramatic-desert-dunes-at-twilight-28639074/ | Vast dunes with silhouetted hikers at twilight, landscape photography |
+| `cinema-camera.webp` / `cinema-camera-small.webp` | Caleb Oquendo | https://www.pexels.com/photo/modern-digital-movie-camera-in-dark-room-7709692/ | Canon EOS R6, April 29, 2021, 14mm, f/2.8, 1/80s; camera in studio |
+| `cinema-set.webp` / `cinema-set-small.webp` | Maksim Romashkin | https://www.pexels.com/photo/film-set-in-mountains-13812382/ | Original outdoor production photograph: camera rig, tent, film crew |
+
+The earlier fashion/visor files above are retained as unused historical assets; the current landing and Home do not render them.
