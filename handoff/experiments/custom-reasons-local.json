@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "check": "exact custom rejection reason saved",
+      "pass": true
+    },
+    {
+      "check": "local learning preserves the new knot instruction",
+      "pass": true
+    },
+    {
+      "check": "exact duplicate reuses one rule ID",
+      "pass": true
+    },
+    {
+      "check": "custom note and rule survive refresh",
+      "pass": true
+    },
+    {
+      "check": "original ring rule and history remain intact",
+      "pass": true
+    },
+    {
+      "check": "original four flagged counts remain unchanged",
+      "pass": true
+    },
+    {
+      "check": "400-character reason preserved",
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "paid_calls": 0
+}

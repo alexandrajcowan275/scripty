@@ -51,7 +51,7 @@ Figma node links use the same file key above with `?node-id=19-17`, for example.
 
 ### 01 Landing — node19:4, 1440×1080
 
-Job: choose a first production. Brand-only80px header. Hero has72px insets, two636px columns and24px gutter. Words are vertically centered against a636×640px Mara portrait; its photo is the existing genuine cafe shot. No borrowed reference assets.
+Job: choose or resume a production.80px header with brand and quiet Your productions navigation. Hero has72px insets, two636px columns and24px gutter. Words are vertically centered against a636×640px Mara portrait; its photo is the existing genuine cafe shot. No borrowed reference assets.
 
 Headline56/64: **Your AI script supervisor.** Subtitle24/32: **Catch drift. Keep your character.** Primary304×56: **Start a new production**. Secondary432×56: **Explore a sample production: Mara**. Related groups use24px gaps. Sample entry identifies the recorded project; direct links must retain sample provenance in the document title/Memory or Progress context.
 
@@ -67,7 +67,7 @@ Review it opens the first unresolved flagged shot. A shot itself is a full-card 
 
 ### 03 Review / scar — node19:54, 1440×1080
 
-Job: one human decision. One quiet noncommittal exit above the image; no attribute panel. Center a1076×640px image bed,182px from each side,72px from the top. Full image uses contain; letterbox areas remain neutral gray. Image→sentence gap32; sentence→buttons gap32.
+Job: one human decision with an editable continuity note. One quiet noncommittal exit above the image; no attribute panel. Center a1076×640px image bed,182px from each side,72px from the top. Full image uses contain; letterbox areas remain neutral gray. Image→sentence gap32; sentence→buttons gap32.
 
 Sentence24/32, centered: **Scar seems on her right. Canon says left.** Primary288×56 **Reject & remember**; secondary224×56 **Looks right**;24px gap, group centered. This is a checker claim awaiting human judgment, not a verified defect.
 
@@ -170,3 +170,30 @@ Only future generation/checks use the edited character. Existing images, recorde
 Batch headlines now read **[n] of [total] shots flagged.** in every count state, including0/6 and6/6. This describes monitor output without treating an unverified flag as confirmed drift. Counts, images, status dots, queue behavior and grid geometry are unchanged. The final Figma headlines and scaled reference comparison have been updated.
 
 Both desktop Review frames19:54/19:64 and mobile20:244 include a quiet secondary **Back to shots** control. Desktop:160×48 hit area at x182,y12, aligned with the image bed; mobile:x24,y24. Label16/24, secondary text, no fill; zero horizontal inset optically aligns text with the image edge. It reuses Escape/back, saves no decision or rule, and restores focus to the originating shot. Image beds, source-coordinate markers and decision buttons have not moved. The design rationale now justifies the visible noncommittal exit.
+
+
+## Founder amendment — custom reasons and saved-production navigation
+
+This amendment restores the founder-requested behavior and takes precedence over earlier descriptions of the Review action spacing and landing header. No image-bed, grid, color or type change. Paid generation remains off until the founder approves a budget.
+
+### Review continuity note
+
+Desktop Review19:54/19:64 and mobile20:244 now contain one visible16/24 label **Continuity note** and an editable multiline field directly below the review sentence.400-character maximum; no permanent counter, badge or extra action. Reuse the existing white Input component, radius16,16px inset,16/24 Regular text. The Figma field is blank to show the editable surface; runtime default/draft comes from the existing review behavior.
+
+Desktop note group:636×128 centered at x402,y808. Label24px high,8px gap, textarea636×96. The same decision pair follows32px below, now y968,height56. Image bed stays x182,y72,1076×640; sentence stays y744. The Review exit remains x182,y12.
+
+Mobile retains the342×400 image bed at x24,y144 and its exact source-coordinate marker. Sentence stays y576. Note group342×128 begins x24,y672; textarea y704,height96. Reject & remember is y832, Looks right y920. The Figma artboard is extended to390×1080; real short viewports scroll normally to the controls. Do not shrink or move the image to squeeze in the field. Existing Input component text now fills its padded bounds correctly at342px.
+
+Reject submits the exact entered continuity note, including line breaks; do not silently replace it with a preset attribute sentence. Keep the draft after a failed request and block duplicate submits while pending. Acceptance retains the existing Looks right behavior. Back to shots still saves no decision or rule. The field has a real associated label and accessible maxlength description; no red styling for an ordinary field error. An over-limit error, if needed, reads **Keep it under400 characters.** The browser/backend limit must agree.
+
+### Your productions
+
+Landing19:4 now includes a quiet **Your productions** navigation link in the80px header, right aligned to the72px margin,176×48 hit area. Mobile uses the24px margin. It opens one saved-production list page, not another dashboard.
+
+New Figma frames: desktop populated list32:92, empty list32:102, mobile list32:110. Desktop brand-only80px header; content starts x72,y152. Headline56/64 **Your productions.** Names are the content: a single856×80 white row per saved production, radius16,24px inset, name24/32, small right arrow24px. The entire row is the Open production target. Rows use24px gaps when multiple records exist; no counts, dates, badges, descriptions or thumbnails. Preserve each real saved name; wrap long names and grow the row instead of clipping the accessible label. Night Shift in Figma is the existing form example, not a claimed backend record; production data supplies the real list. One black304×56 **Start a new production** follows the list.
+
+Mobile:390px canvas,24px inset;24/32 title,342×80 rows,342×56 primary;32px section gaps. Empty list: **No productions yet.** with the same create action. Loading uses row-shaped neutral skeletons; errors preserve known rows and use one short retry message. Never display the sample project as an owned saved production. Opening a row uses its actual owned project ID and existing workspace/empty state, without generating or copying anything. Existing same-browser ownership checks remain unchanged.
+
+Saved-capacity screen23:60 now includes the quiet secondary **Open your production** link (304×56,32px below the sample action). It opens the exact successfully saved record; render only after a durable save. The Mara sample remains the filled primary. Current new-production fields and reference are preserved; no automatic paid generation, new copy, recheck or deletion.
+
+Design-rationale paragraphs now justify the custom correction note and returning-user navigation. Screenshots checked desktop/mobile note layout, landing, saved list, empty list and capacity. The unchanged full-image geometry was measured on all three Review frames; the reused mobile Input has no content overflow.

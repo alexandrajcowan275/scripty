@@ -36,6 +36,10 @@ No new actionable issue. Canonical public URL serves READY main deployment `dpl_
 
 Evidence: [public review amendment](experiments/public-review-exit-amendment.json), [final main alias](experiments/public-main-release.json), [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
 
+## Founder-requested restoration
+
+Editable400-character rejection reasons and saved-production navigation are restored on the release branch. Local browser/API verification passed: custom text and rule survive refresh, duplicates reuse one ID, original24-shot history stays intact, and an existing owned production reopens from Your productions.53 tests/build pass. Public deployment verification follows this increment. Paid generation remains disabled; [budget plan](api-budget-plan.md) gives the minimum additional allowance before any spend. The one-shot verification option is a proposal, not implemented or authorized.
+
 ## Real metrics
 
 | Original take | Monitor-flagged shots | Uncertain checks |

@@ -10,6 +10,9 @@ export default function Home() {
         <a href="/" className="wordmark">
           scripty
         </a>
+        <a className="pill secondary" href="/productions">
+          Your productions
+        </a>
       </header>
       <main className="landing-main">
         <div className="landing-copy">

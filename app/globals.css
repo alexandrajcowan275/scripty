@@ -1263,3 +1263,119 @@ b {
   box-shadow: none;
   outline: 2px solid var(--surface);
 }
+
+/* Creator notes and returning productions are part of the working product. */
+.review-screen {
+  padding-bottom: 56px;
+}
+.review-note {
+  width: min(636px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.review-note label {
+  color: var(--muted);
+}
+.review-note textarea {
+  width: 100%;
+  height: 96px;
+  min-height: 96px;
+}
+.productions-link {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+}
+.production-header .studio-nav button {
+  width: auto;
+  padding: 0;
+}
+.productions-screen h1 {
+  margin-bottom: 40px;
+}
+.productions-context {
+  color: var(--muted);
+  margin-bottom: 48px;
+}
+.production-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 856px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.production-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--surface);
+  min-height: 80px;
+}
+.production-list a > span:first-child {
+  font-size: 24px;
+  line-height: 32px;
+  overflow-wrap: anywhere;
+}
+.production-open {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.production-list-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+@media (max-width: 760px) {
+  .review-screen {
+    justify-content: flex-start;
+    padding-top: 144px;
+    min-height: 1080px;
+  }
+  .productions-screen {
+    padding-top: 48px;
+  }
+  .productions-context {
+    margin-bottom: 32px;
+  }
+  .brand-header:has(.primary) .primary {
+    padding: 0 16px;
+  }
+}
+.brand-header {
+  justify-content: space-between;
+  gap: 16px;
+}
+.studio-nav .productions-link {
+  height: 48px;
+  margin-top: -8px;
+}
+
+.productions-create {
+  width: 304px;
+  margin-top: 32px;
+}
+.production-open {
+  font-size: 24px;
+  line-height: 32px;
+}
+.production-list-skeleton {
+  max-width: 856px;
+  height: 80px;
+  border-radius: 16px;
+  background: var(--image-bed);
+}
+@media (max-width: 760px) {
+  .productions-create {
+    width: 100%;
+  }
+  .productions-screen h1 {
+    margin-bottom: 32px;
+  }
+}

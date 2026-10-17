@@ -243,6 +243,9 @@ export function NewProduction() {
         <a href="/" className="wordmark">
           scripty
         </a>
+        <a className="pill secondary" href="/productions">
+          Your productions
+        </a>
       </header>
       <main className="setup-main">
         <h1 ref={heading} tabIndex={-1}>

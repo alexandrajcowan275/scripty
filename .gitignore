@@ -25,8 +25,6 @@ handoff/design-production-update.md
 handoff/design-research-designer.md
 handoff/design-spec.md
 handoff/screenshots/figma-v2/
-# Unused earlier experiment, retained locally and never imported.
-components/saved-productions.tsx
 
 # Duplicate designer export bundle retained locally; canonical PNGs are one level above.
 handoff/screenshots/figma-v3/figma-v3/

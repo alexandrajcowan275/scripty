@@ -37,6 +37,8 @@ npm start
 
 Supabase migrations are in `supabase/migrations/`. Tables have RLS enabled and no browser write access. Character references use a private Storage bucket and an ownership-checked server endpoint. Service credentials never enter the client bundle. The sample's own images are bundled locally and require no AI or database request.
 
+Return through **Your productions** on the landing/setup screens or **Productions** in the workspace. Review supports an editable continuity note up to400 characters; exact repeated local notes merge.
+
 ## What learning means here
 
 A rejection becomes one short, testable rule. Repeated constraints merge. Generation receives the character canon and active rules; the monitor checks those rules too. Accepted shots can become positive visual references. These are persistent production memory and prompt adaptation; model weights stay fixed.

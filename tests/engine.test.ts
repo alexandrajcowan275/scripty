@@ -32,10 +32,22 @@ test("rule merge normalizes punctuation and preserves id/application history", (
   assert.equal(semantic.rule.id, existing.id); assert.equal(semantic.rule.text, "Mara always wears her red scarf.");
   assert.equal(mergeRule({ ...candidate, attributeKey: "hair" }, [existing], existing.id).merged, false);
 });
-test("local corrections use the creator reason and merge same-attribute memory", () => {
-  const learned = localRejectionRule(shot, character, "The scar is over the wrong eye", rules);
-  assert.equal(learned.rule.attributeKey, "scar_side"); assert.equal(learned.rule.id, "seed-scar"); assert.equal(learned.merged, true);
-  assert.equal(localRejectionRule(shot, character, "Her ring switched hands", rules).rule.attributeKey, "ring_hand");
+test("local custom corrections preserve creator intent and deduplicate exact notes", () => {
+  const reason = "Keep the scarf blue for the flashback; retain its wool texture.";
+  const first = localRejectionRule(shot, character, reason, rules);
+  assert.equal(first.rule.text, `Creator correction: ${reason}`);
+  assert.equal(first.merged, false);
+  const repeated = localRejectionRule(shot, character, reason, [...rules, first.rule]);
+  assert.equal(repeated.rule.id, first.rule.id);
+  assert.equal(repeated.merged, true);
+  const changed = localRejectionRule(shot, character, "Keep the scarf green in the dream.", [...rules, first.rule]);
+  assert.notEqual(changed.rule.id, first.rule.id);
+  assert.ok(changed.rule.text.includes("green"));
+  assert.equal(first.rule.text, `Creator correction: ${reason}`);
+});
+test("a 400-character local continuity note is retained without truncation", () => {
+  const reason = "Keep the continuity detail. ".repeat(20).slice(0, 400);
+  assert.equal(localRejectionRule(shot, character, reason, []).rule.text, `Creator correction: ${reason.trim()}`);
 });
 test("threshold is exactly .6; rules are checks; confidence-weighted drift respects weights", () => {
   const weighted = { ...character, attributes: [{ key: "a", label: "A", expected: "red", weight: 3 }, { key: "b", label: "B", expected: "left", weight: 1 }] };

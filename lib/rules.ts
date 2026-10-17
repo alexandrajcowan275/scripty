@@ -18,10 +18,15 @@ export function localRejectionRule(shot: Shot, character: Character, reason: str
   const attribute = character.attributes.map((attribute) => ({ attribute, matches: tokens.filter((token) => normalizeRule(`${attribute.label} ${attribute.key} ${attribute.expected}`).includes(token)).length })).sort((a, b) => b.matches - a.matches)[0];
   const failed = shot.checks.find((check) => !check.pass && check.confidence >= 0.6 && character.attributes.some((item) => item.key === check.key));
   const chosen = attribute?.matches ? attribute.attribute : character.attributes.find((item) => item.key === failed?.key);
-  const candidate: Rule = { id: crypto.randomUUID(), projectId: shot.projectId, text: chosen ? `${character.name} must retain ${chosen.expected} in every shot.` : `Creator correction: ${reason.trim().slice(0, 180) || "Preserve the character sheet in every shot"}.`, ...(chosen ? { attributeKey: chosen.key } : {}), source: "rejection", createdAt: new Date().toISOString(), timesApplied: 0 };
-  // Identical attribute expectations merge into existing memory; do not claim novel learning.
-  const match = chosen ? rules.find((rule) => rule.attributeKey === chosen.key) : undefined;
-  return mergeRule(candidate, rules, match?.id);
+  // With paid extraction disabled, retain the creator's actual constraint instead
+  // of silently replacing it with the character sheet's previous expectation.
+  const candidate: Rule = { id: crypto.randomUUID(), projectId: shot.projectId,
+    text: `Creator correction: ${reason.trim()}`,
+    ...(chosen ? { attributeKey: chosen.key } : {}), source: "rejection",
+    createdAt: new Date().toISOString(), timesApplied: 0 };
+  // Exact repeated notes merge; distinct notes on one attribute must not erase
+  // each other or rewrite the original experiment's rule/application history.
+  return mergeRule(candidate, rules);
 }
 export async function learnRule(shot: Shot, character: Character, reason: string, rules: Rule[]) {
   const usage = emptyUsage();

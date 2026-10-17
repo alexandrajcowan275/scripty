@@ -158,6 +158,9 @@ export function ScriptyStudio({
     preview: string;
   } | null>(null);
   const [editDetail, setEditDetail] = useState("");
+  const [correctionDrafts, setCorrectionDrafts] = useState<
+    Record<string, string>
+  >({});
   const [editing, setEditing] = useState(false);
   const [data, setData] = useState<ProjectData | null>(null),
     [loading, setLoading] = useState(true),
@@ -233,6 +236,11 @@ export function ScriptyStudio({
     character = data?.project.characters[0],
     learned = (data?.rules ?? []).filter((rule) => rule.source !== "seed"),
     busy = generating || reviewing;
+  const reviewReason = selected
+    ? (correctionDrafts[selected.id] ??
+      selected.rejectReason ??
+      proposedCorrection(selected, character))
+    : "";
   const title = data?.project.name ?? (isSample ? "Mara" : "Production");
   useEffect(() => {
     document.title = `${title} — ${isSample ? "Sample production · " : ""}${view === "review" ? "Review" : view === "progress" ? "Progress" : view === "learned" ? "Noted" : "Shots"}`;
@@ -377,10 +385,15 @@ export function ScriptyStudio({
   }
   async function saveReview(decision: "accept" | "reject") {
     if (!selected || busy) return;
+    const reason = reviewReason.trim();
+    if (decision === "reject" && !reason) {
+      setError("Add a continuity note.");
+      document.getElementById("review-reason")?.focus();
+      return;
+    }
     setReviewing(true);
     setError("");
     try {
-      const reason = proposedCorrection(selected, character);
       const result = await api<ReviewResponse>(
         `/api/shot/${encodeURIComponent(selected.id)}/review`,
         {
@@ -559,7 +572,10 @@ export function ScriptyStudio({
           <a href="/" className="wordmark">
             scripty
           </a>
-          <nav aria-label="Production">
+          <nav aria-label="Production" className="studio-nav">
+            <a className="productions-link" href="/productions">
+              Productions
+            </a>
             <button onClick={() => memoryRef.current?.showModal()}>
               Memory
             </button>
@@ -664,6 +680,28 @@ export function ScriptyStudio({
           <h1 className="review-sentence" ref={headingRef} tabIndex={-1}>
             {reviewSentence(selected, character)}
           </h1>
+          <div className="review-note">
+            <label htmlFor="review-reason">Continuity note</label>
+            <textarea
+              id="review-reason"
+              value={reviewReason}
+              onChange={(event) =>
+                setCorrectionDrafts((current) => ({
+                  ...current,
+                  [selected.id]: event.target.value,
+                }))
+              }
+              maxLength={400}
+              rows={2}
+              aria-describedby="review-reason-help"
+              placeholder="What should stay consistent?"
+              disabled={busy}
+            />
+            <span id="review-reason-help" className="sr-only">
+              Up to 400 characters. This note is saved when you reject and
+              remember.
+            </span>
+          </div>
           {error ? (
             <p className="plain-error" role="alert">
               {error}
@@ -673,7 +711,7 @@ export function ScriptyStudio({
             <button
               className="pill primary reject-action"
               onClick={() => void saveReview("reject")}
-              disabled={busy}
+              disabled={busy || !reviewReason.trim()}
             >
               {reviewing
                 ? "Saving…"
@@ -910,6 +948,14 @@ export function ScriptyStudio({
             >
               Explore a sample production: Mara
             </a>
+            {!isSample ? (
+              <a
+                className="pill secondary"
+                href={`/studio?id=${encodeURIComponent(productionId)}`}
+              >
+                Open your production
+              </a>
+            ) : null}
           </div>
         </main>
       ) : null}
