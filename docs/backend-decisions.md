@@ -13,3 +13,5 @@
 - Human/model disagreements supply inspection-calibration context to later monitors. They do not overwrite canon, change the flag threshold or retroactively alter evaluated predictions. Unclear human judgments never become calibration facts.
 
 - The new-production API accepts structured weighted canon and1–6 scenes, while legacy plain-text/six-scene callers remain supported. Structured side-sensitive canon requires explicit matching creator confirmation. A real zero-spend save/reload test preserved keys, expected values, weights and the character version.
+
+- Real public vision testing exposed provisional side guesses embedded in detector keys/labels. Suggestions now use side-neutral stable identifiers/headings; laterality remains explicit in the creator-confirmed constraint. Collision handling preserves unique IDs without altering expected text. This prevents a RIGHT-side correction from leaving a misleading LEFT-hand heading.

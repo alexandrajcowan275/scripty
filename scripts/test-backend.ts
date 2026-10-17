@@ -69,3 +69,12 @@ test("structured production canon preserves weights/keys and requires anatomical
   assert.equal(productionInputV2.safeParse({ ...input, attributes: ["red scarf"], lateralityConfirmations: {} }).success, true);
   assert.equal(productionInputV2.safeParse({ ...input, attributes: ["red scarf"], scenePrompts: [] }).success, false);
 });
+
+import { neutralCanonSuggestions } from "../lib/canon-suggestions";
+test("provisional laterality never leaks into stable canon identifiers or labels", () => {
+  const original = [{ key: "ring_left_hand", label: "Ring on left hand", expected: "silver ring on LEFT hand" }, { key: "ring_right_hand", label: "Ring on right hand", expected: "silver ring on RIGHT hand" }];
+  const corrected = neutralCanonSuggestions(original);
+  assert.equal(corrected[0].key, "ring_hand"); assert.equal(corrected[1].key, "ring_hand_2");
+  assert.equal(corrected[0].label, "Ring on hand"); assert.equal(corrected[0].expected, original[0].expected);
+  assert.equal(original[0].key, "ring_left_hand");
+});
