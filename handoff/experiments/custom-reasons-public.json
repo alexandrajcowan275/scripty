@@ -1,0 +1,20 @@
+{
+  "application_commit": "e881d86",
+  "deployment": "dpl_BPQnopq17XoEMthqERfiyBVYzppU",
+  "public_url": "https://canon-woad.vercel.app/",
+  "checks": [
+    "Public landing \u2192 Your productions works",
+    "Current browser without owned records shows honest empty state",
+    "Existing owned public production is returned by ownership-checked API",
+    "Blank rejection disabled",
+    "Exact custom note appears on Learned and survives refresh in Memory",
+    "Desktop/mobile Review note geometry matches final Figma",
+    "Mobile pageWidth390 and source image1536px loaded",
+    "No captured warnings/errors",
+    "53 tests and production build pass"
+  ],
+  "paid_calls": 0,
+  "generation_enabled": false,
+  "reserved_usd": 20.58,
+  "pass": true
+}

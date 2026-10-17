@@ -12,9 +12,9 @@ Updated **October17,2026,12:31am PT**, before the1am checkpoint. Overnight Main/
 
 ## Release
 
-**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Application foundation `9edc16a`; final review-exit and monitor-qualified wording amendment `911f854` is pushed on main. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
+**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Current application `e881d86` restores custom rejection reasons and saved-production navigation on main; original foundation `9edc16a` and review-exit amendment are retained. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
 
-Verified production deployment: **dpl_BAEjvkXeUGUTWkdnYknWq71x6fU4**, https://canon-m933padwt-archer-rag-dev.vercel.app (main `911f854`, READY; public alias verified). The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Subsequent documentation-only pushes may create a new deployment of the same application; the release above was verified against the canonical public URL.
+Verified production deployment: **dpl_BPQnopq17XoEMthqERfiyBVYzppU**, https://canon-69fs7ndeq-archer-rag-dev.vercel.app (main `e881d86`, READY; public alias verified). The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Subsequent documentation-only pushes may create a new deployment of the same application; the release above was verified against the canonical public URL.
 
 Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Specification: [design-v3-implementation.md](design-v3-implementation.md). Desktop/mobile comparisons and public proof: [screenshots/verification](screenshots/verification/). Independent Design found no outstanding material mismatch in inspected views; QA passed the public sample flow and390px layout.
 
@@ -32,13 +32,13 @@ No new actionable issue. Canonical public URL serves READY main deployment `dpl_
 - Original counts remain separate from visitor review decisions. Scar rejection yields the scar rule; it does not substitute a ring example. Memory notes do not rewrite historical images.
 - Progress retains all four actual takes, uncertainty/confounds, full prompt/check/trace evidence and original ring-rule transfer. Known-image markers use source coordinates; full Review images are contained rather than cropped.
 - Graceful saved-capacity response, sample alternative, private ownership and server-side budget/rate guards. Public paid generation stays **disabled** under the no-spending instruction.
--52 tests and production build pass. Final Supabase security advisor reports **No issues found**. All24 public image hashes, four-take replay, acceptance/rejection persistence and isolated sessions pass. Sample flow also works with server AI/database egress blocked.
+-53 tests and production build pass. Final Supabase security advisor reports **No issues found**. All24 public image hashes, four-take replay, acceptance/rejection persistence and isolated sessions pass. Sample flow also works with server AI/database egress blocked.
 
 Evidence: [public review amendment](experiments/public-review-exit-amendment.json), [final main alias](experiments/public-main-release.json), [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
 
 ## Founder-requested restoration
 
-Editable400-character rejection reasons and saved-production navigation are restored on the release branch. Local browser/API verification passed: custom text and rule survive refresh, duplicates reuse one ID, original24-shot history stays intact, and an existing owned production reopens from Your productions.53 tests/build pass. Public deployment verification follows this increment. Paid generation remains disabled; [budget plan](api-budget-plan.md) gives the minimum additional allowance before any spend. The one-shot verification option is a proposal, not implemented or authorized.
+Editable400-character rejection reasons and saved-production navigation are live and publicly verified. Local browser/API verification passed: custom text and rule survive refresh, duplicates reuse one ID, original24-shot history stays intact, and an existing owned production reopens from Your productions.53 tests/build pass. Public verification confirms exact note/Memory refresh, blank-note blocking, navigation and owned production API access; see [evidence](experiments/custom-reasons-public.json). Paid generation remains disabled; [budget plan](api-budget-plan.md) gives the minimum additional allowance before any spend. The one-shot verification option is a proposal, not implemented or authorized.
 
 ## Real metrics
 
