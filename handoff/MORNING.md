@@ -18,6 +18,10 @@ Verified production deployment: **dpl_BAEjvkXeUGUTWkdnYknWq71x6fU4**, https://ca
 
 Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Specification: [design-v3-implementation.md](design-v3-implementation.md). Desktop/mobile comparisons and public proof: [screenshots/verification](screenshots/verification/). Independent Design found no outstanding material mismatch in inspected views; QA passed the public sample flow and390px layout.
 
+## 1am checkpoint - checked12:40am PT
+
+No new actionable issue. Canonical public URL serves READY main deployment `dpl_CLk2n7XnDhGCmNd9dx2BtfNdNqit` / `ebc82cb` (https://canon-91016c5ub-archer-rag-dev.vercel.app). This is documentation/evidence on the already verified `911f854` application. Bounded read-only checks confirmed the landing’s two entry paths, sample24 shots and original2/0/0/1 flags. No new screenshots, generation, database writes or full test rerun were needed. The judge report’s visible-exit/qualified-headline findings were resolved and publicly verified in the prior release; human anatomy review, final video and judge repository access remain the morning actions below. Usage: weekly69% remaining,5-hour unavailable, two free resets still available; none used. Overnight checks continue on the90-minute schedule.
+
 ## What works
 
 - Landing offers **Start a new production** and **Explore a sample production: Mara**.
@@ -59,4 +63,4 @@ The final one-page [brand handout](../docs/brand-guide.pdf) is updated to light 
 
 Main alone edits app code. Design completed the final spec and bounded visual check. Independent judge panel and report-only QA run every90minutes, quiet when unchanged; pitch writer completed and stopped. Main has a90-minute heartbeat for consequential fixes and final6:30–7am readiness/MORNING update. Routine project actions are explicitly approved; nothing needs a login, payment or approval to continue the authorized free work.
 
-Latest reported usage: weekly71% remaining,5-hour window unavailable; two free resets available, none consumed. Use only the founder-authorized free reset if a reported window reaches10% remaining, expiringOct29 first. Never purchase. Secrets stay in ignored .env.local and server-only Vercel variables, never in screenshots or commits.
+Latest reported usage: weekly69% remaining,5-hour window unavailable; two free resets available, none consumed. Use only the founder-authorized free reset if a reported window reaches10% remaining, expiringOct29 first. Never purchase. Secrets stay in ignored .env.local and server-only Vercel variables, never in screenshots or commits.
