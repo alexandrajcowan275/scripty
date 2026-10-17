@@ -6,7 +6,7 @@
 
 [![CI](https://github.com/alexandrajcowan275/canon/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandrajcowan275/canon/actions/workflows/ci.yml)
 
-![Scripty Studio: a cinematic contact sheet with continuity checks and production memory](docs/images/scripty-studio.png)
+![Scripty Studio: a cinematic contact sheet with continuity checks and production memory](docs/images/scripty-studio-clean.png)
 
 ## The problem
 

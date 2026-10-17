@@ -6,7 +6,7 @@ cd ~/canon && npm run dev
 
 Open http://localhost:3000. Public: **https://canon-woad.vercel.app/**. Latest founder-supplied submission deadline: **October17,2026,2:00pm PT**. Final overnight handoff: **6:15am PT**.
 
-Updated3:40am PT. Interim checkpoint. Current verified public UI release: `241f899` on private `main`. All eight pages, the controlled A/B blind queue, Studio/Review refinements and the generated-take navigation fix are live. Main is finishing same-origin study-image resilience and stale-hold preflight cleanup; Design is refining Memory and remaining pages.
+Updated3:52am PT. Interim checkpoint. Current verified public UI release: `dd95173` on private `main`. All eight pages, the controlled A/B blind queue, Studio/Review refinements and the generated-take navigation fix are live. Bundled same-origin study images, stale-hold preflight cleanup and the refined Memory sheet are verified live. Design is refining Landing and remaining pages.
 
 ## What works
 
@@ -16,7 +16,7 @@ The left/right suggestion fix is live: provisional sides stay out of stable keys
 
 ## Evidence
 
-Original history stays **2/6,0/6,0/6,1/6** flagged; one learned ring rule reached18later prompts and18checks. These four takes are confounded and are not causal A/B evidence. Human checker accuracy is unverified. Controlled A/B: A0/6 and B0/6 targeted flagged shots,0/12 ring/scar failed checks each,0/24 overall failed checks each, no uncertainty. No additional reduction from the learned rule. Estimated cost$0.710364, all24attempts settled. Human validation is pending; the12images are first in blind Eval.
+Original history stays **2/6,0/6,0/6,1/6** flagged; one learned ring rule reached18later prompts and18checks. These four takes are confounded and are not causal A/B evidence. Human checker accuracy is unverified. Controlled A/B: A0/6 and B0/6 targeted flagged shots,0/12 ring/scar failed checks each,0/24 overall failed checks each, no uncertainty. No additional reduction from the learned rule. Estimated cost$0.710364, all24attempts settled. New public-UI loop$0.121538 plus changed-Memory merge check$0.000404; no extra image was generated for the latter. Human validation is pending; the12images are first in blind Eval.
 
 Founder-reported OpenAI baseline **$2.23**, credit balance **$32.29** at that checkpoint. App cap **$30**, Main tests **$12**, A/B **$3** inside testing. New usage settles from returned tokens; old receipts are retained and stale holds release after30minutes. These are estimates, not invoices.
 
@@ -32,6 +32,6 @@ Founder: supply real blind labels (the new12 A/B images will be first), record/u
 
 ## In progress
 
-A/B blind queue verified on publiccb84f34:210cards, first48cover all12studyimages, conditions/predictions hidden, zero human labels. Public new-production UI loop also passed generation→editednote→live memory→regeneration, with1prompt/1checkreach and$0.121538estimated additional usage. The selected-take navigation defect is fixed in241f899; oldTake1 correctly offers GenerateTake3, and Take2 selection updates the URL. Remaining: same-origin study-image release and incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
+A/B blind queue verified on publiccb84f34:210cards, first48cover all12studyimages, conditions/predictions hidden, zero human labels. Public new-production UI loop also passed generation→editednote→live memory→regeneration, with1prompt/1checkreach and$0.121538estimated additional usage. The selected-take navigation defect is fixed in241f899; oldTake1 correctly offers GenerateTake3, and Take2 selection updates the URL. Remaining: incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
 
 Capacity note: the existing three-take lifetime attempt limit remains. Automatic review rejected Main's proposed hourly replacement as an expansion of persistent paid capacity; no such migration ran. The verified Night Train production has2of3attempts used, one remaining. Changing this setting is optional founder approval work after waking; Mara's four original takes remain available.

@@ -118,3 +118,8 @@ README outdated frontend integration paragraph: resolved in rewrite. Clean recor
 
 - **Done — support the headline with evidence:** replaced “the more you use it, the less your AI drifts” as an achieved promise with “Every correction carries forward.” Less drift is stated as the goal, while the matched study's flat result remains prominent. This uses the founder's standing permission to improve unsupported wording and aligns the first line with demonstrated18/18memory transfer.
 - **Forwarded — completed study on Evidence:** Design should add the real0/6versus0/6result within the existing Evidence disclosure, without adding panels/features or changing the original curve. Main supplies a small derived `summary.json` from the completed receipt, including its source hash and no per-shot verdicts/conditions, so the copy binds actual data.
+
+### Memory and navigation follow-up — 03:52am PT
+
+- **Done — real refined Memory:** publicdd95173 re-used the existing correction, returned the same rule as a merge, preserved1prompt/1check reach and one saved rule. Save action was visible at665px in a720px viewport. Additional mini-model usage estimate$0.000404, zero new images. Captured actual public screenshot; no human labels.
+- **Forwarded P2 — production-list consistency:** saved owned-production navigation works after reload, but the legacy `/productions` list lacks the founder's Mara-first card and shared visual styling. Design can reuse existing navigation/card elements after priority pages; no backend change or new feature requested.
