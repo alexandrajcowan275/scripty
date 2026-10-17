@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "description": "Hand labels only. truePass=false means drift (the positive class). Replace draft examples with real shot IDs after inspecting the exact image. A human must mark status=verified and set verifiedBy and verifiedAt. Never score these examples as ground truth.",
+  "labels": [
+    { "shotId": "DRAFT-replace-with-real-shot-1", "attributeKey": "scarf_color", "truePass": false, "status": "draft", "note": "Example only: inspect scarf color in the saved image." },
+    { "shotId": "DRAFT-replace-with-real-shot-2", "attributeKey": "scar_side", "truePass": true, "status": "draft", "note": "Example only: distinguish character left from viewer left." },
+    { "shotId": "DRAFT-replace-with-real-shot-3", "attributeKey": "ring_hand", "truePass": false, "status": "draft", "note": "Example only: omit the label if the hand is occluded." }
+  ]
+}

@@ -1,0 +1,4 @@
+[
+  { "batchIndex": 1, "shotIndex": 1, "decision": "reject", "reason": "REPLACE after inspecting the actual image: describe the visible continuity error." },
+  { "batchIndex": 1, "shotIndex": 2, "decision": "accept" }
+]
