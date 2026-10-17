@@ -56,7 +56,7 @@ export async function cachedProject(request: Request, projectId: string, fullHis
     const review = state.reviews.find((item) => item.id === shot.id);
     return review ? { ...shot, status: review.decision === "accept" ? "accepted" as const : "rejected" as const, rejectReason: review.decision === "reject" ? review.reason : undefined } : { ...shot, status: "pending" as const, rejectReason: undefined };
   });
-  const localTraces: TraceEvent[] = state.rules.map((rule) => ({ id: `local-${rule.id}`, projectId, type: "rule_learned", message: `Sample production correction (local extraction, no AI call): ${rule.text}`, createdAt: rule.createdAt }));
+  const localTraces: TraceEvent[] = state.rules.map((rule) => ({ id: `local-${rule.id}`, projectId, type: "rule_learned", message: `Browser-saved sample correction: ${rule.text}`, createdAt: rule.createdAt }));
   const recordedRuleIds = [...new Set(entries.flatMap((entry) => entry.batch.rulesApplied))].filter((id) => rules.has(id) && !state.rules.some((rule) => rule.id === id));
   return { recordedRuleIds, data: { project, rules: [...rules.values()], batches: entries.map((entry) => entry.batch), shots, traces: [...new Map(entries.flatMap((entry) => entry.traces).map((trace) => [trace.id, { ...trace, message: `[Original production] ${trace.message}` }])).values(), ...localTraces] }, state, cache };
 }

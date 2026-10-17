@@ -77,17 +77,26 @@ export function LandingClaude() {
   const [scrolled, setScrolled] = useState(false);
   const [intro, setIntro] = useState(false);
   useEffect(() => {
-    if (reduce) return;
+    const done = () => { setIntro(false); delete document.documentElement.dataset.intro; };
+    // Read the preference directly as well: the hook updates after hydration.
+    if (reduce || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      done();
+      return;
+    }
     let seen = false;
     try { seen = sessionStorage.getItem("scripty-intro") === "1"; sessionStorage.setItem("scripty-intro", "1"); } catch {}
-    if (seen) return;
+    if (seen) { done(); return; }
     setIntro(true);
     document.documentElement.dataset.intro = "on";
-    const done = () => { setIntro(false); delete document.documentElement.dataset.intro; };
     const id = window.setTimeout(done, 2600);
     window.addEventListener("wheel", done, { once: true });
     window.addEventListener("pointerdown", done, { once: true });
-    return () => { window.clearTimeout(id); window.removeEventListener("wheel", done); window.removeEventListener("pointerdown", done); };
+    return () => {
+      window.clearTimeout(id);
+      window.removeEventListener("wheel", done);
+      window.removeEventListener("pointerdown", done);
+      delete document.documentElement.dataset.intro;
+    };
   }, [reduce]);
   const revealRef = useRef<HTMLDivElement>(null);
   const statementRef = useRef<HTMLHeadingElement>(null);

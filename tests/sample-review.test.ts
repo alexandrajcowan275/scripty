@@ -52,6 +52,9 @@ test("free and authorized sample corrections preserve recorded memory across ref
         assert.deepEqual(refreshed.data.rules.find(rule => rule.id === recordedRule.id), recordedRule);
         assert.ok(refreshed.recordedRuleIds.includes(recordedRule.id));
         assert.equal(refreshed.state.rules.length, 1);
+        const visitorTrace = refreshed.data.traces.find(trace => trace.id === `local-${visitorRuleId}`);
+        assert.equal(visitorTrace?.message, `Browser-saved sample correction: ${receipt.newRule.text}`);
+        assert.doesNotMatch(visitorTrace!.message, /no AI call|local extraction/);
         assert.equal(refreshed.data.shots[0].status, "rejected");
         assert.deepEqual(refreshed.data.shots[0].checks, shots[0].checks);
         assert.deepEqual(refreshed.data.batches, [batch]);
