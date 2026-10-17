@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-17T03:02:40.539Z",
+  "referenceSha256": "1549c0cb248c4994ceb0a4de86e677802c13d4f3906ac414a3e82dc6e17cc9e0",
+  "referencePath": "/seed/mara-reference.png",
+  "fixedCriteria": [
+    "scarf_color",
+    "scar_side",
+    "hair",
+    "ring_hand"
+  ],
+  "note": "Reference ring-side corrected before baseline; no generated batch existed before reference freeze. Later scenes differ, criteria unchanged. Agent labels remain draft until human verification."
+}

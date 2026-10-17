@@ -1,0 +1,82 @@
+{
+  "operator": "agent visual inspection; needs human verification",
+  "reason": "In this frontal portrait the silver ring is on Mara’s left hand (viewer-right). Keep the single silver ring on her anatomical RIGHT hand; in a frontal view that is the hand on the viewer’s LEFT. Preserve the character reference and do not mirror the frame.",
+  "shot": {
+    "id": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+    "projectId": "mara",
+    "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+    "scenePrompt": "Close-up portrait of Mara looking toward camera in soft window light.",
+    "finalPrompt": "Close-up portrait of Mara looking toward camera in soft window light.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+    "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/70c895a8-94a9-437f-8be6-bfd954f03d33-9986ea9e-1d8f-4afc-a45a-a6631923d8cb.png",
+    "checks": [
+      {
+        "key": "scarf_color",
+        "expected": "red wool scarf",
+        "observed": "red wool scarf",
+        "pass": true,
+        "confidence": 0.95
+      },
+      {
+        "key": "scar_side",
+        "expected": "scar over the LEFT eye",
+        "observed": "scar over the RIGHT eye",
+        "pass": false,
+        "confidence": 0.85,
+        "note": "The scar is visible as a dotted line over the character's right eye, not the left eye as required."
+      },
+      {
+        "key": "hair",
+        "expected": "short black hair",
+        "observed": "short black hair",
+        "pass": true,
+        "confidence": 0.9
+      },
+      {
+        "key": "ring_hand",
+        "expected": "silver ring on the right hand",
+        "observed": "silver ring on the left hand",
+        "pass": false,
+        "confidence": 0.85,
+        "note": "The ring is on the left hand, not the right hand as required."
+      },
+      {
+        "key": "rule:seed-scarf",
+        "expected": "Mara always wears a red wool scarf.",
+        "observed": "Mara is wearing a red wool scarf as required.",
+        "pass": true,
+        "confidence": 0.95
+      },
+      {
+        "key": "rule:seed-scar",
+        "expected": "Mara’s scar is always over the LEFT eye.",
+        "observed": "Mara's scar is over the RIGHT eye, not the LEFT eye as required.",
+        "pass": false,
+        "confidence": 0.85,
+        "note": "Scar position does not match the required side."
+      }
+    ],
+    "driftScore": 0.425,
+    "flagged": true,
+    "status": "rejected",
+    "rejectReason": "In this frontal portrait the silver ring is on Mara’s left hand (viewer-right). Keep the single silver ring on her anatomical RIGHT hand; in a frontal view that is the hand on the viewer’s LEFT. Preserve the character reference and do not mirror the frame."
+  },
+  "newRule": {
+    "id": "ca721c45-1e5d-412c-83ba-9a566443c44b",
+    "projectId": "mara",
+    "text": "Mara always wears a silver ring on her RIGHT hand.",
+    "source": "rejection",
+    "createdAt": "2026-10-17T03:05:50.819Z",
+    "timesApplied": 0,
+    "attributeKey": "ring_hand"
+  },
+  "merged": false,
+  "mode": "live",
+  "provenance": "live_rule",
+  "usage": {
+    "imageRequests": 0,
+    "textRequests": 1,
+    "inputTokens": 716,
+    "outputTokens": 28,
+    "reservedUsd": 0.01
+  }
+}

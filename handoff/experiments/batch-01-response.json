@@ -1,0 +1,379 @@
+{
+  "batch": {
+    "id": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+    "projectId": "mara",
+    "index": 1,
+    "rulesApplied": [
+      "seed-scarf",
+      "seed-scar"
+    ],
+    "driftRate": 1,
+    "createdAt": "2026-10-17T03:02:41.024Z"
+  },
+  "shots": [
+    {
+      "id": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "projectId": "mara",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "scenePrompt": "Wide establishing shot of Mara crossing a foggy railway platform at dawn.",
+      "finalPrompt": "Wide establishing shot of Mara crossing a foggy railway platform at dawn.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/d8558165-3695-4a00-ac38-55f72f62ff45-d6c58089-cd77-4b2e-b01c-79e3791b59ed.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "no visible scar",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "No visible scar over the left eye or anywhere else on the face."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the left hand, right hand unclear",
+          "pass": false,
+          "confidence": 0.7,
+          "note": "Silver ring visible on left hand; right hand ring not visible clearly."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara wears a red wool scarf as required",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "no visible scar over left eye as required",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "No scar visible over left eye, violates the seed scar rule."
+        }
+      ],
+      "driftScore": 0.3833333333333333,
+      "flagged": true,
+      "status": "pending"
+    },
+    {
+      "id": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "projectId": "mara",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "scenePrompt": "Close-up portrait of Mara looking toward camera in soft window light.",
+      "finalPrompt": "Close-up portrait of Mara looking toward camera in soft window light.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/70c895a8-94a9-437f-8be6-bfd954f03d33-9986ea9e-1d8f-4afc-a45a-a6631923d8cb.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over the RIGHT eye",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "The scar is visible as a dotted line over the character's right eye, not the left eye as required."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the left hand",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "The ring is on the left hand, not the right hand as required."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara is wearing a red wool scarf as required.",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Mara's scar is over the RIGHT eye, not the LEFT eye as required.",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "Scar position does not match the required side."
+        }
+      ],
+      "driftScore": 0.425,
+      "flagged": true,
+      "status": "pending"
+    },
+    {
+      "id": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "projectId": "mara",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "scenePrompt": "Low-angle shot of Mara climbing a fire escape at golden hour.",
+      "finalPrompt": "Low-angle shot of Mara climbing a fire escape at golden hour.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/f4e67491-6089-4cdb-92eb-08db2744a646-0653bd35-2fe3-490f-a36a-7a98356b4d98.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red scarf, appears knit and wool-like",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over the RIGHT eye",
+          "pass": false,
+          "confidence": 0.95,
+          "note": "Visible scar is on the right eye side, contradicts expected left eye."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the LEFT hand",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "Silver ring clearly visible on the person's left hand, not right."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara wears a red wool scarf",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Mara's scar is over the RIGHT eye, not left",
+          "pass": false,
+          "confidence": 0.95,
+          "note": "Scar location contradicts seed rule, scar is on the right eye."
+        }
+      ],
+      "driftScore": 0.4583333333333333,
+      "flagged": true,
+      "status": "pending"
+    },
+    {
+      "id": "1fc48122-2b25-4841-b588-5554298bd339",
+      "projectId": "mara",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "scenePrompt": "Profile medium shot of Mara reading a map under a cool streetlamp at night.",
+      "finalPrompt": "Profile medium shot of Mara reading a map under a cool streetlamp at night.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/f80e1e8b-a3b5-4241-b14e-ac1bfba36dd9-1fc48122-2b25-4841-b588-5554298bd339.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over the right eye",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "Scar is visible over the character's right eye, not left as required."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the left hand",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "Silver ring is worn on the visible hand, which is the left hand, not the right hand as required."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara wears a red wool scarf in this image.",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Mara’s scar is over the right eye in this image, not over the left eye.",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "This violates the requirement that the scar should always be over the left eye."
+        }
+      ],
+      "driftScore": 0.4000000000000001,
+      "flagged": true,
+      "status": "pending"
+    },
+    {
+      "id": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "projectId": "mara",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "scenePrompt": "Over-the-shoulder shot of Mara opening a door in a warmly lit room.",
+      "finalPrompt": "Over-the-shoulder shot of Mara opening a door in a warmly lit room.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/98f1adc6-80ac-40e9-94db-6c41fea1851a-61f3f0b9-ffd9-4060-b7f4-510ed895eedc.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "not visible",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "Scar over left eye is not visible from this rear/side angle, so cannot confirm."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the right hand",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara is wearing a red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "scar over left eye not visible",
+          "pass": false,
+          "confidence": 0.7,
+          "note": "Cannot visually confirm scar location; it is not seen in this image."
+        }
+      ],
+      "driftScore": 0.19833333333333333,
+      "flagged": true,
+      "status": "pending"
+    },
+    {
+      "id": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "projectId": "mara",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "scenePrompt": "High-angle shot of Mara reaching across a table in bright midday light.",
+      "finalPrompt": "High-angle shot of Mara reaching across a table in bright midday light.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE CANON CONSTRAINTS (all must hold):\n- Mara’s scar is always over the LEFT eye.\n- Mara always wears a red wool scarf.\nRender one cinematic story frame. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/6deb7757-b479-42e7-85f1-d2e0c7b365f8-d0c0499f-306d-4fdf-bea0-958436f144bf.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red scarf, wool texture visible",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over right eye",
+          "pass": false,
+          "confidence": 0.95,
+          "note": "Scar is visibly over the RIGHT eye, not the LEFT as expected."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on left hand",
+          "pass": false,
+          "confidence": 0.9,
+          "note": "Silver ring is on the LEFT hand, not the right hand as required."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara wears a red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Mara’s scar is over the right eye instead of left",
+          "pass": false,
+          "confidence": 0.95,
+          "note": "Scar side does not match the rule, it is on the right eye, not the left."
+        }
+      ],
+      "driftScore": 0.4666666666666666,
+      "flagged": true,
+      "status": "pending"
+    }
+  ],
+  "mode": "live",
+  "provenance": "real_engine",
+  "imageProvenance": {
+    "0653bd35-2fe3-490f-a36a-7a98356b4d98": "openai",
+    "9986ea9e-1d8f-4afc-a45a-a6631923d8cb": "openai",
+    "d6c58089-cd77-4b2e-b01c-79e3791b59ed": "openai",
+    "61f3f0b9-ffd9-4060-b7f4-510ed895eedc": "openai",
+    "d0c0499f-306d-4fdf-bea0-958436f144bf": "openai",
+    "1fc48122-2b25-4841-b588-5554298bd339": "openai"
+  },
+  "usage": {
+    "imageRequests": 6,
+    "textRequests": 6,
+    "inputTokens": 57363,
+    "outputTokens": 13082,
+    "reservedUsd": 3.1799999999999993
+  }
+}

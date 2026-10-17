@@ -1,0 +1,41 @@
+{
+  "model": "gpt-image-1.5",
+  "prompt": "Create a single cinematic character-reference photograph of a fictional adult woman named Mara, early thirties, with short black bobbed hair. Her defining continuity details MUST all be visibly readable: a RED wool scarf with visible knit texture; a thin healed diagonal scar OVER HER ANATOMICAL LEFT EYE, crossing her left eyebrow (on the RIGHT side of the image in a frontal view); a plain SILVER RING on a finger of HER ANATOMICAL RIGHT HAND (on the LEFT side of a frontal image). Frame from upper thighs to above head, facing the camera, both hands resting separately and clearly visible in front of her grey coat, hands not crossed. Calm neutral expression. Soft overcast daylight and neutral railway-platform background, realistic film still, subtle grain, natural proportions. One person, one frame, no text, no labels, no panels. Make the scar and right-hand ring easy to inspect. This is a production reference for consistent later shots.",
+  "createdAt": "2026-10-17T03:00:05.778Z",
+  "requestId": "req_bd413ba57f4647bab195f782c4fe6a44",
+  "usage": {
+    "input_tokens": 198,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 198
+    },
+    "output_tokens": 1944,
+    "output_tokens_details": {
+      "image_tokens": 1568,
+      "text_tokens": 376
+    },
+    "total_tokens": 2142
+  },
+  "reservedUpperBoundUsd": 0.5,
+  "bytes": 2436341,
+  "correction": {
+    "reason": "Initial reference placed ring on anatomical left hand; corrected before any baseline batch.",
+    "prompt": "Correct this character reference for continuity. Preserve Mara's face, short black hair, red wool scarf, grey coat, lighting, scene, and scar over her anatomical LEFT eye. Fix the ring placement: there must be exactly ONE plain SILVER RING, on Mara's ANATOMICAL RIGHT HAND, the hand on the LEFT SIDE OF THE IMAGE in this frontal portrait. The hand on the RIGHT SIDE OF THE IMAGE must have NO RING. Move the currently visible ring from image-right hand to image-left hand. Both hands must remain separately visible. Do not mirror or flip the image. No captions, no text. Keep everything else unchanged.",
+    "requestId": "req_6f48f48f6f854180a94eaa99a286f764",
+    "usage": {
+      "input_tokens": 6694,
+      "input_tokens_details": {
+        "image_tokens": 6531,
+        "text_tokens": 163
+      },
+      "output_tokens": 1899,
+      "output_tokens_details": {
+        "image_tokens": 1568,
+        "text_tokens": 331
+      },
+      "total_tokens": 8593
+    },
+    "createdAt": "2026-10-17T03:01:11.916Z",
+    "reservedUpperBoundUsd": 0.5
+  }
+}

@@ -1,6 +1,6 @@
-# Canon: Codex task prompts
+# Scripty: Codex task prompts
 
-**Current execution target:** Saturday October 17, 2026, 11:00am PT; assets ready10:45am. Earlier1:15pm notes are superseded conservatively. Root orchestrates authorized parallel subagents/worktrees. Do not submit externally without direct user authorization.
+**Current execution target:** checkpoint1:00amPT on Saturday October17,2026; direct user submission deadline1:15pmPT that day, with morning assets targeted10:45am. The latest direct user deadline supersedes earlier conservative11am planning. Product is Scripty, the AI script supervisor; repo/folder/Vercel project staycanon. Root orchestrates authorized parallel subagents/worktrees. Do not submit externally without direct user authorization.
 
 MVP proof: a real creator correction on one shot survives refresh, becomes one deduplicated rule, and appears in generation and monitoring of a different new scene. Keep the baseline intact. Operational monitor flags alone do not prove improvement; report fixed-criteria, human-reviewed results with sample counts, or clearly label draft evidence. Defer video, multiple characters, accounts, collaboration, billing, and extra providers.
 
@@ -35,10 +35,10 @@ Do NOT build real features. This task only sets up the shared skeleton so parall
 ## TASK 1: UI / Design agent (parallel)
 ```
 Read AGENTS.md fully, especially section 7 (Design system). You own /app, /components, /styles ONLY.
-Build the full Canon interface against the MOCK API routes (don't touch /app/api or /lib except to import types):
-- Three-pane desktop layout: Canon Memory (left), film-strip batches (center), shot inspector (right), and a bottom drawer with the learning-curve chart and trace log.
+Build the full Scripty interface against the MOCK API routes (don't touch /app/api or /lib except to import types):
+- Three-pane desktop layout: Scripty Memory (left), film-strip batches (center), shot inspector (right), and a bottom drawer with the learning-curve chart and trace log.
 - Shot cards: image, drift badge, thin red frame when flagged, and status. Inspector: big image, attribute check rows (expected vs observed, pass/fail chip, confidence bar), Accept/Reject buttons with a reason input, and keyboard shortcuts A/R.
-- Canon Memory: character sheet with reference image, plus a list of learned rules. A new rule animates in with a gold glow.
+- Scripty Memory: character sheet with reference image, plus a list of learned rules. A new rule animates in with a gold glow.
 - Learning curve: drift rate per batch (line), labeled clearly.
 - "Generate batch" button with a sequential loading animation (shots appear one by one).
 - Empty, loading and error states for everything. Responsive down to 390px (stack panes).
@@ -74,7 +74,7 @@ Commit often. Write /handoff/data.md with exact commands.
 ```
 Read AGENTS.md fully. You own /docs ONLY. Write:
 1. /docs/devpost.md: Inspiration, What it does, How we built it, Challenges, Accomplishments, What we learned, What's next. Write a separate section for each track: Continual Learning (how it learns from real usage and the metric), Design (intentional design decisions, the film-suite reference, color semantics: red = drift, gold = memory, green = pass), Scale to $1B (buyers: AI video studios, micro-drama studios, ad agencies, AI video platforms via API; pricing per seat + per checked generation; moat = per-project canon memory plus cross-customer failure-pattern data), Agent Monitoring (silent failures in generative media, failure taxonomy, traces, how a rejected shot becomes a fix).
-2. /docs/video-script.md: a 2:00 script timed to the demo in AGENTS.md section 2. Hook in the first 10 seconds; product + business story; end with "Canon: the more you use it, the less your AI drifts." Mention a future integration with real-time world models (e.g. Reactor) as what's next.
+2. /docs/video-script.md: a 2:00 script timed to the demo in AGENTS.md section 2. Hook in the first 10 seconds; product + business story; end with "Scripty: the more you use it, the less your AI drifts." Mention a future integration with real-time world models (e.g. Reactor) as what's next.
 3. /docs/brand-guide.md: a one-page brand guideline (name, logo concept, color tokens with meanings, type, voice) suitable to export as a PDF and attach to the Design track.
 Leave clearly marked [TODO: real number] placeholders for metrics. NEVER invent results. Commit. Write /handoff/pitch.md.
 ```

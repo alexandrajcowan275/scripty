@@ -7,13 +7,13 @@
     "build": "next build --webpack",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test scripts/test-data.ts tests/engine.test.ts",
+    "test": "node --import tsx --test scripts/test-data.ts scripts/test-cache.ts tests/engine.test.ts components/batch-evidence.test.tsx",
     "seed": "tsx scripts/seed.ts",
     "eval": "tsx scripts/run-eval.ts",
     "cache:demo": "tsx scripts/cache-demo.ts"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": "24.x"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.118.0",

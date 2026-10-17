@@ -1,23 +1,25 @@
-# Real experiment results
+# Real experiment results — in progress
 
-## Status
+## Setup / protocol
 
-No real image experiment has run yet. OpenAI key is pending. No learning, accuracy, precision, recall, or F1 result is claimed.
+Actual OpenAI credential authenticated200 and is synced to Vercel production+preview. Real reference generated, then its misplaced ring corrected BEFORE baseline. Reference hash and fixed criteria are frozen in `experiments/protocol.json`. Four documented scene sets are in `seed/experiment-scenes.json`; later scenes differ while the four canonical attributes stay fixed. No baseline constraint was weakened.
 
-## Protocol
+## Baseline, original monitor v1
 
-- Six shots per batch; retain fixed character criteria, then use different new scenes after the correction. Record scene sets so changed difficulty is disclosed across at least three measured batches.
-- Character sheet and real raster reference stay fixed; record accepted extra references and every learned rule.
-- Review visible failures with explicit reasons. Record that these are engineer/creator-style decisions, not independent human ground truth.
-- Keep actual model checks, confidence, prompt, rules, provider, request IDs, fallback/error traces, and timestamps.
-- `driftRate = flagged / total`; show uncertain/failed monitoring separately so an API failure cannot look like an improvement.
-- Cache actual resulting images and metadata. Do not rearrange batch order to improve the curve.
-- Draft 10 shot labels from visible evidence, mark all as needs human verification, and report draft eval separately.
+- Six real image requests and six real monitor calls completed, no fallbacks.
+- Batch1 originally flagged **6/6 (100%)**. Preserve this diagnostic result in `experiments/batch-01-response.json`.
+- Reserved upper bound for batch1: **$3.18**; reference generation+correction reserved$1.00. Reservations are not provider billing receipts.
+- Agent visual inspection found a genuine silver-ring placement failure in scene2, but also systematic monitor confusion between image-side and anatomical-side scars. Scene5 invisibility was incorrectly treated as a rule failure. These are checker defects, not output improvement.
+- Root is calibrating explicit orientation/uncertainty wording without relaxing the fixed criteria or0.6 threshold. Original checks remain in the experiment record. Any recheck will be labeled and recorded separately. Later batches must use the same frozen calibrated checker.
 
-## Budget
+## Review / memory proof
 
-API spending limit: strictly below$25. The implementation will reserve pessimistic costs in a persistent server-only ledger before model calls; reservations are an upper bound, not a receipt. Reconcile actual returned token/image usage where available. No model calls made by subagents.
+Root is inspecting and rejecting the visibly misplaced ring, saving one testable rule through the real LLM+Supabase path, then verifying refresh and duplicate correction merging. Exact responses are in `experiments/review-01*.json`. These are agent/engineer-style visual review decisions, not human-verified ground truth.
 
-## Attempts / tuning
+## Interpretation
 
-None yet. Append actual attempts and their measured outcomes here, including flat or worsening rates.
+No verified improvement or monitor-accuracy claim exists yet. Human labels must use the fixed four criteria and disclose uncertain/occluded evidence. Agent labels remain draft until human verification. Changing scene composition and monitor calibration are confounds and must stay visible in the final report.
+
+## Remaining work
+
+Freeze checkerv2, recheck baseline transparently, generate different scenes with the saved rule, inspect actual failures, produce3–4 complete real batches, capture hashes/provenance, create10-shot draft-label worksheet, evaluate drafts separately, and verify public cached deployment.

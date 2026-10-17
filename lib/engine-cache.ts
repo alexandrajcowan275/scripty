@@ -6,6 +6,7 @@ import { z } from "zod";
 import seed from "../seed/mara.json";
 import { batchSchema, projectSchema, ruleSchema, shotSchema, traceSchema, type ProjectData } from "./db";
 import type { Rule, TraceEvent } from "./types";
+import { HttpError } from "./engine-http";
 const entrySchema = z.object({ batch: batchSchema, shots: z.array(shotSchema).length(6), rules: z.array(ruleSchema).default([]), traces: z.array(traceSchema).default([]) });
 const manifestSchema = z.object({ version: z.literal(1), projectId: z.string(), provenance: z.literal("real_engine"), createdAt: z.string(), batches: z.array(entrySchema) });
 const stateSchema = z.object({ v: z.literal(1), projectId: z.string(), count: z.number().int().min(0).max(20), reviews: z.array(z.object({ id: z.string().max(200), decision: z.enum(["accept", "reject"]), reason: z.string().max(400).optional() })).max(36), rules: z.array(ruleSchema).max(12) });
@@ -25,9 +26,11 @@ export function readDemoState(request: Request, projectId: string): DemoState {
   } catch { return initial; }
 }
 export function sessionCookie(state: DemoState): string {
-  const payload = deflateRawSync(JSON.stringify(stateSchema.parse(state))).toString("base64url");
+  const validated = stateSchema.safeParse(state);
+  if (!validated.success) throw new HttpError("Replay memory is full. Start a fresh browser session or clear this site’s data to restart.", 409);
+  const payload = deflateRawSync(JSON.stringify(validated.data)).toString("base64url");
   const value = `${payload}.${sign(payload)}`;
-  if (value.length > 3800) throw new Error("Demo session is full. Clear site data to start a new replay.");
+  if (value.length > 3800) throw new HttpError("Replay memory is full. Start a fresh browser session or clear this site’s data to restart.", 409);
   return `${cookieName}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400${process.env.NODE_ENV === "production" ? "; Secure" : ""}`;
 }
 export async function loadCache() {

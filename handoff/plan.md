@@ -1,6 +1,6 @@
-# Canon execution plan — updated deadline
+# Scripty execution plan — updated deadline
 
-Working submission deadline: Saturday October17, 2026, **11:00am America/Los_Angeles**. Submission assets ready **10:45am**. This is the conservative working target from the event-review planning update; an official event page was not re-verified in this build chat. Earlier1:15pm timing is superseded for planning. External submission remains a human step.
+Submission deadline: Saturday October17,2026, **1:15pm America/Los_Angeles**, reaffirmed directly by user. **1:00am checkpoint**: local complete real-image flow, one-command run instructions, real cached replay, latest deployment URL in MORNING.md. Morning assets target10:45am. Earlier11am conservativeplanning superseded by direct user update. External submission remains a human step.
 
 ## Priorities
 
@@ -18,12 +18,12 @@ Working submission deadline: Saturday October17, 2026, **11:00am America/Los_Ang
 -8:30–9:30am: verify labels and real cached examples.
 -9:30–10am: visual polish/demo-breaking fixes only.
 -10–10:45am: record/check video, materials, public links.
--Before11am: human submits.
+-Before1:15pm: human submits.
 
 ## Setup state
 
-GitHub private repo and main push verified. Vercel archer-rag-dev/canon linked; runtime secrets/config synced to production+preview except missing OpenAI key. Supabase canon ybaxkdxaihhwyuyykjra in Alex Cowan's Org; migrations applied and Mara seeded. Public shots bucket verified; direct anonymous table access denied. Caffeinate running in persistent session. No recurring automation was created (automatic approval review rejected it); work continues in the active session.
+GitHub private repo and main push verified. Vercel archer-rag-dev/canon linked; runtime secrets/config synced to production+preview including the replacement OpenAI key. Supabase canon ybaxkdxaihhwyuyykjra in Alex Cowan's Org; migrations applied and Mara seeded. Public shots bucket verified; direct anonymous table access denied. Caffeinate running in persistent session. No recurring automation was created (automatic approval review rejected it); work continues in the active session.
 
 ## Remaining human setup input
 
-OPENAI_API_KEY has not yet been supplied. Optional Gemini key is not required for the MVP. Continue all unaffected build/testing work.
+Replacement OPENAI_API_KEY authenticated200 and is synced. No required credential missing. Optional Gemini key is not required for the MVP. Human label verification and final video/submission remain morning steps.

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "criteria": [
+    "scarf_color",
+    "scar_side",
+    "hair",
+    "ring_hand"
+  ],
+  "sceneSets": [
+    [
+      "Wide establishing shot of Mara crossing a foggy railway platform at dawn.",
+      "Close-up portrait of Mara looking toward camera in soft window light.",
+      "Low-angle shot of Mara climbing a fire escape at golden hour.",
+      "Profile medium shot of Mara reading a map under a cool streetlamp at night.",
+      "Over-the-shoulder shot of Mara opening a door in a warmly lit room.",
+      "High-angle shot of Mara reaching across a table in bright midday light."
+    ],
+    [
+      "Wide establishing shot of Mara walking across a misty pedestrian bridge at dawn.",
+      "Close-up portrait of Mara seated beside a library window in soft daylight.",
+      "Low-angle shot of Mara ascending worn stone steps at golden hour.",
+      "Profile medium shot of Mara buying a ticket under a cool station light at night.",
+      "Over-the-shoulder shot of Mara unlocking a workshop door in a warmly lit corridor.",
+      "High-angle shot of Mara sorting keys on a wooden desk in bright midday light."
+    ],
+    [
+      "Wide establishing shot of Mara arriving at an empty ferry dock in early morning haze.",
+      "Close-up portrait of Mara waiting beside a cafe window in gentle daylight.",
+      "Low-angle shot of Mara pausing on a concrete stairway in warm afternoon light.",
+      "Profile medium shot of Mara studying a timetable under a cool bus-stop lamp at night.",
+      "Over-the-shoulder shot of Mara taking a book from a shelf in a warm reading room.",
+      "High-angle shot of Mara arranging photographs on a worktable in bright daylight."
+    ],
+    [
+      "Wide establishing shot of Mara crossing a quiet town square in morning mist.",
+      "Close-up portrait of Mara standing near a museum window in soft daylight.",
+      "Low-angle shot of Mara stepping onto a footbridge in warm afternoon light.",
+      "Profile medium shot of Mara examining a folded letter beneath a cool platform light at night.",
+      "Over-the-shoulder shot of Mara opening a wooden locker in a warmly lit station.",
+      "High-angle shot of Mara placing a notebook on a cafe table in midday light."
+    ]
+  ],
+  "difficultyDisclosure": "Later batches use different locations/actions with similar angle/lighting categories. Scene content, model randomness and any later accepted reference still confound a causal improvement claim. No baseline prompt or character criterion is weakened."
+}

@@ -1,0 +1,449 @@
+{
+  "monitorVersion": "canon-monitor-v2",
+  "reason": "Corrected anatomical-side reasoning and occlusion handling before later scene experiments. Original v1 data retained separately.",
+  "rulesApplied": [
+    "seed-scarf",
+    "seed-scar"
+  ],
+  "results": [
+    {
+      "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red scarf",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "The scarf wrapped around the neck is clearly red and appears to be woolen."
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "unclear",
+          "pass": false,
+          "confidence": 0.4,
+          "note": "No visible scar can be identified over either eye. Lighting and resolution do not reveal any scar detail."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "Hair is short, cut just above shoulders, and black in color."
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "ring on left hand",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "Two rings are visible: one ring on the index finger of the left hand, left hand is on image-right indicating character faces mostly forward. The right hand is mostly obscured and cannot be confirmed to wear a ring."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara wears a red scarf here",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "Consistent with the rule that Mara always wears a red wool scarf."
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "scar over left eye not visible",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "Scar over the left eye is not visible or clearly absent in this image."
+        }
+      ],
+      "driftScore": 0.2816666666666667,
+      "flagged": true,
+      "failures": [
+        {
+          "key": "ring_hand",
+          "category": "identity_drift"
+        }
+      ],
+      "usage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 3096,
+        "outputTokens": 314,
+        "reservedUsd": 0.03
+      },
+      "provenance": "live_monitor",
+      "monitorVersion": "canon-monitor-v2"
+    },
+    {
+      "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over the RIGHT eye",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "The character is facing the viewer (frontal). The scar is visible on the image-left side of the face, which corresponds to the character's RIGHT side. Expected scar over LEFT eye but scar is over the RIGHT eye."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the left hand",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "Character faces forward. The hand with ring is visible on image-right side of the image, which corresponds to the character's LEFT hand. Expected silver ring on the right hand but ring is on left hand."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara wears a red wool scarf.",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Mara's scar is over the RIGHT eye, not LEFT.",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "Scar is on image-left side of face for a frontal character, meaning scar is on RIGHT eye, violating the rule that scar is on LEFT eye."
+        }
+      ],
+      "driftScore": 0.425,
+      "flagged": true,
+      "failures": [
+        {
+          "key": "scar_side",
+          "category": "identity_drift"
+        },
+        {
+          "key": "ring_hand",
+          "category": "identity_drift"
+        },
+        {
+          "key": "rule:seed-scar",
+          "category": "identity_drift"
+        }
+      ],
+      "usage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 3096,
+        "outputTokens": 327,
+        "reservedUsd": 0.03
+      },
+      "provenance": "live_monitor",
+      "monitorVersion": "canon-monitor-v2"
+    },
+    {
+      "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over the RIGHT eye, character facing viewer",
+          "pass": false,
+          "confidence": 0.9,
+          "note": "Character is facing the viewer, so image-right is character's left and image-left is character's right. Scar is visible over the image-left eye, meaning scar is over RIGHT eye anatomically, contradicting expected LEFT eye."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.9
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "gold ring on the left hand, right hand unclear",
+          "pass": false,
+          "confidence": 0.49,
+          "note": "Character is facing the viewer. Image-left hand (with gold ring) is character's right hand. However, the ring is gold, not silver as expected. Right hand is not clearly visible for any ring."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara always wears a red wool scarf.",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "Mara’s scar is always over the LEFT eye.",
+          "pass": false,
+          "confidence": 0.9,
+          "note": "The scar in this image is over the RIGHT eye, which contradicts the rule that scar is always over the LEFT eye."
+        }
+      ],
+      "driftScore": 0.38166666666666665,
+      "flagged": true,
+      "failures": [
+        {
+          "key": "scar_side",
+          "category": "identity_drift"
+        },
+        {
+          "key": "rule:seed-scar",
+          "category": "identity_drift"
+        }
+      ],
+      "usage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 3096,
+        "outputTokens": 330,
+        "reservedUsd": 0.03
+      },
+      "provenance": "live_monitor",
+      "monitorVersion": "canon-monitor-v2"
+    },
+    {
+      "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red scarf",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "Scarf is thick knit and red in color, consistent with wool texture."
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "over right eye",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "Character faces roughly forward with slight downward gaze, left eye is on the right side of the image. The visible scar is over the character's right eye, not left."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.95,
+          "note": "Hair length is above shoulders and color is black."
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on left hand",
+          "pass": false,
+          "confidence": 0.85,
+          "note": "Character faces viewer; left hand in image right holds the map with visible silver ring. Right hand is not visible enough to confirm ring presence."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "consistent",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "Mara does wear a red wool scarf as expected."
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "inconsistent",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "Scar is over right eye not left, contradicting the seed rule."
+        }
+      ],
+      "driftScore": 0.4083333333333334,
+      "flagged": true,
+      "failures": [
+        {
+          "key": "scar_side",
+          "category": "identity_drift"
+        },
+        {
+          "key": "ring_hand",
+          "category": "identity_drift"
+        },
+        {
+          "key": "rule:seed-scar",
+          "category": "identity_drift"
+        }
+      ],
+      "usage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 3096,
+        "outputTokens": 297,
+        "reservedUsd": 0.03
+      },
+      "provenance": "live_monitor",
+      "monitorVersion": "canon-monitor-v2"
+    },
+    {
+      "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red scarf",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "The scarf is visibly red and appears to be wool knit material."
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "unclear",
+          "pass": false,
+          "confidence": 0.3,
+          "note": "The character's face is mostly turned away from the camera, obscuring the scar and both eyes so the scar side cannot be determined."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.85,
+          "note": "Hair is short and black in color from visible back and side views."
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on left hand",
+          "pass": false,
+          "confidence": 0.8,
+          "note": "The visible hand is the left hand anatomically (facing away from camera with palm around door handle) and it has a silver ring. Right hand not visible."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara is wearing a red wool scarf",
+          "pass": true,
+          "confidence": 0.9,
+          "note": "Consistent with the rule that Mara always wears a red wool scarf."
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "scar side unclear",
+          "pass": false,
+          "confidence": 0.3,
+          "note": "Scar side cannot be confirmed due to character's face turned away."
+        }
+      ],
+      "driftScore": 0.23333333333333336,
+      "flagged": true,
+      "failures": [
+        {
+          "key": "ring_hand",
+          "category": "identity_drift"
+        }
+      ],
+      "usage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 3096,
+        "outputTokens": 302,
+        "reservedUsd": 0.03
+      },
+      "provenance": "live_monitor",
+      "monitorVersion": "canon-monitor-v2"
+    },
+    {
+      "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "scar over the right eye",
+          "pass": false,
+          "confidence": 0.95,
+          "note": "Character is facing the camera (frontal view). Visible scar is over the eye on the character's image left side, which corresponds to the character's RIGHT eye."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "silver ring on the left hand",
+          "pass": false,
+          "confidence": 0.9,
+          "note": "Character is facing the camera (frontal view). The hand with the visible ring is on the image right side of the frame, corresponding to the character's LEFT hand."
+        },
+        {
+          "key": "rule:seed-scarf",
+          "expected": "Mara always wears a red wool scarf.",
+          "observed": "Mara is wearing a red wool scarf",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "rule:seed-scar",
+          "expected": "Mara’s scar is always over the LEFT eye.",
+          "observed": "scar is over the RIGHT eye",
+          "pass": false,
+          "confidence": 0.95,
+          "note": "Scar is visible over the character's right eye, contradicting the requirement for the scar to be over the LEFT eye."
+        }
+      ],
+      "driftScore": 0.4666666666666666,
+      "flagged": true,
+      "failures": [
+        {
+          "key": "scar_side",
+          "category": "identity_drift"
+        },
+        {
+          "key": "ring_hand",
+          "category": "identity_drift"
+        },
+        {
+          "key": "rule:seed-scar",
+          "category": "identity_drift"
+        }
+      ],
+      "usage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 3096,
+        "outputTokens": 297,
+        "reservedUsd": 0.03
+      },
+      "provenance": "live_monitor",
+      "monitorVersion": "canon-monitor-v2"
+    }
+  ]
+}

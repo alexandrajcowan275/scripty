@@ -24,3 +24,13 @@
 - Defer extra providers/features when they compete with the one-character learning proof. Serves rubric1/3/4.
 
 - Disable Next.js generated agent rules so `next dev` cannot overwrite this project's own AGENTS.md. Use webpack for the production build script because Turbopack's CSS worker needs a port that is restricted in worker sandboxes. `npm run build` remains the required production gate. Include dynamic seed/cache assets in serverless tracing. Serves rubric3: instructions and cached backup survive deployment.
+
+- The first real batch exposed mirror/orientation false positives in monitorv1. Freeze explicit anatomical orientation and occlusion handling as monitorv2; retain originalv1 output and label any baseline re-evaluation. Do not attribute checker calibration to creator learning or hide the original100% flag rate. Serves rubric1/5: evaluate the evaluator and keep evidence auditable.
+- Give live users an optional six-scene editor and poll durable partial results. Incomplete batches cannot appear as improving chartpoints. Serves rubric1/3/4/5: demonstrate transfer while preserving usable successes and uncertainty.
+- Return actionable409 on replay-session capacity and use content-hashed cache image names. Serves rubric3: recoverable, reproducible backup.
+
+## Scripty identity and latest user steering
+
+- Rename the product to **Scripty**, the AI script supervisor. Keep repository/folder/project identifiers and environment prefixes stable so deployment and stored data remain intact. Serves rubric2/3/4/6: a film-native role explains the actual buyer problem without a camera-brand collision.
+- User reaffirmed1:15pmPT submission deadline and a1:00amPT readiness checkpoint. Keep morning assets target10:45am. This latest direct steering supersedes the earlier conservative11am planning. Serves rubric3.
+- Inspect a small latest-model quality sample before scaling; use a consistent cinematic lens/lighting/style prompt. Final calibration is limited to roughly3 attempts; retain all observed results rather than chase a descending curve. Serves rubric1/3/4/5.

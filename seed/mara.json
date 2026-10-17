@@ -6,7 +6,7 @@
       {
         "id": "mara-character",
         "name": "Mara",
-        "referenceImageUrl": "/seed/mara-reference.svg",
+        "referenceImageUrl": "/seed/mara-reference.png",
         "attributes": [
           {
             "key": "scarf_color",

@@ -170,3 +170,9 @@ test("v2 orientation prompt requires facing evidence and conditional anatomical 
   assert.match(MONITOR_INSTRUCTIONS, /note must state the observed image side, inferred facing orientation and evidence before the anatomical conclusion/);
   assert.match(MONITOR_INSTRUCTIONS, /Absence of visibility is not proof the attribute is wrong/);
 });
+
+
+test("full replay memory returns actionable409 instead of a generic server failure", () => {
+  const state = { v: 1 as const, projectId: "mara", count: 1, reviews: [], rules: Array.from({ length: 13 }, (_, index) => ({ ...rules[0], id: `full-${index}` })) };
+  assert.throws(() => sessionCookie(state), (error: unknown) => error instanceof Error && "status" in error && error.status === 409 && /fresh browser session/.test(error.message));
+});
