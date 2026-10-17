@@ -340,6 +340,7 @@ caption {
   padding: 72px 24px;
 }
 .review-back {
+  color: var(--muted);
   position: absolute;
   top: 12px;
   left: max(24px, calc((100% - 1076px) / 2));
