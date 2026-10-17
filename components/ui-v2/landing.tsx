@@ -28,7 +28,7 @@ function LandingContent() {
     reach = data && rule ? ruleReach(rule, data.shots) : null;
   return (
     <div className="v2-screen v2-landing">
-      <Ambient />
+      <Ambient warm />
       <div className="v2-page-wrap">
         <header className="v2-public-nav">
           <Brand />
@@ -64,16 +64,20 @@ function LandingContent() {
             </MotionLink>
             <RevealHeadline
               lead="Scripty remembers your story."
-              continuation="Every detail your AI forgets. Caught. Corrected. Carried forward."
+              continuation="Scarf. Scar. Ring. Every detail your AI forgets between shots, caught, corrected and carried forward."
             />
             <div className="v2-cta-row">
-              <MotionLink href="/new" kind="start" className="v2-button">
+              <MotionLink
+                href="/new"
+                kind="start"
+                className="v2-button v2-large"
+              >
                 Start a production →
               </MotionLink>
               <MotionLink
                 href={studioHref}
                 kind="mara"
-                className="v2-button v2-light"
+                className="v2-button v2-light v2-large"
               >
                 Watch it on Mara
               </MotionLink>
@@ -93,11 +97,11 @@ function LandingContent() {
               className="v2-landing-hero"
               aria-label="A real continuity check"
             >
-              <ShotCard shot={hero} data={data} />
+              <ShotCard shot={hero} data={data} openTake />
               <aside className="v2-hero-checklist v2-glass">
                 <div className="v2-rail-heading">
                   <span className="v2-label">
-                    {frameName(hero, data)} · continuity check
+                    {frameName(hero, data)} · checking
                   </span>
                   <span className="v2-label v2-drift-text">
                     {failedCheck(hero) ? "Flagged" : "Checked"}
@@ -107,9 +111,13 @@ function LandingContent() {
                   .filter((c) => !c.key.startsWith("rule:"))
                   .map((check) => (
                     <div className="v2-hero-check" key={check.key}>
-                      <span>{checkLabel(check.key, data)}</span>
+                      <span title={checkLabel(check.key, data)}>
+                        {check.expected.replace(/^./, (letter) =>
+                          letter.toUpperCase(),
+                        )}
+                      </span>
                       <span
-                        className={`v2-mono ${!check.pass && !unclear(check) ? "v2-drift-text" : "v2-muted"}`}
+                        className={`v2-mono ${unclear(check) ? "v2-muted" : !check.pass ? "v2-drift-text" : "v2-pass-text"}`}
                       >
                         {unclear(check) ? "?" : check.pass ? "✓" : "✕"}{" "}
                         {confidence(check.confidence)}
@@ -117,6 +125,15 @@ function LandingContent() {
                     </div>
                   ))}
               </aside>
+              {failedCheck(hero) && (
+                <div className="v2-hero-drift v2-glass">
+                  <i className="v2-drift-dot" />
+                  {checkLabel(failedCheck(hero)!.key, data)} needs a second look
+                  <span className="v2-mono">
+                    {confidence(failedCheck(hero)!.confidence)}
+                  </span>
+                </div>
+              )}
               {rule && (
                 <div className="v2-hero-rule v2-glass">
                   <i className="v2-memory-dot" />
@@ -138,8 +155,13 @@ function LandingContent() {
           <section id="how" className="v2-contact-story">
             <div>
               <span className="v2-label">The contact sheet</span>
-              <h2>Your AI script supervisor.</h2>
-              <p>Spot the slip. Leave a note. Keep the story straight.</p>
+              <h2>
+                On a real set, the script supervisor circles what changed.{" "}
+                <span>
+                  Scripty checks every AI shot and carries your notes into the
+                  next take.
+                </span>
+              </h2>
             </div>
             <div className="v2-shot-grid">
               {data &&
@@ -149,6 +171,7 @@ function LandingContent() {
                     shot={shot}
                     data={data}
                     index={index}
+                    openTake
                   />
                 ))}
             </div>
@@ -157,15 +180,15 @@ function LandingContent() {
             {[
               {
                 label: "01 · Catch",
-                text: "Checks every detail. Says ‘unclear’ when it can’t tell.",
+                text: "Every detail checked on its own. Says ‘unclear’ instead of guessing.",
               },
               {
-                label: "02 · Correct",
-                text: "One note becomes a rule. Your call, always.",
+                label: "02 · Circle",
+                text: "Reject with one note. It becomes a testable rule, merged instead of duplicated.",
               },
               {
                 label: "03 · Carry",
-                text: "Memory travels into future prompts and checks.",
+                text: "Rules ride into every future prompt and check. Your canon travels.",
               },
             ].map((item) => (
               <div key={item.label}>

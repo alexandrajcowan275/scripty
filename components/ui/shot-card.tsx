@@ -14,10 +14,12 @@ export function ShotCard({
   shot,
   data,
   index = 0,
+  openTake = false,
 }: {
   shot: Shot;
   data: ProductionData;
   index?: number;
+  openTake?: boolean;
 }) {
   const status = shotStatus(shot);
   const location = shot.checks.find((c) => !c.pass && "location" in c) as
@@ -48,8 +50,12 @@ export function ShotCard({
       style={{ "--shot-order": index } as CSSProperties}
     >
       <MotionLink
-        href={`/p/${data.project.id}/shot/${shot.id}`}
-        kind="shot"
+        href={
+          openTake
+            ? `/p/${data.project.id}?take=${shot.batchId}`
+            : `/p/${data.project.id}/shot/${shot.id}`
+        }
+        kind={openTake ? "mara" : "shot"}
         className={`v2-shot-card ${shot.flagged ? "flagged" : ""}`}
       >
         <span className="v2-shot-media" data-viewfinder>

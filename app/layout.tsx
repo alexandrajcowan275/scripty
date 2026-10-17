@@ -3,6 +3,8 @@ import { ApplicationProviders } from "@/components/ui-v2/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://canon-woad.vercel.app"),
+  twitter: { card: "summary_large_image" },
   title: "Scripty — Your AI script supervisor",
   description:
     "Your AI script supervisor. Catch continuity drift across generated shots and turn creator corrections into project memory.",

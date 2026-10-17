@@ -42,6 +42,12 @@
   --ease-spring: cubic-bezier(0.2, 1.3, 0.3, 1);
   --haze-violet: rgba(196, 181, 253, 0.35);
   --haze-rose: rgba(251, 207, 232, 0.25);
+  --haze-violet-rich: rgba(196, 181, 253, 0.45);
+  --haze-rose-rich: rgba(251, 207, 232, 0.35);
+  --haze-warm: rgba(254, 215, 170, 0.4);
+  --glass-sheen: rgba(255, 255, 255, 0.45);
+  --glass-hud: rgba(255, 255, 255, 0.82);
+  --pass-strong: #0f6334;
   --shadow-tint-subtle: rgba(23, 23, 20, 0.06);
   --shadow-tint-soft: rgba(23, 23, 20, 0.08);
   --shadow-tint: rgba(23, 23, 20, 0.1);
