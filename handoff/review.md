@@ -1,51 +1,60 @@
-# Independent review — round 1
+# Independent review — round 2
 
-Reviewed commit `0cb3469`. Reviewer did not implement application code. Scope: complete source review, production build, tests, desktop/mobile browser flow, API/cache architecture, evidence honesty, budget guard, credentials and XSS boundaries. Only this handoff is committed by the reviewer.
+**Local recorded-demo acceptance: PASS, with evidence limitations below.** No remaining P1 defect was found in the reviewed build. The reviewer did not implement application code, read credentials, call paid APIs, or modify the live experiment. Only this report is committed.
 
-## Evidence and limits
-
-- `npm ci`: PASS. `npm test`: **22/22 PASS**. `npm run build`: PASS using the repository's webpack build script, including TypeScript and all six API endpoints.
-- Browser: isolated production server at `127.0.0.1:3025`, CUA only, 1440×1000 and 390×844. The actual repository initially had no cache. Temporary, visibly marked REVIEW TEST FIXTURE records and existing neutral SVG slates were used only to exercise interface states. They were deleted after verification and are not committed. Their flags, images, and curve are **not experimental evidence**.
-- Root initially reported OpenAI authentication 401 and no paid calls. During review, root reported a replacement credential returned 200 and real reference generation began. Reviewer did not read credentials or call paid APIs. Live results, actual images/cache, and measured transfer remain unverified in this round.
-- Root reports isolated real Supabase persistence smoke passed, anonymous table access denied, and public image bucket verified. This reviewer checked corresponding source and mocked-boundary tests, not the live service.
+Reviewed: integrated `82c2550469d30ed4b3f09a22102b419b7578a046` plus designer `5148d2b7d11746d74abc35076bfb781950548758` (QA cherry-pick `b50d7da`). Real cache copied read-only from the root worktree: **2 batches / 12 shots**, manifest SHA256 `7d7b9a72466bfead2e222428df1465172cd568881159d47523af201ec41c5f1a`. All 12 image hashes matched their provenance records. This round supersedes the earlier missing-assets/invalid-credential blockers recorded in round 1; root subsequently authenticated and captured genuine outputs.
 
 ## Demo acceptance
 
 | Demo step | Result | Evidence |
 | --- | --- | --- |
-| 1. Open Mara and character sheet | PASS for UI; BLOCKED for real reference | Actual seed project/attributes/rules render. Reference at reviewed commit remains a neutral SVG, explicitly unsuitable for live generation. Root is replacing it. |
-| 2. Generate six real shots | BLOCKED | Six-worker/concurrency-three and fallback paths are implemented and tested. No real six-shot batch independently reviewed. Cache initially absent; a real replay cannot yet pass. |
-| 3. Inspect actual detected drift | BLOCKED for real quality; PASS for fixture rendering | Fixture failure shows expected/observed/confidence and red state; unavailable evidence shows Unclear. Monitor normalizes uncertainty and validates exact required keys. Real anatomy/model accuracy unverified. |
-| 4. Accept/reject, deduplicate memory, refresh | PASS for isolated cached mechanism; BLOCKED for real AI extraction | R focused correction textarea, typing A/R did not trigger shortcuts, rejection saved a local rule and review, reload retained both; A accepted selected frame. Unit tests cover exact/semantic merge. Live DB and LLM boundary not independently exercised. |
-| 5. Apply learned rule to next generation | BLOCKED | Source injects all ordered rules and creator-accepted extra reference; monitor independently checks each active rule. No real generation after correction independently inspected. Cached viewer corrections deliberately do not alter recorded results. |
-| 6. Transfer to DIFFERENT scenes, fixed-criteria labels, honest chart/trace | FAIL in reviewed UI; BLOCKED for experiment | Every UI generation uses the same default scenes. Incomplete-check fixture falsely produces a green declining curve; details below. No verified hand labels or real improvement claim exists. |
+| 1. Open Mara and character sheet | PASS | Genuine raster reference and four fixed attributes render in production UI; no neutral slates used in this round. |
+| 2. Load/generate six shots | PASS for real historical capture and replay; live execution root-owned | Two actual six-shot batches and successful provider traces inspected. Independent replay runs cached-only without credentials. No reviewer model calls. |
+| 3. Inspect actual detected drift | PASS for functioning evidence display; accuracy not independently validated | Batch1 frame2 visibly has a silver ring on image-right hand in a frontal pose, corresponding to anatomical LEFT; stored v3 monitor flags ring mismatch. Full-frame view makes the contradiction inspectable. Uncertain shots display Evidence incomplete / Unclear rather than passing. Agent visual inspection is not human ground truth. |
+| 4. Reject/accept, memory, dedupe, refresh | PASS | CUA R focused correction field; local reject saved a browser correction and survived reload; A accepted a different frame. Independent HTTP tests repeat the same correction, retain one rule ID, and preserve both decisions on fresh GET. Real live extraction/dedupe evidence shows identical learned rule ID in review and repeated-review artifacts, and visibility after persisted refresh. |
+| 5. Apply learned rule to next generation and monitor | PASS for recorded experiment | Rule `ca721c45-1e5d-412c-83ba-9a566443c44b`, “Mara always wears a silver ring on her RIGHT hand.”, occurs in all six B2 final prompts, all six B2 monitor check sets, B2 rulesApplied and genuine rule_applied trace. Review traces disclose live_rule and merged. Browser corrections are separately labeled and do not rewrite historical generation. |
+| 6. DIFFERENT scenes, chart and trace | PASS for transfer mechanism; BLOCKED for a validated improvement claim | All six B2 scene strings differ from every B1 scene. UI shows real rates, uncertainty counts, and fixed-criteria/human-label caveat. B1/B2 image model, quality and cinematic style differ, so lower flags cannot be attributed to memory alone. No independently human-verified labels inspected. |
 
-## Ranked fixes and operational checks
+## Actual measured evidence inspected
 
-1. **P1 — unavailable monitoring looks like improvement.** `components/learning-curve.tsx:7–20` accepts every finite batch rate and colors decreases green. `components/canon-studio.tsx:169` colors zero-rate batch headers green. `app/api/batch/route.ts:31–36` persists an initial zero rate before shots exist; errors can leave partial batches. Reproduced: batch 1 has 1/6 flags, batch 2 has all checks `observed:unclear/confidence:0`; UI says **0% drift, ↓17 percentage points**, although inspector says Evidence incomplete. Fix: derive per-batch completeness from persisted shots/checks, distinguish incomplete counts/rates on refresh, prevent incomplete batches entering the completed comparison, and explicitly say operational flag rates do not establish improvement without fixed-criteria human labels. Root assigned a fix; not yet re-reviewed.
-2. **P1 — no UI path to different new scenes.** `components/canon-studio.tsx:107–110` sends only projectId; `app/api/batch/route.ts:28` always selects seed scenes. Fix: editable six-scene live input or explicit alternate scene sets and applied-rule inspection; retain honest recorded scene replay in cached mode. Root assigned a fix; not yet re-reviewed.
-3. **P2 — final run/config documentation is stale.** `README.md:3` still calls the implementation TASK0 and describes stateless mock APIs; `.env.example` omits `CANON_SESSION_SECRET`, admin token and model configuration. Production cached session mutation needs a signing key (service-role key fallback currently exists). Update final setup, modes, limits, cache capture, deployment and missing evidence before submission. Root notified.
-4. **Operational live-demo gate.** `lib/engine-http.ts:6–9` intentionally routes ordinary browser requests to cached mode when an admin token is configured; client fetch supplies no admin header. A live browser demonstration needs a dedicated isolated local runtime without that token or proper server-side admin authentication. Never embed the admin token in client code. Public final cached playback is compatible with this gate.
+| Batch | Scenes | Flagged shots | Checks | Uncertain checks | Unavailable checks |
+| --- | --- | --- | --- | --- | --- |
+| 1, frozen checker v3 recheck | Original six | 2/6 (33.3%) | 36 | 4 | 0 |
+| 2, checker v3 | Six different new scenes | 0/6 (0%) | 42 | 6 | 0 |
 
-Known followups already integrated on root during this round: no-cache UI/recorded-correction wording `70d561b`, data capture/auth/recheck changes `9c01afe`. These are **not listed as still-unfixed defects**; they were outside the reviewed commit and require the next integrated check.
+These are **operational monitor outputs**, not validated accuracy or a controlled memory-only effect. Baseline images were generated with image1.5 medium; B2 uses Sunburst high plus revised cinematic language. Baseline was rechecked under v3, retaining original diagnostic files/traces. The trace log contains older calibration events as historical events; current inspector checks are the stored v3 checks. Root's reviewed/merged ring correction is agent-created and explicitly needs human verification.
 
-## Other checks
+B3/B4 generation, accepted-positive-reference behavior on those later batches, later draft labels, final four-batch cache and final public Vercel deployment were still being completed by root/another QA agent while this snapshot was reviewed. They are **outside this round's verification**. Do not extend the two-batch numbers to later batches without their actual evidence.
 
-| Item | Result | Evidence |
+## Verification results
+
+| Check | Result | Evidence |
 | --- | --- | --- |
-| Graceful provider/storage failure | PASS at code/test level | 60-second provider deadlines, retry bounds, uncertain fallback, no second paid generation for Storage failure, independent workers complete despite another failure. Actual provider timeout not induced. |
-| Budget guard | PASS at code/test level; BLOCKED for billed-cost reconciliation | Every paid attempt reserves via durable SQL ledger, fails closed, fresh reservation ID per retry, fixed $24 limit, atomic locking. Text models/input/output bounded. Reservations are upper bounds, not billing receipts. |
-| Serverless cached state | PASS at fixture/API level | Signed compressed HttpOnly SameSite cookie, production Secure, browser isolation/tamper tests, reload persistence, bounded reviews/rules/cookie, cache read from bundled files; no module-global mutable viewer history. Actual Vercel cold-start replay unverified. |
-| Cached mode fully with real assets | BLOCKED | Missing genuine manifest/images at review start. Fixture mechanism passes, but cannot substitute for real replay acceptance. |
-| Metrics and evaluation | PASS for arithmetic/tests; BLOCKED for real accuracy | Drift is positive class, low-confidence failures count according to actual flag threshold, draft labels excluded by default, missing labels/checks reported, undefined metrics null. No real verified labels reviewed. Flag rate changes alone do not establish improvement. |
-| XSS and credential exposure | PASS within inspected scope | React text rendering; no raw HTML/eval sinks or client imports of server secret readers. 78 tracked files scanned for OpenAI/Supabase private-key and PEM patterns: no hits. No `.env.local` accessed. Pattern scan is not a complete historical secret audit. |
-| 1440px layout | PASS with neutral fixture slates | Three-pane filmstrip/inspector/memory visible; scrollable image row and inspector keep review controls available. Real-image cropping still needs inspection. |
-| 390px layout | PASS with neutral fixture slates | No document horizontal overflow (`innerWidth390`, scrollWidth385); filmstrip scroll, inspector, review, chart, memory and sticky trace control usable. |
-| Keyboard/focus | PASS for exercised flow | R focuses textarea, typing does not trigger A/R, A accepts selected card, semantic buttons, visible gold focus rule. Full assistive-technology audit not performed. |
-| AA text contrast and design tokens | PASS for inspected text pairs | Token-only component/style colors; text/surface15.72:1, muted/raised4.97:1, muted-strong/raised7.37:1, drift-text/drift-dim6.29:1, pass/pass-dim7.44:1, memory/memory-dim8.47:1. |
-| Browser console | PASS | Production fixture flow returned no warnings/errors. |
-| Public final deployment | BLOCKED | Preview URL supplied by root; final public production, real asset replay and deployment protection still require end-to-end verification. |
+| Install, tests, build | PASS | `npm ci`; `npm test` **40/40**; `npm run build` including TypeScript and all API endpoints. |
+| Real cached replay without AI/DB credentials | PASS | Isolated production server3025 uses only DEMO_MODE=cached and a test-only signing secret. B1/B2 replay, review, refresh and eval require no external model/database request. |
+| HTTP persistence and isolation | PASS | Independent requests against3025: fresh session has zero delivered shots/local rules; load two batches; repeated rejection dedupes one rule; reject/accept survive GET; request without cookie remains empty; batches unchanged after local reviews. |
+| Finite replay exhaustion | PASS | Third batch request on this two-batch snapshot returns409 with “All recorded batches have been replayed. Clear site data to start again.” UI retains shots and provides dismissible actionable message. |
+| Genuine image routes | PASS | All12 image URLs return200 image/png and substantial raster bytes; manifest provenance hashes match local files. |
+| Stateless-server packaging | PASS at build/architecture level | All five API route tracing manifests include manifest.json and12 image files. Signed compressed HttpOnly browser state and existing tamper/isolation tests avoid process-global viewer state. Final Vercel cold-start behavior remains an external deployment check. |
+| Unavailable/incomplete curve handling | PASS | Prior P1 fixed: evidence helper excludes partial or zero-confidence batches from completed points; unavailable latest shows Incomplete evidence. Four focused evidence/scene tests pass. Real B1/B2 low-confidence occlusions remain counted separately and chart caveat is visible. |
+| Different-scene entry and disclosure | PASS at source/test and recorded-UI level | Live editor requires six nonempty lines; valid values are sent as scenePrompts. Cached editor is labeled Recorded scenes / read only. Real B2 scene set differs in all six prompts. No paid editor submission performed by reviewer. |
+| 1440×1000 UI | PASS | Real reference, filmstrip, selected inspector, review actions, memory, operational chart, expandable frame and trace drawer inspected in CUA Chrome. |
+| 390×844 UI | PASS | No document overflow: innerWidth390 / scrollWidth385. Filmstrip, stacked inspector/review, legible full-width chart/caveat, memory and sticky trace access inspected. Real images render and retain aspect ratio. |
+| Full-frame dialog keyboard | PASS | Enter opens from Expand frame; native Close gets focus; Enter closes; Escape closes and restores Expand-frame focus. A/R while modal open leaves selected shot pending and does not open review. Mobile dialog contains the full image and reachable close button. |
+| Review keyboard | PASS | R focuses reason field; typing does not accept/reject; A accepts selected card; review status/reason retained after confirmed save then reload. |
+| Browser console | PASS | No warning/error entries during actual cached UI flow. |
+| Design tokens / AA text | PASS within inspected scope | New UI follows semantic tokens and neutral operational metrics. Existing text contrast pairs remain4.97–15.72:1. Visible gold focus styling retained. Full assistive-technology audit not performed. |
+| Secrets/XSS | PASS within inspected scope |105 files including the copied manifest scanned for OpenAI/Supabase private-key/PEM patterns: no hits. React text rendering and no raw-HTML/eval sinks or client imports of secret readers. No `.env.local` accessed. Pattern scan is not a full historical secret audit. |
+| Budget guard | PASS at code/test level | Paid attempts still reserve durably before calls, retries get fresh IDs, SQL cap fixed$24, fail-closed errors, model/input/output restrictions. Later models have explicit reservations. Actual billing reconciliation is root-owned; reservations are upper bounds rather than receipts. |
+| Eval honesty | PASS | With reviewed snapshot's unverified labels, actual cached `/api/eval` returns precision/recall null and0 evaluated labels. Draft/verified separation and missing-evidence arithmetic tests pass. Later root draft labels were not reviewed here. |
+| Final public deployment | BLOCKED in this reviewer round | External QA/root owns the final URL, public access, later cache and production cold-start acceptance. Local build alone cannot establish them. |
 
-## Next check
+## Findings and fix-loop outcome
 
-Re-review integrated UI/data/docs fixes and the real captured reference/batches without making paid requests. Inspect actual finalPrompt/check keys/rulesApplied/traces on different scenes, replay cache in a fresh browser, review and reload, verify deployment is public, and report actual sample counts honestly. Engineer-created draft labels remain draft until human review. Working deadline: Oct17 11am PT; assets10:45am. No external submission was performed.
+- **Round1 P1 incomplete curve:** resolved by integrated evidence completeness checks, neutral operational chart and explicit caveat; tests and final real UI inspected.
+- **Round1 P1 same scenes only:** resolved by six-line live scene editor; actual captured B2 new-scene transfer verified.
+- **Round1 P2 stale setup docs:** resolved; README/.env.example now document real implementation, signing secret, modes, server-only admin gate, cached replay and live localhost rehearsal.
+- **Round2 minor P2 rejection length mismatch:** reviewed UI allowed1000 characters while API accepts400. Root reports correcting maxLength to400 after this snapshot; no additional reviewer code edit required. Final integration should include that small fix. Root also reports correcting progress-poll completion wording; that later change was not part of this reviewed snapshot.
+- **Operational live gate:** intentional, documented and retained. Public cached mode cannot be switched to paid live execution by client headers. Live browser rehearsal requires the documented private-localhost override or authenticated operator API requests. Do not embed admin token in client code.
+
+No new feature edits were made. Reviewer temporary server stopped and viewport restored; source cache and active root3017 generation were not modified. Only this report is committed. The actual deadline now follows AGENTS.md/user reaffirmation: Oct17 **1:15pm PT**, checkpoint1am, assets target10:45am. No external submission performed.
