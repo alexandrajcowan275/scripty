@@ -46,3 +46,6 @@ Public shell release780eb50 passed the8-page1440/390 layout matrix and preserved
 
 
 Resolution candidate: b5632ce removes the query-transition race, and Design verified three rapid mobile reopen cycles locally. Main merged the exact fix with empty-upload and landing refinements in an isolated checkout. Combined92tests/build/typecheck pass; public regression verification follows the next production release. Unrelated shared-checkout work remains untouched.
+
+
+Resolved publicly9:23am PT: dad9b83 is READY on both existing domains; CI39048881237 is green. Three rapid390px Memory Escape/reopen cycles passed with take1 unchanged. Cross-page Memory and query cleanup passed. Original-host48 saved blind labels and the owned Night Train Take2/shot are preserved. No remaining blocker for this refinement; no paid calls or label writes.

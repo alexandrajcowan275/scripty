@@ -1,0 +1,290 @@
+{
+  "commit": "dad9b830bfc9fa2fd795d3fdb1491c7810411da7",
+  "deployment": "dpl_7DVXKBSXqxZnsZ5zgvwCA9QZsH7g",
+  "checks": [
+    {
+      "name": "home",
+      "credits": [],
+      "errors": [],
+      "h1": [
+        "Home"
+      ],
+      "loadedImages": [
+        {
+          "complete": true,
+          "width": 256
+        },
+        {
+          "complete": true,
+          "width": 480
+        },
+        {
+          "complete": true,
+          "width": 480
+        },
+        {
+          "complete": true,
+          "width": 480
+        },
+        {
+          "complete": true,
+          "width": 480
+        }
+      ],
+      "scroll": 1440,
+      "shell": 1,
+      "title": "Scripty \u2014 Home",
+      "width": 1440
+    },
+    {
+      "name": "new",
+      "credits": [],
+      "errors": [],
+      "h1": [
+        "New production"
+      ],
+      "loadedImages": [
+        {
+          "complete": true,
+          "width": 256
+        }
+      ],
+      "scroll": 1440,
+      "shell": 1,
+      "title": "Scripty \u2014 New production",
+      "width": 1440
+    },
+    {
+      "name": "landing",
+      "credits": [
+        {
+          "footer": true,
+          "href": "/brand/CREDITS.md"
+        }
+      ],
+      "errors": [],
+      "h1": [
+        "More of every film will be generated, shot by shot. Scripty keeps the story straight."
+      ],
+      "loadedImages": [
+        {
+          "complete": true,
+          "width": 1600
+        },
+        {
+          "complete": true,
+          "width": 1600
+        },
+        {
+          "complete": true,
+          "width": 1600
+        },
+        {
+          "complete": true,
+          "width": 1600
+        },
+        {
+          "complete": true,
+          "width": 256
+        }
+      ],
+      "scroll": 1440,
+      "shell": 0,
+      "title": "Scripty \u2014 Your AI script supervisor",
+      "width": 1440
+    },
+    {
+      "name": "home",
+      "credits": [],
+      "errors": [],
+      "h1": [
+        "Home"
+      ],
+      "loadedImages": [
+        {
+          "complete": true,
+          "width": 256
+        },
+        {
+          "complete": true,
+          "width": 480
+        },
+        {
+          "complete": true,
+          "width": 480
+        }
+      ],
+      "scroll": 390,
+      "shell": 1,
+      "title": "Scripty \u2014 Home",
+      "width": 390
+    },
+    {
+      "name": "new",
+      "credits": [],
+      "errors": [],
+      "h1": [
+        "New production"
+      ],
+      "loadedImages": [
+        {
+          "complete": true,
+          "width": 256
+        }
+      ],
+      "scroll": 390,
+      "shell": 1,
+      "title": "Scripty \u2014 New production",
+      "width": 390
+    },
+    {
+      "name": "landing",
+      "credits": [
+        {
+          "footer": true,
+          "href": "/brand/CREDITS.md"
+        }
+      ],
+      "errors": [],
+      "h1": [
+        "More of every film will be generated, shot by shot. Scripty keeps the story straight."
+      ],
+      "loadedImages": [
+        {
+          "complete": true,
+          "width": 640
+        },
+        {
+          "complete": true,
+          "width": 640
+        },
+        {
+          "complete": true,
+          "width": 640
+        },
+        {
+          "complete": true,
+          "width": 640
+        },
+        {
+          "complete": true,
+          "width": 256
+        }
+      ],
+      "scroll": 390,
+      "shell": 0,
+      "title": "Scripty \u2014 Your AI script supervisor",
+      "width": 390
+    },
+    {
+      "name": "memory-mobile",
+      "cycles": [
+        {
+          "cycle": 1,
+          "reopened": true,
+          "url": "https://getscripty.vercel.app/p/mara?take=e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3"
+        },
+        {
+          "cycle": 2,
+          "reopened": true,
+          "url": "https://getscripty.vercel.app/p/mara?take=e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3"
+        },
+        {
+          "cycle": 3,
+          "reopened": true,
+          "url": "https://getscripty.vercel.app/p/mara?take=e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3"
+        }
+      ]
+    },
+    {
+      "name": "cross-page-memory",
+      "opened": true,
+      "closeClearedPanel": true
+    },
+    {
+      "name": "preserved-state",
+      "blindSaved": 48,
+      "questions": 210,
+      "currentQuestion": 49,
+      "trueNegatives": 48,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "truePositives": 0,
+      "ownedProductionPreserved": true,
+      "ownedTake": 2,
+      "ownedShotCount": 1
+    },
+    {
+      "name": "home-review-navigation",
+      "passed": true,
+      "editableNoteVisible": true,
+      "writes": 0
+    }
+  ],
+  "paidCalls": 0,
+  "labelWrites": 0,
+  "http": [
+    {
+      "url": "https://getscripty.vercel.app/",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/"
+    },
+    {
+      "url": "https://getscripty.vercel.app/dashboard",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/dashboard"
+    },
+    {
+      "url": "https://getscripty.vercel.app/new",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/new"
+    },
+    {
+      "url": "https://getscripty.vercel.app/projects",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/projects"
+    },
+    {
+      "url": "https://getscripty.vercel.app/p/mara",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/p/mara"
+    },
+    {
+      "url": "https://getscripty.vercel.app/p/mara/evidence",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/p/mara/evidence"
+    },
+    {
+      "url": "https://getscripty.vercel.app/p/mara/eval",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/p/mara/eval"
+    },
+    {
+      "url": "https://getscripty.vercel.app/developers",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/developers"
+    },
+    {
+      "url": "https://getscripty.vercel.app/brand/CREDITS.md",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/brand/CREDITS.md"
+    },
+    {
+      "url": "https://getscripty.vercel.app/studio",
+      "status": 200,
+      "finalUrl": "https://getscripty.vercel.app/p/mara"
+    },
+    {
+      "url": "https://canon-woad.vercel.app/",
+      "status": 200,
+      "finalUrl": "https://canon-woad.vercel.app/"
+    },
+    {
+      "url": "https://canon-woad.vercel.app/p/mara",
+      "status": 200,
+      "finalUrl": "https://canon-woad.vercel.app/p/mara"
+    }
+  ],
+  "ci": "https://github.com/alexandrajcowan275/scripty/actions/runs/39048881237",
+  "proofDirectory": "/private/tmp/scripty-final-refinement-public/"
+}
