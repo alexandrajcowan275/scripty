@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ShotImage } from "../shot-image";
 import { AccessDialog, ActionDock, Brand, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink, Scan, useMotionNavigation } from "../ui/motion";
-import { message, money, post, request } from "./data";
+import { message, money, modelLabel, post, request } from "./data";
 import { useConfiguration } from "./config";
 
 type Canon = {
@@ -253,17 +253,6 @@ export function NewProductionScreen() {
         {error && <ErrorNotice>{error}</ErrorNotice>}
         <div className="v2-setup-grid">
           <section className="v2-setup-reference">
-            <label htmlFor="cast-name" className="v2-label">
-              Character
-            </label>
-            <input
-              id="cast-name"
-              className="v2-field"
-              value={character}
-              onChange={(e) => setCharacter(e.target.value)}
-              maxLength={80}
-              placeholder="Character name"
-            />
             <label
               className={`v2-upload ${preview ? "has-reference" : ""}`}
               onDragOver={(e) => e.preventDefault()}
@@ -280,10 +269,44 @@ export function NewProductionScreen() {
                   priority
                 />
               ) : (
-                <span>
-                  <strong>Your character starts here.</strong>
-                  <span>Drop a reference, or choose an image.</span>
-                </span>
+                <>
+                  <ShotImage
+                    src="/mara/reference.jpg"
+                    alt="Mara, an example reference. Upload your own character."
+                    priority
+                  />
+                  <span className="v2-upload-example v2-glass v2-mono">
+                    Example · Mara
+                  </span>
+                  <span className="v2-upload-prompt v2-glass">
+                    <strong>Cast your character.</strong>
+                    <span>Drop your reference or choose an image.</span>
+                  </span>
+                </>
+              )}
+              {preview && attributes.length > 0 && (
+                <div className="v2-reference-hud v2-glass">
+                  <span className="v2-label">Character canon</span>
+                  <ul>
+                    {attributes.slice(0, 4).map((item) => (
+                      <li
+                        key={item.key}
+                        className={
+                          needsSide(item) && !sides[item.key]
+                            ? "v2-memory-copy"
+                            : ""
+                        }
+                      >
+                        {item.expected}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="v2-mono">
+                    {attributes.length}{" "}
+                    {attributes.length === 1 ? "detail" : "details"} ·{" "}
+                    {unconfirmed.length} to confirm
+                  </span>
+                </div>
               )}
               <input
                 type="file"
@@ -302,7 +325,18 @@ export function NewProductionScreen() {
               {busy === "upload" || busy === "canon" ? <Scan /> : null}
             </label>
             <div className="v2-cast-tools">
-              <span className="v2-label">Cast</span>
+              <label htmlFor="cast-name" className="v2-label">
+                Cast
+              </label>
+              <input
+                id="cast-name"
+                aria-label="Character name"
+                className="v2-field v2-character-name"
+                value={character}
+                onChange={(e) => setCharacter(e.target.value)}
+                maxLength={80}
+                placeholder="Character name"
+              />
               {preview && (
                 <span className="v2-cast-chip">
                   <ShotImage src={preview} alt="" />
@@ -337,7 +371,9 @@ export function NewProductionScreen() {
           <section className="v2-setup-details">
             <div className="v2-rail-heading">
               <span className="v2-label">Canon · checked on every shot</span>
-              <span className="v2-label">Weight</span>
+              {attributes.length > 0 && (
+                <span className="v2-label">Weight</span>
+              )}
             </div>
             {attributes.map((item) => (
               <div
@@ -353,15 +389,21 @@ export function NewProductionScreen() {
                     className="v2-canon-input"
                     maxLength={200}
                     value={item.expected}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setAttributes((previous) =>
                         previous.map((row) =>
                           row.key === item.key
                             ? { ...row, expected: e.target.value }
                             : row,
                         ),
-                      )
-                    }
+                      );
+                      setSides((previous) => {
+                        if (!(item.key in previous)) return previous;
+                        const next = { ...previous };
+                        delete next[item.key];
+                        return next;
+                      });
+                    }}
                   />
                 </div>
                 <select
@@ -424,9 +466,7 @@ export function NewProductionScreen() {
               </div>
             ))}
             {!attributes.length && (
-              <p className="v2-muted">
-                Your reference. Your canon. Add the details that matter.
-              </p>
+              <p className="v2-muted">Add what must stay the same.</p>
             )}
             <button
               className="v2-text-button"
@@ -492,9 +532,14 @@ export function NewProductionScreen() {
       </main>
       <ActionDock className="v2-setup-dock">
         <span>
-          Model <strong>{config?.imageModel ?? "—"}</strong>
+          Model{" "}
+          <strong title={config?.imageModel}>
+            {modelLabel(config?.imageModel ?? "—")}
+          </strong>
         </span>
-        <span>{scenePrompts.length || "—"} shots</span>
+        <span>
+          {scenePrompts.length} {scenePrompts.length === 1 ? "shot" : "shots"}
+        </span>
         <span className="v2-mono">
           ≈{" "}
           {money(
