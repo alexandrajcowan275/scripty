@@ -3,29 +3,64 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Batch, Project, Rule, Shot, TraceEvent } from "@/lib/types";
 import { Icon } from "./icons";
-import { LearningCurve } from "./learning-curve";
 import { ShotImage } from "./shot-image";
 import { batchEvidence, parseScenePrompts } from "./batch-evidence";
+import { correctionReach, type ArchiveEvidence } from "./demo-evidence";
 
-type Metadata = { mode?: string; effectiveMode?: string; demoMode?: string; warning?: string; warnings?: string[]; provenance?: unknown; recordedRuleIds?: string[] };
-type ProjectData = Metadata & { project: Project; rules: Rule[]; batches: Batch[]; shots: Shot[]; traces: TraceEvent[] };
+type Metadata = {
+  mode?: string;
+  effectiveMode?: string;
+  demoMode?: string;
+  warning?: string;
+  warnings?: string[];
+  provenance?: unknown;
+  recordedRuleIds?: string[];
+};
+type ProjectData = Metadata & {
+  project: Project;
+  rules: Rule[];
+  batches: Batch[];
+  shots: Shot[];
+  traces: TraceEvent[];
+};
 type BatchResponse = Metadata & { batch: Batch; shots: Shot[] };
 type ReviewResponse = Metadata & { shot: Shot; newRule?: Rule };
 const pct = (value: number) => `${Math.round(value * 100)}%`;
 const number = (value: number) => String(value).padStart(2, "0");
-const captureTime = (value: string) => { const date = new Date(value); return Number.isNaN(date.getTime()) ? "Capture time unavailable" : `${date.toISOString().slice(11, 19)} UTC`; };
+const captureTime = (value: string) => {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "Capture time unavailable"
+    : `${date.toISOString().slice(11, 19)} UTC`;
+};
 const humanize = (value: string) => value.replaceAll("_", " ");
-const isScaffold = (data: ProjectData) => data.shots.some((shot) => shot.id.startsWith("mock-"));
-function mergeById<T extends { id: string }>(previous: T[], incoming: T[]): T[] {
+const isScaffold = (data: ProjectData) =>
+  data.shots.some((shot) => shot.id.startsWith("mock-"));
+function mergeById<T extends { id: string }>(
+  previous: T[],
+  incoming: T[],
+): T[] {
   const values = new Map(previous.map((item) => [item.id, item]));
   for (const item of incoming) values.set(item.id, item);
   return [...values.values()];
 }
-function mergeData(previous: ProjectData | null, incoming: ProjectData): ProjectData {
+function mergeData(
+  previous: ProjectData | null,
+  incoming: ProjectData,
+): ProjectData {
   if (!previous) return incoming;
   // TASK 0 returns stateless snapshots. Keep explicit review responses until the real engine is integrated.
-  const shots = isScaffold(incoming) ? mergeById(incoming.shots, previous.shots) : mergeById(previous.shots, incoming.shots);
-  return { ...previous, ...incoming, shots, rules: mergeById(previous.rules, incoming.rules), batches: mergeById(previous.batches, incoming.batches), traces: mergeById(previous.traces, incoming.traces) };
+  const shots = isScaffold(incoming)
+    ? mergeById(incoming.shots, previous.shots)
+    : mergeById(previous.shots, incoming.shots);
+  return {
+    ...previous,
+    ...incoming,
+    shots,
+    rules: mergeById(previous.rules, incoming.rules),
+    batches: mergeById(previous.batches, incoming.batches),
+    traces: mergeById(previous.traces, incoming.traces),
+  };
 }
 async function api<T>(url: string, options?: RequestInit): Promise<T> {
   const controller = new AbortController();
@@ -33,37 +68,113 @@ async function api<T>(url: string, options?: RequestInit): Promise<T> {
   const abort = () => controller.abort();
   external?.addEventListener("abort", abort, { once: true });
   if (external?.aborted) controller.abort();
-  const timeout = setTimeout(abort, url === "/api/batch" ? 310_000 : options?.method === "POST" ? 190_000 : 20_000);
+  const timeout = setTimeout(
+    abort,
+    url === "/api/batch"
+      ? 310_000
+      : options?.method === "POST"
+        ? 190_000
+        : 20_000,
+  );
   try {
-    const response = await fetch(url, { ...options, signal: controller.signal, cache: "no-store", headers: { "Content-Type": "application/json", ...options?.headers } });
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+      cache: "no-store",
+      headers: { "Content-Type": "application/json", ...options?.headers },
+    });
     let payload;
-    try { payload = await response.json(); } catch { throw new Error("The server returned an unreadable response. Please try again."); }
-    if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : `Request failed (${response.status}). Please try again.`);
+    try {
+      payload = await response.json();
+    } catch {
+      throw new Error(
+        "The server returned an unreadable response. Please try again.",
+      );
+    }
+    if (!response.ok)
+      throw new Error(
+        typeof payload.error === "string"
+          ? payload.error
+          : `Request failed (${response.status}). Please try again.`,
+      );
     return payload as T;
   } catch (error) {
-    if (controller.signal.aborted && !external?.aborted) throw new Error("This request took too long. Your existing shots are safe; please try again.");
+    if (controller.signal.aborted && !external?.aborted)
+      throw new Error(
+        "This request took too long. Your existing shots are safe; please try again.",
+      );
     throw error;
-  } finally { clearTimeout(timeout); external?.removeEventListener("abort", abort); }
+  } finally {
+    clearTimeout(timeout);
+    external?.removeEventListener("abort", abort);
+  }
 }
-function passedChecks(shot: Shot) { return shot.checks.filter((check) => check.pass && check.confidence >= 0.6 && check.observed.toLowerCase() !== "unclear").length; }
-function uncertain(shot: Shot) { return shot.checks.length === 0 || shot.checks.some((check) => check.confidence < 0.6 || check.observed.toLowerCase() === "unclear"); }
+function passedChecks(shot: Shot) {
+  return shot.checks.filter(
+    (check) =>
+      check.pass &&
+      check.confidence >= 0.6 &&
+      check.observed.toLowerCase() !== "unclear",
+  ).length;
+}
+function uncertain(shot: Shot) {
+  return (
+    shot.checks.length === 0 ||
+    shot.checks.some(
+      (check) =>
+        check.confidence < 0.6 || check.observed.toLowerCase() === "unclear",
+    )
+  );
+}
 function sourceInfo(data: ProjectData | null) {
-  if (!data) return { title: "Connecting", description: "Loading project metadata", kind: "unknown" };
-  if (isScaffold(data)) return { title: "Scaffold preview", description: "Illustrative fixture checks · no AI analysis", kind: "cached" };
-  if (data.provenance === "cache_unavailable") return { title: "Cache not installed", description: "Playback unavailable · no recorded images or checks installed", kind: "unavailable" };
+  if (!data)
+    return {
+      title: "Connecting",
+      description: "Loading project metadata",
+      kind: "unknown",
+    };
+  if (isScaffold(data))
+    return {
+      title: "Scaffold preview",
+      description: "Illustrative fixture checks · no AI analysis",
+      kind: "cached",
+    };
+  if (data.provenance === "cache_unavailable")
+    return {
+      title: "Cache not installed",
+      description:
+        "Playback unavailable · no recorded images or checks installed",
+      kind: "unavailable",
+    };
   const mode = data.effectiveMode ?? data.mode ?? data.demoMode ?? "";
-  if (mode.toLowerCase().includes("cached") || mode.toLowerCase().includes("replay")) return { title: "Cached playback", description: "Saved generations and checks · no hidden model requests", kind: "cached" };
-  if (mode.toLowerCase().includes("live")) return { title: "Live engine", description: "Generate runs the configured image and monitoring models", kind: "live" };
-  return { title: "API connected", description: "Source metadata unavailable · check the trace for provenance", kind: "unknown" };
+  if (
+    mode.toLowerCase().includes("cached") ||
+    mode.toLowerCase().includes("replay")
+  )
+    return {
+      title: "Cached playback",
+      description: "Saved generations and checks · no hidden model requests",
+      kind: "cached",
+    };
+  if (mode.toLowerCase().includes("live"))
+    return {
+      title: "Live engine",
+      description: "Generate runs the configured image and monitoring models",
+      kind: "live",
+    };
+  return {
+    title: "API connected",
+    description: "Source metadata unavailable · check the trace for provenance",
+    kind: "unknown",
+  };
 }
-function provenanceText(value: unknown): string | null {
-  if (!value) return null;
-  if (typeof value === "string") return value;
-  if (typeof value === "object") return JSON.stringify(value, null, 2);
-  return null;
-}
-
-export function ScriptyStudio() {
+export function ScriptyStudio({
+  archive,
+  initialEvidence = false,
+}: {
+  archive?: ArchiveEvidence;
+  initialEvidence?: boolean;
+}) {
   const [data, setData] = useState<ProjectData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -74,46 +185,103 @@ export function ScriptyStudio() {
   const [reason, setReason] = useState("");
   const [sceneInput, setSceneInput] = useState("");
   const [sceneError, setSceneError] = useState<string | null>(null);
-  const [rejectOpen, setRejectOpen] = useState(false);
-  const [traceOpen, setTraceOpen] = useState(false);
-  const [traceFilter, setTraceFilter] = useState("all");
-  const [filter, setFilter] = useState("all");
   const [newBatchId, setNewBatchId] = useState<string | null>(null);
   const [newRuleId, setNewRuleId] = useState<string | null>(null);
+  const autoReplayRef = useRef(false);
+  const memoryDialogRef = useRef<HTMLDialogElement>(null);
+  const evidenceDialogRef = useRef<HTMLDialogElement>(null);
   const reasonRef = useRef<HTMLTextAreaElement>(null);
   const previewDialogRef = useRef<HTMLDialogElement>(null);
   const sceneEditorRef = useRef<HTMLDetailsElement>(null);
   const sceneInputRef = useRef<HTMLTextAreaElement>(null);
   const generationStartIndexRef = useRef(0);
-  const dataRef = useRef(data);
-  dataRef.current = data;
   const refresh = useCallback(async (signal?: AbortSignal) => {
     const incoming = await api<ProjectData>("/api/project/mara", { signal });
-    if (!incoming.project || !Array.isArray(incoming.shots) || !Array.isArray(incoming.batches) || !Array.isArray(incoming.rules) || !Array.isArray(incoming.traces)) throw new Error("Project data is incomplete. Please reload the project.");
+    if (
+      !incoming.project ||
+      !Array.isArray(incoming.shots) ||
+      !Array.isArray(incoming.batches) ||
+      !Array.isArray(incoming.rules) ||
+      !Array.isArray(incoming.traces)
+    )
+      throw new Error("Project data is incomplete. Please reload the project.");
     if (signal?.aborted) return;
     setData((previous) => mergeData(previous, incoming));
-    setSelectedId((previous) => previous ?? incoming.shots.find((shot) => shot.flagged)?.id ?? incoming.shots[0]?.id ?? null);
+    setSelectedId(
+      (previous) =>
+        previous ?? preferredShot(incoming.shots, incoming.batches)?.id ?? null,
+    );
   }, []);
   useEffect(() => {
     const controller = new AbortController();
-    refresh(controller.signal).catch((err: unknown) => { if (!controller.signal.aborted) setError(err instanceof Error ? err.message : "Could not load the project."); }).finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    refresh(controller.signal)
+      .catch((err: unknown) => {
+        if (!controller.signal.aborted)
+          setError(
+            err instanceof Error ? err.message : "Could not load the project.",
+          );
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
     return () => controller.abort();
   }, [refresh]);
   const selected = data?.shots.find((shot) => shot.id === selectedId) ?? null;
-  const selectedBatch = data?.batches.find((batch) => batch.id === selected?.batchId);
+  const selectedBatch = data?.batches.find(
+    (batch) => batch.id === selected?.batchId,
+  );
   const selectedUncertain = selected ? uncertain(selected) : false;
   const character = data?.project.characters[0];
   const source = sourceInfo(data);
   const busy = generating || reviewing;
+  const replayComplete =
+    source.kind === "cached" &&
+    !!archive &&
+    (data?.batches.length ?? 0) >= archive.takes.length;
+  const activeBatch =
+    selectedBatch ??
+    [...(data?.batches ?? [])].sort((a, b) => b.index - a.index)[0];
+  const activeShots = (data?.shots ?? []).filter(
+    (shot) => shot.batchId === activeBatch?.id,
+  );
+  const activeEvidence = batchEvidence(activeShots);
+  const finding = selected?.checks.find(
+    (check) =>
+      !check.pass &&
+      check.confidence >= 0.6 &&
+      check.observed.toLowerCase() !== "unclear",
+  );
+  const marker =
+    selected && finding ? recordedMarker(selected.id, finding.key) : null;
+  useEffect(() => {
+    if (initialEvidence) evidenceDialogRef.current?.showModal();
+  }, [initialEvidence]);
+  useEffect(() => {
+    if (
+      !loading &&
+      data &&
+      source.kind === "cached" &&
+      !data.shots.length &&
+      !autoReplayRef.current
+    ) {
+      autoReplayRef.current = true;
+      void generate();
+    }
+  }, [loading, data, source.kind]);
   const batches = [...(data?.batches ?? [])].sort((a, b) => b.index - a.index);
   const allShots = data?.shots ?? [];
-  const flagged = allShots.filter((shot) => shot.flagged).length;
-  const pending = allShots.filter((shot) => shot.status === "pending").length;
   const learned = (data?.rules ?? []).filter((rule) => rule.source !== "seed");
   const recordedRuleIds = new Set(data?.recordedRuleIds ?? []);
-  const warnings = [...(data?.warnings ?? []), ...(data?.warning ? [data.warning] : [])];
-  const inProgressBatch = generating ? batches.find((batch) => batch.index > generationStartIndexRef.current) : undefined;
-  const savedGenerationShots = inProgressBatch ? allShots.filter((shot) => shot.batchId === inProgressBatch.id).length : 0;
+  const warnings = [
+    ...(data?.warnings ?? []),
+    ...(data?.warning ? [data.warning] : []),
+  ];
+  const inProgressBatch = generating
+    ? batches.find((batch) => batch.index > generationStartIndexRef.current)
+    : undefined;
+  const savedGenerationShots = inProgressBatch
+    ? allShots.filter((shot) => shot.batchId === inProgressBatch.id).length
+    : 0;
   useEffect(() => {
     if (!generating || source.kind !== "live") return;
     const controller = new AbortController();
@@ -122,112 +290,1100 @@ export function ScriptyStudio() {
       if (polling) return;
       polling = true;
       // Read-only progress. The user action above is the sole batch POST.
-      void refresh(controller.signal).catch(() => { /* Keep the bounded POST's final result authoritative. */ }).finally(() => { polling = false; });
+      void refresh(controller.signal)
+        .catch(() => {
+          /* Keep the bounded POST's final result authoritative. */
+        })
+        .finally(() => {
+          polling = false;
+        });
     }, 4000);
-    return () => { clearInterval(interval); controller.abort(); };
+    return () => {
+      clearInterval(interval);
+      controller.abort();
+    };
   }, [generating, source.kind, refresh]);
 
   async function generate() {
     if (busy || !data || source.kind === "unavailable") return;
     let scenePrompts: string[] | undefined;
-    try { scenePrompts = source.kind === "live" ? parseScenePrompts(sceneInput) : undefined; setSceneError(null); }
-    catch (err) { setSceneError(err instanceof Error ? err.message : "Check your scene prompts."); if (sceneEditorRef.current) sceneEditorRef.current.open = true; requestAnimationFrame(() => sceneInputRef.current?.focus()); return; }
-    const existingBatchIds = new Set(data.batches.map((batch) => batch.id));
-    generationStartIndexRef.current = Math.max(0, ...data.batches.map((batch) => batch.index));
-    setGenerating(true); setError(null); setNotice(null);
     try {
-      const result = await api<BatchResponse>("/api/batch", { method: "POST", body: JSON.stringify({ projectId: data.project.id, ...(scenePrompts ? { scenePrompts } : {}) }) });
-      if (!result.batch || !Array.isArray(result.shots)) throw new Error("The batch response was incomplete. Your existing shots are still available.");
+      scenePrompts =
+        source.kind === "live" ? parseScenePrompts(sceneInput) : undefined;
+      setSceneError(null);
+    } catch (err) {
+      setSceneError(
+        err instanceof Error ? err.message : "Check your scene prompts.",
+      );
+      if (sceneEditorRef.current) sceneEditorRef.current.open = true;
+      requestAnimationFrame(() => sceneInputRef.current?.focus());
+      return;
+    }
+    const existingBatchIds = new Set(data.batches.map((batch) => batch.id));
+    generationStartIndexRef.current = Math.max(
+      0,
+      ...data.batches.map((batch) => batch.index),
+    );
+    setGenerating(true);
+    setError(null);
+    setNotice(null);
+    setNewRuleId(null);
+    try {
+      const result = await api<BatchResponse>("/api/batch", {
+        method: "POST",
+        body: JSON.stringify({
+          projectId: data.project.id,
+          ...(scenePrompts ? { scenePrompts } : {}),
+        }),
+      });
+      if (!result.batch || !Array.isArray(result.shots))
+        throw new Error(
+          "The batch response was incomplete. Your existing shots are still available.",
+        );
       // Progress polling may already have delivered this newly generated batch.
       const alreadyExists = existingBatchIds.has(result.batch.id);
-      setData((current) => current ? { ...current, ...result, batches: mergeById(current.batches, [result.batch]), shots: alreadyExists && isScaffold(current) ? mergeById(result.shots, current.shots) : mergeById(current.shots, result.shots) } : current);
-      setSelectedId(result.shots.find((shot) => shot.flagged)?.id ?? result.shots[0]?.id ?? null);
-      setRejectOpen(false); setReason(""); setNewBatchId(result.batch.id);
+      setData((current) =>
+        current
+          ? {
+              ...current,
+              ...result,
+              batches: mergeById(current.batches, [result.batch]),
+              shots:
+                alreadyExists && isScaffold(current)
+                  ? mergeById(result.shots, current.shots)
+                  : mergeById(current.shots, result.shots),
+            }
+          : current,
+      );
+      setSelectedId(preferredShot(result.shots, [result.batch])?.id ?? null);
+      setReason("");
+      setNewBatchId(result.batch.id);
       const evidence = batchEvidence(result.shots);
-      setNotice(alreadyExists ? "The API returned the existing batch. No new learning point has been added." : !evidence.complete ? `Batch ${number(result.batch.index)} has incomplete evidence and is excluded from the learning chart.` : `Batch ${number(result.batch.index)} is ready. ${result.shots.filter((shot) => shot.flagged).length} of ${result.shots.length} shots flagged; ${evidence.uncertainChecks} uncertain checks.`);
-      try { await refresh(); } catch (err) { setError(`Batch saved, but project refresh failed. ${err instanceof Error ? err.message : "Try refreshing."}`); }
+      setNotice(
+        alreadyExists
+          ? "This recorded batch is already on set."
+          : !evidence.complete
+            ? "Some frames are still missing. Inspect the saved shots."
+            : `Batch ${number(result.batch.index)} ready. ${result.shots.filter((shot) => shot.flagged).length} of 6 flagged.`,
+      );
+      try {
+        await refresh();
+      } catch (err) {
+        setError(
+          `Batch saved, but project refresh failed. ${err instanceof Error ? err.message : "Try refreshing."}`,
+        );
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not generate a batch. Please try again.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not generate a batch. Please try again.",
+      );
       // A timed-out request may still have persisted successful independent frames.
-      try { await refresh(); } catch { /* Preserve the original generation error and existing frames. */ }
+      try {
+        await refresh();
+      } catch {
+        /* Preserve the original generation error and existing frames. */
+      }
+    } finally {
+      setGenerating(false);
     }
-    finally { setGenerating(false); }
   }
   async function review(decision: "accept" | "reject") {
     if (!selected || busy) return;
-    if (decision === "reject" && !reason.trim()) { setRejectOpen(true); requestAnimationFrame(() => reasonRef.current?.focus()); return; }
-    setReviewing(true); setError(null); setNotice(null);
+    if (decision === "reject" && !reason.trim()) {
+      requestAnimationFrame(() => reasonRef.current?.focus());
+      return;
+    }
+    setReviewing(true);
+    setError(null);
+    setNotice(null);
     try {
-      const result = await api<ReviewResponse>(`/api/shot/${encodeURIComponent(selected.id)}/review`, { method: "POST", body: JSON.stringify({ decision, ...(decision === "reject" ? { reason: reason.trim() } : {}) }) });
-      if (!result.shot) throw new Error("The review response was incomplete. Please try again.");
-      setData((current) => current ? { ...current, ...result, shots: mergeById(current.shots, [result.shot]), rules: result.newRule ? mergeById(current.rules, [result.newRule]) : current.rules } : current);
+      const result = await api<ReviewResponse>(
+        `/api/shot/${encodeURIComponent(selected.id)}/review`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            decision,
+            ...(decision === "reject" ? { reason: reason.trim() } : {}),
+          }),
+        },
+      );
+      if (!result.shot)
+        throw new Error(
+          "The review response was incomplete. Please try again.",
+        );
+      setData((current) =>
+        current
+          ? {
+              ...current,
+              ...result,
+              shots: mergeById(current.shots, [result.shot]),
+              rules: result.newRule
+                ? mergeById(current.rules, [result.newRule])
+                : current.rules,
+            }
+          : current,
+      );
       if (result.newRule) setNewRuleId(result.newRule.id);
-      setNotice(result.newRule ? source.kind === "cached" ? "Correction saved to this browser’s replay memory. Recorded results stay unchanged; this correction is not saved to the live project." : "Review saved. A rule has landed in Scripty Memory." : decision === "accept" ? source.kind === "cached" ? "Shot accepted in this browser’s replay. Recorded results stay unchanged." : "Shot accepted. This frame is a positive reference for future generations." : "Rejection saved. See the trace for learning details.");
-      setRejectOpen(false); setReason("");
-      try { await refresh(); } catch (err) { setError(`Review saved, but project refresh failed. ${err instanceof Error ? err.message : "Try refreshing."}`); }
-    } catch (err) { setError(err instanceof Error ? err.message : "Could not save your review. Please try again."); }
-    finally { setReviewing(false); }
+      setNotice(
+        result.newRule
+          ? source.kind === "cached"
+            ? "Rule saved to this replay."
+            : "Noted. On the next take."
+          : decision === "accept"
+            ? "Good take. Accepted."
+            : "Correction noted.",
+      );
+      setReason("");
+      try {
+        await refresh();
+      } catch (err) {
+        setError(
+          `Review saved, but project refresh failed. ${err instanceof Error ? err.message : "Try refreshing."}`,
+        );
+      }
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not save your review. Please try again.",
+      );
+    } finally {
+      setReviewing(false);
+    }
   }
+  useEffect(() => {
+    if (!notice || newRuleId) return;
+    const timer = setTimeout(() => setNotice(null), 5500);
+    return () => clearTimeout(timer);
+  }, [notice, newRuleId]);
   const reviewRef = useRef(review);
   reviewRef.current = review;
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
       // Native modal previews are read-only: never review a frame behind the dialog.
-      if (previewDialogRef.current?.open) return;
+      if (document.querySelector("dialog[open]")) return;
       const target = event.target;
-      if (event.defaultPrevented || event.repeat || event.metaKey || event.ctrlKey || event.altKey || target instanceof HTMLElement && (target.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(target.tagName))) return;
-      if (event.key.toLowerCase() === "a") { event.preventDefault(); void reviewRef.current("accept"); }
-      if (event.key.toLowerCase() === "r") { event.preventDefault(); void reviewRef.current("reject"); }
-      if (event.key === "Escape") { setRejectOpen(false); setTraceOpen(false); }
+      if (
+        event.defaultPrevented ||
+        event.repeat ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey ||
+        (target instanceof HTMLElement &&
+          (target.isContentEditable ||
+            /INPUT|TEXTAREA|SELECT/.test(target.tagName)))
+      )
+        return;
+      if (event.key.toLowerCase() === "a") {
+        event.preventDefault();
+        void reviewRef.current("accept");
+      }
+      if (event.key.toLowerCase() === "r") {
+        event.preventDefault();
+        void reviewRef.current("reject");
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
-  function selectShot(id: string) { setSelectedId(id); setRejectOpen(false); setReason(""); }
-  async function retry() { setLoading(true); setError(null); try { await refresh(); } catch (err) { setError(err instanceof Error ? err.message : "Could not load project."); } finally { setLoading(false); } }
-  const filteredTraces = (data?.traces ?? []).filter((trace) => traceFilter === "all" || traceFilter === "failures" ? traceFilter === "all" || trace.type === "flag" || trace.type === "error" : trace.type === "rule_learned" || trace.type === "rule_applied").toReversed();
+  function selectShot(id: string) {
+    setSelectedId(id);
+    setReason("");
+  }
+  async function retry() {
+    setLoading(true);
+    setError(null);
+    try {
+      await refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load project.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
-  return <div className="studio-shell">
-    <a className="skip-link" href="#workbench">Skip to shots</a>
-    <header className="topbar"><a href="/" className="brand" aria-label="Scripty home"><span className="brand-frame"><Icon name="slate" size={27}/></span>Scripty</a><div className="workspace-path"><span className="path-divider"/><span>{data?.project.name ?? "Mara"}</span><Icon name="chevron" size={12}/><span className="muted-text">Continuity workspace</span></div><div className="topbar-right"><span className={`source-pill ${source.kind}`} title={source.description}><span className="status-dot"/>{source.title}</span><span className="project-avatar" title="Mara project">M</span></div></header>
-    <div className="project-bar"><div><span className="eyebrow">PRODUCTION 001 <span className="eyebrow-divider">/</span> {data?.project.name ?? "Mara"}</span><h1>Keep the story in continuity.</h1><p>Your AI script supervisor. Every correction carries forward.</p></div><button className="button primary generate-button" onClick={() => void generate()} disabled={busy || !data || source.kind === "unavailable"}><Icon name={generating ? "refresh" : source.kind === "cached" ? "play" : "plus"} className={generating ? "spin" : ""}/>{generating ? "Building sequence…" : source.kind === "unavailable" ? "Cache not installed" : source.kind === "cached" ? "Load recorded batch" : "Generate batch"}<kbd>6 shots</kbd></button></div>
-    {source.kind === "live" || source.kind === "cached" ? <details className="scene-editor" ref={sceneEditorRef}><summary><span>Scene prompts</span><span>{source.kind === "live" ? "Optional · six new scenes" : "Recorded scenes · read only"}</span><Icon name="chevron" size={12}/></summary>{source.kind === "live" ? <div className="scene-editor-body"><label htmlFor="scene-prompts">One scene per line · exactly six scenes</label><p id="scene-prompts-help">Leave blank for server defaults, or enter six different scenes to test how your correction transfers.</p><textarea id="scene-prompts" ref={sceneInputRef} value={sceneInput} onChange={(event) => { setSceneInput(event.target.value); setSceneError(null); }} rows={6} maxLength={12006} disabled={busy} placeholder={"Scene 1\nScene 2\nScene 3\nScene 4\nScene 5\nScene 6"} aria-describedby={`scene-prompts-help${sceneError ? " scene-prompts-error" : ""}`} aria-invalid={Boolean(sceneError)}/>{sceneError ? <p id="scene-prompts-error" className="scene-input-error" role="alert">{sceneError}</p> : null}</div> : <div className="scene-editor-body"><p>Playback uses the recorded prompts below. Custom scenes require the live engine.</p>{batches.length ? <ol>{allShots.filter((shot) => shot.batchId === batches[0].id).map((shot) => <li key={shot.id}>{shot.scenePrompt}</li>)}</ol> : <p>Recorded prompts appear after you load a batch.</p>}</div>}</details> : null}
-    {error ? <div className="message-banner error-banner" role="alert"><Icon name="flag"/><span>{error}</span><button onClick={() => void retry()} disabled={busy || loading}>Retry project load</button><button className="icon-button" aria-label="Dismiss error" onClick={() => setError(null)}><Icon name="close"/></button></div> : null}
-    {warnings.length ? <div className="message-banner warning-banner" role="status"><Icon name="flag"/><span>{[...new Set(warnings)].join(" ")}</span></div> : null}
-    <div className="sr-only" role="status" aria-live="polite">{notice ?? (generating ? "Generating and checking six shots. This can take a few minutes." : "")}</div>
-    <main className="studio-grid">
-      <aside className="memory-pane panel" aria-labelledby="memory-title"><div className="pane-heading"><div className="heading-with-icon"><Icon name="frame"/><h2 id="memory-title">Scripty Memory</h2></div><span className="count-badge">{data?.rules.length ?? "—"}</span></div>
-        {loading && !data ? <MemorySkeleton/> : character ? <><div className="character-card"><div className="reference-image"><ShotImage src={character.referenceImageUrl} alt={`${character.name} character reference`} priority/><span className="reference-label">REFERENCE 01</span></div><div className="character-heading"><h3>{character.name}</h3><span className="tag">CHARACTER</span></div><p className="character-copy">The anchor for every generation.</p><dl className="attribute-list">{character.attributes.map((attribute) => <div key={attribute.key}><dt>{attribute.label}</dt><dd>{attribute.expected}</dd></div>)}</dl></div>
-        <div className="memory-section-heading"><h3>Project rules</h3><span>{learned.length} learned</span></div><div className="rules-list">{data?.rules.length ? [...data.rules].sort((a,b) => Number(a.source === "seed") - Number(b.source === "seed")).map((rule) => <article className={`rule-card ${rule.source === "seed" ? "seed-rule" : "learned-rule"} ${newRuleId === rule.id ? "rule-arrived" : ""}`} key={rule.id}><Icon name={rule.source === "seed" ? "frame" : "spark"} size={14}/><div><p>{rule.text}</p><div className="rule-meta"><span>{rule.source === "seed" ? "Character sheet" : source.kind === "cached" ? recordedRuleIds.has(rule.id) ? "Recorded memory" : "This browser’s correction" : "Learned from review"}</span><span title="Times this rule was applied">{rule.timesApplied}×</span></div></div></article>) : <div className="small-empty">Reject a shot with a correction to teach Scripty a new rule.</div>}</div><div className="memory-footer"><Icon name="spark" size={14}/><p>{source.kind === "cached" ? "Recorded memory is part of this capture." : "Your corrections become constraints."}<br/>{source.kind === "cached" ? "Your new corrections stay in this browser." : "The next batch remembers."}</p></div></> : <div className="small-empty">The character sheet will appear when the project is loaded.</div>}
-      </aside>
-      <section className="workbench-pane panel" id="workbench" aria-labelledby="shots-title"><div className="pane-heading"><div className="heading-with-icon"><Icon name="layers"/><h2 id="shots-title">Shot workspace</h2><span className="count-badge">{allShots.length}</span></div><div className="view-label"><span className="status-dot"/>{source.kind === "live" ? "LIVE MONITOR" : source.kind === "cached" ? "RECORDED CHECKS" : "CHECK RESULTS"}</div></div>
-        <div className="workspace-controls"><div className="segmented" aria-label="Filter shots">{[{id:"all", label:"All shots", count:allShots.length}, {id:"flagged", label:"Flagged", count:flagged}, {id:"pending", label:"To review", count:pending}].map((tab) => <button key={tab.id} className={filter === tab.id ? "active" : ""} aria-pressed={filter === tab.id} onClick={() => setFilter(tab.id)}>{tab.label}<span>{tab.count}</span></button>)}</div><span className="filmstrip-hint">SCROLL TO EXPLORE <Icon name="arrow" size={13}/></span></div>
-        <div className="batch-list">{loading && !data ? <BatchSkeleton/> : !batches.length && !generating ? <div className="workspace-empty"><span className="empty-icon"><Icon name="frame" size={30}/></span><h3>{source.kind === "unavailable" ? "No recorded cache installed." : "Your first sequence starts here."}</h3><p>{source.kind === "unavailable" ? "Add a recorded Mara cache on the server to enable playback. Your character sheet is ready." : source.kind === "cached" ? "Load six recorded shots and their saved checks. Reviews update this browser’s replay memory; recorded results stay unchanged." : "Generate six shots. Scripty checks each frame against your character sheet and project rules."}</p><button className="button secondary" disabled={!data || source.kind === "unavailable"} onClick={() => void generate()}><Icon name="plus"/>{source.kind === "unavailable" ? "Playback unavailable" : source.kind === "cached" ? "Load recorded batch" : "Generate first batch"}</button></div> : batches.map((batch) => {
-          const shots = allShots.filter((shot) => shot.batchId === batch.id);
-          const evidence = batchEvidence(shots);
-          const visibleShots = shots.filter((shot) => filter === "all" || filter === "flagged" && shot.flagged || filter === "pending" && shot.status === "pending");
-          return <section className="batch-row" key={batch.id} aria-label={`Batch ${batch.index}`}><div className="batch-heading"><div className="batch-title"><span className="batch-index" aria-label={`Sequence ${batch.index}`}><Icon name="slate" size={14}/>{number(batch.index)}</span><h3>Batch {number(batch.index)}</h3><span className="batch-rule-count">{batch.rulesApplied.length} rules applied</span></div><span className={`batch-drift ${!evidence.complete ? "muted-text" : batch.driftRate > 0 ? "drift-text" : "muted-text"}`}><Icon name={!evidence.complete || batch.driftRate > 0 ? "flag" : "check"} size={12}/>{!evidence.complete ? "Incomplete evidence" : `${pct(batch.driftRate)} flags`}</span></div><p className="batch-evidence"><time className="capture-time" dateTime={batch.createdAt} title="Batch capture time in UTC">{captureTime(batch.createdAt)}</time><span className="evidence-divider">/</span>{evidence.shotCount}/6 shots · {evidence.uncertainChecks} uncertain checks{evidence.unavailableChecks || evidence.missingCheckShots ? ` · ${evidence.unavailableChecks} unavailable checks${evidence.missingCheckShots ? ` · ${evidence.missingCheckShots} shots without checks` : ""}` : ""}{!evidence.complete ? " · excluded from chart" : ""}</p><div className="filmstrip" tabIndex={0} role="region" aria-label={`Batch ${batch.index} shots, horizontally scrollable`}>{visibleShots.length ? visibleShots.map((shot, index) => <ShotCard key={shot.id} shot={shot} index={shots.indexOf(shot)} selected={selectedId === shot.id} onSelect={() => selectShot(shot.id)} animate={newBatchId === batch.id} animationIndex={index}/>) : <div className="filter-empty">No {filter === "flagged" ? "flagged" : "pending"} shots in this batch.</div>}</div></section>;
-        })}
-        {generating ? <section className="batch-row generating-row" aria-label="Generating next batch"><div className="batch-heading"><div className="batch-title"><span className="batch-index"><Icon name="refresh" size={13} className="spin"/></span><h3>Building the next sequence</h3></div></div><p className="generation-message" role="status" aria-live="polite">{source.kind === "cached" ? "Loading saved generations and monitor checks…" : inProgressBatch ? `Running bounded batch · ${savedGenerationShots}/6 shots saved. Remaining frames are still processing…` : "Running bounded batch. Waiting for the first saved frame…"}</p><div className="filmstrip">{Array.from({ length: Math.max(0, 6 - savedGenerationShots) }, (_, i) => <div className="shot-skeleton pulse" key={i} style={{ animationDelay: `${i * 35}ms` }}><span>{number(i+1)}</span><Icon name="frame" size={22}/></div>)}</div></section> : null}
-        </div><div className="workspace-footer"><span><span className="status-dot"/>{source.description}</span>{notice ? <p>{notice}</p> : <p>Select a frame to inspect its continuity.</p>}</div>
-      </section>
-      <aside className="inspector-pane panel" aria-labelledby="inspector-title"><div className="pane-heading"><div className="heading-with-icon"><Icon name="image"/><h2 id="inspector-title">Shot inspector</h2></div><span className="eyebrow">{selected ? `${number(selectedBatch?.index ?? 1)} / ${number(allShots.filter((shot) => shot.batchId === selected.batchId).findIndex((shot) => shot.id === selected.id) + 1)}` : "—"}</span></div>
-        {selected ? <><div className="inspector-preview"><ShotImage src={selected.imageUrl} alt={`Selected shot: ${selected.scenePrompt}`} priority/><span className={`preview-status ${selected.flagged ? "drift" : selectedUncertain ? "uncertain" : "pass"}`}><Icon name={selected.flagged || selectedUncertain ? "flag" : "check"} size={12}/>{selected.flagged ? "Continuity drift" : selectedUncertain ? "Evidence incomplete" : "Checks passed"}</span><span className="preview-slate">B{number(selectedBatch?.index ?? 1)} <span>/</span> FR {number(allShots.filter((shot) => shot.batchId === selected.batchId).findIndex((shot) => shot.id === selected.id) + 1)}</span><button type="button" className="expand-frame" aria-haspopup="dialog" aria-controls="frame-dialog" onClick={() => previewDialogRef.current?.showModal()}><Icon name="expand" size={14}/>Expand frame</button></div><div className="inspector-content"><div className="shot-title-row"><h3>Frame {number(allShots.filter((shot) => shot.batchId === selected.batchId).findIndex((shot) => shot.id === selected.id)+1)}</h3><span className={`review-status ${selected.status}`}>{selected.status === "pending" ? "Awaiting review" : selected.status}</span></div><p className="scene-prompt">{selected.scenePrompt}</p><div className="checks-heading"><h4>Continuity checks</h4><span>{passedChecks(selected)}/{selected.checks.length} passed</span></div><div className="checks-list">{selected.checks.length ? selected.checks.map((check) => { const unclear = check.confidence < 0.6 || check.observed.toLowerCase() === "unclear"; return <div className={`check-row ${unclear ? "check-unclear" : check.pass ? "check-pass" : "check-fail"}`} key={check.key}><div className="check-heading"><span className={`check-icon ${unclear ? "uncertain" : check.pass ? "pass" : "drift"}`}><Icon name={check.pass ? "check" : "flag"} size={12}/></span><h5>{character?.attributes.find((a) => a.key === check.key)?.label ?? (check.key.startsWith("rule:") ? "Memory rule" : humanize(check.key))}</h5><span className={unclear ? "muted-text" : check.pass ? "pass-text" : "drift-text"}>{unclear ? "Unclear" : check.pass ? "Pass" : "Drift"}</span></div><div className="check-values"><span>Expected</span><p>{check.expected}</p><span>Observed</span><p className={unclear ? "muted-text" : check.pass ? "" : "drift-text"}>{check.observed}</p></div><div className="confidence-line"><div className="confidence-track"><span style={{ width: `${Math.min(100, Math.max(0, check.confidence * 100))}%` }}/></div><span>{pct(check.confidence)} confidence</span></div>{check.note ? <p className="check-note">{check.note}</p> : null}</div>; }) : <div className="small-empty">No monitor checks were returned for this shot.</div>}</div>
-        <details className="prompt-details"><summary>Generation context <Icon name="chevron" size={12}/></summary><p className="detail-label">FINAL PROMPT</p><pre>{selected.finalPrompt}</pre>{provenanceText((selected as Shot & Metadata).provenance ?? data?.provenance) ? <><p className="detail-label">PROVENANCE</p><pre>{provenanceText((selected as Shot & Metadata).provenance ?? data?.provenance)}</pre></> : null}</details>
-        </div><div className="review-panel">{selected.rejectReason && !rejectOpen ? <p className="saved-reason"><span>Review note</span>{selected.rejectReason}</p> : null}{rejectOpen ? <form onSubmit={(event) => { event.preventDefault(); void review("reject"); }}><label htmlFor="rejection-reason">What should Scripty remember?</label><textarea id="rejection-reason" ref={reasonRef} value={reason} onChange={(event) => setReason(event.target.value)} placeholder="e.g. The scarf must stay red, even in cool lighting." rows={3} maxLength={400} disabled={reviewing}/><div className="reject-form-actions"><button type="button" className="button quiet" onClick={() => setRejectOpen(false)} disabled={reviewing}>Cancel</button><button className="button danger" type="submit" disabled={busy || !reason.trim()}><Icon name="spark" size={14}/>{reviewing ? "Saving…" : "Reject & teach"}</button></div></form> : <><div className="review-actions"><button className="button accept-button" disabled={busy || selected.status === "accepted"} onClick={() => void review("accept")}><Icon name="check"/>{selected.status === "accepted" ? "Accepted" : reviewing ? "Saving…" : "Accept"}<kbd>A</kbd></button><button className="button reject-button" disabled={busy} onClick={() => { setRejectOpen(true); requestAnimationFrame(() => reasonRef.current?.focus()); }}><Icon name="close"/>Reject<kbd>R</kbd></button></div><p className="review-help">{source.kind === "cached" ? "Reviews update this browser’s replay memory." : "Accept reinforces. Reject teaches."}</p></>}</div></> : <div className="inspector-empty"><Icon name="frame" size={30}/><h3>A closer look.</h3><p>Select a frame to see its checks, review it, and teach Scripty what matters.</p></div>}
-      </aside>
-      <div className="learning-pane panel"><LearningCurve batches={data?.batches ?? []} shots={allShots}/></div>
-    </main>
-    <footer className="bottom-bar"><span className="bottom-brand"><Icon name="frame" size={13}/> THE CONTINUITY DESK</span><button className={traceOpen ? "trace-toggle active" : "trace-toggle"} aria-expanded={traceOpen} aria-controls="trace-drawer" onClick={() => setTraceOpen(!traceOpen)}><Icon name="terminal" size={14}/>Trace log<span className="count-badge">{data?.traces.length ?? 0}</span><Icon name="chevron" size={12} className={traceOpen ? "rotate-down" : "rotate-up"}/></button><span className="session-info">{batches.length} {batches.length === 1 ? "batch" : "batches"}<span>·</span>{allShots.length} shots</span></footer>
-    {selected ? <dialog className="frame-dialog" id="frame-dialog" ref={previewDialogRef} aria-labelledby="frame-dialog-title" aria-describedby="frame-dialog-scene"><div className="frame-dialog-heading"><div><h2 id="frame-dialog-title">Batch {number(selectedBatch?.index ?? 1)} <span>/</span> Frame {number(allShots.filter((shot) => shot.batchId === selected.batchId).findIndex((shot) => shot.id === selected.id) + 1)}</h2><p id="frame-dialog-scene">{selected.scenePrompt}</p></div><form method="dialog"><button className="button secondary" type="submit" aria-label="Close full frame preview"><Icon name="close" size={16}/><span>Close</span><kbd>Esc</kbd></button></form></div><div className="frame-dialog-image"><ShotImage src={selected.imageUrl} alt={`Full frame: ${selected.scenePrompt}`} priority/></div></dialog> : null}
-    {traceOpen ? <section className="trace-drawer" id="trace-drawer" aria-labelledby="trace-title"><div className="trace-header"><div className="heading-with-icon"><Icon name="terminal"/><h2 id="trace-title">Monitor trace</h2><span className="count-badge">{data?.traces.length ?? 0}</span></div><div className="trace-header-actions"><label className="sr-only" htmlFor="trace-filter">Filter trace events</label><select id="trace-filter" value={traceFilter} onChange={(event) => setTraceFilter(event.target.value)}><option value="all">All events</option><option value="failures">Failures & drift</option><option value="memory">Memory</option></select><button className="icon-button" aria-label="Close trace log" onClick={() => setTraceOpen(false)}><Icon name="close"/></button></div></div><div className="trace-events">{filteredTraces.length ? filteredTraces.map((trace) => <div className={`trace-event trace-${trace.type}`} key={trace.id}><time dateTime={trace.createdAt}>{new Date(trace.createdAt).toLocaleTimeString("en-US", {hour12:false})}</time><span className="trace-type">{humanize(trace.type)}</span><p>{trace.message}{trace.category ? <span className="trace-category">{humanize(trace.category)}</span> : null}</p>{trace.shotId ? <button onClick={() => { selectShot(trace.shotId!); setTraceOpen(false); }}>View shot<Icon name="arrow" size={12}/></button> : null}</div>) : <div className="small-empty">No {traceFilter === "all" ? "trace" : traceFilter} events yet. Generation and review activity will appear here.</div>}</div></section> : null}
-  </div>;
+  return (
+    <div className="studio-shell">
+      <a className="skip-link" href="#workbench">
+        Skip to shots
+      </a>
+      <header className="studio-nav">
+        <a className="wordmark" href="/" aria-label="Scripty home">
+          scripty
+        </a>
+        <span className="nav-divider" />
+        <span className="project-name">{data?.project.name ?? "Mara"}</span>
+        <span className="mode-pill" title={source.description}>
+          {source.kind === "live"
+            ? "Live engine"
+            : source.kind === "unavailable"
+              ? "Replay unavailable"
+              : source.kind === "unknown"
+                ? "Opening…"
+                : "Demo mode"}
+        </span>
+        <nav aria-label="Workspace">
+          <button
+            className="nav-action"
+            onClick={() => memoryDialogRef.current?.showModal()}
+          >
+            <Icon name="spark" size={16} />
+            Memory{" "}
+            {learned.length ? (
+              <span className="memory-count">{learned.length}</span>
+            ) : null}
+          </button>
+          <button
+            className="nav-action"
+            onClick={() => evidenceDialogRef.current?.showModal()}
+          >
+            <Icon name="layers" size={16} />
+            Evidence
+          </button>
+        </nav>
+      </header>
+      <main id="workbench" className="studio-main">
+        <div className="studio-heading">
+          <div>
+            <span className="overline">THE CONTINUITY DESK</span>
+            <h1>
+              {data?.project.name ?? "Mara"},{" "}
+              {activeBatch ? `take ${number(activeBatch.index)}.` : "on set."}
+            </h1>
+          </div>
+          <button
+            className="action primary next-batch"
+            onClick={() => void generate()}
+            disabled={
+              busy || !data || source.kind === "unavailable" || replayComplete
+            }
+          >
+            <Icon
+              name={
+                generating
+                  ? "refresh"
+                  : source.kind === "cached"
+                    ? "play"
+                    : "plus"
+              }
+              size={16}
+              className={generating ? "spin" : ""}
+            />
+            {generating
+              ? source.kind === "cached"
+                ? "Loading the take…"
+                : "Building the take…"
+              : source.kind === "unavailable"
+                ? "Replay unavailable"
+                : replayComplete
+                  ? "All takes loaded"
+                  : source.kind === "cached"
+                    ? "Load next batch"
+                    : "Generate batch"}
+          </button>
+        </div>
+        <div className="workflow-line">
+          <ol aria-label="Production steps">
+            {["Generate", "Review", "Learn", "Regenerate"].map(
+              (step, index) => (
+                <li
+                  key={step}
+                  aria-current={
+                    (generating
+                      ? 0
+                      : newRuleId
+                        ? 2
+                        : allShots.length
+                          ? 1
+                          : 0) === index
+                      ? "step"
+                      : undefined
+                  }
+                >
+                  <span>{index + 1}</span>
+                  {step}
+                </li>
+              ),
+            )}
+          </ol>
+          <span className="recording-scope">
+            {source.kind === "cached"
+              ? "Recorded shots · local reviews"
+              : source.kind === "live"
+                ? "Reference-conditioned generation"
+                : "Opening the project"}
+          </span>
+        </div>
+        {error ? (
+          <div className="message error-message" role="alert">
+            <span>{error}</span>
+            <button onClick={() => void retry()} disabled={busy || loading}>
+              Retry project
+            </button>
+            <button
+              className="icon-action"
+              aria-label="Dismiss error"
+              onClick={() => setError(null)}
+            >
+              <Icon name="close" />
+            </button>
+          </div>
+        ) : null}
+        {warnings.length ? (
+          <details className="workspace-note">
+            <summary>About this replay</summary>
+            {warnings.map((warning, index) => (
+              <p key={index}>{warning}</p>
+            ))}
+          </details>
+        ) : null}
+        {source.kind === "live" ? (
+          <details className="scene-editor" ref={sceneEditorRef}>
+            <summary>
+              Scene prompts <Icon name="chevron" size={14} />
+            </summary>
+            <label htmlFor="scene-prompts">Six scenes. One per line.</label>
+            <textarea
+              id="scene-prompts"
+              ref={sceneInputRef}
+              value={sceneInput}
+              onChange={(event) => {
+                setSceneInput(event.target.value);
+                setSceneError(null);
+              }}
+              rows={6}
+              maxLength={12006}
+              disabled={busy}
+              aria-invalid={Boolean(sceneError)}
+              placeholder="Leave blank for the project’s scenes."
+            />
+            {sceneError ? (
+              <p role="alert" className="field-error">
+                {sceneError}
+              </p>
+            ) : null}
+          </details>
+        ) : null}
+        {loading && !data ? (
+          <div className="opening-state" role="status">
+            <span className="loading-dot" />
+            Opening the set…
+          </div>
+        ) : selected ? (
+          <>
+            <div className="take-toolbar">
+              <div className="take-select">
+                <label htmlFor="take-select">Take</label>
+                <select
+                  id="take-select"
+                  value={activeBatch?.id ?? ""}
+                  onChange={(event) => {
+                    const next = (data?.shots ?? []).filter(
+                      (shot) => shot.batchId === event.target.value,
+                    );
+                    const shot = preferredShot(next, data?.batches ?? []);
+                    if (shot) selectShot(shot.id);
+                  }}
+                >
+                  {[...batches]
+                    .sort((a, b) => a.index - b.index)
+                    .map((batch) => (
+                      <option key={batch.id} value={batch.id}>
+                        {number(batch.index)} ·{" "}
+                        {
+                          allShots.filter((shot) => shot.batchId === batch.id)
+                            .length
+                        }
+                        /6 shots
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <span>
+                {activeShots.filter((shot) => shot.flagged).length} flagged
+                <span className="meta-dot">·</span>
+                {activeEvidence.uncertainChecks} uncertain checks
+              </span>
+              <span className="capture-label">
+                {source.kind === "cached"
+                  ? "Recorded check"
+                  : activeBatch
+                    ? captureTime(activeBatch.createdAt)
+                    : ""}
+              </span>
+            </div>
+            <section className="review-layout" aria-label="Shot review">
+              <div className="review-stage">
+                <div className="fitted-frame">
+                  <ShotImage
+                    src={selected.imageUrl}
+                    alt={selected.scenePrompt}
+                    priority
+                  />
+                  {marker ? (
+                    <button
+                      className="image-marker"
+                      style={{
+                        left: `${marker.x * 100}%`,
+                        top: `${marker.y * 100}%`,
+                        width: `${marker.width * 100}%`,
+                        height: `${marker.height * 100}%`,
+                      }}
+                      onClick={() => evidenceDialogRef.current?.showModal()}
+                      aria-label={`${marker.label}. Editor-positioned pointer; inspect the recorded monitor evidence.`}
+                    >
+                      <img src={marker.asset} alt="" aria-hidden="true" />
+                      <span>{marker.label}</span>
+                    </button>
+                  ) : null}
+                  <div className="frame-slate">
+                    <span>
+                      B{number(activeBatch?.index ?? 1)} / FR{" "}
+                      {number(
+                        activeShots.findIndex(
+                          (shot) => shot.id === selected.id,
+                        ) + 1,
+                      )}
+                    </span>
+                    <button
+                      onClick={() => previewDialogRef.current?.showModal()}
+                      aria-label="Expand frame"
+                    >
+                      <Icon name="expand" size={16} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <aside
+                className="decision-panel"
+                aria-labelledby="decision-title"
+              >
+                <div
+                  className={`finding-label ${selected.flagged ? "is-drift" : ""}`}
+                >
+                  <span>
+                    {selected.flagged ? "!" : selectedUncertain ? "?" : "✓"}
+                  </span>
+                  {selected.flagged
+                    ? "Continuity slip"
+                    : selectedUncertain
+                      ? "Not fully visible"
+                      : "No drift flagged"}
+                </div>
+                <h2 id="decision-title">
+                  {finding
+                    ? findingTitle(finding.key)
+                    : selectedUncertain
+                      ? "A closer look."
+                      : "Good in this light."}
+                </h2>
+                <p className="decision-hint">
+                  {finding
+                    ? "Check the detail before you decide."
+                    : selectedUncertain
+                      ? "Some details are out of view."
+                      : "Your eye gets the final say."}
+                </p>
+                <details className="check-evidence">
+                  <summary>
+                    Evidence{" "}
+                    <span>
+                      {passedChecks(selected)}/{selected.checks.length} visible
+                      passes
+                    </span>
+                    <Icon name="chevron" size={14} />
+                  </summary>
+                  <CheckList shot={selected} character={character} />
+                  <p className="evidence-caption">
+                    Confidence is model-reported, not calibrated.
+                  </p>
+                </details>
+                <form
+                  className="review-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    void review("reject");
+                  }}
+                >
+                  <label htmlFor="rejection-reason">Reason for rejection</label>
+                  <textarea
+                    id="rejection-reason"
+                    ref={reasonRef}
+                    value={reason}
+                    onChange={(event) => setReason(event.target.value)}
+                    rows={3}
+                    maxLength={400}
+                    disabled={busy}
+                    placeholder="What should Scripty remember?"
+                    aria-describedby="review-scope"
+                  />
+                  <button
+                    className="action primary"
+                    disabled={busy || !reason.trim()}
+                    type="submit"
+                  >
+                    {reviewing ? "Saving the note…" : "Reject & remember"}
+                    <span className="shortcut">R</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="action secondary"
+                    disabled={busy || selected.status === "accepted"}
+                    onClick={() => void review("accept")}
+                  >
+                    {selected.status === "accepted"
+                      ? "Accepted"
+                      : "Accept shot"}
+                    <span className="shortcut">A</span>
+                  </button>
+                </form>
+                <p id="review-scope" className="review-scope">
+                  {source.kind === "cached"
+                    ? "Reviews stay in this browser."
+                    : "Your note guides future shots."}
+                </p>
+                {selected.status !== "pending" ? (
+                  <div className="saved-review">
+                    <Icon
+                      name={selected.status === "accepted" ? "check" : "flag"}
+                      size={14}
+                    />
+                    <span>
+                      {selected.status === "accepted"
+                        ? "Accepted take"
+                        : (selected.rejectReason ?? "Correction noted")}
+                    </span>
+                  </div>
+                ) : null}
+              </aside>
+            </section>
+            <section
+              className="filmstrip-region"
+              aria-label={`Batch ${activeBatch?.index ?? 1} shots`}
+            >
+              <div className="filmstrip-heading">
+                <span className="film-label">SIX SHOTS. ONE CHARACTER.</span>
+                <span>
+                  Choose a frame <Icon name="arrow" size={13} />
+                </span>
+              </div>
+              <div
+                className="filmstrip"
+                role="group"
+                tabIndex={0}
+                aria-label="Six recorded frames; scroll horizontally"
+              >
+                {activeShots.map((shot, index) => (
+                  <ShotCard
+                    key={shot.id}
+                    shot={shot}
+                    index={index}
+                    selected={shot.id === selected.id}
+                    onSelect={() => selectShot(shot.id)}
+                    animate={shot.batchId === newBatchId}
+                    animationIndex={index}
+                  />
+                ))}
+              </div>
+            </section>
+          </>
+        ) : (
+          <section className="first-take">
+            <div className="first-reference">
+              <ShotImage
+                src={character?.referenceImageUrl ?? "/seed/mara-reference.png"}
+                alt="Mara canonical character reference"
+              />
+              <span className="film-label">CHARACTER REFERENCE</span>
+            </div>
+            <div>
+              <span className="overline">READY WHEN YOU ARE</span>
+              <h2>
+                Let’s keep
+                <br />
+                the story straight.
+              </h2>
+              <p>
+                {source.kind === "unavailable"
+                  ? "The recorded reel isn’t available yet."
+                  : generating
+                    ? "Bringing the first take on set…"
+                    : "Six shots. A second pair of eyes."}
+              </p>
+              <button
+                className="action primary"
+                disabled={busy || !data || source.kind === "unavailable"}
+                onClick={() => void generate()}
+              >
+                {generating
+                  ? "Loading the take…"
+                  : source.kind === "cached"
+                    ? "Load first take"
+                    : "Generate first take"}
+                <Icon name="arrow" size={17} />
+              </button>
+            </div>
+          </section>
+        )}
+        {generating && allShots.length ? (
+          <div className="generation-status" role="status">
+            <span className="loading-dot" />
+            {source.kind === "cached"
+              ? "Loading recorded shots…"
+              : `${savedGenerationShots}/6 frames saved. Still rolling.`}
+          </div>
+        ) : null}
+        {notice ? (
+          <div
+            className={`set-notice ${newRuleId ? "rule-notice" : ""}`}
+            role="status"
+          >
+            <Icon name={newRuleId ? "spark" : "check"} size={16} />
+            {notice}
+            {newRuleId ? (
+              <button onClick={() => memoryDialogRef.current?.showModal()}>
+                View memory <Icon name="arrow" size={13} />
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+        <footer className="studio-footer">
+          <span>
+            {source.kind === "cached"
+              ? "Recorded results stay unchanged."
+              : "Keep the story straight."}
+          </span>
+          <a className="quiet-link" href="/learning">
+            View the learning <Icon name="arrow" size={14} />
+          </a>
+        </footer>
+      </main>
+      <dialog
+        className="memory-dialog"
+        ref={memoryDialogRef}
+        aria-labelledby="memory-title"
+      >
+        <div className="dialog-heading">
+          <h2 id="memory-title">Scripty Memory</h2>
+          <button
+            className="icon-action"
+            onClick={() => memoryDialogRef.current?.close()}
+            aria-label="Close memory"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+        <div className="memory-content">
+          <p className="drawer-lead">Production notes. Kept.</p>
+          <div className="learned-heading">
+            {learned.length} learned {learned.length === 1 ? "rule" : "rules"}
+          </div>
+          {learned.length ? (
+            learned.map((rule) => {
+              const reach = correctionReach(rule, allShots);
+              const recorded = recordedRuleIds.has(rule.id);
+              return (
+                <article
+                  className={`memory-rule ${rule.id === newRuleId ? "rule-arrived" : ""}`}
+                  key={rule.id}
+                >
+                  <Icon name="spark" size={17} />
+                  <p>{rule.text}</p>
+                  <span>
+                    {source.kind === "cached"
+                      ? recorded
+                        ? "Recorded memory"
+                        : "This browser’s correction"
+                      : "Learned from review"}
+                  </span>
+                  <span>
+                    {reach
+                      ? `Applied in ${reach} ${recorded ? "recorded " : ""}shots`
+                      : source.kind === "cached"
+                        ? "Not applied to recorded shots"
+                        : "Ready for the next take"}
+                  </span>
+                  <details>
+                    <summary>Rule provenance</summary>
+                    <code>{rule.id}</code>
+                    <p>{rule.timesApplied} batch applications</p>
+                  </details>
+                </article>
+              );
+            })
+          ) : (
+            <p className="subtle-empty">Your first correction goes here.</p>
+          )}
+          <section className="character-memory">
+            <span className="film-label">CHARACTER CANON</span>
+            <div className="memory-reference">
+              <ShotImage
+                src={character?.referenceImageUrl ?? "/seed/mara-reference.png"}
+                alt="Mara canonical reference"
+              />
+            </div>
+            <h3>{character?.name ?? "Mara"}</h3>
+            <dl>
+              {character?.attributes.map((attribute) => (
+                <div key={attribute.key}>
+                  <dt>{attribute.label}</dt>
+                  <dd>{attribute.expected}</dd>
+                </div>
+              ))}
+            </dl>
+            <p>Anatomical sides, not viewer sides.</p>
+          </section>
+          <details className="seed-rules">
+            <summary>Character-sheet rules</summary>
+            {data?.rules
+              .filter((rule) => rule.source === "seed")
+              .map((rule) => (
+                <p key={rule.id}>{rule.text}</p>
+              ))}
+          </details>
+        </div>
+      </dialog>
+      <dialog
+        className="evidence-dialog"
+        ref={evidenceDialogRef}
+        aria-labelledby="evidence-title"
+      >
+        <div className="dialog-heading">
+          <div>
+            <span className="overline">THE RECORD</span>
+            <h2 id="evidence-title">What carried forward.</h2>
+          </div>
+          <button
+            className="icon-action"
+            onClick={() => evidenceDialogRef.current?.close()}
+            aria-label="Close evidence"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+        <div className="evidence-body">
+          {archive ? (
+            <>
+              <div className="evidence-intro">
+                <h3>
+                  Correction <span>→</span> Memory <span>→</span> Next take.
+                </h3>
+                <p>
+                  The ring rule reached {archive.applications} later recorded
+                  prompts and checks.
+                </p>
+              </div>
+              <details className="recorded-rule-proof">
+                <summary>Follow the recorded rule</summary>
+                <blockquote>{archive.learnedRule}</blockquote>
+                <code>{archive.ruleId}</code>
+                <p>
+                  Exact rule text in {archive.applications} later prompts; the
+                  same rule ID in their monitor checks.
+                </p>
+              </details>
+              <div className="comparison-pair">
+                <figure>
+                  <ShotImage
+                    src={archive.firstImage}
+                    alt="Baseline close-up with a recorded ring-side finding"
+                  />
+                  <figcaption>
+                    Batch 01 <span>2/6 flagged</span>
+                  </figcaption>
+                </figure>
+                <figure>
+                  <ShotImage
+                    src={archive.latestImage}
+                    alt="Mara in a different scene in latest batch four"
+                  />
+                  <figcaption>
+                    Latest · Batch 04 <span>1/6 flagged</span>
+                  </figcaption>
+                </figure>
+              </div>
+              <p className="comparison-note">
+                Different scenes. Recorded results; settings changed.
+              </p>
+              <table className="results-table">
+                <caption>Four recorded batches · final checker v3</caption>
+                <thead>
+                  <tr>
+                    <th>Batch</th>
+                    <th>Flagged shots</th>
+                    <th>Uncertain checks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {archive.takes.map((take) => (
+                    <tr key={take.index}>
+                      <th>{number(take.index)}</th>
+                      <td>
+                        {take.flagged}/{take.shots}
+                      </td>
+                      <td>
+                        {take.uncertain}/{take.checks}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <details className="study-notes">
+                <summary>Study notes & limits</summary>
+                <ul>
+                  <li>These flags do not verify image improvement.</li>
+                  <li>
+                    Generator, quality, style and scenes changed after batch 1.
+                  </li>
+                  <li>
+                    Baseline is a disclosed v3 recheck; v1/v2 flagged 6/6.
+                  </li>
+                  <li>Learned rules also added monitor checks.</li>
+                  <li>The final rate rose from 0/6 to 1/6.</li>
+                  <li>Human-verified labels: pending.</li>
+                  <li>
+                    The last scar-side flag may itself be a checker error.
+                  </li>
+                  <li>
+                    Markers are editor-positioned, not automated localization.
+                  </li>
+                </ul>
+              </details>
+            </>
+          ) : null}
+          {selected ? (
+            <section className="selected-evidence">
+              <h3>Selected frame</h3>
+              <p className="film-label">
+                BATCH {number(selectedBatch?.index ?? 1)} /{" "}
+                {selected.scenePrompt}
+              </p>
+              <CheckList shot={selected} character={character} />
+              <details>
+                <summary>Generation context</summary>
+                <pre>{selected.finalPrompt}</pre>
+                <p className="evidence-caption">
+                  {source.kind === "cached"
+                    ? "Recorded engine prompt · local replay edits do not rewrite it."
+                    : "Current generation prompt"}
+                </p>
+              </details>
+            </section>
+          ) : null}
+          <details className="trace-details">
+            <summary>
+              Trace log <span>{data?.traces.length ?? 0} events</span>
+            </summary>
+            <div className="trace-events">
+              {(data?.traces ?? []).toReversed().map((trace) => (
+                <article key={trace.id}>
+                  <time dateTime={trace.createdAt}>
+                    {captureTime(trace.createdAt)}
+                  </time>
+                  <span
+                    className={
+                      trace.type.startsWith("rule")
+                        ? "memory-text"
+                        : trace.type === "flag"
+                          ? "drift-text"
+                          : ""
+                    }
+                  >
+                    {humanize(trace.type)}
+                  </span>
+                  <p>{trace.message}</p>
+                  {trace.shotId ? (
+                    <button
+                      onClick={() => {
+                        selectShot(trace.shotId!);
+                        evidenceDialogRef.current?.close();
+                      }}
+                    >
+                      View frame <Icon name="arrow" size={13} />
+                    </button>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </details>
+          <p className="evidence-caption">
+            Project memory and prompt adaptation. Model weights stay fixed.
+          </p>
+        </div>
+      </dialog>
+      <dialog
+        className="frame-dialog"
+        ref={previewDialogRef}
+        aria-labelledby="frame-dialog-title"
+      >
+        <div className="dialog-heading">
+          <div>
+            <h2 id="frame-dialog-title">Full frame</h2>
+            <p>{selected?.scenePrompt}</p>
+          </div>
+          <button
+            className="icon-action"
+            onClick={() => previewDialogRef.current?.close()}
+            aria-label="Close full frame preview"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+        {selected ? (
+          <ShotImage
+            src={selected.imageUrl}
+            alt={`Full frame: ${selected.scenePrompt}`}
+            priority
+          />
+        ) : null}
+      </dialog>
+    </div>
+  );
 }
-
-function ShotCard({ shot, index, selected, onSelect, animate, animationIndex }: { shot: Shot; index: number; selected: boolean; onSelect: () => void; animate: boolean; animationIndex: number }) {
-  const failure = shot.checks.find((check) => !check.pass && check.confidence >= 0.6);
-  const isUncertain = uncertain(shot);
-  return <button className={`shot-card ${selected ? "selected" : ""} ${shot.flagged ? "flagged" : ""} ${animate ? "shot-arrived" : ""}`} style={{ animationDelay: `${animationIndex * 25}ms` }} onClick={onSelect} aria-pressed={selected} aria-label={`Frame ${index + 1}. ${shot.flagged ? "Continuity drift" : isUncertain ? "Evidence incomplete" : "Checks passed"}. ${shot.status}. ${shot.scenePrompt}`}><div className="shot-thumbnail"><ShotImage src={shot.imageUrl} alt={shot.scenePrompt}/><span className="shot-number">FR {number(index + 1)}</span><span className={`shot-signal ${shot.flagged ? "drift" : isUncertain ? "uncertain" : "pass"}`} title={shot.flagged ? "Continuity drift" : isUncertain ? "Evidence incomplete" : "Checks passed"}><Icon name={shot.flagged || isUncertain ? "flag" : "check"} size={12}/></span>{shot.status !== "pending" ? <span className={`thumbnail-review ${shot.status}`}><Icon name={shot.status === "accepted" ? "check" : "close"} size={11}/>{shot.status}</span> : null}</div><div className="shot-card-body"><div><span className="shot-frame-title">Frame {number(index + 1)}</span><span className={`shot-check-count ${shot.flagged ? "drift-text" : isUncertain ? "muted-text" : "pass-text"}`}>{passedChecks(shot)}/{shot.checks.length}</span></div><p>{shot.scenePrompt}</p><span className={`shot-footnote ${shot.flagged ? "drift-text" : "muted-text"}`}><Icon name={shot.flagged || isUncertain ? "flag" : "check"} size={11}/>{failure ? `${failure.key.startsWith("rule:") ? "Memory rule" : humanize(failure.key)} drift` : isUncertain ? "Evidence incomplete" : "Checks passed"}</span></div></button>;
+function preferredShot(shots: Shot[], batches: Batch[]): Shot | undefined {
+  const latest = [...batches]
+    .filter((batch) => shots.some((shot) => shot.batchId === batch.id))
+    .sort((a, b) => b.index - a.index)[0];
+  const current = latest
+    ? shots.filter((shot) => shot.batchId === latest.id)
+    : shots;
+  return (
+    current.find(
+      (shot) =>
+        shot.id === "1fc48122-2b25-4841-b588-5554298bd339" && shot.flagged,
+    ) ??
+    current.find((shot) => shot.flagged) ??
+    current[0]
+  );
 }
-function MemorySkeleton() { return <div className="memory-skeleton" aria-label="Loading character memory"><div className="skeleton-reference pulse"/>{Array.from({length:4}, (_,i) => <div key={i} className="skeleton-line pulse"/>)}</div>; }
-function BatchSkeleton() { return <div className="initial-loading" role="status"><p>Opening the continuity workspace…</p><div className="filmstrip">{Array.from({length:6}, (_,i) => <div key={i} className="shot-skeleton pulse"><Icon name="frame" size={22}/></div>)}</div></div>; }
+function findingTitle(key: string) {
+  return (
+    {
+      scarf_color: "Scarf color changed?",
+      scar_side: "Scar side changed?",
+      ring_hand: "Ring on the wrong hand?",
+      hair: "Hair changed?",
+    }[key] ?? "Something slipped."
+  );
+}
+function recordedMarker(id: string, key: string) {
+  // Curated pointers for these exact recorded images; no invented localization on new shots.
+  if (id === "1fc48122-2b25-4841-b588-5554298bd339" && key === "ring_hand")
+    return {
+      x: 0.61,
+      y: 0.72,
+      width: 0.12,
+      height: 0.15,
+      label: "Ring hand?",
+      asset: "/design/ring-annotation.svg",
+    };
+  if (
+    id === "46bebc3e-533f-4806-82ac-b625abb76114" &&
+    (key === "scar_side" || key === "rule:seed-scar")
+  )
+    return {
+      x: 0.49,
+      y: 0.2,
+      width: 0.1,
+      height: 0.12,
+      label: "Scar side?",
+      asset: "/design/eye-annotation.svg",
+    };
+  return null;
+}
+function CheckList({
+  shot,
+  character,
+}: {
+  shot: Shot;
+  character?: Project["characters"][number];
+}) {
+  return (
+    <div className="checks-list">
+      {shot.checks.map((check) => {
+        const unclear =
+          check.confidence < 0.6 || check.observed.toLowerCase() === "unclear";
+        return (
+          <div
+            className={`check-row ${unclear ? "is-uncertain" : check.pass ? "is-pass" : "is-drift"}`}
+            key={check.key}
+          >
+            <div className="check-top">
+              <strong>
+                {character?.attributes.find(
+                  (attribute) => attribute.key === check.key,
+                )?.label ??
+                  (check.key.startsWith("rule:")
+                    ? "Memory rule"
+                    : humanize(check.key))}
+              </strong>
+              <span>
+                {unclear ? "? Uncertain" : check.pass ? "✓ Pass" : "! Drift"}
+              </span>
+            </div>
+            <dl>
+              <div>
+                <dt>Expected</dt>
+                <dd>{check.expected}</dd>
+              </div>
+              <div>
+                <dt>Observed</dt>
+                <dd>{check.observed}</dd>
+              </div>
+            </dl>
+            <span className="check-confidence">
+              {pct(check.confidence)} model confidence
+            </span>
+            {check.key.startsWith("rule:") ? (
+              <code className="check-rule-id">{check.key.slice(5)}</code>
+            ) : null}
+            {check.note ? <p>{check.note}</p> : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+function ShotCard({
+  shot,
+  index,
+  selected,
+  onSelect,
+  animate,
+  animationIndex,
+}: {
+  shot: Shot;
+  index: number;
+  selected: boolean;
+  onSelect: () => void;
+  animate: boolean;
+  animationIndex: number;
+}) {
+  const unclear = uncertain(shot);
+  return (
+    <button
+      className={`shot-card ${selected ? "selected" : ""} ${shot.flagged ? "flagged" : ""} ${animate ? "shot-arrived" : ""}`}
+      style={{ animationDelay: `${animationIndex * 20}ms` }}
+      onClick={onSelect}
+      aria-pressed={selected}
+      aria-label={`Frame ${index + 1}. ${shot.flagged ? "Continuity drift" : unclear ? "Uncertain" : "No drift flagged"}. ${shot.status}. ${shot.scenePrompt}`}
+    >
+      <div className="shot-thumbnail">
+        <ShotImage src={shot.imageUrl} alt={shot.scenePrompt} />
+        {shot.status !== "pending" ? (
+          <span className="thumbnail-review">
+            {shot.status === "accepted" ? "✓" : "−"}
+          </span>
+        ) : null}
+      </div>
+      <div className="shot-caption">
+        <span>FR {number(index + 1)}</span>
+        <span className={shot.flagged ? "drift-text" : ""}>
+          {shot.flagged ? "! Drift" : unclear ? "? Uncertain" : "✓ Checked"}
+        </span>
+      </div>
+    </button>
+  );
+}

@@ -1,0 +1,17 @@
+# Scripty — judge-driven improvements
+
+Preserve the working public demo, fixed criteria, real cached images and remaining API budget. Evaluate one change at a time on a branch. Small changes need concrete visual or behavioral evidence; larger ideas stay proposals.
+
+| Proposal | Value / judge concern | Decision and evidence needed |
+| --- | --- | --- |
+| Show correction reach: distinct later shots with the learned rule in their generation prompt and monitor output | Makes persistent memory visible without claiming image-quality improvement. Current saved evidence supports18 later shots. | Small, safe: implement with the Figma memory treatment, count from delivered real shot IDs and rule IDs; show recorded versus browser-local provenance. Never hardcode18 for an empty/partial replay. |
+| Separate monitor flags from human-confirmed continuity | The current curve changes both generator settings and monitor rules; it cannot prove causal improvement. | Keep actual rates/uncertainty, expose fixed-criteria human review status. Do not call a passed monitor check a guaranteed correct image. |
+| Larger evidence-first review view | Tiny details such as ring placement are the actual creator problem; a small thumbnail is not persuasive evidence. | Implement the incoming Figma inspector and mobile review faithfully; retain original images and explicit monitor-claim wording. |
+| Fix clipped empty-state primary action | A first-time judge should be able to start immediately at1440×900. | Safe focused CSS correction identified and visually verified by independent design audit. Integrate before full Figma pass. |
+| Controlled memory-on/off comparison on matched new scenes | Could test whether memory causes better outputs. | Larger study: current remaining reservations$3.42 cannot support a credible multi-batch test. Propose in MORNING.md; do not spend more or claim this is proven. |
+| Measure reviewer minutes and generation cost per human-approved shot | Stronger buyer value than a changing monitor-flag curve. | Larger pilot: needs creators, a fixed human rubric and permission for data collection. Proposal only; no invented savings. |
+| Integrate into a team's existing generator/review workflow | Portability may be more valuable than a new generation tool. | Future proposal: exportable continuity constraints and a check API. Keep current one-character MVP stable; no provider expansion tonight. |
+
+## Acceptance for this design pass
+
+Use final Figma frame IDs and high-fidelity context. Reuse the app's state, API and real shot assets. Match fonts, weights, sizes, spacing, component geometry and semantic colors. At matching desktop/mobile dimensions, save reference and implementation screenshots side by side, record differences, and fix in-scope mismatches. Preserve truthful counts and working review/replay behavior.

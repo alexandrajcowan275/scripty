@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="stroke0_0_32" fill="white">
+<path d="M120 52C120 80.7188 93.1371 104 60 104C26.8629 104 0 80.7188 0 52C0 23.2812 26.8629 0 60 0C93.1371 0 120 23.2812 120 52Z"/>
+</mask>
+<path id="Ring location / monitor claim" d="M120 52C120 80.7188 93.1371 104 60 104C26.8629 104 0 80.7188 0 52C0 23.2812 26.8629 0 60 0C93.1371 0 120 23.2812 120 52Z" stroke-width="4" stroke="#E5484D" mask="url(#stroke0_0_32)"/>
+</svg>

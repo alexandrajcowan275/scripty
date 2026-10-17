@@ -19,7 +19,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. Public mode defaults to `DEMO_MODE=cached`. The committed cache contains four genuine batches and24 images. A fresh browser begins with no delivered batches; Load recorded batch reveals the next six frames. A missing cache is labeled and generation is disabled.
+Open http://localhost:3000. Public mode defaults to `DEMO_MODE=cached`. The committed cache contains four genuine batches and24 images. Open **Open demo project** to enter `/studio`; a fresh recorded session automatically loads the first six frames. **Load next batch** reveals the remaining recorded takes. `/learning` shows the complete recorded comparison. A missing cache is labeled and generation is disabled.
 
 ```sh
 npm run build

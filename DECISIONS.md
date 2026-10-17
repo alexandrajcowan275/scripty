@@ -42,3 +42,14 @@
 ### Final live rehearsal: completion and review limits
 
 The live browser rehearsal produced six new frames while read-only polling displayed durable progress. The completion notice now compares against batch IDs present when generation began, so polling cannot mislabel a fresh batch as a duplicate. Rejection input is limited to the API's400-character contract, avoiding an avoidable validation failure after a long production note.
+
+## Figma v2 and founder Runway/Natural direction
+
+- Main is the sole application-code editor. Other chats deliver research, Figma, pitch and report-only reviews; judge/QA intervals are90minutes to conserve usage. Pitch writer completed `handoff/pitch-final.md` and stopped.
+- Adopt final Education-team Figma v2 rather than rejected Drafts v1. Replace the dense dashboard with an editorial landing, a large fitted image/320px contextual decision area, a quiet six-frame strip, contextual Memory, and separate recorded learning/evidence. Keep the working API/replay contracts. Serves Design and demo clarity.
+- Match v2 Inter80/88 display,40/48 headings,24/32 titles,16/24 body and48px controls. Bundle Inter locally. Near-black#0C0C0C and warm-white primary recede around genuine images; red marks findings, gold marks learned memory. No green victory signal or generic red action.
+- Research current Runway, Natural and seven creative/product references before implementation. Runway's observed public/guest surfaces currently use light surrounds; the near-black Scripty canvas follows the founder's direction, not an invented Runway token. Borrow image hierarchy, restraint and Natural's editorial craft; never copy their logos, layouts or media. Original faint grain stays off evidence images.
+- Use the clearer recorded map/ring candidate as default review, while retaining the Figma portrait selection for comparisons. Image markers belong only to exact known shots and are disclosed as editor-positioned monitor claims. Human laterality review remains necessary.
+- Correction reach is inspectable evidence: unique shot IDs with exact rule text in final prompts AND corresponding rule IDs in monitor output. Delivered playback counts grow6/12/18; local replay edits never claim to affect historical images. Expose the recorded rule identity and readable expected/observed checks on demand. Serves continual-learning credibility.
+- Preserve all four recorded rates2/6,0/6,0/6,1/6, uncertainty denominators, v3 calibration and generator/scenes/reference confounds. The comparison says settings changed and human review is pending; no verified visual gain. No additional paid generation.
+- Visual verification found filmstrip captions below the desktop reference and a lingering notice over imagery. Reduce secondary vertical chrome and dismiss routine notices after5.5seconds; saved-rule notices remain available for Memory inspection. Stop the recorded next-batch action after all four takes are delivered.

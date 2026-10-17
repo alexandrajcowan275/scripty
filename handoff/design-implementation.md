@@ -1,0 +1,11 @@
+# Scripty Figma v2 implementation
+
+Source of truth: [Education-team Scripty Design](https://www.figma.com/design/M6a6owg9izgReM2ejauaos). The former personal Drafts file is rejected v1. Implementation branch: `codex/figma-implementation`; public release is preserved until verification passes.
+
+Implemented native Next.js routes: editorial landing `/`, cinematic review `/studio`, recorded comparison `/learning`. Inter is bundled locally; Geist Mono is reserved for film labels and evidence. Tokens match v2: #0C0C0C canvas, #171717 surface, #F4F3EF text, #A5A39E secondary, #E5484D drift, #F5C451 learned memory. Controls48px/radius12, media radius16, dialogs24; desktop review decision area320px. Original procedural grain appears only on the landing background. Static Figma annotations are downloaded exactly; original cached images remain local and unchanged.
+
+Intentional evidence-driven differences: the default baseline selection is Frame04's clearer map/ring finding; Frame02 remains available for direct Figma comparison. Recorded markers are manually positioned for known original images and labeled monitor claims, never generic AI bounding boxes. New browser corrections remain distinct from recorded rules; correction reach counts unique delivered shots containing both the exact rule text in the prompt and the corresponding rule ID in checks. The archive comparison retains all four rates and final worsening; human-verified improvement is unclaimed. Working API contracts, signed replay state, access guards and live six-scene editor are preserved.
+
+Verification: 42 tests and production build pass. Complete four-batch replay,24 image hashes, review/accept refresh persistence, isolated sessions and actionable cache exhaustion pass with server AI/database egress blocked. Desktop/mobile screenshots and final public release evidence are added below when complete. Native dialogs retain Escape, focus containment and return; A/R shortcuts ignore input fields and open dialogs. Reduced motion is supported.
+
+The optional Figma capture-script injection was rejected by automatic approval review because it would export current app content/images. No script was installed. Local screenshot comparisons use the supplied final Figma exports.
