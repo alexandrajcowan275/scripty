@@ -1,4 +1,4 @@
-import { ownedProduction } from "@/lib/productions";
+import { ownedProduction, productionCharacter } from "@/lib/productions";
 import { getProject } from "@/lib/db";
 import { cachedProject, cacheMetadata } from "@/lib/engine-cache";
 import {
@@ -19,10 +19,21 @@ export async function GET(
     if (production || liveMode(request)) {
       const data = await getProject(id);
       if (!data) throw new HttpError("Project not found", 404);
+      if (production && data.project.characters[0])
+        data.project.characters[0] = productionCharacter(
+          data.project.characters[0],
+          production,
+        );
       return Response.json(
         {
           ...data,
-          ...(production ? { scenePrompts: production.scene_prompts } : {}),
+          ...(production
+            ? {
+                scenePrompts: production.scene_prompts,
+                generationEnabled:
+                  process.env.CANON_PUBLIC_GENERATION_ENABLED === "true",
+              }
+            : {}),
           mode: "live",
           provenance: "supabase",
         },

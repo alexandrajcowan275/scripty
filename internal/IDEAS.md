@@ -15,3 +15,6 @@ Preserve the working public demo, fixed criteria, real cached images and remaini
 ## Acceptance for this design pass
 
 Use final Figma frame IDs and high-fidelity context. Reuse the app's state, API and real shot assets. Match fonts, weights, sizes, spacing, component geometry and semantic colors. At matching desktop/mobile dimensions, save reference and implementation screenshots side by side, record differences, and fix in-scope mismatches. Preserve truthful counts and working review/replay behavior.
+
+## Character version conflicts
+Owned character edits now append versions and preserve old references/checks. A larger future improvement is version-scoped learned rules and a clear resolution policy when a new canonical detail conflicts with a rule learned from an older take. Do not silently rewrite historical checks or claim this conflict policy is validated. No new paid study is authorized overnight.

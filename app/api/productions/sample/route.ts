@@ -8,7 +8,8 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   try {
     const sample = await cachedProject(request, "mara", true);
-    if (!sample) throw new HttpError("Sample production unavailable", 503);
+    if (!sample?.cache?.batches.length)
+      throw new HttpError("Sample production unavailable", 503);
     return Response.json(
       {
         ...sample.data,

@@ -1,4 +1,8 @@
-import { ownedProduction, checkOrigin } from "@/lib/productions";
+import {
+  ownedProduction,
+  checkOrigin,
+  productionCharacter,
+} from "@/lib/productions";
 import { z } from "zod";
 import seed from "@/seed/mara.json";
 import {
@@ -8,6 +12,7 @@ import {
   addRule,
   addTrace,
 } from "@/lib/db";
+import { emptyUsage } from "@/lib/engine-ai";
 import { learnRule, localRejectionRule } from "@/lib/rules";
 import {
   cachedProject,
@@ -97,12 +102,30 @@ export async function POST(
         mode: "live",
         provenance: "supabase_review",
       });
-    const learned = await learnRule(
-      shot,
-      snapshot.project.characters[0],
-      input.reason!,
-      snapshot.rules,
-    );
+    const learningCharacter = production
+      ? productionCharacter(snapshot.project.characters[0], production)
+      : snapshot.project.characters[0];
+    const learned =
+      production && process.env.CANON_PUBLIC_GENERATION_ENABLED !== "true"
+        ? {
+            ...localRejectionRule(
+              shot,
+              learningCharacter,
+              input.reason!,
+              snapshot.rules,
+            ),
+            usage: emptyUsage(),
+            provenance: "creator_rule",
+            error: undefined,
+          }
+        : await learnRule(
+            shot,
+            production
+              ? productionCharacter(snapshot.project.characters[0], production)
+              : snapshot.project.characters[0],
+            input.reason!,
+            snapshot.rules,
+          );
     await addRule(learned.rule);
     await addTrace({
       id: crypto.randomUUID(),

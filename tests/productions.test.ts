@@ -224,3 +224,36 @@ test("sample corrections cannot overwrite the original engine rule or its proven
   assert.ok(data.recordedRuleIds.includes(original.id));
   assert.ok(!data.recordedRuleIds.includes(correction.newRule.id));
 });
+
+test("character versions affect current canon without mutating the original character", async () => {
+  const { productionCharacter } = await import("../lib/productions");
+  const base = {
+    id: "char",
+    name: "Vera",
+    referenceImageUrl:
+      "/api/productions/7e14883b-42a9-4e0e-b25f-335f73498557/reference",
+    attributes: [
+      { key: "canon_1", label: "Scarf", expected: "red wool scarf", weight: 1 },
+    ],
+  };
+  const old = JSON.stringify(base);
+  const version = "11eb4da9-2284-4e5c-8900-57fb862c93a3";
+  const current = productionCharacter(base, {
+    character_version_id: version,
+    current_character: {
+      name: "Vera Night",
+      attributes: [
+        {
+          key: "canon_1",
+          label: "Scarf",
+          expected: "blue wool scarf",
+          weight: 1,
+        },
+      ],
+    },
+  });
+  assert.equal(current.name, "Vera Night");
+  assert.equal(current.attributes[0].expected, "blue wool scarf");
+  assert.match(current.referenceImageUrl, new RegExp("v=" + version));
+  assert.equal(JSON.stringify(base), old);
+});

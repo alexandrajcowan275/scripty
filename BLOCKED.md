@@ -7,3 +7,5 @@ The Supabase connector lacks database permissions, but the already authenticated
 
 ## Design cleanup retained
 The design chat's automatic approval review rejected removal of ten temporary Figma source-image nodes as data deletion. They remain in the file. This cleanup is skipped; it does not block the new screens or implementation. No permission request is needed because the founder instructed all deletion to be skipped overnight.
+
+Automatic approval review rejected moving the unused saved-productions component out of the project under the no-deletion instruction. Retained the file; it is not imported into the app. Release unaffected.

@@ -4,9 +4,14 @@ import { privateReference } from "./productions";
 
 export async function imageDataUrl(url: string): Promise<string> {
   const productionReference =
-    /^\/api\/productions\/([a-f0-9-]{36})\/reference$/.exec(url);
+    /^\/api\/productions\/([a-f0-9-]{36})\/reference(?:\?v=([a-f0-9-]+))?$/.exec(
+      url,
+    );
   if (productionReference) {
-    const blob = await privateReference(productionReference[1]);
+    const blob = await privateReference(
+      productionReference[1],
+      productionReference[2],
+    );
     return `data:${blob.type};base64,${Buffer.from(await blob.arrayBuffer()).toString("base64")}`;
   }
   if (url.startsWith("data:image/")) {

@@ -8,7 +8,8 @@ export async function GET(
   try {
     const { id } = await context.params;
     await ownedProduction(request, id);
-    const blob = await privateReference(id);
+    const version = new URL(request.url).searchParams.get("v") ?? undefined;
+    const blob = await privateReference(id, version);
     return new Response(blob, {
       headers: {
         "Content-Type": blob.type,

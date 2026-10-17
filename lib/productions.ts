@@ -5,7 +5,8 @@ import {
   timingSafeEqual,
 } from "node:crypto";
 import { z } from "zod";
-import { serverDatabase } from "./db";
+import { serverDatabase, attributeSchema } from "./db";
+import type { Character } from "./types";
 import { HttpError } from "./engine-http";
 const ownerCookieName = "scripty_owner";
 function signature(value: string) {
@@ -95,7 +96,9 @@ export async function ownedProduction(request: Request, id: string) {
     throw new HttpError("Production not found", 404);
   const { data, error } = await serverDatabase()
     .from("production_settings")
-    .select("project_id,scene_prompts,reference_path,generation_count")
+    .select(
+      "project_id,scene_prompts,reference_path,generation_count,character_version_id,current_character:production_character_versions(name,reference_path,attributes)",
+    )
     .eq("project_id", id)
     .eq("owner_hash", owner.hash)
     .maybeSingle();
@@ -103,19 +106,28 @@ export async function ownedProduction(request: Request, id: string) {
   if (!data) throw new HttpError("Production not found in this browser", 404);
   return { ...data, ownerHash: owner.hash };
 }
-export async function privateReference(id: string) {
-  const { data: settings, error } = await serverDatabase()
-    .from("production_settings")
-    .select("reference_path")
-    .eq("project_id", id)
-    .single();
-  if (error || !settings) throw new Error("Character reference unavailable");
-  const { data, error: downloadError } = await serverDatabase()
-    .storage.from("references")
-    .download(settings.reference_path);
-  if (downloadError || !data)
-    throw new Error("Character reference unavailable");
-  return data;
+export async function privateReference(id: string, versionId?: string) {
+  let path: string;
+  if (versionId) {
+    z.uuid().parse(versionId);
+    const { data, error } = await serverDatabase()
+      .from("production_character_versions")
+      .select("reference_path")
+      .eq("id", versionId)
+      .eq("project_id", id)
+      .single();
+    if (error || !data) throw new Error("Character reference unavailable");
+    path = data.reference_path;
+  } else {
+    const { data, error } = await serverDatabase()
+      .from("production_settings")
+      .select("reference_path")
+      .eq("project_id", id)
+      .single();
+    if (error || !data) throw new Error("Character reference unavailable");
+    path = data.reference_path;
+  }
+  return downloadReferencePath(path);
 }
 export async function uploadReference(
   bytes: Uint8Array,
@@ -131,7 +143,11 @@ export async function uploadReference(
   if (error) throw new Error("Reference upload could not finish");
   return path;
 }
-export async function claimCreation(request: Request, ownerHash: string) {
+export async function claimCreation(
+  request: Request,
+  ownerHash: string,
+  kind = "create",
+) {
   const hour = new Date().toISOString().slice(0, 13);
   const ip =
     request.headers.get("x-vercel-forwarded-for") ??
@@ -145,7 +161,7 @@ export async function claimCreation(request: Request, ownerHash: string) {
   ]) {
     const { data, error } = await serverDatabase().rpc(
       "claim_production_slot",
-      { p_bucket: `${hour}:${value}` },
+      { p_bucket: `${kind}:${hour}:${value}` },
     );
     if (error || !data)
       throw new HttpError(
@@ -206,3 +222,28 @@ export async function downloadReferencePath(path: string) {
 
 export const referenceLimitMessage =
   "Reference generation is taking a breather. Upload an image to keep going, or explore Mara.";
+
+export function productionCharacter(
+  base: Character,
+  settings: { current_character?: unknown; character_version_id?: unknown },
+): Character {
+  const raw = Array.isArray(settings.current_character)
+    ? settings.current_character[0]
+    : settings.current_character;
+  if (!raw) return base;
+  const version = z
+    .object({
+      name: z.string().min(1).max(80),
+      attributes: z.array(attributeSchema).min(1).max(12),
+    })
+    .parse(raw);
+  return {
+    ...base,
+    name: version.name,
+    attributes: version.attributes,
+    referenceImageUrl:
+      typeof settings.character_version_id === "string"
+        ? `${base.referenceImageUrl.split("?")[0]}?v=${settings.character_version_id}`
+        : base.referenceImageUrl,
+  };
+}

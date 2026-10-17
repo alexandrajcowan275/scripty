@@ -1,0 +1,46 @@
+{
+  "production_id": "01a7265f-1634-43b8-928c-f3571d4f7245",
+  "checks": [
+    {
+      "check": "owned production loads current initial version",
+      "pass": true
+    },
+    {
+      "check": "initial private reference is available",
+      "pass": true
+    },
+    {
+      "check": "replacement reference saved privately before Continue",
+      "pass": true
+    },
+    {
+      "check": "upload alone does not change the production character",
+      "pass": true
+    },
+    {
+      "check": "character changes save through the owned version endpoint",
+      "pass": true
+    },
+    {
+      "check": "fresh read returns the edited name/canon and a new version URL",
+      "pass": true
+    },
+    {
+      "check": "current version returns the exact new reference bytes",
+      "pass": true
+    },
+    {
+      "check": "historical version still returns the exact old reference bytes",
+      "pass": true
+    },
+    {
+      "check": "character edit does not invent shots/checks or change scenes",
+      "pass": true
+    },
+    {
+      "check": "reference generation stays disabled without a paid call",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

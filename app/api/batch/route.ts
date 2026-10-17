@@ -1,4 +1,5 @@
 import {
+  productionCharacter,
   requireGenerationCapacity,
   ownedProduction,
   checkOrigin,
@@ -120,7 +121,11 @@ export async function POST(request: Request) {
     }
     const snapshot = await getProject(input.projectId);
     if (!snapshot) throw new HttpError("Project not found", 404);
-    const character = snapshot.project.characters[0];
+    const originalCharacter = snapshot.project.characters[0];
+    const character =
+      production && originalCharacter
+        ? productionCharacter(originalCharacter, production)
+        : originalCharacter;
     if (!character) throw new HttpError("Project has no character sheet", 409);
     if (snapshot.rules.length > 40)
       throw new HttpError(
@@ -207,7 +212,7 @@ export async function POST(request: Request) {
           );
         trace(
           "generate",
-          `Batch ${batch.index}, scene ${index + 1}; provider=${generated.provenance}; image_model=${generated.imageModel ?? "unavailable"}; image_quality=${generated.imageQuality ?? "unavailable"}; images=${generated.usage.imageRequests}; accepted_reference=${Boolean(accepted[0])}`,
+          `Batch ${batch.index}, scene ${index + 1}; provider=${generated.provenance}; image_model=${generated.imageModel ?? "unavailable"}; image_quality=${generated.imageQuality ?? "unavailable"}; images=${generated.usage.imageRequests}; accepted_reference=${Boolean(accepted[0])}; canonical_reference=${character.referenceImageUrl}`,
           shotId,
         );
         const monitor =
