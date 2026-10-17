@@ -23,6 +23,7 @@ import {
   message,
   operationIssue,
   modelFor,
+  modelLabel,
   percent,
   ruleCheckReach,
   rulePromptReach,
@@ -330,12 +331,19 @@ export function StudioScreen() {
                 "Your first take."
               )}
             </h1>
-            <p className="v2-mono v2-model-line">
+            <p
+              className="v2-mono v2-model-line"
+              title={
+                data && active
+                  ? `${modelFor(data, active, "image_model")} · checked by ${modelFor(data, active, "monitor_model")}`
+                  : undefined
+              }
+            >
               {data && active ? (
                 <>
-                  {modelFor(data, active, "image_model")}
-                  <br />
-                  checked by {modelFor(data, active, "monitor_model")}
+                  {modelLabel(modelFor(data, active, "image_model"))}
+                  {" · checked by "}
+                  {modelLabel(modelFor(data, active, "monitor_model"))}
                 </>
               ) : (
                 "—"

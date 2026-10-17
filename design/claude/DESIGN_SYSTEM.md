@@ -4,19 +4,19 @@ Implementation source: `/styles/tokens.css`. Screen/layout rules: `/styles/ui-v2
 
 ## Tokens
 
-| Purpose            | Tokens                                                                                                                                   |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Canvas and imagery | `--background` warm off-white, `--surface` white, `--image-bed` neutral image backdrop                                                   |
-| Text and hierarchy | `--text`, `--muted`, `--muted-strong`, `--v2-tone` (large secondary headline text only)                                                  |
-| Meaning            | `--drift` red: monitor flag; `--pass` green: on-model; `--memory`, `--memory-fill` gold: learned rule                                    |
-| Interaction        | `--focus-ring`, `--hover`, `--border`, `--v2-stroke`, `--v2-soft`                                                                        |
-| Optical materials  | `--v2-glass`, `--glass-soft/nav/hover/border/opaque/label/highlight`, `--scrim`, `--scrim-light`, `--sheet-scrim`                        |
-| Ambient            | `--haze-violet`, `--haze-rose`; one low-opacity haze per screen, grain is a shared SVG texture                                           |
-| Depth              | `--shadow`, `--shadow-tint`, `--shadow-tint-subtle/soft/strong`; focus and semantic rule glow remain separate                            |
-| Fonts              | `--font-display`: Funnel Display; `--font-ui`: Funnel Sans; `--font-mono`: Martian Mono                                                  |
-| Space              | `--space-4/8/12/16/20/24/28/32/40/48/64/96`; 8-point base, 4-point optical adjustments                                                   |
-| Radius             | `--radius-small` 12, `--radius-card` 16, `--radius-large` 22, `--radius-sheet` 30, `--radius-pill` 999                                   |
-| Motion             | `--dur-fast` 180 ms, `--dur-base` 360 ms, `--dur-slow` 520 ms, `--ease-out`, `--ease-spring`; reduced motion uses 150 ms opacity changes |
+| Purpose            | Tokens                                                                                                                                                                                         |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Canvas and imagery | `--background` warm off-white, `--surface` white, `--image-bed` neutral image backdrop                                                                                                         |
+| Text and hierarchy | `--text`, `--muted`, `--muted-strong`, `--v2-tone` (large secondary headline text only)                                                                                                        |
+| Meaning            | `--drift` accessible red text, `--drift-fill` accessible filled action, `--drift-outline` bright image brackets; `--pass` green; `--memory`, `--memory-fill/border/detail` gold rule materials |
+| Interaction        | `--focus-ring`, `--hover`, `--border`, `--v2-stroke`, `--v2-soft`                                                                                                                              |
+| Optical materials  | `--v2-glass`, `--glass-soft/nav/hover/border/opaque/label/highlight`, `--scrim`, `--scrim-light`, `--sheet-scrim`                                                                              |
+| Ambient            | `--haze-violet`, `--haze-rose`; one low-opacity haze per screen, grain is a shared SVG texture                                                                                                 |
+| Depth              | `--shadow`, `--shadow-tint`, `--shadow-tint-subtle/soft/strong`; focus and semantic rule glow remain separate                                                                                  |
+| Fonts              | `--font-display`: Funnel Display; `--font-ui`: Funnel Sans; `--font-mono`: Martian Mono                                                                                                        |
+| Space              | `--space-4/8/12/16/20/24/28/32/40/48/64/96`; 8-point base, 4-point optical adjustments                                                                                                         |
+| Radius             | `--radius-small` 12, `--radius-card` 16, `--radius-large` 22, `--radius-sheet` 30, `--radius-pill` 999                                                                                         |
+| Motion             | `--dur-fast` 180 ms, `--dur-base` 360 ms, `--dur-slow` 520 ms, `--ease-out`, `--ease-spring`; reduced motion uses 150 ms opacity changes                                                       |
 
 Desktop page wrap: max 1320 px including 40 px margins. Studio: 24 px margins, 220 px take rail / flexible contact sheet / 300 px Memory, 24 px gutters. Review: flexible image + 380 px inspector, 24 px margins/gutters. At 390 px, margins are 16 px, Studio images use two columns, rails become dialogs, dock becomes a bottom sheet, Review stacks. Headlines use tight tracking; body remains normal tracking. Mono is reserved for frame numbers, check confidence, costs and machine receipts.
 
@@ -51,3 +51,7 @@ Image continuity ties a contact-sheet tile to the selected shot. Brackets lock o
 `ProductionProvider` keeps a browser-memory snapshot while routes change and always refreshes the API. This preserves shared-image transitions without replacing real records with fixtures. Repaired reviews retain source-frame context. Operation warnings and partial failures remain visible. Auto-start runs only for an authorized, genuinely new production with no existing take, so reloading a failed/ambiguous take does not automatically spend again. `/productions/new` uses the new setup; saved productions open `/p/:id`; existing character/scenes editing remains available from the production switcher. Access-code fields are masked.
 
 All eight source screens are implemented as pages/sheet: Landing, New production, Studio, Review, Memory update, Evidence, Blind Eval and API. Layouts reuse the shared modules above. No page JSX styles or page-local color literals are permitted.
+
+## Reference fidelity — Studio
+
+Canvas is the supplied warm `#FBFAF8`; near-black is `#111111`. Bright image brackets are separate from accessible text and filled red actions. Gold cards use the source pale paper fill and border; rule metadata uses a darker gold for contrast. Large secondary headline text keeps AA contrast. Model labels remove only a recorded date suffix and retain the full value on hover. Scene captions derive from the actual prompt, with the full prompt retained as image alternative text and caption title. Missing coordinates still outline the whole frame. Real uncertainty, rule reach and recorded take history supersede illustrative source data.
