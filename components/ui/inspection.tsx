@@ -9,6 +9,7 @@ import {
   failedCheck,
   frameName,
   sharedShot,
+  sceneCaption,
   unclear,
   type Check,
   type ProductionData,
@@ -124,7 +125,7 @@ export function InspectImage({
         }
       />
       <span className="v2-review-frame v2-glass v2-mono">
-        {frameName(shot, data)} · {shot.scenePrompt}
+        {frameName(shot, data)} · {sceneCaption(shot)}
       </span>
       {shot.flagged && (
         <>
@@ -176,46 +177,59 @@ export function CheckList({
   );
   return (
     <div className="v2-check-list">
-      {(fixed.length ? fixed : shot.checks).map((check) => {
-        const uncertain = unclear(check),
-          failed = !check.pass && !uncertain,
-          learnedCheck = learned.some((r) => r.attributeKey === check.key);
-        return (
-          <div
-            className={`v2-check ${failed ? "failed" : uncertain ? "uncertain" : ""}`}
-            key={check.key}
-          >
-            <span>
-              <strong>{checkLabel(check.key, data)}</strong>
-              <span className="v2-check-observed" title={check.observed}>
-                {" "}
-                · {check.observed}
-              </span>
-              {learnedCheck && (
-                <i
-                  className="v2-memory-dot"
-                  title="Checked by a learned rule"
-                />
-              )}
-            </span>
-            <span className="v2-mono">
-              {uncertain ? "?" : check.pass ? "✓" : "✕"}{" "}
-              {confidence(check.confidence)}
-            </span>
-            <span
-              className="v2-confidence-track"
-              aria-label={`Model-reported confidence ${confidence(check.confidence)}`}
+      {[...(fixed.length ? fixed : shot.checks)]
+        .sort(
+          (a, b) =>
+            Number(!b.pass && !unclear(b)) - Number(!a.pass && !unclear(a)),
+        )
+        .map((check) => {
+          const uncertain = unclear(check),
+            failed = !check.pass && !uncertain,
+            learnedCheck = learned.some((r) => r.attributeKey === check.key);
+          return (
+            <details
+              className={`v2-check ${failed ? "failed" : uncertain ? "uncertain" : ""}`}
+              key={`${shot.id}-${check.key}`}
             >
-              <i
-                style={{
-                  transform: `scaleX(${Number.isFinite(check.confidence) ? Math.min(1, Math.max(0, check.confidence)) : 0})`,
-                }}
-              />
-            </span>
-            <span className="v2-check-expected">Canon: {check.expected}</span>
-          </div>
-        );
-      })}
+              <summary
+                title={`Canon: ${check.expected}. Observed: ${check.observed}. Expand for the full check.`}
+              >
+                <span className="v2-check-caption">
+                  <strong>{checkLabel(check.key, data)}</strong>
+                  <span className="v2-check-observed"> · {check.expected}</span>
+                  {learnedCheck && (
+                    <i
+                      className="v2-memory-dot"
+                      title="Checked by a learned rule"
+                    />
+                  )}
+                </span>
+                <span className="v2-mono">
+                  {uncertain ? "?" : check.pass ? "✓" : "✕"}{" "}
+                  {confidence(check.confidence)}
+                </span>
+                <span
+                  className="v2-confidence-track"
+                  aria-label={`Model-reported confidence ${confidence(check.confidence)}`}
+                  style={
+                    {
+                      "--confidence": Number.isFinite(check.confidence)
+                        ? Math.min(1, Math.max(0, check.confidence))
+                        : 0,
+                    } as CSSProperties
+                  }
+                >
+                  <i />
+                </span>
+              </summary>
+              <div className="v2-check-detail">
+                <p>{check.observed}</p>
+                <p>Canon: {check.expected}</p>
+                {check.note && <p>{check.note}</p>}
+              </div>
+            </details>
+          );
+        })}
       {!shot.checks.length && (
         <p className="v2-muted">Checks haven’t returned yet. —</p>
       )}

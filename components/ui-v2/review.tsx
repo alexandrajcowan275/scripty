@@ -332,7 +332,7 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
                 <MotionLink
                   key={item.id}
                   href={`/p/${id}/shot/${item.id}`}
-                  kind="shot"
+                  kind="shot-step"
                   className={item.id === (sourceId ?? shotId) ? "on" : ""}
                   title={item.scenePrompt}
                 >
