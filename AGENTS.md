@@ -20,10 +20,10 @@ Canon sits in front of any image or video generator and does three things:
 3. The Canon monitor checks each shot. Drifted shots get highlighted, for example "Scarf: blue, expected red (0.91)".
 4. The creator **rejects** a shot with a reason, or **accepts** one. Each rejection becomes a rule, for example "Scar is always over the LEFT eye", which appears in the **Canon Memory** panel.
 5. Click **Generate batch** again. Learned rules are injected into the prompts, and the drift rate drops, for example from 3/6 to 1/6.
-6. The **Learning curve** chart shows drift rate per batch going down. The **Trace log** shows every check, every rule applied, and every failure category.
+6. Generate different new scenes with the learned rule, compare against the same fixed character criteria, and inspect the applied-rule trace. The **Learning curve** shows the actual flagged rate per batch; the **Trace log** shows checks, rules, and failures. Never deliberately weaken the baseline or promise a falling curve. Human-reviewed labels on new scenes are needed to establish improvement; operational flagged rates alone are insufficient because learned rules also change the monitor.
 
 ## 3. Hard constraints
-- Deadline: Sat Oct 17, 2026, 1:15pm PT. Build small and polished. Leave no half-built features.
+- Working submission deadline: Sat Oct 17, 2026, **11:00am PT**. Have assets and links ready by **10:45am PT**. This conservative deadline supersedes earlier 1:15pm planning; do not submit externally without explicit user authorization. Build small and polished. Leave no half-built features.
 - Must deploy on **Vercel** with a public URL. Must work in a desktop browser at 1440px and stay usable at 390px.
 - No GPU hosting. APIs only. Keep the total API budget under $25.
 - **Never commit secrets.** Read keys from env vars only. Keep `.env.example` up to date.
@@ -63,7 +63,8 @@ API routes:
 - **Rules → generation.** `finalPrompt = scenePrompt + character sheet + all active rules`, written as explicit constraints. Order rules by `timesApplied` and how recently they were learned.
 - **Rules → monitoring.** Rules become additional checks the monitor must verify, so the checker learns what this creator cares about.
 - **Accept signal.** Accepted shots become positive references. Store their URLs and pass the best one as an extra reference image to the generator.
-- **Metric.** `driftRate = flagged / total` per batch. That's the learning curve. Never fake the numbers. If the real curve is flat, say so in README so we can tune.
+- **Metric.** `driftRate = flagged / total` per batch is operational feedback, not sufficient evidence of improvement. Check different new scenes against fixed character criteria with human-reviewed labels and disclosed sample counts. Learning means persistent memory and prompt adaptation, not model-weight training. Never fake results or weaken the baseline. If the curve is flat or worse, report it in README and results.
+- **MVP scope.** One seeded character, Mara; reference and attributes; filmstrip batches; inspector; accept/reject with correction; persistent deduplicated memory; rules applied to generation and monitoring; applied-rule traces; labeled cached replay. Defer video generation, multiple characters, accounts, collaboration, billing, and additional providers unless necessary for the core demonstration.
 
 ## 7. Design system (design is a top priority, so treat the UI as the product)
 Vibe: a professional film-editing suite meets a calm observability console. Dark, cinematic, precise. Think DaVinci Resolve or Frame.io crossed with Linear. Not a generic SaaS dashboard.

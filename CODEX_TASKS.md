@@ -1,5 +1,9 @@
 # Canon: Codex task prompts
 
+**Current execution target:** Saturday October 17, 2026, 11:00am PT; assets ready10:45am. Earlier1:15pm notes are superseded conservatively. Root orchestrates authorized parallel subagents/worktrees. Do not submit externally without direct user authorization.
+
+MVP proof: a real creator correction on one shot survives refresh, becomes one deduplicated rule, and appears in generation and monitoring of a different new scene. Keep the baseline intact. Operational monitor flags alone do not prove improvement; report fixed-criteria, human-reviewed results with sample counts, or clearly label draft evidence. Defer video, multiple characters, accounts, collaboration, billing, and extra providers.
+
 How to use this (about 20 minutes of setup tonight):
 1. **GitHub:** create an empty repo called `canon` (Codex can't create repos), upload `AGENTS.md` to the root, and commit.
 2. **Codex:** go to chatgpt.com/codex → connect GitHub (install the Codex GitHub app, and give it access to `canon`) → create an Environment for the repo.

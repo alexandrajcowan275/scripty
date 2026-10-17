@@ -6,7 +6,7 @@ No real image experiment has run yet. OpenAI key is pending. No learning, accura
 
 ## Protocol
 
-- Six shots per batch; preserve the same scene prompt set across at least three measured batches.
+- Six shots per batch; retain fixed character criteria, then use different new scenes after the correction. Record scene sets so changed difficulty is disclosed across at least three measured batches.
 - Character sheet and real raster reference stay fixed; record accepted extra references and every learned rule.
 - Review visible failures with explicit reasons. Record that these are engineer/creator-style decisions, not independent human ground truth.
 - Keep actual model checks, confidence, prompt, rules, provider, request IDs, fallback/error traces, and timestamps.

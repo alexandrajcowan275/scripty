@@ -18,3 +18,9 @@
 - Use a conservative persistent API reservation ledger and default public production to explicitly labeled real-cache playback after capture. Live generation requires the configured admin token. Serves rubric1/3/5: honest measurements, budget reliability, and visible failure handling.
 - Keep draft labels out of authoritative eval; draft-only metrics must be clearly separate. Serves rubric1/5: judge-facing claims remain auditable.
 - Background heartbeat creation was rejected by automatic approval review; no recurring automation was installed. Work continues in the active session.
+
+- Adopt11:00am PT as the conservative working submission deadline, assets10:45am, based on updated event-review planning. Do not claim the event page was verified here. Serves rubric3: earlier safe readiness.
+- Demonstrate transfer to DIFFERENT scenes after a correction and hold the evaluation criteria fixed. Do not equate a lower changing-monitor flag rate with verified improvement; draft labels remain provisional. Serves rubric1/2/5.
+- Defer extra providers/features when they compete with the one-character learning proof. Serves rubric1/3/4.
+
+- Disable Next.js generated agent rules so `next dev` cannot overwrite this project's own AGENTS.md. Use webpack for the production build script because Turbopack's CSS worker needs a port that is restricted in worker sandboxes. `npm run build` remains the required production gate. Include dynamic seed/cache assets in serverless tracing. Serves rubric3: instructions and cached backup survive deployment.

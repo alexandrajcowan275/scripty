@@ -13,7 +13,7 @@ No invented results. Metric placeholders remain until root captures real batches
 1. Use `handoff/results.md` to replace only genuinely measured fields.
 2. Set deployed URL from `handoff/MORNING.md`.
 3. Record the two-minute script; say “cached playback” if using it and describe flat curves honestly.
-4. Verify public links, upload brand attachment if desired, submit before October17 at1:15pm PT.
+4. Verify public links, upload brand attachment if desired, submit before October17 at11:00am PT; assets ready10:45am.
 
 ## Run
 
