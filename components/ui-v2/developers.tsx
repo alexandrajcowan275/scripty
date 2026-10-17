@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
 import { ErrorNotice, Nav } from "../ui/chrome";
+import { CodeBlock } from "../ui/code-block";
 import { ContinuityReceipt } from "../ui/receipt";
 import { useConfiguration } from "./config";
 import { ProductionProvider, useProduction } from "./provider";
-import { shotsFor, sortedBatches } from "./data";
+import { modelLabel, shotsFor, sortedBatches } from "./data";
 function ApiContent() {
   const { data, error, refresh } = useProduction(),
     { config } = useConfiguration();
@@ -24,8 +25,8 @@ function ApiContent() {
   return (
     <div className="v2-screen v2-developers">
       <Ambient />
-      <Nav active="api" data={data} />
-      <main className="v2-detail-wrap">
+      <Nav active="api" data={data} context="REST · JSON" />
+      <main className="v2-detail-wrap v2-api-wrap">
         <RevealHeadline
           lead="Continuity belongs in your pipeline."
           continuation="Same canon. Every prompt and check."
@@ -50,11 +51,15 @@ function ApiContent() {
           </li>
           <li>
             <strong>Generate</strong>
-            <span>{config?.imageModel ?? "—"}</span>
+            <span title={config?.imageModel}>
+              {config?.imageModel ? modelLabel(config.imageModel) : "—"}
+            </span>
           </li>
-          <li>
+          <li className={shot?.flagged ? "v2-pipeline-drift" : ""}>
             <strong>Check</strong>
-            <span>{config?.monitorModel ?? "—"}</span>
+            <span title={config?.monitorModel}>
+              {config?.monitorModel ? modelLabel(config.monitorModel) : "—"}
+            </span>
           </li>
         </ol>
         <div className="v2-api-layout">
@@ -78,9 +83,7 @@ function ApiContent() {
                 {copied ? "Copied ✓" : "Copy curl"}
               </button>
             </div>
-            <pre className="v2-code">
-              <code>{code}</code>
-            </pre>
+            <CodeBlock code={code} />
             <p className="v2-muted">
               Live generation uses your production. Mara stays a sample.
             </p>
@@ -108,13 +111,17 @@ function ApiContent() {
                   description: "Blind questions",
                 },
                 {
-                  method: "POST",
-                  path: "/api/eval",
-                  description: "Evaluate human judgments",
+                  method: "GET",
+                  path: "/api/eval?projectId=:id",
+                  description: "Read human-reviewed metrics",
                 },
               ].map((endpoint) => (
                 <div key={endpoint.path}>
-                  <span className="v2-method v2-mono">{endpoint.method}</span>
+                  <span
+                    className={`v2-method v2-mono ${endpoint.method === "GET" ? "v2-method-get" : ""}`}
+                  >
+                    {endpoint.method}
+                  </span>
                   <code>{endpoint.path}</code>
                   <span>{endpoint.description}</span>
                 </div>
