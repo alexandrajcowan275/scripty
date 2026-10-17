@@ -1,0 +1,223 @@
+/* The photography changes; the layout and the product evidence stay still. */
+.v2-cinema {
+  position: relative;
+  isolation: isolate;
+  min-height: 760px;
+  min-height: min(900px, 100svh);
+  background: var(--text);
+  color: var(--surface);
+  display: flex;
+  flex-direction: column;
+}
+.v2-cinema-scenes,
+.v2-cinema-scene,
+.v2-cinema::after {
+  position: absolute;
+  inset: 0;
+}
+.v2-cinema-scenes {
+  z-index: -2;
+  overflow: hidden;
+}
+.v2-cinema-scene {
+  opacity: 0;
+  animation: cinema-crossfade var(--cinema-cycle) linear infinite;
+}
+.v2-cinema-scene-1 {
+  animation-delay: -2s;
+}
+.v2-cinema-scene-2 {
+  animation-delay: 6s;
+}
+.v2-cinema-scene-3 {
+  animation-delay: 14s;
+}
+.v2-cinema-scene-4 {
+  animation-delay: 22s;
+}
+.v2-cinema-scene img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.v2-cinema::after {
+  content: "";
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--text) 70%, transparent),
+    color-mix(in srgb, var(--text) 38%, transparent) 28%,
+    color-mix(in srgb, var(--text) 88%, transparent)
+  );
+  pointer-events: none;
+}
+.v2-cinema-nav,
+.v2-cinema-copy,
+.v2-cinema-foot {
+  width: min(1296px, calc(100% - 144px));
+  margin-inline: auto;
+}
+.v2-cinema .v2-public-nav {
+  padding-block: var(--space-24);
+}
+.v2-cinema .v2-public-nav nav {
+  color: var(--surface);
+}
+.v2-cinema .v2-button {
+  background: var(--surface);
+  color: var(--text);
+  border-color: transparent;
+  box-shadow: none;
+}
+.v2-cinema .v2-button:hover {
+  background: var(--background);
+}
+.v2-cinema-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-block: var(--space-96) var(--space-64);
+}
+.v2-cinema-label {
+  font-size: var(--work-label);
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+  margin-bottom: var(--space-24);
+}
+.v2-cinema h1 {
+  max-width: 1060px;
+  font: 500 clamp(40px, 5vw, 72px) / 1.08 var(--font-display);
+  letter-spacing: -0.045em;
+  margin: 0 0 var(--space-32);
+  text-wrap: balance;
+}
+.v2-cinema h1 span {
+  display: block;
+}
+.v2-cinema-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-24);
+  border-top: 1px solid var(--glass-highlight);
+  font-size: var(--work-label);
+}
+.v2-cinema-foot > div {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+}
+.v2-cinema-pause {
+  padding: var(--space-8) var(--space-12);
+  color: inherit;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  border-radius: var(--radius-small);
+  font: inherit;
+  cursor: pointer;
+}
+.v2-cinema.is-paused .v2-cinema-scene {
+  animation-play-state: paused;
+}
+.v2-landing-intro h2 {
+  font: 500 clamp(32px, 4vw, 56px) / 1.1 var(--font-display);
+  letter-spacing: -0.035em;
+  margin: var(--space-24) 0 var(--space-16);
+}
+.v2-landing-intro > p {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: var(--space-24);
+}
+.v2-landing-hero {
+  padding: 0;
+  background: var(--image-bed);
+  box-shadow: none;
+}
+.v2-landing .v2-haze {
+  opacity: 0.12;
+}
+.v2-landing .v2-haze-warm {
+  display: none;
+}
+.v2-landing .v2-shot-card:hover {
+  transform: none;
+}
+@keyframes cinema-crossfade {
+  0% {
+    opacity: 0;
+  }
+  6.25%,
+  25% {
+    opacity: 1;
+  }
+  31.25%,
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 760px) {
+  .v2-cinema {
+    min-height: 720px;
+    min-height: max(680px, 90svh);
+  }
+  .v2-cinema-nav,
+  .v2-cinema-copy,
+  .v2-cinema-foot {
+    width: calc(100% - 48px);
+  }
+  .v2-cinema-copy {
+    padding-block: var(--space-64) var(--space-40);
+  }
+  .v2-cinema h1 {
+    font-size: 42px;
+    letter-spacing: -0.035em;
+  }
+  .v2-cinema-label {
+    font-family: var(--font-ui);
+    font-size: var(--work-label);
+  }
+  .v2-cinema-foot {
+    align-items: flex-start;
+    gap: var(--space-16);
+  }
+  .v2-cinema-foot > div {
+    gap: var(--space-12);
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .v2-cinema-pause {
+    min-height: 40px;
+  }
+  .v2-cinema .v2-public-nav {
+    padding-block: var(--space-20);
+  }
+  .v2-cinema .v2-public-nav .v2-brand {
+    font-size: 20px;
+  }
+  .v2-cinema .v2-public-nav .v2-brand img {
+    width: 28px;
+    height: 28px;
+  }
+  .v2-cinema .v2-public-nav .v2-button {
+    min-height: 44px;
+    padding-inline: var(--space-16);
+  }
+  .v2-landing-intro > p {
+    font-size: var(--work-body);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v2-cinema-scene {
+    animation: none;
+    opacity: 0;
+  }
+  .v2-cinema-scene-1 {
+    opacity: 1;
+  }
+  .v2-cinema-pause {
+    display: none;
+  }
+}

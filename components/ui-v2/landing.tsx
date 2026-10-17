@@ -1,7 +1,7 @@
 "use client";
 
 import { Brand, ErrorNotice } from "../ui/chrome";
-import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
+import { Ambient, MotionLink } from "../ui/motion";
 import {
   checkLabel,
   confidence,
@@ -15,7 +15,7 @@ import {
 } from "./data";
 import { ProductionProvider, useProduction } from "./provider";
 import { ShotCard } from "../ui/shot-card";
-import { EditorialBackdrop } from "../ui/editorial-backdrop";
+import { CinematicHero } from "../ui/cinematic-hero";
 
 function LandingContent() {
   const { data, error, refresh, loading } = useProduction();
@@ -30,9 +30,9 @@ function LandingContent() {
   return (
     <div className="v2-screen v2-landing">
       <Ambient warm />
-      <div className="v2-page-wrap">
+      <CinematicHero>
         <header className="v2-public-nav">
-          <Brand href="/" />
+          <Brand href="/" light />
           <nav aria-label="Scripty">
             <a href="#how">How it works</a>
             <MotionLink href="/developers" kind="receipt">
@@ -50,8 +50,10 @@ function LandingContent() {
             </MotionLink>
           </nav>
         </header>
+      </CinematicHero>
+      <div className="v2-page-wrap">
         <main>
-          <section className="v2-landing-intro">
+          <section id="product" className="v2-landing-intro">
             <MotionLink
               href="/p/mara/evidence"
               kind="evidence"
@@ -63,10 +65,8 @@ function LandingContent() {
                 : "Opening the contact sheet…"}{" "}
               →
             </MotionLink>
-            <RevealHeadline
-              lead="Scripty remembers your story."
-              continuation="Scarf. Scar. Ring. Every detail your AI forgets between shots, caught, corrected and carried forward."
-            />
+            <h2>Your AI script supervisor.</h2>
+            <p>Every shot checked. Every correction remembered.</p>
             <div className="v2-cta-row">
               <MotionLink
                 href="/new"
@@ -98,7 +98,6 @@ function LandingContent() {
               className="v2-landing-hero"
               aria-label="A real continuity check"
             >
-              <EditorialBackdrop kind="visor" />
               <ShotCard
                 shot={hero}
                 data={data}
