@@ -132,3 +132,12 @@ Add the founder-requested secondary hero action, “Explore the sample: Mara →
 ## October 17 — shared application shell
 
 The founder’s final Design request makes one persistent sidebar and common breadcrumb/title/action header the priority across all eight in-app pages. Production nesting uses the actual production name and id; old Studio top navigation is removed. Route content fades150ms with reduced-motion protection while the existing production providers, owner cookies, reviews, canon and Eval APIs retain their contracts. Sidebar Memory preserves the selected take, clears its deep-link trigger on close, and reopens after Escape. New production keeps one truthful Generate-take action and its existing estimate/access gate. Main recorded48/210 existing blind answers before this change and will compare after release without submitting labels. The newer founder Design checkpoint requires stability by9:40am PT and all work to stop by9:45; incomplete lower-priority work stays unpublished.
+
+## October 17 — Memory regression containment and empty reference state
+
+Restore the prior verified e83f899 production while correcting a rapid query-only Memory reopen race. Inside Studio, a production-scoped client event opens the existing drawer directly; entering from another page uses the router without a view-transition promise. Existing drawer close/query cleanup and selected take remain intact. Design verified three rapid open/Escape/reopen cycles, and Main will repeat them publicly. Start new productions with an empty dashed reference zone and explicit Mara-example link; retain real uploaded previews,4MB validation, canon suggestions and the existing paid access gate. Build this exact committed candidate in a clean release worktree because unrelated uncommitted Claude landing work appeared in the shared checkout; preserve that work without publishing it.
+
+
+## October 17 — real product landing story
+
+Integrate Design28955b2: a read-only Mara Studio preview expands into view, followed by a short word reveal and three Check/Correct/Carry product views. All checks, images and rule reach come from existing production data. Keep four credited cinematic photographs as atmosphere, with credits only in the footer. Scroll-linked keyframes change transform/opacity only; reduced-motion and unsupported browsers receive readable static layouts. No generation, human-label writes or evidence changes. The combined92-test suite, production build and typecheck passed before pushing.

@@ -39,3 +39,10 @@ Candidate `581475f8124e95e8b387c6af6be3040503153ddd` is ready in the Design work
 Status update: superseded, no photo approval needed. The founder replaced the queued moodboard/photo direction in the Design chat (user message `01a14a73-a6c6-7c52-84de-19c621e70ca8`) with a restrained, real-Mara-only design review/fix loop until 9:30am PT. Candidate `581475f` is withdrawn and must not be merged or deployed. Main remains `f3ebd74`; wait for a separate new candidate and verify its actual scope before release. The earlier automatic-review rejection remains recorded above as history.
 
 Resolution: the founder explicitly confirmed the licensed-photo permission directly in Main on October17 morning: Unsplash/Pexels only, credits in `public/brand/CREDITS.md`, brand atmosphere on landing/Home, real Mara product content and unchanged Review/Evidence. The earlier photo authorization blocker is resolved; release remains gated on tests/build and the 9:30am PT deployment freeze.
+
+## October 17 — shared-shell Memory reopen verification
+
+Public shell release780eb50 passed the8-page1440/390 layout matrix and preserved48 saved blind labels plus the owned Night Train production. A rapid sidebar Memory → Escape → immediate reopen could lose the new click during a query-only view transition. A settled reopen worked, but the founder requires restoring a verified release when a regression appears. Main is restoring the prior verified e83f899 deployment while Design makes a targeted UI fix. No Git rollback, data change, paid call or human-label write. Do not push the unfixed shell again; the next release must include the fix and pass rapid-reopen verification.
+
+
+Resolution candidate: b5632ce removes the query-transition race, and Design verified three rapid mobile reopen cycles locally. Main merged the exact fix with empty-upload and landing refinements in an isolated checkout. Combined92tests/build/typecheck pass; public regression verification follows the next production release. Unrelated shared-checkout work remains untouched.
