@@ -6,6 +6,7 @@ import { MotionLink } from "./motion";
 import { RecordedTime } from "./production-overview";
 import {
   checkLabel,
+  confidence,
   failedCheck,
   frameName,
   type ProductionData,
@@ -53,8 +54,8 @@ export function HomeReviewQueue({
                 <span className="v2-muted">{data.project.name}</span>
                 <p>
                   {check
-                    ? `${checkLabel(check.key, data)}: ${check.observed}. Expected ${check.expected}.`
-                    : "Scripty flagged this shot for review."}
+                    ? `${check.key === "scar_side" ? "Scar side" : check.key === "ring_hand" ? "Ring hand" : checkLabel(check.key, data)} · ${confidence(check.confidence)}`
+                    : "Continuity flagged"}
                 </p>
                 <MotionLink href={href} className="v2-button v2-small">
                   Review →
