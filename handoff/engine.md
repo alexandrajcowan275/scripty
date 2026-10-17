@@ -55,3 +55,11 @@ No fake generation/check/learning outcomes are returned. A missing cache yields 
 - Text models are allowlisted to gpt-4.1-mini / gpt-4o-mini and their known dated snapshots; text context/output caps preserve pessimistic per-call reservations. Unknown models fail before reservation/network.
 - cacheAvailable metadata distinguishes missing cache from an available cache with no delivered batches.
 -13 regression tests and typecheck pass; no real API calls performed. Mock dependency seam exercises paid-generation success/storage failure without real requests.
+
+## Monitor calibration v2
+
+`MONITOR_VERSION = "canon-monitor-v2"` is exported and included in batch check/flag trace messages and monitor results. `MONITOR_INSTRUCTIONS` explicitly requires observed image side, inferred facing orientation, and anatomical evidence in side-check notes. Frontal and back-facing coordinate mappings are conditional; profile/ambiguous views remain uncertain rather than applying a blanket mapping. Occlusion is not visual proof of a failure. Character sheet expectations and the confidence>=.6 flag threshold are unchanged.
+
+Uncertainty phrases anywhere in the observed text (including “scar over the left eye not visible”) normalize to confidence<=.49. A separate concrete positive contradictory clause remains actionable, e.g. “right hand unclear but visible silver ring on the LEFT hand.” Both normalized shot flags and failure traces use the same evidence.
+
+Calibration responds to root human inspection of the first real baseline; it is monitor calibration, not learned generator improvement. Preserve original baseline measurements, then compare rechecked baseline and later batches under this frozen monitor version. Root owns any paid recheck and generation. Engine performed no paid calls.15 focused regression tests and typecheck pass, including buried scar invisibility and orientation-prompt invariants.

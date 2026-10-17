@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import seed from "../seed/mara.json";
 import { buildFinalPrompt, localRejectionRule, mergeRule, orderRules } from "../lib/rules";
-import { scoreChecks, uncertainChecks, monitorImage, normalizeMonitorChecks } from "../lib/monitor";
+import { scoreChecks, uncertainChecks, monitorImage, normalizeMonitorChecks, MONITOR_INSTRUCTIONS, MONITOR_VERSION } from "../lib/monitor";
 import { assertBudgetedTextModel, emptyUsage, structuredCall } from "../lib/engine-ai";
 import { z } from "zod";
 import { generateImage } from "../lib/generate";
@@ -149,4 +149,24 @@ test("partial job failure waits for independent successful persistence before re
     await new Promise((resolve) => setTimeout(resolve, 2)); saved.push(value); return value;
   }), /One shot failed/);
   assert.deepEqual(saved, [1, 2]);
+});
+
+test("v2 buried scar invisibility stays uncertain while a visible contrary ring remains a failure", () => {
+  const output = [...character.attributes.map((attribute) => ({ key: attribute.key, observed: attribute.expected, pass: true, confidence: .9, note: null, category: null as "attribute_drift" | null })), ...rules.map((rule) => ({ key: `rule:${rule.id}`, observed: rule.text, pass: true, confidence: .9, note: null, category: null as "attribute_drift" | null }))];
+  output.find((check) => check.key === "rule:seed-scar")!.observed = "scar over the left eye not visible because character faces away";
+  Object.assign(output.find((check) => check.key === "rule:seed-scar")!, { pass: false, confidence: .7, category: "attribute_drift" });
+  Object.assign(output.find((check) => check.key === "ring_hand")!, { observed: "right hand unclear but visible silver ring on the LEFT hand", pass: false, confidence: .85, category: "attribute_drift" });
+  const normalized = normalizeMonitorChecks(output, character, rules);
+  assert.equal(normalized.checks.find((check) => check.key === "rule:seed-scar")!.confidence, .49);
+  assert.equal(normalized.checks.find((check) => check.key === "ring_hand")!.confidence, .85);
+  assert.deepEqual(normalized.failures.map((failure) => failure.key), ["ring_hand"]);
+});
+
+test("v2 orientation prompt requires facing evidence and conditional anatomical mapping", () => {
+  assert.equal(MONITOR_VERSION, "canon-monitor-v2");
+  assert.match(MONITOR_INSTRUCTIONS, /frontal character facing the viewer, image-right is the character's LEFT/);
+  assert.match(MONITOR_INSTRUCTIONS, /facing away from the viewer, image-left is the character's LEFT/);
+  assert.match(MONITOR_INSTRUCTIONS, /profile or uncertain orientation must be unclear/);
+  assert.match(MONITOR_INSTRUCTIONS, /note must state the observed image side, inferred facing orientation and evidence before the anatomical conclusion/);
+  assert.match(MONITOR_INSTRUCTIONS, /Absence of visibility is not proof the attribute is wrong/);
 });
