@@ -46,7 +46,7 @@
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--text) 70%, transparent),
-    color-mix(in srgb, var(--text) 38%, transparent) 28%,
+    color-mix(in srgb, var(--text) var(--cinema-scrim-min), transparent) 28%,
     color-mix(in srgb, var(--text) 88%, transparent)
   );
   pointer-events: none;
