@@ -30,3 +30,10 @@ At shorter desktop heights the full workspace extends vertically so filmstrip im
 Cherry-pick the design commit, install the real final cache/reference, then run npm run dev -- --webpack --port 3027 (or the integration port). Confirm desktop/mobile, cache provenance and one local replay correction. Re-run build after integration.
 
 Intentional design decision for root DECISIONS.md: use actual capture-time UTC metadata instead of fabricated video frame timecodes; apply semantic red/gold/green to evidence states while rendering operational metrics in neutral colors.
+
+
+## Full-frame inspection follow-up
+
+The selected-shot image now has a keyboard-accessible Expand frame control. It opens the same image in a native modal dialog with batch/frame/scene context and contain sizing within the viewport. Close and Escape use native dialog dismissal and focus restoration. A/R global review shortcuts return immediately while the preview is open, so inspecting detail cannot review a hidden frame. No API, generation, image-editing or review behavior was added.
+
+Follow-up validation: typecheck, webpack build, focused evidence/scene tests and diff checks. A fresh browser check was left to root because browser user control interrupted the earlier session.
