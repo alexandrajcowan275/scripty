@@ -105,3 +105,24 @@ test("live eval CLI separates paid rechecks from free human-only evaluation", as
   const child = spawnSync(process.execPath, ["--import", "tsx", "--input-type=module", "--eval", code], { cwd: process.cwd(), env: { ...process.env, CANON_ADMIN_TOKEN: "test-only-eval-token" }, encoding: "utf8", timeout: 10000 });
   assert.equal(child.status, 0, child.stderr);
 });
+
+test("display renditions cover all original and blind-study images without changing their source URLs", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const { imageRendition } = await import("../lib/image-renditions");
+  const cache = JSON.parse(await readFile(new URL("../seed/cache/manifest.json", import.meta.url), "utf8"));
+  const study = JSON.parse(await readFile(new URL("../seed/experiments/ab-test/result.json", import.meta.url), "utf8"));
+  const urls = [...cache.batches.flatMap((entry: {shots: Shot[]}) => entry.shots.map(shot => shot.imageUrl)), ...study.shots.map((shot: Shot) => `/api/study/images/${shot.id}.png`), "/seed/mara-reference.png", "/api/locations/mara-platform/image"];
+  assert.equal(urls.length, 38);
+  for (const src of urls) {
+    const rendition = imageRendition(src);
+    assert.ok(rendition, `Missing display copy: ${src}`);
+    assert.equal(rendition.originalUrl, src);
+    assert.match(rendition.thumbnailUrl, /^\/images\/renditions\/[a-f0-9]{24}-480\.webp$/);
+    assert.match(rendition.reviewUrl, /^\/images\/renditions\/[a-f0-9]{24}-1200\.webp$/);
+    assert.ok(rendition.reviewBytes < 120000);
+    assert.ok(rendition.thumbnailBytes < rendition.reviewBytes);
+  }
+  assert.equal(imageRendition("https://private-storage.example/upload.png?token=example"), undefined);
+  assert.equal(imageRendition("/api/cache/images/unknown.png"), undefined);
+  assert.equal(imageRendition("__proto__"), undefined);
+});
