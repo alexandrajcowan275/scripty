@@ -2,9 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import seed from "../seed/mara.json";
 import { buildFinalPrompt, localRejectionRule, mergeRule, orderRules } from "../lib/rules";
-import { scoreChecks, uncertainChecks, monitorImage, normalizeMonitorChecks, MONITOR_INSTRUCTIONS, MONITOR_VERSION } from "../lib/monitor";
+import { scoreChecks, uncertainChecks, monitorImage, normalizeMonitorChecks, MONITOR_INSTRUCTIONS, MONITOR_VERSION, buildMonitorContent } from "../lib/monitor";
 import { assertBudgetedTextModel, emptyUsage, structuredCall } from "../lib/engine-ai";
 import { z } from "zod";
+import { imageConfiguration, monitorConfiguration, isReasoningMonitor, DEFAULT_IMAGE_MODEL, DEFAULT_MONITOR_MODEL, IMAGE_ATTEMPT_RESERVATION, MONITOR_ATTEMPT_RESERVATION } from "../lib/engine-config";
 import { generateImage } from "../lib/generate";
 import { readDemoState, sessionCookie, type DemoState } from "../lib/engine-cache";
 import { liveMode, mapLimit } from "../lib/engine-http";
@@ -163,7 +164,7 @@ test("v2 buried scar invisibility stays uncertain while a visible contrary ring 
 });
 
 test("v2 orientation prompt requires facing evidence and conditional anatomical mapping", () => {
-  assert.equal(MONITOR_VERSION, "canon-monitor-v2");
+  assert.equal(MONITOR_VERSION, "canon-monitor-v3");
   assert.match(MONITOR_INSTRUCTIONS, /frontal character facing the viewer, image-right is the character's LEFT/);
   assert.match(MONITOR_INSTRUCTIONS, /facing away from the viewer, image-left is the character's LEFT/);
   assert.match(MONITOR_INSTRUCTIONS, /profile or uncertain orientation must be unclear/);
@@ -175,4 +176,48 @@ test("v2 orientation prompt requires facing evidence and conditional anatomical 
 test("full replay memory returns actionable409 instead of a generic server failure", () => {
   const state = { v: 1 as const, projectId: "mara", count: 1, reviews: [], rules: Array.from({ length: 13 }, (_, index) => ({ ...rules[0], id: `full-${index}` })) };
   assert.throws(() => sessionCookie(state), (error: unknown) => error instanceof Error && "status" in error && error.status === 409 && /fresh browser session/.test(error.message));
+});
+
+test("v3 roles label canonical reference first and score ONLY the second SHOT image", () => {
+  const content = buildMonitorContent(character, rules, "data:image/png;base64,REFERENCE", "data:image/png;base64,SHOT");
+  const images = content.filter((item) => item.type === "input_image");
+  assert.deepEqual(images.map((item) => item.image_url), ["data:image/png;base64,REFERENCE", "data:image/png;base64,SHOT"]);
+  assert.match(content[1].text!, /CANONICAL REFERENCE.*do not score this image/);
+  assert.match(content[3].text!, /SHOT TO CHECK.*Score ONLY visible evidence/);
+  assert.match(MONITOR_INSTRUCTIONS, /IMAGE 2 SHOT TO CHECK is the only image you score/);
+  assert.ok(MONITOR_INSTRUCTIONS.length < 4000);
+});
+
+test("quality defaults pin Sunburst high and v3 mini within their new reservations", async () => {
+  const names = ["OPENAI_IMAGE_MODEL", "OPENAI_IMAGE_QUALITY", "OPENAI_MONITOR_MODEL", "OPENAI_API_KEY"] as const;
+  const saved = new Map(names.map((name) => [name, process.env[name]]));
+  try {
+    for (const name of names) delete process.env[name];
+    assert.deepEqual(imageConfiguration(), { model: DEFAULT_IMAGE_MODEL, quality: "high" });
+    assert.equal(monitorConfiguration().model, DEFAULT_MONITOR_MODEL);
+    assert.equal(monitorConfiguration().version, MONITOR_VERSION);
+    assert.equal(isReasoningMonitor(DEFAULT_MONITOR_MODEL), true);
+    assert.doesNotThrow(() => assertBudgetedTextModel("gpt-5.4-mini-2026-03-17"));
+    assert.equal(IMAGE_ATTEMPT_RESERVATION, .75); assert.equal(MONITOR_ATTEMPT_RESERVATION, .05);
+    process.env.OPENAI_API_KEY = "test-only-not-real";
+    let payload: { model?: string; quality?: string; images?: unknown[]; input_fidelity?: string } = {}, reserved = 0;
+    const generated = await generateImage({ finalPrompt: "scene", referenceImageUrl: "/reference.png", acceptedReferenceUrl: "/accepted.png", fallbackImageUrl: "/fallback.png", filename: "x.png" }, {
+      image: async () => "data:image/png;base64,dGVzdA==",
+      reserve: async (amount, usage) => { reserved += amount; usage.reservedUsd += amount; },
+      request: async (_url, options) => { payload = JSON.parse(String(options.body)); return Response.json({ data: [{ b64_json: "dGVzdA==" }] }); },
+      upload: async () => "/stored.png",
+    });
+    assert.equal(payload.model, DEFAULT_IMAGE_MODEL); assert.equal(payload.quality, "high"); assert.equal(payload.images?.length, 2); assert.equal(payload.input_fidelity, undefined);
+    assert.equal(generated.imageModel, DEFAULT_IMAGE_MODEL); assert.equal(generated.imageQuality, "high"); assert.equal(reserved, .75);
+    process.env.OPENAI_IMAGE_QUALITY = "max"; assert.throws(imageConfiguration, /budgeted allowlist/);
+  } finally { for (const name of names) { const value = saved.get(name); if (value === undefined) delete process.env[name]; else process.env[name] = value; } }
+});
+
+test("cinematic visual language and STORY constraints remain equal across baseline and learned prompts", () => {
+  const baseline = buildFinalPrompt("A platform scene", character, rules);
+  const adapted = buildFinalPrompt("A new doorway scene", character, [...rules, { ...rules[0], id: "learned-ring", text: "Keep the silver ring on the anatomical right hand." }]);
+  for (const prompt of [baseline, adapted]) {
+    assert.match(prompt, /ACTIVE STORY CONSTRAINTS/); assert.match(prompt, /35mm lens on Super35 at f\/2.8/); assert.match(prompt, /natural motivated scene light/); assert.match(prompt, /restrained cinematic grade, real textures and subtle film grain/);
+    for (const attribute of character.attributes) assert.ok(prompt.includes(attribute.expected));
+  }
 });

@@ -63,3 +63,18 @@ No fake generation/check/learning outcomes are returned. A missing cache yields 
 Uncertainty phrases anywhere in the observed text (including “scar over the left eye not visible”) normalize to confidence<=.49. A separate concrete positive contradictory clause remains actionable, e.g. “right hand unclear but visible silver ring on the LEFT hand.” Both normalized shot flags and failure traces use the same evidence.
 
 Calibration responds to root human inspection of the first real baseline; it is monitor calibration, not learned generator improvement. Preserve original baseline measurements, then compare rechecked baseline and later batches under this frozen monitor version. Root owns any paid recheck and generation. Engine performed no paid calls.15 focused regression tests and typecheck pass, including buried scar invisibility and orientation-prompt invariants.
+
+## Current configuration: quality images and final monitor v3
+
+User steering names the product Scripty; repository paths, database IDs and environment prefixes remain Canon. Prompt heading is now ACTIVE STORY CONSTRAINTS. Both baseline and adapted prompts retain the entire character sheet and identical cinematic guidance:35mm lens / Super35 / f/2.8, natural motivated scene light, restrained grade, real textures and subtle grain.
+
+Current defaults supersede earlier handoff defaults:
+
+- `OPENAI_IMAGE_MODEL=gpt-image-2.5-sunburst-2026-09-08`, `OPENAI_IMAGE_QUALITY=high`. Sunburst alias and dated snapshot are allowlisted; low/medium/high accepted for2.5 (other allowlisted image models remain low/medium). Every image attempt pessimistically reserves $.75. Same60s timeout and max two attempts; no baseline weakening.
+- `OPENAI_MONITOR_MODEL=gpt-5.4-mini-2026-03-17`; alias also allowed. Uses Responses strict structured output, reasoning.effort=low, max_output_tokens4800,32k text cap and at most two images; every monitor attempt reserves $.05. Rule extraction remains gpt-4.1-mini,600 output cap and $.01 reservation.
+- Frozen `MONITOR_VERSION=canon-monitor-v3`. Labeled IMAGE1 is the canonical character reference, IMAGE2 is SHOT TO CHECK. The prompt instructs identity/feature comparison against reference while scoring ONLY visible SHOT evidence. Frontal/back/profile orientation and uncertainty rules fromv2 remain unchanged, as do sheet expectations and confidence>=.6 threshold.
+- Each new batch traces exact image model/quality and monitor model/version; each generated shot records actual provider model/quality (including fallback distinction), and check traces record monitor model/version. Batch response includes configuration metadata.
+
+Root must update existing model/quality environment overrides: old explicitly configured values otherwise override these defaults. Root owns the first known-scar-correct/ring-wrong v3 spot check, transparent baseline recheck, quality spot checks, generation and cache recapture. v1/v2 outputs must remain retained and calibration must never be pitched as generator learning. v3 is the final tuning attempt under the user’s timebox.
+
+18 focused tests + typecheck pass, including labeled image order/score-only role invariants, pinned Sunburst-high request body and$.75 mock reservation, default v3 mini/.05 configuration, and equal visual-language constraints before/after memory. No paid API calls made by Engine. Current official docs checked: https://developers.openai.com/api/docs/models/gpt-5.4-mini (image input, Responses, structured output, low reasoning,$.75/$4.50 per1M,2026-03-17 snapshot), https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst (2026-09-08 snapshot), https://developers.openai.com/api/docs/guides/image-prompting (Sunburst for demanding quality).

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isReasoningMonitor, MONITOR_ATTEMPT_RESERVATION } from "./engine-config";
 import * as database from "./db";
 
 export type Usage = { imageRequests: number; textRequests: number; inputTokens: number; outputTokens: number; reservedUsd: number };
@@ -18,22 +19,26 @@ export async function aiFetch(url: string, init: RequestInit, deadline = Date.no
   return response;
 }
 export function assertBudgetedTextModel(model: string): void {
-  if (!["gpt-4.1-mini", "gpt-4.1-mini-2025-04-14", "gpt-4o-mini", "gpt-4o-mini-2024-07-18"].includes(model)) throw new Error("Text model is outside the budgeted allowlist; use gpt-4.1-mini or gpt-4o-mini");
+  if (!["gpt-4.1-mini", "gpt-4.1-mini-2025-04-14", "gpt-4o-mini", "gpt-4o-mini-2024-07-18", "gpt-5.4-mini", "gpt-5.4-mini-2026-03-17"].includes(model)) throw new Error("Text model is outside the budgeted allowlist; use an approved mini model");
 }
 export async function structuredCall<T>(options: { schema: z.ZodType<T>; name: string; system: string; content: unknown[]; model: string; usage: Usage; deadline?: number; reservation?: number }): Promise<T> {
   assertBudgetedTextModel(options.model);
   const ruleCall = options.name === "canon_rule";
+  const reasoningMonitor = isReasoningMonitor(options.model);
+  if (ruleCall && reasoningMonitor) throw new Error("Rule extraction uses the budgeted non-reasoning mini models");
+  const imageCount = options.content.filter((item) => item && typeof item === "object" && "type" in item && item.type === "input_image").length;
+  if (imageCount > 2) throw new Error("Monitor accepts at most two budgeted input images");
   if (options.system.length > 4000) throw new Error("System prompt exceeds the budgeted input limit");
   if (JSON.stringify(options.content.filter((item) => !(item && typeof item === "object" && "type" in item && item.type === "input_image"))).length > (ruleCall ? 12000 : 32000)) throw new Error("Text context exceeds the budgeted input limit");
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not configured");
   let failure: unknown;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      await reserve(options.reservation ?? 0.03, options.usage);
+      await reserve(ruleCall ? options.reservation ?? 0.01 : Math.max(options.reservation ?? 0, reasoningMonitor ? MONITOR_ATTEMPT_RESERVATION : 0.03), options.usage);
       options.usage.textRequests++;
       const response = await aiFetch("https://api.openai.com/v1/responses", {
         method: "POST", headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ model: options.model, max_output_tokens: ruleCall ? 600 : 2400, store: false,
+        body: JSON.stringify({ model: options.model, max_output_tokens: ruleCall ? 600 : reasoningMonitor ? 4800 : 2400, store: false, ...(reasoningMonitor ? { reasoning: { effort: "low" } } : {}),
           instructions: options.system, input: [{ role: "user", content: options.content }],
           text: { format: { type: "json_schema", name: options.name, strict: true, schema: z.toJSONSchema(options.schema) } } }),
       }, options.deadline);
