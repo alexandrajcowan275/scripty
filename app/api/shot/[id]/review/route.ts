@@ -1,26 +1,32 @@
-import { createMockBatch } from "@/lib/mock-data";
-import type { Rule, Shot } from "@/lib/types";
-
+import { z } from "zod";
+import seed from "@/seed/mara.json";
+import { getShot, getProject, updateShotReview, addRule, addTrace } from "@/lib/db";
+import { learnRule, localRejectionRule } from "@/lib/rules";
+import { cachedProject, cacheMetadata, sessionCookie } from "@/lib/engine-cache";
+import { apiError, body, HttpError, liveMode } from "@/lib/engine-http";
+export const maxDuration = 300;
+const requestSchema = z.strictObject({ decision: z.enum(["accept", "reject"]), reason: z.string().trim().max(400).optional() }).refine((input) => input.decision !== "reject" || Boolean(input.reason), "A rejection reason is required to learn a correction");
 export async function POST(request: Request, context: { params: Promise<{ id: string }> }) {
-  const { id } = await context.params;
-  const original = createMockBatch().shots.find((shot) => shot.id === id);
-  if (!original) return Response.json({ error: "Shot not found" }, { status: 404 });
-  let body;
-  try { body = await request.json(); }
-  catch { return Response.json({ error: "Invalid JSON" }, { status: 400 }); }
-  if (!body || !["accept", "reject"].includes(body.decision) ||
-      (body.reason !== undefined && typeof body.reason !== "string")) {
-    return Response.json({ error: "Expected decision accept or reject, with optional string reason" }, { status: 400 });
-  }
-  const shot: Shot = { ...original, status: body.decision === "accept" ? "accepted" : "rejected" };
-  if (body.decision === "accept") return Response.json({ shot });
-  shot.rejectReason = body.reason;
-  const failedCheck = shot.checks.find((check) => !check.pass);
-  const newRule: Rule = {
-    id: `mock-rule-${id}`, projectId: shot.projectId,
-    text: failedCheck ? `Keep ${failedCheck.key} consistent: ${failedCheck.expected}.` : "Preserve Mara’s character-sheet attributes in every shot.",
-    attributeKey: failedCheck?.key, source: "rejection", createdAt: "2026-10-16T12:00:00.000Z", timesApplied: 0,
-  };
-  // Static illustrative response only; reason-to-rule learning and persistence are TASK 2/3.
-  return Response.json({ shot, newRule });
+  try {
+    const { id } = await context.params; if (!id || id.length > 200) throw new HttpError("Invalid shot ID");
+    const input = await body(request, requestSchema);
+    if (!liveMode(request)) {
+      const cached = await cachedProject(request, seed.project.id); if (!cached) throw new HttpError("Project not found", 404);
+      const original = cached.data.shots.find((shot) => shot.id === id); if (!original) throw new HttpError("Shot not found in this browser session", 404);
+      const shot = { ...original, status: input.decision === "accept" ? "accepted" : "rejected", rejectReason: input.decision === "reject" ? input.reason : undefined };
+      const learned = input.decision === "reject" ? localRejectionRule(original, cached.data.project.characters[0], input.reason!, cached.data.rules) : undefined;
+      cached.state.reviews = [...cached.state.reviews.filter((review) => review.id !== id), { id, ...input }];
+      if (learned) cached.state.rules = [...cached.state.rules.filter((rule) => rule.id !== learned.rule.id), learned.rule];
+      return Response.json({ shot, ...(learned ? { newRule: learned.rule, merged: learned.merged } : {}), ...cacheMetadata, provenance: learned ? "cached_local_rule" : "cached_review" }, { headers: { "Set-Cookie": sessionCookie(cached.state), "Cache-Control": "no-store", "x-canon-mode": "cached" } });
+    }
+    const original = await getShot(id); if (!original) throw new HttpError("Shot not found", 404);
+    const snapshot = await getProject(original.projectId); if (!snapshot) throw new HttpError("Project not found", 404);
+    const shot = await updateShotReview(id, input.decision, input.reason);
+    if (input.decision === "accept") return Response.json({ shot, mode: "live", provenance: "supabase_review" });
+    const learned = await learnRule(shot, snapshot.project.characters[0], input.reason!, snapshot.rules);
+    await addRule(learned.rule);
+    await addTrace({ id: crypto.randomUUID(), projectId: shot.projectId, shotId: id, type: "rule_learned", message: `${learned.merged ? "Merged" : "Learned"}: ${learned.rule.text}; provenance=${learned.provenance}`, createdAt: new Date().toISOString() });
+    if (learned.error) await addTrace({ id: crypto.randomUUID(), projectId: shot.projectId, shotId: id, type: "error", category: "api_error", message: `Rule extraction unavailable: ${learned.error}; used explicit local correction fallback`, createdAt: new Date().toISOString() });
+    return Response.json({ shot, newRule: learned.rule, merged: learned.merged, mode: "live", provenance: learned.provenance, usage: learned.usage, ...(learned.error ? { warning: "AI rule extraction was unavailable. A local correction was saved; see the trace." } : {}) });
+  } catch (error) { return apiError(error); }
 }
