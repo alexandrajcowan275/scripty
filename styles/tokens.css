@@ -1,22 +1,24 @@
 :root {
   color-scheme: light;
-  --background: #fbfaf8;
+  --background: #eef0f3;
   --surface: #ffffff;
-  --image-bed: #e8e5df;
-  --text: #111111;
-  --muted: #615e58;
-  --muted-strong: #615e58;
+  --image-bed: #e1e5eb;
+  --text: #0e0f12;
+  --cool-grey: #6b7280;
+  --muted: #626975;
+  --muted-strong: #555e6a;
   --drift: #b4232c;
   --pass: #147a42;
-  --memory: #8a5d00;
-  --memory-fill: #fff8e1;
-  --memory-border: #f3dc97;
-  --memory-detail: #7a5a00;
-  --memory-halo: rgba(243, 220, 151, 0.28);
-  --memory-glow: rgba(245, 196, 81, 0.35);
-  --memory-code-text: #f5d27a;
-  --memory-signal: #f5c451;
-  --memory-dot-glow: rgba(245, 196, 81, 0.9);
+  --memory: #b4520f;
+  --memory-ink: #a64a0d;
+  --memory-fill: #fff3ea;
+  --memory-border: #efc4a5;
+  --memory-detail: #b4520f;
+  --memory-halo: rgba(255, 138, 61, 0.18);
+  --memory-glow: rgba(255, 138, 61, 0.35);
+  --memory-code-text: #ffb381;
+  --memory-signal: #ff8a3d;
+  --memory-dot-glow: rgba(255, 138, 61, 0.9);
   --code-surface: #1a1917;
   --code-text: #e8e4dd;
   --code-muted: #8d877e;
@@ -28,7 +30,7 @@
   --drift-outline: #ff4d4f;
   --focus-ring: #2858b8;
   --hover: #32322f;
-  --border: #e8e5df;
+  --border: #dfe3e9;
   --shadow: 0 8px 32px rgba(23, 20, 15, 0.08);
   --font-ui: "Funnel Sans", system-ui, sans-serif;
   --font-mono: "Martian Mono", monospace;
@@ -38,7 +40,7 @@
   --v2-stroke: color-mix(in srgb, var(--text) 8%, transparent);
   --v2-glass: rgba(255, 255, 255, 0.68);
   --v2-soft: color-mix(in srgb, var(--text) 4%, var(--background));
-  --v2-tone: #8a857d;
+  --v2-tone: #687180;
   --dur-fast: 180ms;
   --dur-base: 360ms;
   --dur-slow: 520ms;
@@ -50,7 +52,7 @@
   --haze-rose-rich: rgba(251, 207, 232, 0.35);
   --haze-warm: rgba(254, 215, 170, 0.4);
   --glass-sheen: rgba(255, 255, 255, 0.45);
-  --glass-hud: rgba(255, 255, 255, 0.82);
+  --glass-hud: rgba(255, 255, 255, 0.96);
   --pass-strong: #0f6334;
   --answer-pass: #e9f7ef;
   --answer-pass-border: #bfe6cf;
@@ -90,8 +92,8 @@
   --space-48: 48px;
   --space-64: 64px;
   --space-96: 96px;
-  --studio-canvas: #f3f5f6;
-  --studio-ink-soft: #5e6972;
+  --studio-canvas: var(--background);
+  --studio-ink-soft: var(--muted);
   --studio-haze: rgba(175, 196, 213, 0.48);
   --studio-haze-soft: rgba(217, 227, 235, 0.65);
   --studio-chart-fill: rgba(151, 176, 196, 0.32);
@@ -103,4 +105,15 @@
     rgba(224, 232, 238, 0.3) 42%,
     rgba(255, 255, 255, 0.7) 72%
   );
+  --editorial-grade: saturate(0.88) contrast(1.06) brightness(0.98);
+  --editorial-cool-wash: rgba(151, 178, 205, 0.1);
+  --editorial-shadow: 0 16px 56px rgba(14, 15, 18, 0.16);
+  --editorial-visor: url("/brand/editorial-visor-marcin-sajur.webp");
+  --editorial-couture: url("/brand/editorial-couture-felix-young.webp");
+}
+@media (max-width: 760px) {
+  :root {
+    --editorial-visor: url("/brand/editorial-visor-marcin-sajur-small.webp");
+    --editorial-couture: url("/brand/editorial-couture-felix-young-small.webp");
+  }
 }

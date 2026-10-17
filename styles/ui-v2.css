@@ -4866,6 +4866,168 @@
     transform: translateY(-12px);
   }
 }
+
+/* Licensed editorial layers. Shot evidence and application geometry stay separate. */
+.v2-editorial-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: inherit;
+  overflow: hidden;
+}
+.v2-editorial-visor {
+  background-image: var(--editorial-visor);
+  background-position: center 32%;
+}
+.v2-editorial-couture {
+  background-image: var(--editorial-couture);
+  background-position: right 28%;
+}
+.v2-landing .v2-haze {
+  background: radial-gradient(
+    closest-side,
+    var(--studio-haze),
+    var(--studio-haze-soft) 45%,
+    transparent 75%
+  );
+}
+.v2-landing .v2-haze-warm {
+  background: radial-gradient(
+    closest-side,
+    var(--memory-halo),
+    transparent 70%
+  );
+}
+.v2-landing-hero {
+  padding: var(--space-40);
+  border-radius: var(--radius-sheet);
+  background: var(--code-surface);
+  box-shadow: var(--editorial-shadow);
+}
+.v2-landing-hero > .v2-editorial-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    var(--shadow-tint-strong),
+    transparent 65%
+  );
+}
+.v2-landing-hero .v2-shot-media {
+  box-shadow:
+    var(--editorial-shadow),
+    inset 0 1px var(--chrome-edge);
+}
+.v2-landing-hero .v2-brackets i {
+  box-shadow:
+    inset 0 1px var(--chrome-edge),
+    0 1px var(--chrome-lowlight);
+}
+.v2-landing .v2-shot-media > img,
+.v2-dashboard .v2-overview-image > img {
+  filter: var(--editorial-grade);
+  transform: scale(1.07);
+}
+.v2-landing .v2-shot-media::after,
+.v2-dashboard .v2-overview-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--editorial-cool-wash) url("/textures/film-grain.svg");
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  z-index: 1;
+}
+.v2-landing-hero .v2-glass {
+  border-color: var(--chrome-edge);
+  box-shadow:
+    inset 0 1px var(--chrome-edge),
+    var(--shadow);
+  --muted: var(--muted-strong);
+}
+.v2-landing-hero .v2-hero-checklist {
+  background: var(--glass-hud);
+}
+.v2-landing-hero .v2-hero-rule {
+  background: var(--memory-fill);
+}
+.v2-landing-hero .v2-hero-drift {
+  background: var(--glass-hud);
+}
+.v2-dashboard-header {
+  position: relative;
+  isolation: isolate;
+}
+.v2-dashboard-header > .v2-editorial-backdrop {
+  inset: -16px -16px -24px;
+  background-size: 400px auto;
+  background-position: right 58%;
+  background-color: var(--studio-canvas);
+  border-radius: var(--radius-large);
+  mask-image: linear-gradient(90deg, transparent 65%, var(--text) 92%);
+}
+.v2-dashboard-header > .v2-editorial-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--studio-canvas) 58%, transparent 100%),
+    linear-gradient(
+      0deg,
+      var(--studio-canvas),
+      transparent 35%,
+      transparent 85%,
+      var(--studio-canvas)
+    );
+}
+.v2-dashboard .v2-drift-chart,
+.v2-dashboard .v2-overview-card,
+.v2-dashboard .v2-dashboard-table-scroll {
+  box-shadow:
+    inset 0 1px var(--chrome-edge),
+    0 8px 32px var(--shadow-tint-subtle);
+}
+.v2-dashboard .v2-overview-date {
+  color: var(--cool-grey);
+}
+.v2-chart-memory text {
+  fill: var(--memory-ink);
+}
+.v2-chart-memory-caption,
+.v2-activity-event.memory,
+.v2-activity-rule.memory,
+.v2-memory-sheet-heading h2,
+.v2-memory-copy,
+.v2-receipt-rules p {
+  color: var(--memory-ink);
+}
+@media (max-width: 760px) {
+  .v2-dashboard-header > .v2-editorial-backdrop {
+    background-size: 220px auto;
+    background-position: right 58%;
+    mask-image: linear-gradient(90deg, transparent 35%, var(--text) 92%);
+  }
+  .v2-dashboard-header > .v2-editorial-backdrop::after {
+    background: linear-gradient(
+      90deg,
+      var(--studio-canvas) 35%,
+      var(--glass-opaque) 68%,
+      transparent
+    );
+  }
+  .v2-landing-hero {
+    padding: var(--space-16);
+    border-radius: var(--radius-large);
+  }
+  .v2-landing-hero .v2-shot-media {
+    border-radius: var(--radius-card);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   :root[data-transition="start"]::view-transition-old(production-heading) {
     animation: v2-reduced-fade 150ms linear reverse both;

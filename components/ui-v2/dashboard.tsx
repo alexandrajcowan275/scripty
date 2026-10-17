@@ -6,6 +6,7 @@ import { Icon, type IconName } from "../icons";
 import { Brand, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink } from "../ui/motion";
 import { LocationReference } from "../ui/location-reference";
+import { EditorialBackdrop } from "../ui/editorial-backdrop";
 import {
   OverviewDialog,
   ProductionDriftChart,
@@ -175,6 +176,7 @@ function DashboardContent() {
       </aside>
       <main className="v2-dashboard-main">
         <header className="v2-dashboard-header">
+          <EditorialBackdrop kind="couture" />
           <div>
             <span className="v2-dashboard-eyebrow">The production office</span>
             <h1>Your productions</h1>

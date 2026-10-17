@@ -15,6 +15,7 @@ import {
 } from "./data";
 import { ProductionProvider, useProduction } from "./provider";
 import { ShotCard } from "../ui/shot-card";
+import { EditorialBackdrop } from "../ui/editorial-backdrop";
 
 function LandingContent() {
   const { data, error, refresh, loading } = useProduction();
@@ -97,6 +98,7 @@ function LandingContent() {
               className="v2-landing-hero"
               aria-label="A real continuity check"
             >
+              <EditorialBackdrop kind="visor" />
               <ShotCard
                 shot={hero}
                 data={data}
