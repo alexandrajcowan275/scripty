@@ -499,6 +499,7 @@ export function StudioScreen() {
       <dialog
         ref={railDialog}
         className="v2-rail-dialog"
+        aria-label={drawer === "takes" ? "Takes" : "Memory"}
         onCancel={() => setDrawer(null)}
         onClose={() => setDrawer(null)}
       >

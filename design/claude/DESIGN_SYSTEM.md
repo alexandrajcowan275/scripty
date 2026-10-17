@@ -95,3 +95,5 @@ Shared `LocationReference` reads the owner-scoped locations API and appears only
 ## Recovery states
 
 Shared `RecoveryScreen` supplies branded missing-route and render-error states using the same headline, ambient, brand and navigation primitives. One action returns to the production catalog, where Mara remains available. Recovery does not replay a generation/review, expose an internal error or replace actual data with a fabricated result. Inline request errors continue to preserve the current work and provide their existing explicit retry.
+
+Flow01 names the landing hero stage and New reference zone as the same shared surface only during Start navigation. Its420ms geometry follows the supplied flow; the outgoing headline lifts12px. Other routes retain their shot-specific image continuity. Reduced motion skips geometry and preserves the150ms fade policy.

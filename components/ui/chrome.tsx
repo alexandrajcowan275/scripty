@@ -163,6 +163,7 @@ export function AccessDialog({
     <dialog
       ref={ref}
       className="v2-access-dialog v2-glass"
+      aria-label="Production access"
       onCancel={onClose}
       onClose={onClose}
     >
