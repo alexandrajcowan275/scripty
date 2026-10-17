@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
 @import "../styles/tokens.css";
+@import "../styles/fonts.css";
+@import "../styles/ui-v2.css";
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--text);
