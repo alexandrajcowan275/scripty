@@ -1,48 +1,49 @@
 # Scripty — two-minute product pitch
 
-Rehearse and trim to exactly2:00. Identify Mara as the sample production; new-production creation and sample history are different paths. Match every evidence claim to `handoff/results.md`.
+Record the real product. Keep original experiment evidence separate from the new note being entered. No finished recording/upload exists yet. Current verified entry: **https://canon-woad.vercel.app/p/mara**. The final page-by-page click path is maintained in `handoff/MORNING.md`.
 
-## Voiceover
+## Narration
 
 On a film set, the script supervisor—the scripty—keeps continuity between shots. Same costume. Same prop. Same hand. AI filmmakers need one too.
 
-Meet Scripty: your AI script supervisor. A generator can report success while a character detail changes. Scripty checks the shot against the character's canon and production memory.
+Meet Scripty: your AI script supervisor. A generator can return success while a character detail changes. Scripty checks the image against a reference and the production’s canon.
 
-Start a production, add a reference, define what stays true, and set your scenes. Review a shot. A correction becomes a production note that carries forward.
+Start a production, add a reference, and confirm what stays true. Vision can suggest the details; you confirm anatomical left and right.
 
-This is Mara, our sample production, with real images and history. The monitor questions the scar’s side. Reinforce the LEFT-eye constraint, and Scripty saves that exact note.
+This is Mara, our sample production. The monitor questions the scar’s side. That is a finding to review, not certified anatomy.
 
-Memory also holds an earlier correction: keep Mara’s silver ring on the right hand. That original rule has a different history from the note we just saved.
+I can edit the note and save it to Memory. Scripty shows the actual returned rule and whether it merged with an existing one. Future generation gets that constraint. The monitor checks it too.
 
-That rule persisted after refresh. Repeating the correction merged it into the same memory. It then appeared in all eighteen later generation prompts and monitor checks, across different scenes. An accepted portrait also became a positive reference for six later shots.
+Rules do not force a new image. Re-check the shots you already have, or replace only the shots still flagged. Originals stay available.
 
-That is the learning loop: a production decision carries forward, and its path is inspectable.
+Here is the original ring correction. It reached eighteen later image prompts and eighteen monitor outputs across different scenes. The new note has its own application count.
 
-Across four six-shot takes, flags were two, zero, zero, then one. Settings, scenes and references changed, so better images remain unverified.
+Across four takes, flags were two, zero, zero, then one. Settings and scenes changed, so improved images are unverified. Blind human labels measure the checker; without those labels, accuracy stays blank.
 
-Our first buyer would be a small AI production team making recurring characters. Proposed pricing combines review seats and checked generations. A pilot would measure review minutes and generation cost per approved shot; savings remain a hypothesis.
+Our first buyer is an AI production team making recurring characters. A pilot would measure review time and cost per approved shot.
 
 Scripty. Keep the story straight.
 
-## Screen sequence
+## Recording plan
 
-1. Landing: show Start a new production, then the concise setup flow. Do not trigger paid generation during the overnight restriction.
-2. Open Mara. Review the actual scar finding; reject it and show the returned LEFT-eye rule. Findings remain monitor claims until human review.
-3. Open Memory, then Progress → Evidence. Distinguish the visitor’s new scar note from the original ring rule whose identity appears in18 later prompts/checks.
-4. Open Progress: retain all four rates, uncertainty and settings qualifier. Do not imply a viewer's new sample correction caused an existing image.
-5. End on the product and public URL. Verify the video link opens without login.
-
-## Two-minute recording plan
-
-| Time | Screen and point |
+| Time | Real screen and claim |
 | --- | --- |
-| 0:00–0:10 | Landing; film-set scripty hook. |
-| 0:10–0:25 | New-production form sequence; use prepared cuts, show private upload/canon/scenes without paid generation. |
-| 0:25–0:45 | Mara’s actual scar finding → Reject & remember → exact returned LEFT-eye rule. Call it a monitor finding, not verified anatomy. |
-| 0:45–1:00 | Memory; distinguish the new scar note from the original ring rule. |
-| 1:00–1:25 | Progress → Evidence; show original ring text in a later prompt and matching rule check,18 later shots. |
-| 1:25–1:42 | All four actual counts, settings qualifier and human-review limitation. |
-| 1:42–1:55 | First buyer, proposed pricing and pilot metric in one short paragraph. |
-| 1:55–2:00 | Product, public URL and “Scripty. Keep the story straight.” |
+| 0:00–0:12 | Film-set hook over a real Mara contact sheet. |
+| 0:12–0:28 | Reference/canon setup. Use only a shipped form; confirm laterality visibly. |
+| 0:28–0:45 | Studio → Review T4·S05; inspect the image/reference and real expected/observed evidence. |
+| 0:45–1:08 | Edit Your note → Reject & remember → returned Memory update → Save to memory. |
+| 1:08–1:28 | Studio Memory: new note0/0 versus original ring18 prompts/18 checks. Show rule reach options without triggering an unplanned paid job. |
+| 1:28–1:45 | Four original rates and their limitation; human-only evaluation remains blank until people label. |
+| 1:45–2:00 | Buyer/pilot metric, product name and public URL. |
 
-These are target edit points, not a claim that a finished recording exists. Rehearse the narration and trim pauses to2:00. A screen showing the new scar rule must not be described as the original18-shot ring experiment.
+Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed recording duration. The initial narration is about260 words; speak naturally and shorten if the screen actions need more room.
+
+## Honesty and recording safety
+
+- Enter the private access code **before** recording, if showing live extraction. Never capture the code, API keys, terminal credentials or private environment files.
+- A free sample correction is a literal creator note; do not narrate it as live AI extraction. Live extraction and the real generation loop have separate saved verification in `docs/verification-live.json`.
+- Existing original images were not caused by a visitor’s new note. Do not imply otherwise with editing.
+- The real flagged-only repair test produced a new image that was still monitor-flagged. Demonstrate selective repair and lineage, not guaranteed correction.
+- Do not label model judgments as human truth, show invented metrics, or count automated test submissions as human labels.
+- Pending navigation/pages must be shipped and publicly verified before filming them. Use the current handoff for the exact release.
+- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit before the official **11am PT** cutoff unless an organizer confirms an extension. No external submission is authorized here.

@@ -8,7 +8,7 @@ On a film set, the script supervisor tracks the costume, prop and continuity det
 
 ## What it does
 
-Start a production with a character reference, canon details and six scenes. Review each shot against those requirements. A correction becomes one short continuity rule, persisted and deduplicated in Scripty Memory. Future generation prompts receive it; future monitoring checks it. Accepted shots can become positive references.
+Start a production with a character reference, creator-confirmed canon details and one to six scenes. Review each shot against those requirements. A correction becomes one short continuity rule, persisted and deduplicated in Scripty Memory. Future generation prompts receive it; future monitoring checks it. Accepted shots can become positive references.
 
 Mara is a pre-filled sample production with four original takes and24 real images. Its complete learning history opens without waiting for AI calls. Sample edits stay in the viewer's browser; original prompts and traces preserve the real engine history. New productions have separate Supabase state and private reference storage.
 
@@ -37,11 +37,11 @@ A creator decision becomes inspectable, reusable production memory. Its exact te
 
 ## Design
 
-A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The final light v3 Figma design is implemented as separate Batch, Review and Learned views, with a Memory drawer and separate Progress. Desktop and mobile screenshots were compared with the supplied frames; `handoff/MORNING.md` records release verification. Every intentional decision and verification finding is kept in `DECISIONS.md`. No reference-site logos, media or layouts are copied into Scripty.
+A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The current Studio, Review and Memory update use a cinematic contact sheet, quiet glass controls and shared typography/color tokens from the supplied design handoff. Desktop and mobile public screenshots verify the main flow. Remaining pages are integrated incrementally; `handoff/MORNING.md` identifies the actual release. Design decisions are recorded in `DECISIONS.md` and the current backend decisions in `docs/backend-decisions.md`. No reference-site logos, media or layouts are copied into Scripty.
 
 ## Agent Monitoring — Lemma
 
-A successful API call can conceal a failed creative requirement. Scripty exposes expected versus observed details, uncertainty, flags and the rule behind a check. Original traces connect generation, monitoring, creator review and later rule application. The creator can challenge the monitor: anatomical-side false positives made this need concrete during development.
+A successful API call can conceal a failed creative requirement. Scripty exposes expected versus observed details, uncertainty, flags and the rule behind a check. Original traces connect generation, monitoring, creator review and later rule application. The creator can challenge the monitor: anatomical-side false positives made this need concrete during development. Re-checking applies memory to stored images without generating new ones. Human/model disagreements supply scoped future checker-calibration context. Blind human judgments, with frozen monitor predictions, are the sole source for public precision/recall/F1; absent labels yield no accuracy claim.
 
 ## Scale
 
