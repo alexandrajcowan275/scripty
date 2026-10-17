@@ -16,7 +16,7 @@ const canon = z
         .regex(/^[a-zA-Z0-9_-]+$/),
       label: z.string().min(1).max(200),
       expected: z.string().trim().min(1).max(200),
-      weight: z.literal(1),
+      weight: z.number().finite().min(0.1).max(5),
     }),
   )
   .min(1)
@@ -26,7 +26,7 @@ const canon = z
   );
 const inputSchema = z.union([
   z.strictObject({
-    scenePrompts: z.array(z.string().trim().min(1).max(2000)).length(6),
+    scenePrompts: z.array(z.string().trim().min(1).max(2000)).min(1).max(6),
   }),
   z.strictObject({
     character: z.strictObject({

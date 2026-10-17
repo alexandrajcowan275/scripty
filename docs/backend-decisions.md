@@ -9,3 +9,7 @@
 - Keep exact note fallback when AI extraction fails. Live extraction deduplicates semantically; serialized SQL additionally deduplicates normalized equal rules from concurrent requests and preserves application counts.
 - No Undo endpoint: reversing a merged rule safely requires versioned memory revisions. Disable or omit Undo rather than implying a navigation action erases persisted learning.
 - Real verification: initial and later scenes passed monitoring, a learned scarf-knot constraint reached the later prompt/check, repeat extraction merged, recheck made zero images, and a flagged sample repair created a new image. The repair remained monitor-flagged. Professional cinematic appearance was visually inspected, but visual correction and human accuracy remain unverified.
+
+- Human/model disagreements supply inspection-calibration context to later monitors. They do not overwrite canon, change the flag threshold or retroactively alter evaluated predictions. Unclear human judgments never become calibration facts.
+
+- The new-production API accepts structured weighted canon and1–6 scenes, while legacy plain-text/six-scene callers remain supported. Structured side-sensitive canon requires explicit matching creator confirmation. A real zero-spend save/reload test preserved keys, expected values, weights and the character version.

@@ -1,3 +1,4 @@
+import { humanCalibrationNotes } from "./human-eval";
 import { cachedProject } from "./engine-cache";
 import { getProject, getShot, serverDatabase, type ProjectData } from "./db";
 import { HttpError } from "./engine-http";
@@ -20,7 +21,8 @@ export async function workspace(request: Request, id: string) {
     const checked = latest.get(shot.id);
     return checked ? { ...shot, checks: checked.checks, flagged: checked.flagged, driftScore: checked.drift_score } : shot;
   });
-  return { ...data, ...evidence, shots: allShots, repairShots, effectiveShots, ownerHash: owner.hash, owned, cached };
+  const checkerCalibration = await humanCalibrationNotes(id, owner.hash);
+  return { ...data, ...evidence, checkerCalibration, shots: allShots, repairShots, effectiveShots, ownerHash: owner.hash, owned, cached };
 }
 export async function workspaceEvidence(projectId: string, ownerHash: string) {
   const db = serverDatabase();

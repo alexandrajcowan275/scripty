@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { accessCookie, hasPaidAccess, matchesAccessCode } from "../lib/access";
 import { usageCost } from "../lib/pricing";
-import { evaluateHumanLabels, latestHumanLabels, type HumanSubmission } from "../lib/human-eval";
+import { calibrationNotes, evaluateHumanLabels, latestHumanLabels, type HumanSubmission } from "../lib/human-eval";
 import { selectShots } from "../lib/workspace";
 import type { Shot } from "../lib/types";
 const check = { key: "scarf", expected: "red scarf", observed: "blue scarf", pass: false, confidence: 0.9 };
@@ -49,4 +49,23 @@ test("human-only evaluation excludes uncertainty and freezes predictions at labe
 test("empty human submissions never turn draft seed labels into accuracy", async () => {
   const result = await evaluateHumanLabels([shot], []);
   assert.equal(result.precision, null); assert.equal(result.recall, null); assert.equal(result.f1, null); assert.equal(result.accuracy, null); assert.equal(result.labelSource, "human_blind");
+});
+
+test("checker calibration uses actual human disagreements, never uncertainty or agreement", () => {
+  const row: HumanSubmission = { id: "human", shot_id: "s1", attribute_key: "scarf", true_pass: true, prediction: check, note: "Scarf is red in shadow.", created_at: "2026-10-17T10:00:00Z" };
+  assert.equal(calibrationNotes([row]).length, 1);
+  assert.equal(calibrationNotes([{ ...row, true_pass: false }]).length, 0);
+  assert.equal(calibrationNotes([{ ...row, true_pass: null }]).length, 0);
+  assert.equal(calibrationNotes([row])[0].expected, "red scarf");
+});
+
+import { productionInputV2, confirmedProductionAttributes } from "../lib/productions";
+test("structured production canon preserves weights/keys and requires anatomical confirmation", () => {
+  const input = { name: "Night Shift", characterName: "Ada", attributes: [{ key: "scar_side", label: "Scar", expected: "scar over LEFT eye", weight: 2 }], scenePrompts: ["Station portrait"] };
+  assert.equal(productionInputV2.safeParse(input).success, false);
+  const confirmed = productionInputV2.parse({ ...input, lateralityConfirmations: { scar_side: "left" } });
+  assert.deepEqual(confirmedProductionAttributes(confirmed), input.attributes);
+  assert.equal(productionInputV2.safeParse({ ...input, lateralityConfirmations: { scar_side: "right" } }).success, false);
+  assert.equal(productionInputV2.safeParse({ ...input, attributes: ["red scarf"], lateralityConfirmations: {} }).success, true);
+  assert.equal(productionInputV2.safeParse({ ...input, attributes: ["red scarf"], scenePrompts: [] }).success, false);
 });

@@ -32,7 +32,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       const generated = await generateImage({ finalPrompt, referenceImageUrl: character.referenceImageUrl, acceptedReferenceUrl: accepted[0], fallbackImageUrl: source.imageUrl, filename: `${id}.png`, deadline });
       addUsage(usage, generated.usage);
       if (generated.provenance === "cached_fallback") return { sourceShotId: source.id, error: generated.errors.join("; "), provenance: generated.provenance };
-      const checked = await monitorImage({ imageUrl: generated.imageUrl, character, rules: data.rules, deadline });
+      const checked = await monitorImage({ imageUrl: generated.imageUrl, character, rules: data.rules, calibration: data.checkerCalibration, deadline });
       addUsage(usage, checked.usage);
       const shot = { ...source, id, batchId: batch.id, finalPrompt, imageUrl: generated.imageUrl, checks: checked.checks, flagged: checked.flagged, driftScore: checked.driftScore, status: "pending" as const, rejectReason: undefined };
       await saveShot(shot);

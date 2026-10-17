@@ -48,6 +48,8 @@ Blind questions contain image/reference URLs, shot/attribute IDs and the expecte
 
 `POST /api/eval` is free: it reads only `source=human_blind` records for the requesting owner. Seed drafts never enter this endpoint. Drift is the positive class; a monitor flag is a failing check with confidence ≥0.6. The API returns TP/FP/TN/FN, precision, recall, F1 and honest denominators. Undefined denominators yield null. `metricsReady` requires 20 scored labels; below that the UI should show “—” for headline accuracy. Browser-entered labels are human submissions, not expert-certified ground truth.
 
+Human disagreements also become scoped checker-calibration context for later monitoring. They preserve the same canon, rules and confidence threshold; the model is instructed to inspect each new shot independently. They never alter image-generation constraints or retroactively change frozen eval predictions. This is another prompt adaptation, not automatic truth or weight training.
+
 ## Security
 
 All public-schema tables have RLS enabled. Anonymous and authenticated database roles cannot read/write these internal tables. Server-only service credentials perform authorized operations. Database functions use security invoker, explicit privileges and an empty search path.

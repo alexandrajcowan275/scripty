@@ -6,65 +6,47 @@ cd ~/canon && npm run dev
 
 Open **http://localhost:3000**. This exact command was restarted and browser-verified on this Mac against the final interface, then stopped to leave port3000 free for morning. Node24, dependencies and local credentials are installed. Repo/folder/Vercel project remain `canon`; GitHub stays private.
 
-# Scripty - morning handoff
+# Scripty — current handoff
 
-Updated **October17,2026,12:31am PT**, before the1am checkpoint. Overnight Main/QA/judge checks continue every90minutes through the7am handoff. **Official Devpost currently lists11:00am PT today (2:00pmEDT); use this earlier cutoff.** The founder’s supplied1:15pm target conflicts with the public listing; no extension is verified. Source: https://sephacks-2026.devpost.com/. No external submission has been made.
+Updated **October 17, 2026, 2:39am PT**. Current phase: Design owns the new UI from `design/claude/`; Main owns backend, persistence, docs and releases. **Code freeze 8am PT; official deadline 11am PT.** This handoff will be finalized at the freeze.
 
-## Release
+## Live now
 
-**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Current application `e881d86` restores custom rejection reasons and saved-production navigation on main; original foundation `9edc16a` and review-exit amendment are retained. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
+Public: https://canon-woad.vercel.app/ · Private repo: https://github.com/alexandrajcowan275/canon · Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos.
 
-Verified production deployment: **dpl_BPQnopq17XoEMthqERfiyBVYzppU**, https://canon-69fs7ndeq-archer-rag-dev.vercel.app (main `e881d86`, READY; public alias verified). The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Subsequent documentation-only pushes may create a new deployment of the same application; the release above was verified against the canonical public URL.
+Production backend: main **c5acbde**, READY deployment **dpl_6GqkrWHhyqRPa45oW4cruXP7QrqM**, https://canon-cas6kz2de-archer-rag-dev.vercel.app. The public URL is the judge entry; unique URLs may require Vercel authentication. The existing light-v3 UI is still live while Design finishes the new Studio/Review/Memory flow; partial UI checkpoints are not deployed.
 
-Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Specification: [design-v3-implementation.md](design-v3-implementation.md). Desktop/mobile comparisons and public proof: [screenshots/verification](screenshots/verification/). Independent Design found no outstanding material mismatch in inspected views; QA passed the public sample flow and390px layout.
+Implemented and real-tested: private reference upload → vision canon suggestions → production save → one-shot Generate → editable rejection → live rule extraction → repeat semantic dedupe → regenerate a new scene with the rule in both prompt and monitor → existing-shot recheck with **zero image requests** → flagged-only real replacement with source lineage. Sample repair persisted separately and original24-shot/four-take history is unchanged. The repair remained monitor-flagged: **do not claim visual improvement**.
 
-## 1am checkpoint - checked12:40am PT
+Blind question/label endpoints and human-only evaluation are implemented. Public blind questions contain no verdict, and zero human labels return null precision/recall/F1/accuracy. Automated tests deliberately do not create human ground truth. Human disagreements can supply scoped future checker-calibration context; fixed canon/threshold and frozen eval predictions remain intact.
 
-No new actionable issue. Canonical public URL serves READY main deployment `dpl_CLk2n7XnDhGCmNd9dx2BtfNdNqit` / `ebc82cb` (https://canon-91016c5ub-archer-rag-dev.vercel.app). This is documentation/evidence on the already verified `911f854` application. Bounded read-only checks confirmed the landing’s two entry paths, sample24 shots and original2/0/0/1 flags. No new screenshots, generation, database writes or full test rerun were needed. The judge report’s visible-exit/qualified-headline findings were resolved and publicly verified in the prior release; human anatomy review, final video and judge repository access remain the morning actions below. Usage: weekly69% remaining,5-hour unavailable, two free resets still available; none used. Overnight checks continue on the90-minute schedule.
+Evidence: [real backend loop](../docs/verification-live.json), [public backend smoke](../docs/verification-public-backend.json), [API reference](../docs/api.md), [architecture](../ARCHITECTURE.md).60 tests and build pass for the compatible backend follow-up. A real one-scene save/reload confirms stable keys, labels, manual weights and confirmed laterality; missing confirmation is rejected. Supabase additive migration applied; security advisor reports no issues.
 
-## What works
+## Access code and budget
 
-- Landing offers **Start a new production** and **Explore a sample production: Mara**.
-- New production: name, character, private reference upload, editable canon details and six scene prompts. Real Supabase persistence, refresh, exact original image bytes and another-browser access denial were verified locally and on the public URL.
-- Reference uploads save before Continue. Owned Memory → Edit character saves an immutable version; prior reference versions remain available, and existing shots/checks are unchanged. Tested through both API and real browser.
-- Batch headings say “shots flagged,” preserving monitor uncertainty. Review now has a visible Back to shots action that leaves without saving; Escape remains available.
-- Mara opens all four takes/24 real images immediately. Batch → one-shot Review → actual returned Learned rule → Memory → Progress works. Keyboard A/R, Escape/focus return, review refresh and session isolation were verified.
-- Original counts remain separate from visitor review decisions. Scar rejection yields the scar rule; it does not substitute a ring example. Memory notes do not rewrite historical images.
-- Progress retains all four actual takes, uncertainty/confounds, full prompt/check/trace evidence and original ring-rule transfer. Known-image markers use source coordinates; full Review images are contained rather than cropped.
-- Graceful saved-capacity response, sample alternative, private ownership and server-side budget/rate guards. Public paid generation stays **disabled** under the no-spending instruction.
--53 tests and production build pass. Final Supabase security advisor reports **No issues found**. All24 public image hashes, four-take replay, acceptance/rejection persistence and isolated sessions pass. Sample flow also works with server AI/database egress blocked.
+The generated private **`SCRIPTY_ACCESS_CODE` value is in `~/canon/.env.local`**. It is also installed as a server-only Secret in [Vercel Production environment variables](https://vercel.com/archer-rag-dev/canon/settings/environment-variables). The same file/dashboard holds `CANON_PUBLIC_GENERATION_ENABLED=true`. Do not put the code in browser bundles, URLs, screenshots, docs or Git. The new UI will exchange it with `POST /api/access`; developer clients can use a bearer header. The current legacy UI has no code-entry screen yet.
 
-Evidence: [public review amendment](experiments/public-review-exit-amendment.json), [final main alias](experiments/public-main-release.json), [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
+Founder-authorized global cap: **$40**. Historical baseline: **$2.05**, as reported from the founder's OpenAI dashboard. Additional real verification **$0.204639 usage-derived estimate**, no holds remaining. Combined baseline+estimate **$2.254639**, available accounting headroom **$37.745361**. These estimates are not provider invoices. The old$20.58 pessimistic reservation history is preserved separately and no longer mistaken for billed spend. Main's verification has a separate atomic$6 ceiling. No purchase or data deletion occurred.
 
-## Founder-requested restoration
+Codex last checkpoint: **61% weekly remaining**; five-hour window unavailable; zero resets used, two still available. No reset threshold has been reached.
 
-Editable400-character rejection reasons and saved-production navigation are live and publicly verified. Local browser/API verification passed: custom text and rule survive refresh, duplicates reuse one ID, original24-shot history stays intact, and an existing owned production reopens from Your productions.53 tests/build pass. Public verification confirms exact note/Memory refresh, blank-note blocking, navigation and owned production API access; see [evidence](experiments/custom-reasons-public.json). Paid generation remains disabled; [budget plan](api-budget-plan.md) gives the minimum additional allowance before any spend. The one-shot verification option is a proposal, not implemented or authorized.
+## Exact two-minute click path on the current release
 
-## Real metrics
+1. **0:00–0:15** Open the public landing and **Explore a sample production: Mara**.
+2. **0:15–0:35** Open the flagged shot in Take4. State that this is a monitor flag whose anatomical correctness still needs a human judgment.
+3. **0:35–1:00** Edit the Continuity note and **Reject**. Continue through the returned Learned rule into **Memory**. Without live access this sample action honestly saves a literal local correction; do not call it live AI extraction.
+4. **1:00–1:35** Open **Progress**, show the unchanged2/6,0/6,0/6,1/6 rates and original ring-rule evidence:18 later prompts plus18 monitor outputs.
+5. **1:35–2:00** Show the real prompt/check trace and explain persistent memory, separate image generation/monitoring, and unverified visual improvement. Close on “Every correction carries forward.”
 
-| Original take | Monitor-flagged shots | Uncertain checks |
-| --- | --- | --- |
-| 1, final checker v3 recheck | 2/6 | 4/36 |
-| 2 | 0/6 | 6/42 |
-| 3 | 0/6 | 8/42 |
-| 4, latest | 1/6 | 6/42 |
+This is the safe existing UI path. It will be replaced with the new Studio/Review/Memory/Eval click path after Design integration and public verification. Do not record a route that has not shipped.
 
-The original ring rule reached all18 later generation prompts and18 corresponding monitor outputs. An accepted portrait was an extra reference for all six final-take shots. Generator/settings/scenes/reference changes confound comparison; learned rules change monitoring; the final flag rate rose. Original checker v1/v2 each flagged6/6 before disclosed calibration. Both laterality findings await human review; the final scar flag may be a monitor error. **No human-verified accuracy or causal image improvement is claimed.** Draft labels stay excluded from authoritative evaluation. See [results.md](results.md).
+## Remaining before freeze / human actions
 
-API reservation ledger remains **$20.58 of$24**, checked again after public upload/persistence verification. Remaining$3.42. Reservations are pessimistic bounds, not a provider billing receipt. No paid calls, purchases or data deletion were performed during this overnight release work.
+- Main: integrate completed Design page commits, build/test, deploy and verify the public URL. Studio checkpoint exists; Review/Memory is being completed, then new-production/Progress/Eval/developers.
+- Main: finalize this file at8am with actual final commit, exact new two-minute route and remaining limits.
+- Founder: enter the private access code in the new UI when available; confirm anatomical left/right in canon suggestions rather than trusting the vision proposal.
+- Founder: provide actual blind judgments if presenting checker metrics. No human accuracy or causal visual improvement is established yet.
+- Founder: record/upload the final two-minute video, arrange judge access to the private GitHub repo, and submit before11am unless an organizer confirms an extension. No external submission or repository visibility change has been performed.
+- No general Undo API, accounts/cross-device recovery, full script/cast management or rule-conflict resolution. UI must not advertise these as complete. Browser ownership lasts30days; clearing the cookie loses access.
 
-## Remaining boundaries and morning actions
-
-1. **Paid generation is intentionally unavailable.** Description-based reference generation and six-shot new-production generation are implemented but were not paid-tested for a new production. Upload/create/save works and offers Mara when generation is paused. Do not enable paid calls or increase limits without new founder authorization.
-2. **Record the two-minute video.** Use [video script](../docs/video-script.md), [final pitch](pitch-final.md), [Devpost copy](../docs/devpost.md), the public product and [Design cover](screenshots/figma-v3/devpost-cover.png). The script distinguishes the visitor’s new scar note from the original ring rule’s18-shot transfer. No final uploaded video exists yet.
-3. **Review the actual laterality findings before certifying them.** If unclear, demonstrate saved memory and prompt/check propagation; do not claim a visually repaired shot or measured accuracy.
-4. **Confirm judge access and submit.** The GitHub repository remains private as requested. No judge invitations/public conversion or external Devpost submission has been performed. The current official requirements are a two-minute demo/pitch video, working GitHub link and deployed project link. Plan submission before11am PT unless the organizer confirms an extension; do not rely on the conflicting1:15pm target.
-5. Ownership is tied to the creating browser for30days. Clearing that cookie loses access; accounts, cross-device recovery and collaboration are outside this release. Save the production URL for returning directly.
-
-The final one-page [brand handout](../docs/brand-guide.pdf) is updated to light v3 and visually verified. Business copy is deliberately short and treats customers, pricing and savings as hypotheses. Larger proposals are in [internal/IDEAS.md](../internal/IDEAS.md). Purchases/deletion and optional cleanup are logged in [BLOCKED.md](../BLOCKED.md).
-
-## Overnight coordination
-
-Main alone edits app code. Design completed the final spec and bounded visual check. Independent judge panel and report-only QA run every90minutes, quiet when unchanged; pitch writer completed and stopped. Main has a90-minute heartbeat for consequential fixes and final6:30–7am readiness/MORNING update. Routine project actions are explicitly approved; nothing needs a login, payment or approval to continue the authorized free work.
-
-Latest reported usage: weekly69% remaining,5-hour window unavailable; two free resets available, none consumed. Use only the founder-authorized free reset if a reported window reaches10% remaining, expiringOct29 first. Never purchase. Secrets stay in ignored .env.local and server-only Vercel variables, never in screenshots or commits.
+[Devpost](../docs/devpost.md) · [video script](../docs/video-script.md) · [pitch](pitch-final.md) · [backend decisions](../docs/backend-decisions.md) · [blockers](../BLOCKED.md).

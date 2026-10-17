@@ -14,13 +14,22 @@ async function main() {
   const labels = JSON.parse(await readFile(resolve(option("--labels", "seed/labels.json")), "utf8"));
   let result;
   if (process.argv.includes("--live-recheck")) {
-    // This explicitly invokes the live vision monitor and may incur API charges.
-    const response = await fetch(`${option("--base-url", "http://localhost:3000")}/api/eval`, {
-      method: "POST", headers: liveHeaders(), body: JSON.stringify({ projectId, includeDrafts, recheck: true }), signal: AbortSignal.timeout(240000),
+    // Paid monitor inference is explicit and separate from free human evaluation.
+    // For private productions provide an owner Cookie header in this private file.
+    const cookieFile = option("--cookie-header-file", "");
+    const cookie = cookieFile ? (await readFile(resolve(cookieFile), "utf8")).trim() : "";
+    const headers: Record<string, string> = { ...liveHeaders(), ...(process.env.SCRIPTY_ACCESS_CODE ? { authorization: `Bearer ${process.env.SCRIPTY_ACCESS_CODE}` } : {}), ...(cookie ? { cookie } : {}) };
+    const base = option("--base-url", "http://localhost:3000");
+    const response = await fetch(`${base}/api/project/${encodeURIComponent(projectId)}/recheck`, {
+      method: "POST", headers, body: JSON.stringify({}), signal: AbortSignal.timeout(280000),
     });
-    if (!response.ok) throw new Error(`Eval endpoint failed (${response.status}): ${(await response.text()).slice(0, 500)}`);
-    result = await response.json();
-    if (result.positiveClass !== "drift" || result.mode !== "rechecked") throw new Error("Endpoint did not return the real recheck eval contract.");
+    if (!response.ok) throw new Error(`Recheck endpoint failed (${response.status}). Open the production in its owning browser and use Re-check with memory, or supply --cookie-header-file.`);
+    const checked = await response.json();
+    if (checked.failed || checked.imageRequests !== 0) throw new Error("Recheck did not complete without image generation");
+    const evaluated = await fetch(`${base}/api/eval`, { method: "POST", headers, body: JSON.stringify({ projectId }), signal: AbortSignal.timeout(30000) });
+    if (!evaluated.ok) throw new Error(`Human evaluation endpoint failed (${evaluated.status})`);
+    result = await evaluated.json();
+    if (result.labelSource !== "human_blind") throw new Error("Endpoint did not return human-only evaluation");
   } else {
     const input = option("--shots", "");
     const project = input ? null : await getProject(projectId);

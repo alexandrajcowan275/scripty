@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-17T09:34:06Z",
+  "baseUrl": "https://canon-woad.vercel.app",
+  "paidCalls": 0,
+  "checks": [
+    {
+      "name": "public access gate configured",
+      "pass": true
+    },
+    {
+      "name": "unauthorized paid action blocked",
+      "pass": true
+    },
+    {
+      "name": "original sample history intact",
+      "pass": true
+    },
+    {
+      "name": "private production code works",
+      "pass": true
+    },
+    {
+      "name": "authorized forty-dollar cap",
+      "pass": true
+    },
+    {
+      "name": "blind questions contain no model verdict",
+      "pass": true
+    },
+    {
+      "name": "human-only metrics remain null",
+      "pass": true
+    }
+  ],
+  "configuration": {
+    "authorized": true,
+    "imageModel": "gpt-image-2.5-sunburst-2026-09-08",
+    "imageQuality": "high",
+    "monitorModel": "gpt-5.4-mini-2026-03-17",
+    "monitorVersion": "canon-monitor-v3",
+    "observedImageCostUsd": 0.058520666666666665,
+    "measuredImages": 3,
+    "estimateSource": "usage_derived_mean_not_invoice",
+    "reservationPerShotUsd": 1.6,
+    "budget": {
+      "reservedUsd": 2.254639,
+      "limitUsd": 40,
+      "remainingUsd": 37.745361,
+      "baselineUsd": 2.05,
+      "usageEstimatedUsd": 0.204639,
+      "heldUsd": 0
+    }
+  },
+  "evaluation": {
+    "labelSource": "human_blind",
+    "humanLabels": 0,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "confusionMatrix": {
+      "truePositives": 0,
+      "falsePositives": 0,
+      "trueNegatives": 0,
+      "falseNegatives": 0
+    }
+  },
+  "status": "PASS"
+}

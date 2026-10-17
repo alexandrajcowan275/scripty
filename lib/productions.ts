@@ -74,6 +74,41 @@ export const productionInput = z.object({
   attributes: z.array(z.string().trim().min(1).max(200)).min(1).max(12),
   scenePrompts: z.array(z.string().trim().min(1).max(2000)).length(6),
 });
+// Keep the legacy six-scene parser available to existing integrations; the new
+// production API uses this additive structured-canon contract.
+const confirmedAttribute = z.object({
+  key: z.string().min(1).max(100).regex(/^[a-zA-Z0-9_-]+$/),
+  label: z.string().trim().min(1).max(200), expected: z.string().trim().min(1).max(200),
+  weight: z.number().finite().min(0.1).max(5),
+  laterality: z.enum(["left", "right", "unclear", "none"]).optional(),
+});
+export const productionInputV2 = productionInput.extend({
+  attributes: z.array(z.union([z.string().trim().min(1).max(200), confirmedAttribute])).min(1).max(12),
+  scenePrompts: z.array(z.string().trim().min(1).max(2000)).min(1).max(6),
+  lateralityConfirmations: z.record(z.string().max(100), z.enum(["left", "right"])).default({}),
+}).superRefine((input, ctx) => {
+  const keys = input.attributes.map((attribute, index) => typeof attribute === "string" ? `canon_${index + 1}` : attribute.key);
+  if (new Set(keys).size !== keys.length) ctx.addIssue({ code: "custom", path: ["attributes"], message: "Each canon attribute needs a unique key" });
+  for (const key of Object.keys(input.lateralityConfirmations)) if (!keys.includes(key)) ctx.addIssue({ code: "custom", path: ["lateralityConfirmations", key], message: "Confirm a current canon attribute" });
+  input.attributes.forEach((attribute, index) => {
+    if (typeof attribute === "string") return; // Legacy/manual plain-text canon remains compatible.
+    const sideSensitive = /\b(left|right)\b/i.test(attribute.expected) || attribute.laterality && attribute.laterality !== "none";
+    const confirmed = input.lateralityConfirmations[attribute.key];
+    if (sideSensitive && !confirmed) ctx.addIssue({ code: "custom", path: ["lateralityConfirmations", attribute.key], message: "Confirm the character's anatomical left or right" });
+    if (confirmed) {
+      const opposite = confirmed === "left" ? "right" : "left";
+      if (new RegExp(`\\b${opposite}\\b`, "i").test(attribute.expected)) ctx.addIssue({ code: "custom", path: ["attributes", index, "expected"], message: "Update this constraint to match the confirmed anatomical side" });
+    }
+  });
+});
+export function confirmedProductionAttributes(input: z.infer<typeof productionInputV2>) {
+  return input.attributes.map((attribute, index) => {
+    if (typeof attribute === "string") return { key: `canon_${index + 1}`, label: `Canon ${index + 1}`, expected: attribute, weight: 1 };
+    const { key, label, expected, weight } = attribute;
+    const side = input.lateralityConfirmations[key];
+    return { key, label, weight, expected: side && !/\b(left|right)\b/i.test(expected) ? `${expected}. Anatomical side: ${side.toUpperCase()}.` : expected };
+  });
+}
 export function rasterType(
   bytes: Uint8Array,
 ): "image/png" | "image/jpeg" | "image/webp" | null {

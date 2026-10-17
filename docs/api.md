@@ -12,7 +12,7 @@ Set `SCRIPTY_ACCESS_CODE` in `~/canon/.env.local` for local development and [Ver
 
 - `POST /api/productions/reference/upload`: multipart `reference` file. Returns `{ticket,imageUrl}`; ticket is signed, owner-bound and expires in an hour.
 - `POST /api/production/canon`: `{referenceTicket,characterName?}`. Paid vision call returns `{attributes:[{key,label,expected,weight,laterality,confidence}],requiresLateralityConfirmation:true,suggestedOnly:true,usage,provenance:"live_vision"}`. Laterality is left/right/unclear/none. No fabricated bounding boxes. User must confirm or change side-sensitive suggestions before using them as canon.
-- `POST /api/productions`: multipart `production` JSON `{name,characterName,attributes:string[],scenePrompts:string[6],description?}` plus `referenceTicket` or an uploaded `reference`. Returns `{project}` with status 201; owner cookie binds subsequent access.
+- `POST /api/productions`: multipart `production` JSON `{name,characterName,attributes:(string|{key,label,expected,weight})[],scenePrompts:string[1..6],description?}` plus `referenceTicket` or an uploaded `reference`. Structured side-sensitive attributes require `lateralityConfirmations:{attributeKey:"left"|"right"}`. Expected wording must agree with the confirmed side; stable keys, labels and manual weights (0.1–5) are retained. Returns `{project}` with status 201; owner cookie binds subsequent access.
 - `GET /api/productions`: `{productions:[{project_id,created_at,projects:{name}}]}`, newest owned productions, at most 12.
 - `PATCH /api/productions/:id`: existing scene-list or immutable character-version editing contract.
 - `GET /api/productions/sample`: opens Mara's complete original four-take history and establishes the sample-review session.

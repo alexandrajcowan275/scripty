@@ -1,3 +1,4 @@
+import { humanCalibrationNotes } from "@/lib/human-eval";
 import {
   productionCharacter,
   requireGenerationCapacity,
@@ -144,6 +145,7 @@ export async function POST(request: Request) {
       monitorModel: monitorConfig.model,
       monitorVersion: MONITOR_VERSION,
     };
+    const checkerCalibration = production ? await humanCalibrationNotes(input.projectId, production.ownerHash) : [];
     const deadline = Date.now() + 260000;
     const usage = emptyUsage();
     const batch: Batch = {
@@ -237,6 +239,7 @@ export async function POST(request: Request) {
                 imageUrl: generated.imageUrl,
                 character,
                 rules: snapshot.rules,
+                calibration: checkerCalibration,
                 deadline,
               });
         addUsage(usage, monitor.usage);

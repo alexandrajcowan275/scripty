@@ -29,6 +29,6 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     if (!shot || !check) throw new HttpError("Choose a valid shot and attribute", 404);
     const { data: saved, error } = await serverDatabase().from("human_labels").insert({ project_id: id, shot_id: shot.id, attribute_key: input.attributeKey, owner_hash: data.ownerHash, true_pass: input.pass, prediction: check, note: input.note }).select("id,created_at").single();
     if (error) throw new Error("Human label could not be saved");
-    return Response.json({ saved: true, ...saved, labelSource: "human_blind" }, { status: 201, headers: { "Cache-Control": "no-store" } });
+    return Response.json({ saved: true, ...saved, labelSource: "human_blind", calibrationSaved: input.pass !== null && ((!check.pass && check.confidence >= 0.6) !== !input.pass) }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) { return apiError(error); }
 }

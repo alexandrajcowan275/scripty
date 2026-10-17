@@ -79,18 +79,26 @@ test("read-only CLI export makes no paid endpoint calls and writes six image/pro
     assert.equal(manifest.batches[0].batch.driftRate, 0.5);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
-test("live eval CLI explicitly requests authorized fresh rechecking", async () => {
+test("live eval CLI separates paid rechecks from free human-only evaluation", async () => {
   const { spawnSync } = await import("node:child_process");
   const { evaluateMonitor } = await import("../lib/eval");
-  const result = { ...await evaluateMonitor([], [], { recheck: async () => [] }), engineMode: "live" };
+  const result = { ...await evaluateMonitor([], []), labelSource: "human_blind" };
   const code = `
     import assert from 'node:assert/strict';
     process.argv.push('--live-recheck');
+    let calls = 0;
     globalThis.fetch = async (input, init) => {
-      assert.equal(new URL(input).pathname, '/api/eval'); assert.equal(init.method, 'POST');
-      assert.deepEqual(JSON.parse(init.body), { projectId:'mara', includeDrafts:false, recheck:true });
-      assert.equal(init.headers['x-canon-mode'], 'live'); assert.equal(init.headers['x-canon-admin-token'], 'test-only-eval-token');
-      return new Response(JSON.stringify(${JSON.stringify(result)}), { headers: { 'content-type':'application/json' } });
+      calls++;
+      assert.equal(init.method, 'POST');
+      assert.equal(init.headers['x-canon-admin-token'], 'test-only-eval-token');
+      if(calls === 1) {
+        assert.equal(new URL(input).pathname, '/api/project/mara/recheck');
+        assert.deepEqual(JSON.parse(init.body), {});
+        return Response.json({completed:24,failed:0,imageRequests:0});
+      }
+      assert.equal(new URL(input).pathname, '/api/eval');
+      assert.deepEqual(JSON.parse(init.body), {projectId:'mara'});
+      return Response.json(${JSON.stringify(result)});
     };
     await import('./scripts/run-eval.ts');
   `;

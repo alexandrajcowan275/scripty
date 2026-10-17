@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-17T09:38:50Z",
+  "projectId": "f4ba4ef0-ec59-4698-a7af-c260afe97692",
+  "paidCalls": 0,
+  "checks": [
+    {
+      "name": "unconfirmed anatomical canon blocked",
+      "pass": true
+    },
+    {
+      "name": "one-scene structured production saved",
+      "pass": true
+    },
+    {
+      "name": "keys labels weights and expected values persist",
+      "pass": true
+    },
+    {
+      "name": "fresh read retains weighted character version",
+      "pass": true
+    }
+  ]
+}

@@ -2,7 +2,8 @@ import { apiError, HttpError } from "@/lib/engine-http";
 import {
   requireGenerationCapacity,
   readReferenceTicket,
-  productionInput,
+  productionInputV2,
+  confirmedProductionAttributes,
   productionOwner,
   checkOrigin,
   claimCreation,
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
     } catch {
       throw new HttpError("Check your production details.");
     }
-    const input = productionInput.parse(parsed);
+    const input = productionInputV2.parse(parsed);
     const file = form.get("reference");
     let bytes: Uint8Array | undefined;
     let mime: string | undefined;
@@ -78,7 +79,7 @@ export async function POST(request: Request) {
       let uploadedPath = "";
       const generated = await generateImage(
         {
-          finalPrompt: `Create one cinematic character reference portrait of ${input.characterName}. ${input.description}. Canon: ${input.attributes.join("; ")}. Neutral simple background, natural controlled light, 35mm film still. Keep anatomical LEFT and RIGHT explicit.`,
+          finalPrompt: `Create one cinematic character reference portrait of ${input.characterName}. ${input.description}. Canon: ${confirmedProductionAttributes(input).map(attribute => attribute.expected).join("; ")}. Neutral simple background, natural controlled light, 35mm film still. Keep anatomical LEFT and RIGHT explicit.`,
           fallbackImageUrl: "",
           filename: "reference.png",
         },
@@ -104,12 +105,7 @@ export async function POST(request: Request) {
           id: crypto.randomUUID(),
           name: input.characterName,
           referenceImageUrl: `/api/productions/${id}/reference`,
-          attributes: input.attributes.map((expected, index) => ({
-            key: `canon_${index + 1}`,
-            label: `Canon ${index + 1}`,
-            expected,
-            weight: 1,
-          })),
+          attributes: confirmedProductionAttributes(input),
         },
       ],
     };

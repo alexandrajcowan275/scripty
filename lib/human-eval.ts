@@ -22,3 +22,10 @@ export async function evaluateHumanLabels(shots: Shot[], rows: HumanSubmission[]
   const result = await evaluateMonitor(frozen, labels);
   return { ...result, confusionMatrix: { truePositives: result.truePositives, falsePositives: result.falsePositives, trueNegatives: result.trueNegatives, falseNegatives: result.falseNegatives }, labelSource: "human_blind" as const, humanLabels: labels.length, uncertainHumanLabels: latest.filter(row => row.true_pass === null).length, totalSubmissions: rows.length, metricsReady: result.evaluatedLabels >= 20, provenance: "human_labels_frozen_predictions", caveat: result.evaluatedLabels < 20 ? "Small sample: collect at least 20 human judgments before presenting accuracy." : "Human-entered labels, frozen monitor predictions; not independent expert certification." };
 }
+
+export function calibrationNotes(rows: HumanSubmission[]) {
+  return latestHumanLabels(rows).filter(row => row.true_pass !== null && row.prediction && ((!row.prediction.pass && row.prediction.confidence >= 0.6) !== !row.true_pass)).slice(0, 10).map(row => ({ attributeKey: row.attribute_key, expected: row.prediction!.expected, previousObserved: row.prediction!.observed, humanPass: row.true_pass!, note: row.note }));
+}
+export async function humanCalibrationNotes(projectId: string, ownerHash: string) {
+  return calibrationNotes(await humanSubmissions(projectId, ownerHash));
+}

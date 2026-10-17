@@ -1,7 +1,8 @@
 // Standard processing USD per million tokens. Official model pages checked
 // 2026-10-17. These are usage-derived estimates, never a provider invoice.
 export function usageCost(model: string, usage: Record<string, unknown>): number | null {
-  const input = Number(usage.input_tokens), output = Number(usage.output_tokens);
+  if (typeof usage.input_tokens !== "number" || typeof usage.output_tokens !== "number") return null;
+  const input = usage.input_tokens, output = usage.output_tokens;
   if (![input, output].every(n => Number.isFinite(n) && n >= 0)) return null;
   let cost: number;
   if (/^gpt-image-(?:1\.5|2(?:\.5-sunburst)?)(?:-|$)/.test(model)) {

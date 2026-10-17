@@ -19,7 +19,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     await claimCreation(request, data.ownerHash, "recheck");
     const usage = emptyUsage(), deadline = Date.now() + 260000;
     const results = await mapLimit(shots, 2, async shot => {
-      const result = await monitorImage({ imageUrl: shot.imageUrl, character: data.project.characters[0], rules: data.rules, deadline });
+      const result = await monitorImage({ imageUrl: shot.imageUrl, character: data.project.characters[0], rules: data.rules, calibration: data.checkerCalibration, deadline });
       addUsage(usage, result.usage);
       if (result.error) return { shotId: shot.id, error: result.error, provenance: result.provenance };
       const row = { project_id: id, shot_id: shot.id, owner_hash: data.ownerHash, checks: result.checks, flagged: result.flagged, drift_score: result.driftScore, rule_ids: data.rules.map(rule => rule.id), model: result.monitorModel!, version: result.monitorVersion! };
