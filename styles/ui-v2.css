@@ -4117,3 +4117,23 @@
   font-size: 11px;
   cursor: help;
 }
+
+.v2-recovery-content {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-96) var(--space-32);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-40);
+}
+.v2-recovery-content .v2-headline {
+  max-width: 800px;
+}
+@media (max-width: 650px) {
+  .v2-recovery-content {
+    padding: var(--space-64) var(--space-16);
+    gap: var(--space-32);
+  }
+}
