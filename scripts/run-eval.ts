@@ -4,6 +4,7 @@ import { evaluateMonitor } from "../lib/eval";
 import { getProject, shotSchema } from "../lib/db";
 import { z } from "zod";
 import { loadLocalEnv } from "./env";
+import { liveHeaders } from "./live-request";
 
 function option(name: string, fallback: string) { const at = process.argv.indexOf(name); return at < 0 ? fallback : process.argv[at + 1] ?? fallback; }
 async function main() {
@@ -15,7 +16,7 @@ async function main() {
   if (process.argv.includes("--live-recheck")) {
     // This explicitly invokes the live vision monitor and may incur API charges.
     const response = await fetch(`${option("--base-url", "http://localhost:3000")}/api/eval`, {
-      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ projectId, includeDrafts }), signal: AbortSignal.timeout(240000),
+      method: "POST", headers: liveHeaders(), body: JSON.stringify({ projectId, includeDrafts, recheck: true }), signal: AbortSignal.timeout(240000),
     });
     if (!response.ok) throw new Error(`Eval endpoint failed (${response.status}): ${(await response.text()).slice(0, 500)}`);
     result = await response.json();

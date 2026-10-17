@@ -37,3 +37,19 @@ Apply all three SQL migrations in filename order before seeding. Root orchestrat
 Nine focused tests pass, including eval confusion matrix/denominators, draft exclusion, missing evidence, single recheck per shot, duplicate-label rejection, credential errors, malformed checks, fresh review/rule visibility using a mocked PostgREST boundary, and fail-closed budget result/rounding. TypeScript passes. `npm run build -- --webpack` passes. Bare Turbopack `npm run build` hits the environment's port-bind EPERM when spawning its CSS worker; webpack builds the same production app successfully without that worker-port requirement.
 
 Root reported first two migrations applied to the live project. The budget migration still needs applying after merge, followed by seed and live DB/storage tests. No AI calls were made by this agent. `seed/labels.json` deliberately contains exactly three unverified examples, so initial precision/recall/F1 are **N/A**, not invented scores. No real cache or accuracy claims exist until the orchestrator captures images and a human labels them. `/api/eval` is Engine-owned, as agreed. No package/type changes were made.
+
+## Integration follow-up: authorized live scripts and read-only capture
+
+Fixed `scripts/run-eval.ts --live-recheck` to send `recheck:true` and explicit live/admin headers. It now invokes the actual authorized monitor recheck route. `CANON_ADMIN_TOKEN` is read silently from the environment; no token is logged. Cache capture uses the same header helper.
+
+Added `--capture-existing` to export already persisted live batches without calling any generation/review/monitor API. Use `--batches N` (earliest indexed saved batches) or `--batch-ids id1,id2,id3` (original order preserved) to exclude incomplete failed attempts. Existing export rejects `--decisions` and `--scenes`. It restores original shot order and successful image-provider provenance from recorded generation traces, preserves actual creator review state/reasons with honest missing timestamp, includes only that batch's applied rule IDs, and filters unrelated batch traces. Current rule wording is labeled as a capture-time snapshot; original applied wording remains in traces.
+
+For paid generation capture, optional `--scenes path.json` supplies an array of scene sets, each exactly six prompt strings. All captures require exactly six unique shots per batch. The script rejects `live_with_fallback`, unknown/cached image providers, missing successful monitor provenance on existing exports, zero-confidence checks, and drift-rate mismatches. Raster images have hash-based filenames and retain original provider/URL/hash; the manifest is replaced atomically only after the entire capture succeeds.
+
+```sh
+npx tsx scripts/cache-demo.ts --capture-existing --batches 3
+npx tsx scripts/cache-demo.ts --capture-existing --batch-ids FIRST_ID,SECOND_ID,THIRD_ID
+node --import tsx --test scripts/test-data.ts scripts/test-cache.ts
+```
+
+All 17 focused tests pass, including complete mocked CLI export/recheck flows, live header behavior, strict six-shot evidence, fallback refusal, persisted scene ordering/review preservation, batch-specific rule/trace history, and existing eval/DB/budget checks. TypeScript and the production webpack build pass. The follow-up made no live calls and did not invent a cache; the root's current provider authentication failure remains external to this data implementation. Root controls all actual generation and inspection.
