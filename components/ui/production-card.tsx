@@ -24,6 +24,7 @@ export function ProductionCard({
           <span className="v2-production-media" data-viewfinder>
             <ShotImage
               src={image}
+              variant="thumbnail"
               alt={`${name}, production reference`}
               priority
             />

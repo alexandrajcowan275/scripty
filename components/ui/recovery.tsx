@@ -19,7 +19,7 @@ export function RecoveryScreen({ missing = false }: { missing?: boolean }) {
               : "Your production is still yours."
           }
         />
-        <MotionLink href="/productions" className="v2-button v2-primary">
+        <MotionLink href="/projects" className="v2-button v2-primary">
           Your productions →
         </MotionLink>
       </main>

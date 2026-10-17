@@ -44,6 +44,7 @@ export function LocationReference({ projectId }: { projectId: string }) {
         <figure key={location.id}>
           <ShotImage
             src={location.imageUrl}
+            variant="thumbnail"
             alt={`${location.name}, captured location reference`}
           />
           <figcaption>

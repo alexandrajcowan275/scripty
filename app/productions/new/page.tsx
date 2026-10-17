@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
-export const metadata: Metadata = { title: "Scripty — New production" };
-import { NewProductionScreen } from "@/components/ui-v2/new-production";
+import { redirect } from "next/navigation";
 export default function NewProductionPage() {
-  return <NewProductionScreen />;
+  redirect("/new");
 }

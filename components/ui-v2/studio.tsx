@@ -65,6 +65,7 @@ export function MemoryPanel({
         <div className="v2-reference-summary">
           <ShotImage
             src={character.referenceImageUrl}
+            variant="thumbnail"
             alt={`${character.name} reference`}
           />
           <div>

@@ -62,7 +62,11 @@ export function LearnedRuleCard({
         } as CSSProperties
       }
     >
-      <ShotImage src={shot.imageUrl} alt={shot.scenePrompt} />
+      <ShotImage
+        src={shot.imageUrl}
+        alt={shot.scenePrompt}
+        variant="thumbnail"
+      />
       <div>
         <h3>{rule.text}</h3>
         <p className="v2-mono">

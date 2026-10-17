@@ -97,7 +97,12 @@ function LandingContent() {
               className="v2-landing-hero"
               aria-label="A real continuity check"
             >
-              <ShotCard shot={hero} data={data} openTake />
+              <ShotCard
+                shot={hero}
+                data={data}
+                openTake
+                imageVariant="review"
+              />
               <aside className="v2-hero-checklist v2-glass">
                 <div className="v2-rail-heading">
                   <span className="v2-label">
@@ -201,7 +206,7 @@ function LandingContent() {
         <footer className="v2-public-footer">
           <Brand />
           <span>Continuity. Now part of the crew.</span>
-          <MotionLink href="/productions">Your productions →</MotionLink>
+          <MotionLink href="/projects">Your productions →</MotionLink>
         </footer>
       </div>
     </div>

@@ -325,7 +325,11 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
                   className={item.id === (sourceId ?? shotId) ? "on" : ""}
                   title={item.scenePrompt}
                 >
-                  <ShotImage src={item.imageUrl} alt={frameName(item, data)} />
+                  <ShotImage
+                    src={item.imageUrl}
+                    alt={frameName(item, data)}
+                    variant="thumbnail"
+                  />
                 </MotionLink>
               ))}
             </nav>

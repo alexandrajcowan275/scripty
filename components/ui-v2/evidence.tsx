@@ -218,6 +218,7 @@ export function EvidenceScreen() {
                         >
                           <ShotImage
                             src={shot.imageUrl}
+                            variant="thumbnail"
                             alt={`${frameName(shot, data)} · ${shot.scenePrompt}`}
                           />
                           {carries && <MemoryThreadDot order={shotIndex} />}

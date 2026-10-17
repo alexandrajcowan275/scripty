@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ShotImage } from "../shot-image";
 import { MotionLink } from "./motion";
 import { message, post, type ProductionData } from "../ui-v2/data";
 
@@ -39,25 +40,25 @@ export function Nav({
             aria-label="Choose production"
           >
             {data?.project.characters[0]?.referenceImageUrl && (
-              <img src={data.project.characters[0].referenceImageUrl} alt="" />
+              <ShotImage
+                src={data.project.characters[0].referenceImageUrl}
+                alt=""
+                variant="thumbnail"
+                priority
+              />
             )}
             <span>{data?.project.name ?? "—"}</span>
             <span aria-hidden="true">⌄</span>
           </button>
           {menu && (
             <div className="v2-switch-menu v2-glass">
-              <MotionLink href="/productions">Your productions</MotionLink>
+              <MotionLink href="/projects">Your productions</MotionLink>
               <MotionLink href="/p/mara" onNavigate={() => setMenu(false)}>
                 Mara · sample
               </MotionLink>
               <MotionLink href="/new" kind="start">
                 Start a production
               </MotionLink>
-              {id !== "mara" && (
-                <MotionLink href={`/studio?id=${encodeURIComponent(id)}`}>
-                  Edit character & scenes
-                </MotionLink>
-              )}
             </div>
           )}
         </div>
