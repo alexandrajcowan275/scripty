@@ -59,4 +59,4 @@ Returns `{shot,newRule?,merged?,provenance,usage?,warning?}`. `decision:"accept"
 
 `GET /api/config` returns real `imageModel`, `imageQuality`, `monitorModel`, `monitorVersion`, access status and `observedImageCostUsd` (null until measured). `reservationPerShotUsd` is a conservative preflight hold, **not** a per-image price. Authorized requests also receive `{budget:{baselineUsd,usageEstimatedUsd,heldUsd,limitUsd,remainingUsd,reservedUsd}}`. Usage estimates are based on returned tokens; actual provider billing may differ.
 
-Current controls: $40 global cap, $2.05 founder-reported baseline, a separate $6 operator verification ceiling, per-owner/IP hourly throttles, and per-production generation lease/attempt cap. Never retry an ambiguous paid call merely because a UI timed out; refresh the saved production first.
+Current controls: $30 global cap, $2.23 founder-reported baseline, a separate $12 operator verification ceiling, per-owner/IP hourly throttles, and per-production generation lease/attempt cap. Never retry an ambiguous paid call merely because a UI timed out; refresh the saved production first.

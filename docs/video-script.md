@@ -46,4 +46,4 @@ Rehearse to exactly2:00 and trim pauses. This is an edit plan, not a claimed rec
 - The real flagged-only repair test produced a new image that was still monitor-flagged. Demonstrate selective repair and lineage, not guaranteed correction.
 - Do not label model judgments as human truth, show invented metrics, or count automated test submissions as human labels.
 - Pending navigation/pages must be shipped and publicly verified before filming them. Use the current handoff for the exact release.
-- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit before the official **11am PT** cutoff unless an organizer confirms an extension. No external submission is authorized here.
+- Verify the final uploaded video opens without login. Arrange judge access to the private repository and submit before the founder-supplied **2:00pm PT** deadline. No external submission is authorized here.
