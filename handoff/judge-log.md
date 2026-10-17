@@ -75,3 +75,8 @@ Qualified flag wording and visible nonmutating Review exit: resolved. Concrete m
 ### Selection fix follow-up — 03:40am PT
 
 - **Done — P1 generated-take context:** Design54e2189 merged as241f899;73tests/build passed. Public verification: viewingTake1 correctly offers GenerateTake3; selecting the existingTake2 updates the URL and displays its image/rule reach. Automatic selection of a newly returned batch has a regression test; no third paid generation was run solely to recheck navigation.
+
+### Backend capacity decision — 03:48am PT
+
+- **Skipped — replacing lifetime cap:** automatic review rejected changing three lifetime takes to six per hour because it expands persistent paid capacity. No command ran and no migration was created; the existing guard remains. Logged the limitation for the founder rather than bypassing review or interrupting them overnight.
+- **Done — actual scene count:** corrected budget preflight to use saved production scenes when no override is supplied; a one-scene production no longer gets a six-scene estimate. Per-attempt reservations, cost cap, access gate and existing take limit remain unchanged.

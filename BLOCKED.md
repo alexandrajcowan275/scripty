@@ -17,3 +17,9 @@ The new Studio/Review/Memory checkpoint is deployed at `/p/mara`. Landing, new p
 
 ## Optional browser automation limitation
 Chrome extension file upload requires its Allow access to file URLs option. No security setting was changed. In-app browser upload worked against real private Supabase Storage, so this does not block the app or recording.
+
+## Existing three-take limit retained — automatic review
+
+Automatic approval review rejected Main's proposed replacement of the existing three-take lifetime cap with a six-takes-per-hour limit, citing persistent paid-spend/service capacity expansion without specific approval for that setting. The rejected command did not run; no migration or rate-limit expansion was applied. Main retained the existing cap and fixed only the separate preflight bug that assumed six scenes even for a one-scene saved production. Global$30cost controls and live access remain intact.
+
+The public-UI verification production has used2of3take attempts; one remains. Mara's original four takes remain available. Changing the lifetime limit is an optional founder decision for the morning, not something retried indirectly overnight.

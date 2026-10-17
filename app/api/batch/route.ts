@@ -101,7 +101,7 @@ export async function POST(request: Request) {
       checkOrigin(request);
       requireGenerationCapacity(true, request);
       const budget = await getApiBudget();
-      if (budget.remainingUsd < (input.scenePrompts?.length ?? 6) * 1.6)
+      if (budget.remainingUsd < (input.scenePrompts?.length ?? (production.scene_prompts as string[]).length) * 1.6)
         throw new HttpError(generationLimitMessage, 429);
       const { data: claimed, error } = await serverDatabase().rpc(
         "claim_production_generation",

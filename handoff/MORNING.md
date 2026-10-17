@@ -33,3 +33,5 @@ Founder: supply real blind labels (the new12 A/B images will be first), record/u
 ## In progress
 
 A/B blind queue verified on publiccb84f34:210cards, first48cover all12studyimages, conditions/predictions hidden, zero human labels. Public new-production UI loop also passed generation→editednote→live memory→regeneration, with1prompt/1checkreach and$0.121538estimated additional usage. The selected-take navigation defect is fixed in241f899; oldTake1 correctly offers GenerateTake3, and Take2 selection updates the URL. Remaining: same-origin study-image release and incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
+
+Capacity note: the existing three-take lifetime attempt limit remains. Automatic review rejected Main's proposed hourly replacement as an expansion of persistent paid capacity; no such migration ran. The verified Night Train production has2of3attempts used, one remaining. Changing this setting is optional founder approval work after waking; Mara's four original takes remain available.
