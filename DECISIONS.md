@@ -124,3 +124,7 @@ Make Home actionable: pending monitor-flagged shots first, followed by browser-o
 Use four credited Pexels photographs as cinematic atmosphere above the real Mara product section, with the exact founder-supplied headline. A CSS-only 32-second cycle crossfades the scenes; an explicit pause control and static first scene for reduced-motion users keep motion optional. Ship responsive 640px/1600px WebPs and retain source credits. Remove fashion imagery from rendering while preserving the unused files and their provenance. Product calls to action, real sample checks, all application routes, and Review/Evidence source images stay intact.
 
 Before publishing the landing sequence, raise the minimum photo overlay to58% of the existing ink color. A worst-case white-photo composite test verifies at least4.5:1 for small white text, so readability is preserved across all scene crossfades. Final combined92tests, build and typecheck pass.
+
+## October 17 morning — direct sample entry and compact review queue
+
+Add the founder-requested secondary hero action, “Explore the sample: Mara →”, directly to `/p/mara`, alongside production creation on desktop and stacked on mobile. Make pending review cards exactly three columns on desktop, two on tablet and one on mobile, with3:2 images. Show the failed attribute and actual confidence in a short label; leave detailed monitor notes in Review. “Ring hand” avoids inferring an unverified anatomical finding beyond the recorded attribute. No generation, label, evidence or ownership changes.

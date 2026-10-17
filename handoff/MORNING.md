@@ -6,15 +6,15 @@ cd ~/canon && npm run dev
 
 Open http://localhost:3000. [Public production](https://getscripty.vercel.app/) · [Home](https://getscripty.vercel.app/dashboard) · [Private GitHub](https://github.com/alexandrajcowan275/scripty).
 
-**Morning visual release updated after the founder returned. Application code: `ea366f2`; later documentation-only commits may have a newer HEAD. The lead, judge-panel and QA heartbeats remain paused, not deleted. All deployments stop at 9:30am PT.**
+**Morning visual release updated after the founder returned. Latest application change: `610a133` (direct Mara entry and compact review cards), following the verified `ea366f2` cinematic release; Main integration/documentation commits may have a newer HEAD. The lead, judge-panel and QA heartbeats remain paused, not deleted. All deployments stop at 9:30am PT.**
 
 **Confirmed submission deadline: October 17, 11:00am PT/PDT.** The founder confirmed the official Devpost cutoff; earlier 2pm estimates are superseded. [Official source](https://sephacks-2026.devpost.com/) · [recorded verification](../docs/verification-deadline.json).
 
 ## What is live
 
-The working **Home** leads with pending flagged shots, then Productions, Recently learned, Agents and Activity. The historical chart is on **Evidence**. Recorded agent run times are real; live agent status is explicitly unavailable. Studio, Review and Evidence use the final restrained workspace styling. The landing has four credited cinematic photographs, the founder’s exact headline, pause/resume and a reduced-motion fallback; Mara remains the product content below it. No fashion imagery renders on landing/Home.
+The working **Home** leads with pending flagged shots, then Productions, Recently learned, Agents and Activity. The review queue uses compact3:2 images in3/2/1 desktop/tablet/mobile columns, with short failed-attribute/confidence labels; full monitor notes stay in Review. The landing hero offers **Explore the sample: Mara →** directly to Mara Studio alongside **Start a production**. The historical chart is on **Evidence**. Recorded agent run times are real; live agent status is explicitly unavailable. Studio, Review and Evidence use the final restrained workspace styling. The landing has four credited cinematic photographs, the founder’s exact headline, pause/resume and a reduced-motion fallback; Mara remains the product content below it. No fashion imagery renders on landing/Home.
 
-**92 tests, typecheck, production build and CI pass.** Application `ea366f2` is READY as `dpl_HCcBbNgwSATzi4NGJTQdhRNpq3zB`; both `getscripty.vercel.app` and `canon-woad.vercel.app` serve it. Home/Studio/Review/Evidence were verified at 1440px and 390px; all four have no document overflow. Review/Evidence images have no editorial filter or transform. Landing verified at both sizes, all four responsive photos load, pause/resume works, and Open studio reaches Home. [Final design receipt](../docs/verification-design-final.json) · [green CI](https://github.com/alexandrajcowan275/scripty/actions/runs/39046238685).
+**92 tests, typecheck, production build and CI pass.** The preceding cinematic application `ea366f2` was verified READY as `dpl_HCcBbNgwSATzi4NGJTQdhRNpq3zB`; the final two UI changes are `610a133`, released through the same Main Git integration. Both `getscripty.vercel.app` and `canon-woad.vercel.app` remain attached to that production project. Home/Studio/Review/Evidence were verified at 1440px and 390px; all four have no document overflow. Review/Evidence images have no editorial filter or transform. Landing verified at both sizes, all four responsive photos load, pause/resume works, and Open studio reaches Home. [Final design receipt](../docs/verification-design-final.json) · [green CI](https://github.com/alexandrajcowan275/scripty/actions/runs/39046238685).
 
 Browser ownership/access/labels are hostname-scoped. **Keep the existing blind-eval session on [the old hostname](https://canon-woad.vercel.app/p/mara/eval)**; the URL rebrand does not transfer its cookies. The old app URL and old GitHub URL continue working. No paid requests or human labels were submitted during the design pass.
 
@@ -49,7 +49,7 @@ Latest checked Codex usage: **22% weekly remaining**; five-hour figure unavailab
 
 ## Exact two-minute sample path
 
-1. **0:00–0:15:** Start at [Home](https://getscripty.vercel.app/dashboard) → **Mara** production card → **Take 1** → **T1·S02**, the frontal portrait with the ring-hand finding. Landing’s **Open studio** enters Home.
+1. **0:00–0:15:** Landing → **Explore the sample: Mara →** → **Take 1** → **T1·S02**, the frontal portrait with the ring-hand finding. The hero opens Mara directly; **Open studio** remains the Home entry.
 2. **0:15–0:35:** **With reference**. Explain the finding as model-reported; visually verify the ring before filming.
 3. **0:35–1:00:** Edit **Your note** to “Keep the silver ring on Mara’s anatomical RIGHT hand.” → **Reject & remember**. Show the actual returned new/merged rule in **Memory update**. Future-take scope is already saved. Do not select recheck/fix unless intentionally spending.
 4. **1:00–1:20:** **Save to memory** → Studio. Show the original ring rule’s **18 prompts / 18 checks**, separately from today’s note: a new visitor note did not cause historical images.
