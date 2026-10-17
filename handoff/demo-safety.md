@@ -1,3 +1,11 @@
+## Scheduled checkpoint — October17,2026 12:26a.m. Pacific
+
+**PASS, no new actionable issue.** READY production `dpl_9pok1QeiDp9RfZvQeKzrsfcafMUt` / e854bc92a279fc2c7e579bbf07edc6656cce24d3. Since the prior9edc16a browser check, application changes are capacity/error-copy cleanup in batch/project routes; all other changes are documentation/evidence. Cached assets and interface components are unchanged.
+
+Focused public read-only checks: landing200 with Scripty/new-production entry; project200 cached/cacheAvailable=true; sample200 cached with4takes/24shots. Using only sample-local cookie and explicit cached request header, exhausted replay returns409 “All four takes are ready to review. New takes are paused.” Custom scenes return409 “New scene generation is paused. Explore Mara’s existing takes.” Both preserve an honest capacity response and occur before provider work. No generation, live-project writes, deletion or purchases. No new screenshot/full-suite/24-image download repeated because unchanged boundaries already passed.
+
+Report-only90-minute schedule remains through7amPT. Earlier full browser/mobile/no-egress/secret-scan evidence remains dated below, not claimed as newly rerun. No notification to user/Main for unchanged readiness; next scheduled run will record the1am checkpoint status after that time.
+
 # Scripty demo safety — current light-v3 release
 
 Checked Friday October16,2026 11:09p.m. Pacific (2026-10-17T06:09Z).

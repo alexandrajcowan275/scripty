@@ -59,7 +59,7 @@ Start opens02 Setup name; sample opens the actual selected cached take, with all
 
 ### 02 Batch — node19:17, 1440×1080
 
-Job: identify which shots need attention. Header contains scripty, Memory and Progress only. Content margin72, headline56/64 **1 of 6 shots drifted.** This exact frame shows actual Take4, whose fifth image is flagged.
+Job: identify which shots need attention. Header contains scripty, Memory and Progress only. Content margin72, headline56/64 **1 of 6 shots flagged.** This exact frame shows actual Take4, whose fifth image is flagged.
 
 Grid:1296×584, three416×280 images per row, two rows,24px column/row gaps. No text below shots. The8px dot sits24px from the image's right and bottom edges (center is20px from each). Hollow red versus solid green with a white halo; announce the result on the whole image button. Review it is208×56,32px after the grid. Retain the quiet empty area below.
 
@@ -67,7 +67,7 @@ Review it opens the first unresolved flagged shot. A shot itself is a full-card 
 
 ### 03 Review / scar — node19:54, 1440×1080
 
-Job: one human decision. No navigation chrome or attribute panel. Center a1076×640px image bed,182px from each side,72px from the top. Full image uses contain; letterbox areas remain neutral gray. Image→sentence gap32; sentence→buttons gap32.
+Job: one human decision. One quiet noncommittal exit above the image; no attribute panel. Center a1076×640px image bed,182px from each side,72px from the top. Full image uses contain; letterbox areas remain neutral gray. Image→sentence gap32; sentence→buttons gap32.
 
 Sentence24/32, centered: **Scar seems on her right. Canon says left.** Primary288×56 **Reject & remember**; secondary224×56 **Looks right**;24px gap, group centered. This is a checker claim awaiting human judgment, not a verified defect.
 
@@ -120,8 +120,8 @@ Each frame1440×960. Brand-only80px header; centered content with72px top inset.
 |20:88|Empty/first use|**Your first take starts here.** One short line, Add scenes240×56. No blank dashboard modules.|
 |20:96|Loading/checking|Same Batch geometry; six416×280 neutral skeletons, no spinner or invented percentage/time. Keep completed images during partial work and announce checking once.|
 |20:113|Generation failed|**That take didn't land.** **Your production is safe. Try again.** One Try again primary, quiet Mara alternative. Only claim the production is safe after durable save; otherwise preserve local input and report saving failed.|
-|20:123|Zero flags|Actual Take3 images. **0 of 6 shots drifted.** Green dots, Review next take. Not a verified perfect batch; original monitor evidence stays intact.|
-|20:160|All flags|**6 of 6 shots need review.** All red dots, Review them. Figma uses real original v1 calibration results as a state specimen ONLY. Never insert this preserved6/6 calibration into the final four-take v3 chart or present it as a learning baseline.|
+|20:123|Zero flags|Actual Take3 images. **0 of 6 shots flagged.** Green dots, Review next take. Not a verified perfect batch; original monitor evidence stays intact.|
+|20:160|All flags|**6 of 6 shots flagged.** All red dots, Review them. Figma uses real original v1 calibration results as a state specimen ONLY. Never insert this preserved6/6 calibration into the final four-take v3 chart or present it as a learning baseline.|
 |20:197|Long name|856×96 field example: The Unreasonably Long Last Night at the Railway Station. Wrap input content where appropriate, never force horizontal page overflow. Full name remains accessible if later truncated in a utility.|
 |23:60|Saved/capacity paused|**Your production is saved.** **New takes are paused. Mara is ready.** One432×56 Explore a sample production: Mara. Render only after save; keep private reference and entered scenes; no invented reset time. Also handles exhausted cached replay with contextual saved wording.|
 
@@ -163,3 +163,10 @@ Sample drawer19:99 is read-only for character/reference/canon and has no Edit ch
 For owned productions, reuse character form20:35 with heading **Your character.**, current name and current reference. The existing reference bed displays the current image with an accessible Change reference image hit target. Continue opens prefilled canon form20:58; its primary reads **Save changes**. No production-name/scenes controls are introduced by this character action. Save is enabled only when dirty and valid. Pending **Saving…** blocks duplicate submission. Success returns to Memory with updated character, without a toast or gold learning moment. Escape/back returns to Memory and keeps an unsaved edit draft for this session. No PATCH before Save. Failure copy: **Couldn't save those changes. Try again.** Retain the draft and focus the retry action.
 
 Only future generation/checks use the edited character. Existing images, recorded checks/expected values, reference assets used by history, traces and original counts remain intact. Historical Review uses its stored expected/observed values. No paid call, recheck, source-asset deletion or recalculation follows an edit. The sample and owned drawer variants were screenshot-checked after this amendment.
+
+
+## Evidence wording and Review exit amendment
+
+Batch headlines now read **[n] of [total] shots flagged.** in every count state, including0/6 and6/6. This describes monitor output without treating an unverified flag as confirmed drift. Counts, images, status dots, queue behavior and grid geometry are unchanged. The final Figma headlines and scaled reference comparison have been updated.
+
+Both desktop Review frames19:54/19:64 and mobile20:244 include a quiet secondary **Back to shots** control. Desktop:160×48 hit area at x182,y12, aligned with the image bed; mobile:x24,y24. Label16/24, secondary text, no fill; zero horizontal inset optically aligns text with the image edge. It reuses Escape/back, saves no decision or rule, and restores focus to the originating shot. Image beds, source-coordinate markers and decision buttons have not moved. The design rationale now justifies the visible noncommittal exit.

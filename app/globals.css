@@ -345,7 +345,7 @@ caption {
   left: max(24px, calc((100% - 1076px) / 2));
   height: 48px;
   padding: 0;
-  min-width: 144px;
+  min-width: 160px;
   justify-content: flex-start;
 }
 .review-bed {
