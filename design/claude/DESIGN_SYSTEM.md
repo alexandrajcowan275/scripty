@@ -55,3 +55,7 @@ All eight source screens are implemented as pages/sheet: Landing, New production
 ## Reference fidelity — Studio
 
 Canvas is the supplied warm `#FBFAF8`; near-black is `#111111`. Bright image brackets are separate from accessible text and filled red actions. Gold cards use the source pale paper fill and border; rule metadata uses a darker gold for contrast. Large secondary headline text keeps AA contrast. Model labels remove only a recorded date suffix and retain the full value on hover. Scene captions derive from the actual prompt, with the full prompt retained as image alternative text and caption title. Missing coordinates still outline the whole frame. Real uncertainty, rule reach and recorded take history supersede illustrative source data.
+
+## Reference fidelity — Review
+
+The complete check list uses compact rows: canon and model-reported confidence are visible; keyboard-native details expose the full observation and note. Failed checks appear first. Actual uncertainty remains neutral. Confidence fills from zero over one second; reduced motion shows the final value immediately. The 4× loupe includes a 14px reticle and samples only the actual image. Without returned coordinates it rests at the image center and follows the pointer, rather than inventing a defect location. Filmstrip entry rises 12px; both filmstrip and J/K use the 220ms shot transition.
