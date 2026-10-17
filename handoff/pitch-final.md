@@ -54,4 +54,4 @@ Scripty. Keep the story straight.
 - Put the evidence caption beside the four-batch chart or in the video caption. No accuracy headline from provisional agent labels.
 - Use the short landing line and quiet workspace labels; technical detail belongs in Evidence.
 - Rehearse and trim the recording to exactly two minutes. Confirm the video and GitHub links are accessible to judges.
-- Rechecked October17: [official Devpost](https://sephacks-2026.devpost.com/) currently lists2pmEDT, which is11amPacific today. Plan submission before11am. The founder supplied1:15pm, but no organizer extension is verified. Requirements: two-minute demo/pitch video, working GitHub and project links.
+- Rechecked October17: [official Devpost](https://sephacks-2026.devpost.com/) currently lists2pmEDT, which is11amPacific today. Latest founder instruction sets2:00pm PT as the operational deadline; the11am listing above is retained as historical attribution. Requirements: two-minute demo/pitch video, working GitHub and project links.

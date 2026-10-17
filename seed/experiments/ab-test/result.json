@@ -1,0 +1,1442 @@
+{
+  "id": "58e14757-8508-4850-8d68-8e595add22d2",
+  "status": "completed",
+  "createdAt": "2026-10-17T10:11:36.947Z",
+  "projectId": "mara",
+  "maxUsd": 3,
+  "settings": {
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "size": "1536x1024",
+    "referenceImageUrl": "/seed/mara-reference.png",
+    "referenceSha256": "1549c0cb248c4994ceb0a4de86e677802c13d4f3906ac414a3e82dc6e17cc9e0",
+    "acceptedReferenceUrl": null,
+    "monitorModel": "gpt-5.4-mini-2026-03-17",
+    "monitorVersion": "canon-monitor-v3",
+    "monitorRules": [],
+    "checkerCalibration": [],
+    "threshold": 0.6
+  },
+  "character": {
+    "id": "mara-character",
+    "name": "Mara",
+    "referenceImageUrl": "/seed/mara-reference.png",
+    "attributes": [
+      {
+        "key": "scarf_color",
+        "label": "Scarf",
+        "expected": "red wool scarf",
+        "weight": 1
+      },
+      {
+        "key": "scar_side",
+        "label": "Scar",
+        "expected": "scar over the LEFT eye",
+        "weight": 1
+      },
+      {
+        "key": "hair",
+        "label": "Hair",
+        "expected": "short black hair",
+        "weight": 1
+      },
+      {
+        "key": "ring_hand",
+        "label": "Ring",
+        "expected": "silver ring on the right hand",
+        "weight": 1
+      }
+    ]
+  },
+  "rules": [
+    {
+      "id": "ca721c45-1e5d-412c-83ba-9a566443c44b",
+      "projectId": "mara",
+      "text": "Mara always wears a silver ring on her RIGHT hand.",
+      "attributeKey": "ring_hand",
+      "source": "rejection",
+      "createdAt": "2026-10-17T03:05:52.298+00:00",
+      "timesApplied": 3
+    }
+  ],
+  "scenes": [
+    "Frontal medium portrait on a rain-wet railway platform at dawn. Mara faces the camera squarely, both eyes and eyebrows unobstructed, both hands separated at chest height as she holds a ticket in her right hand and an open notebook in her left. Her fingers, knuckles and rings are large, sharply visible. No mirrors.",
+    "Frontal waist-up shot inside a quiet train carriage, soft window key light. Mara looks directly at the camera while resting both hands flat and separated on a table, palms down, every finger visible. Both sides of her face and both eyebrows are unobstructed. No mirrors.",
+    "Eye-level frontal medium shot at a station ticket counter. Mara faces camera squarely, holding her right hand beside her right cheek with fingers spread, her left hand open beside her left shoulder. Keep both eyebrows, hands and fingers in sharp focus. No mirrors.",
+    "Frontal seated portrait on a station bench under soft overcast light. Mara faces the viewer, both hands relaxed side by side on her knees with backs and fingers clearly visible. Frame her complete face, both eyebrows, and both hands in equal sharp focus. No mirrors.",
+    "Frontal waist-up portrait in a warmly lit station waiting room. Mara looks straight toward camera; her right hand is raised holding a small key below her face, and her left hand is open at chest level. Both eyes, eyebrows, hands and rings are unobstructed and sharply visible. No mirrors.",
+    "Eye-level frontal medium portrait beside a train doorway in blue-hour light. Mara faces camera and presents both hands separated at chest height, palms inward, fingers uncrossed and clearly visible. Keep the complete face and both eyebrows sharp, no occlusion, no mirrors."
+  ],
+  "shots": [
+    {
+      "id": "ef049d17-0da4-4445-88bb-e4b8558cedd1",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-A",
+      "scenePrompt": "Frontal medium portrait on a rain-wet railway platform at dawn. Mara faces the camera squarely, both eyes and eyebrows unobstructed, both hands separated at chest height as she holds a ticket in her right hand and an open notebook in her left. Her fingers, knuckles and rings are large, sharply visible. No mirrors.",
+      "finalPrompt": "Frontal medium portrait on a rain-wet railway platform at dawn. Mara faces the camera squarely, both eyes and eyebrows unobstructed, both hands separated at chest height as she holds a ticket in her right hand and an open notebook in her left. Her fingers, knuckles and rings are large, sharply visible. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/9e09c8e2-5e7d-46e2-9243-fe231ae286df-ef049d17-0da4-4445-88bb-e4b8558cedd1.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "Red knitted/wool scarf is clearly visible around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal facing orientation; a small scar is visible on the image-right side of the face, which corresponds to the character's LEFT eye area",
+          "pass": true,
+          "confidence": 0.96
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black hair is clearly visible",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal facing orientation; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.94
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "A",
+      "pair": 1,
+      "rulesApplied": [],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1756,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054548,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 284,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004569,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "958fa300-aede-49da-9ae1-6a140d19dbce",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-B",
+      "scenePrompt": "Frontal medium portrait on a rain-wet railway platform at dawn. Mara faces the camera squarely, both eyes and eyebrows unobstructed, both hands separated at chest height as she holds a ticket in her right hand and an open notebook in her left. Her fingers, knuckles and rings are large, sharply visible. No mirrors.",
+      "finalPrompt": "Frontal medium portrait on a rain-wet railway platform at dawn. Mara faces the camera squarely, both eyes and eyebrows unobstructed, both hands separated at chest height as she holds a ticket in her right hand and an open notebook in her left. Her fingers, knuckles and rings are large, sharply visible. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/9c16c4b2-4d78-42f9-a60e-92783156b559-958fa300-aede-49da-9ae1-6a140d19dbce.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "Visible thick knitted red scarf wrapped around the neck; wool texture apparent.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal-facing orientation. A small scar is visible near the eye on image-right, which corresponds to the character's LEFT eye/side in this view.",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black bob-length hair visible, reaching around jawline.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal-facing orientation. A silver ring is visible on the hand at image-left, which corresponds to the character's RIGHT hand in this view.",
+          "pass": true,
+          "confidence": 0.96
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "B",
+      "pair": 1,
+      "rulesApplied": [
+        "ca721c45-1e5d-412c-83ba-9a566443c44b"
+      ],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1768,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054608,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 358,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004902,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "651508fc-45ad-4d12-8225-1c85c343aa91",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-B",
+      "scenePrompt": "Frontal waist-up shot inside a quiet train carriage, soft window key light. Mara looks directly at the camera while resting both hands flat and separated on a table, palms down, every finger visible. Both sides of her face and both eyebrows are unobstructed. No mirrors.",
+      "finalPrompt": "Frontal waist-up shot inside a quiet train carriage, soft window key light. Mara looks directly at the camera while resting both hands flat and separated on a table, palms down, every finger visible. Both sides of her face and both eyebrows are unobstructed. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/6fd423be-59d9-4707-bb14-cd4f15df53b0-651508fc-45ad-4d12-8225-1c85c343aa91.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf visible around the neck in the shot",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "frontal-facing orientation; the scar is visible on the image-right side of the face, which corresponds to the character's LEFT eye area",
+          "pass": true,
+          "confidence": 0.95
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair visible, chin-length bob style",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "frontal-facing orientation; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.96
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "B",
+      "pair": 2,
+      "rulesApplied": [
+        "ca721c45-1e5d-412c-83ba-9a566443c44b"
+      ],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1756,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054548,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 290,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004596,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "5ad31f43-8a97-42ce-baae-09989effe759",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-A",
+      "scenePrompt": "Frontal waist-up shot inside a quiet train carriage, soft window key light. Mara looks directly at the camera while resting both hands flat and separated on a table, palms down, every finger visible. Both sides of her face and both eyebrows are unobstructed. No mirrors.",
+      "finalPrompt": "Frontal waist-up shot inside a quiet train carriage, soft window key light. Mara looks directly at the camera while resting both hands flat and separated on a table, palms down, every finger visible. Both sides of her face and both eyebrows are unobstructed. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/8f948447-420c-4b19-9285-8242afb67c1f-5ad31f43-8a97-42ce-baae-09989effe759.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "visible red wool scarf wrapped around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "frontal facing orientation; scar visible on image-right side of face, which corresponds to the character's LEFT eye side",
+          "pass": true,
+          "confidence": 0.98
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "frontal facing orientation; silver ring visible on image-left hand, which corresponds to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.97
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "A",
+      "pair": 2,
+      "rulesApplied": [],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1744,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054488,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 279,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004547,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "92b0702a-5d7d-449e-939f-c7ea499d4b5e",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-A",
+      "scenePrompt": "Eye-level frontal medium shot at a station ticket counter. Mara faces camera squarely, holding her right hand beside her right cheek with fingers spread, her left hand open beside her left shoulder. Keep both eyebrows, hands and fingers in sharp focus. No mirrors.",
+      "finalPrompt": "Eye-level frontal medium shot at a station ticket counter. Mara faces camera squarely, holding her right hand beside her right cheek with fingers spread, her left hand open beside her left shoulder. Keep both eyebrows, hands and fingers in sharp focus. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/6705c7e4-dc74-4aa6-9240-b9136afbc595-92b0702a-5d7d-449e-939f-c7ea499d4b5e.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "Visible bright red knitted/wool scarf wrapped around the neck.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal facing viewer; scar is visible on image-right side of the face, which corresponds to the character's LEFT eye area.",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black bob haircut visible.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal facing viewer; a silver ring is visible on the image-left raised hand, which corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.96
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "A",
+      "pair": 3,
+      "rulesApplied": [],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1740,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054468,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 283,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004565,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "6067441a-035f-448e-afbe-22af42aa06c7",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-B",
+      "scenePrompt": "Eye-level frontal medium shot at a station ticket counter. Mara faces camera squarely, holding her right hand beside her right cheek with fingers spread, her left hand open beside her left shoulder. Keep both eyebrows, hands and fingers in sharp focus. No mirrors.",
+      "finalPrompt": "Eye-level frontal medium shot at a station ticket counter. Mara faces camera squarely, holding her right hand beside her right cheek with fingers spread, her left hand open beside her left shoulder. Keep both eyebrows, hands and fingers in sharp focus. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/9b6faa7e-12ec-4a08-b673-f34383eca828-6067441a-035f-448e-afbe-22af42aa06c7.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "Visible thick knitted scarf is red and wool-like in texture; worn around the neck.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal facing orientation; the visible scar marks are on image-right near the eye/upper cheek, which corresponds to the character's LEFT eye side.",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black bob haircut visible, reaching around jaw/ear length.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal facing orientation; a silver ring is visible on the raised image-left hand, which corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.95
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "B",
+      "pair": 3,
+      "rulesApplied": [
+        "ca721c45-1e5d-412c-83ba-9a566443c44b"
+      ],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1752,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054528,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 288,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004587,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "08f4ca5f-00e4-4a4b-ab2b-58b844afbb85",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-B",
+      "scenePrompt": "Frontal seated portrait on a station bench under soft overcast light. Mara faces the viewer, both hands relaxed side by side on her knees with backs and fingers clearly visible. Frame her complete face, both eyebrows, and both hands in equal sharp focus. No mirrors.",
+      "finalPrompt": "Frontal seated portrait on a station bench under soft overcast light. Mara faces the viewer, both hands relaxed side by side on her knees with backs and fingers clearly visible. Frame her complete face, both eyebrows, and both hands in equal sharp focus. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/48170d9f-ba30-4f3e-8333-22d606e43baa-08f4ca5f-00e4-4a4b-ab2b-58b844afbb85.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "visible bright red wool scarf wrapped around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "frontal-facing subject; scar is visible on the image-right side of the face around the eye/upper cheek area, which corresponds to the character's LEFT eye",
+          "pass": true,
+          "confidence": 0.96
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black bob haircut with bangs",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "frontal-facing subject; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.95
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "B",
+      "pair": 4,
+      "rulesApplied": [
+        "ca721c45-1e5d-412c-83ba-9a566443c44b"
+      ],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1754,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054538,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 323,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004745,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "f269554d-0f92-4178-91ef-5f8f655b02e5",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-A",
+      "scenePrompt": "Frontal seated portrait on a station bench under soft overcast light. Mara faces the viewer, both hands relaxed side by side on her knees with backs and fingers clearly visible. Frame her complete face, both eyebrows, and both hands in equal sharp focus. No mirrors.",
+      "finalPrompt": "Frontal seated portrait on a station bench under soft overcast light. Mara faces the viewer, both hands relaxed side by side on her knees with backs and fingers clearly visible. Frame her complete face, both eyebrows, and both hands in equal sharp focus. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/d0ed35f4-7b77-40a3-beba-c46b25c32d94-f269554d-0f92-4178-91ef-5f8f655b02e5.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "Visible red wool scarf wrapped around the neck; knit texture and bright red color are clearly seen.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal-facing orientation is clear from the straight-on face; the scar is visible on image-right side of the face, which corresponds to the character's LEFT eye area.",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black hair visible, cut to about jaw/ear length with a dark black color.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal-facing orientation is clear; a silver ring is visible on image-left hand, which corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.96
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "A",
+      "pair": 4,
+      "rulesApplied": [],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1742,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054478,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 336,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004803,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "291ac920-a7b5-4fbf-9eb3-374a9122caa6",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-A",
+      "scenePrompt": "Frontal waist-up portrait in a warmly lit station waiting room. Mara looks straight toward camera; her right hand is raised holding a small key below her face, and her left hand is open at chest level. Both eyes, eyebrows, hands and rings are unobstructed and sharply visible. No mirrors.",
+      "finalPrompt": "Frontal waist-up portrait in a warmly lit station waiting room. Mara looks straight toward camera; her right hand is raised holding a small key below her face, and her left hand is open at chest level. Both eyes, eyebrows, hands and rings are unobstructed and sharply visible. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/eac7f1e8-68ad-4ae6-86a7-fb5e2deeea29-291ac920-a7b5-4fbf-9eb3-374a9122caa6.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf visible around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "frontal-facing; the visible scar/marking is on image-right eye area, which corresponds to the character's LEFT eye",
+          "pass": true,
+          "confidence": 0.93
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair visible",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "frontal-facing; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.94
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "A",
+      "pair": 5,
+      "rulesApplied": [],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1749,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054513,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 282,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.00456,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "55aa9274-1dc0-4f7c-8b77-e20cfdd8ca58",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-B",
+      "scenePrompt": "Frontal waist-up portrait in a warmly lit station waiting room. Mara looks straight toward camera; her right hand is raised holding a small key below her face, and her left hand is open at chest level. Both eyes, eyebrows, hands and rings are unobstructed and sharply visible. No mirrors.",
+      "finalPrompt": "Frontal waist-up portrait in a warmly lit station waiting room. Mara looks straight toward camera; her right hand is raised holding a small key below her face, and her left hand is open at chest level. Both eyes, eyebrows, hands and rings are unobstructed and sharply visible. No mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/d7007793-ab06-440e-a847-66053fe509ef-55aa9274-1dc0-4f7c-8b77-e20cfdd8ca58.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf visible around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "Frontal-facing pose; scar marks are visible on the image-right side of the face, which corresponds to the character's LEFT eye area",
+          "pass": true,
+          "confidence": 0.97
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair visible",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "Frontal-facing pose; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.96
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "B",
+      "pair": 5,
+      "rulesApplied": [
+        "ca721c45-1e5d-412c-83ba-9a566443c44b"
+      ],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1761,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054573,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 295,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004619,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "e9b35eb6-6bf1-4aaf-99f6-6c76c4b66015",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-B",
+      "scenePrompt": "Eye-level frontal medium portrait beside a train doorway in blue-hour light. Mara faces camera and presents both hands separated at chest height, palms inward, fingers uncrossed and clearly visible. Keep the complete face and both eyebrows sharp, no occlusion, no mirrors.",
+      "finalPrompt": "Eye-level frontal medium portrait beside a train doorway in blue-hour light. Mara faces camera and presents both hands separated at chest height, palms inward, fingers uncrossed and clearly visible. Keep the complete face and both eyebrows sharp, no occlusion, no mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\n- Mara always wears a silver ring on her RIGHT hand.\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/cdfd71df-e14a-4f12-acdf-9fac9a48440f-e9b35eb6-6bf1-4aaf-99f6-6c76c4b66015.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "red wool scarf clearly visible around the neck",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "frontal-facing pose; scar is visible on image-right side of the face, which maps to the character's LEFT eye",
+          "pass": true,
+          "confidence": 0.96,
+          "note": "The subject is facing the viewer frontally enough for left/right mapping; the scar appears beside/over the eye on the image-right side of the face, indicating the LEFT eye."
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "short black hair visible, chin-length bob with bangs",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "frontal-facing pose; silver ring visible on image-left hand, which maps to the character's RIGHT hand",
+          "pass": true,
+          "confidence": 0.94,
+          "note": "The subject is facing the viewer frontally enough for hand-side mapping; the silver ring is on the image-left hand, which corresponds to the character's RIGHT hand."
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "B",
+      "pair": 6,
+      "rulesApplied": [
+        "ca721c45-1e5d-412c-83ba-9a566443c44b"
+      ],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1753,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054533,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 369,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004952,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    },
+    {
+      "id": "1c95115e-ed2c-444d-a1fd-4fadbc3e80f7",
+      "projectId": "mara",
+      "batchId": "58e14757-8508-4850-8d68-8e595add22d2-A",
+      "scenePrompt": "Eye-level frontal medium portrait beside a train doorway in blue-hour light. Mara faces camera and presents both hands separated at chest height, palms inward, fingers uncrossed and clearly visible. Keep the complete face and both eyebrows sharp, no occlusion, no mirrors.",
+      "finalPrompt": "Eye-level frontal medium portrait beside a train doorway in blue-hour light. Mara faces camera and presents both hands separated at chest height, palms inward, fingers uncrossed and clearly visible. Keep the complete face and both eyebrows sharp, no occlusion, no mirrors.\nCHARACTER SHEET — Mara:\n- Scarf: red wool scarf.\n- Scar: scar over the LEFT eye.\n- Hair: short black hair.\n- Ring: silver ring on the right hand.\nUse the first reference image as the authoritative identity. Additional images are creator-accepted positive references. Preserve identity and anatomical left/right across camera angles.\nACTIVE STORY CONSTRAINTS (all must hold):\nRender one cinematic story frame with a consistent 35mm lens on Super35 at f/2.8. Use natural motivated scene light, a restrained cinematic grade, real textures and subtle film grain. Keep this visual language consistent across every scene. Do not add captions or labels.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/9939ca92-7cad-4a59-aa3a-2fca624269a4-1c95115e-ed2c-444d-a1fd-4fadbc3e80f7.png",
+      "checks": [
+        {
+          "key": "scarf_color",
+          "expected": "red wool scarf",
+          "observed": "A thick red wool scarf is clearly visible around the neck.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "scar_side",
+          "expected": "scar over the LEFT eye",
+          "observed": "The character is facing the viewer frontally; the scar is visible on the image-right side of the face, which corresponds to the character's LEFT eye area.",
+          "pass": true,
+          "confidence": 0.98
+        },
+        {
+          "key": "hair",
+          "expected": "short black hair",
+          "observed": "Short black hair is visible, cut to around jaw/ear length.",
+          "pass": true,
+          "confidence": 0.99
+        },
+        {
+          "key": "ring_hand",
+          "expected": "silver ring on the right hand",
+          "observed": "The character is facing the viewer frontally; a silver ring is visible on the image-left hand, which corresponds to the character's RIGHT hand.",
+          "pass": true,
+          "confidence": 0.97
+        }
+      ],
+      "driftScore": 0,
+      "flagged": false,
+      "status": "pending",
+      "condition": "A",
+      "pair": 6,
+      "rulesApplied": [],
+      "generationUsage": {
+        "imageRequests": 1,
+        "textRequests": 0,
+        "inputTokens": 1741,
+        "outputTokens": 1372,
+        "reservedUsd": 0.75,
+        "estimatedUsd": 0.054473,
+        "pricedRequests": 1
+      },
+      "monitorUsage": {
+        "imageRequests": 0,
+        "textRequests": 1,
+        "inputTokens": 4388,
+        "outputTokens": 296,
+        "reservedUsd": 0.05,
+        "estimatedUsd": 0.004623,
+        "pricedRequests": 1
+      },
+      "monitorError": null
+    }
+  ],
+  "receipts": [
+    {
+      "id": "2eee655a-6988-427c-8554-52a1f073a452",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054468,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1740,
+        "total_tokens": 3112,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 204,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:14:13.740103+00:00",
+      "settled_at": "2026-10-17T10:14:46.393877+00:00",
+      "released_at": null
+    },
+    {
+      "id": "f1d28c3b-2e83-422b-aac5-8b570a64d14f",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054548,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1756,
+        "total_tokens": 3128,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 220,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:11:37.169265+00:00",
+      "settled_at": "2026-10-17T10:12:12.522935+00:00",
+      "released_at": null
+    },
+    {
+      "id": "3b445d4b-2174-422d-8a17-4996e0a097a1",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004569,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4672,
+        "output_tokens": 284,
+        "input_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 92
+        }
+      },
+      "created_at": "2026-10-17T10:12:14.848873+00:00",
+      "settled_at": "2026-10-17T10:12:19.741174+00:00",
+      "released_at": null
+    },
+    {
+      "id": "5d963645-bf34-4fae-9af4-a27632a55560",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054608,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1768,
+        "total_tokens": 3140,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 232,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:12:19.963186+00:00",
+      "settled_at": "2026-10-17T10:12:52.166702+00:00",
+      "released_at": null
+    },
+    {
+      "id": "14568a26-4f6c-4da7-b00e-f80a23284273",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004902,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4746,
+        "output_tokens": 358,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 153
+        }
+      },
+      "created_at": "2026-10-17T10:12:54.478661+00:00",
+      "settled_at": "2026-10-17T10:12:59.886336+00:00",
+      "released_at": null
+    },
+    {
+      "id": "155986cf-6c34-4ebf-8d92-73e321114b16",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054548,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1756,
+        "total_tokens": 3128,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 220,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:13:00.054119+00:00",
+      "settled_at": "2026-10-17T10:13:30.264072+00:00",
+      "released_at": null
+    },
+    {
+      "id": "3209ef59-85a0-4046-ae50-3b6d67f76e70",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004596,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4678,
+        "output_tokens": 290,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 97
+        }
+      },
+      "created_at": "2026-10-17T10:13:33.061619+00:00",
+      "settled_at": "2026-10-17T10:13:37.261088+00:00",
+      "released_at": null
+    },
+    {
+      "id": "46bffbfd-d160-418e-ad57-1a816376d491",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054488,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1744,
+        "total_tokens": 3116,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 208,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:13:37.533326+00:00",
+      "settled_at": "2026-10-17T10:14:07.453443+00:00",
+      "released_at": null
+    },
+    {
+      "id": "859b16ad-33f3-4bd0-b983-311253943461",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004547,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4667,
+        "output_tokens": 279,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 101
+        }
+      },
+      "created_at": "2026-10-17T10:14:09.31021+00:00",
+      "settled_at": "2026-10-17T10:14:13.565547+00:00",
+      "released_at": null
+    },
+    {
+      "id": "5384f954-2048-443a-afad-3ec14a40eed8",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004565,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4671,
+        "output_tokens": 283,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 94
+        }
+      },
+      "created_at": "2026-10-17T10:14:49.773581+00:00",
+      "settled_at": "2026-10-17T10:14:53.95048+00:00",
+      "released_at": null
+    },
+    {
+      "id": "e76430d6-c071-44cb-87bf-a6e9ebe981e2",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054528,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1752,
+        "total_tokens": 3124,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 216,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:14:54.706302+00:00",
+      "settled_at": "2026-10-17T10:15:24.760884+00:00",
+      "released_at": null
+    },
+    {
+      "id": "2367b36e-1e7f-4330-b890-07ddf4b3611b",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004587,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4676,
+        "output_tokens": 288,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 83
+        }
+      },
+      "created_at": "2026-10-17T10:15:27.432868+00:00",
+      "settled_at": "2026-10-17T10:15:32.493362+00:00",
+      "released_at": null
+    },
+    {
+      "id": "5a390ffd-16e8-40ce-9eaf-f8197fda7475",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054538,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1754,
+        "total_tokens": 3126,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 218,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:15:32.662942+00:00",
+      "settled_at": "2026-10-17T10:16:01.886407+00:00",
+      "released_at": null
+    },
+    {
+      "id": "24b2de44-fe2c-4457-b2bd-798e03cba075",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004745,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4711,
+        "output_tokens": 323,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 129
+        }
+      },
+      "created_at": "2026-10-17T10:16:04.532695+00:00",
+      "settled_at": "2026-10-17T10:16:09.568356+00:00",
+      "released_at": null
+    },
+    {
+      "id": "372b37d3-78e2-4713-ae64-91c7484be0d8",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054478,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1742,
+        "total_tokens": 3114,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 206,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:16:09.724424+00:00",
+      "settled_at": "2026-10-17T10:16:38.997019+00:00",
+      "released_at": null
+    },
+    {
+      "id": "5d2ce482-5229-4054-96e2-720d42167de3",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004803,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4724,
+        "output_tokens": 336,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 120
+        }
+      },
+      "created_at": "2026-10-17T10:16:41.675608+00:00",
+      "settled_at": "2026-10-17T10:16:50.667661+00:00",
+      "released_at": null
+    },
+    {
+      "id": "ebdec5f8-ca65-42b9-9ed1-ef38604b0f85",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054513,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1749,
+        "total_tokens": 3121,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 213,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:16:50.854544+00:00",
+      "settled_at": "2026-10-17T10:17:23.387507+00:00",
+      "released_at": null
+    },
+    {
+      "id": "56ec9422-ecb8-4a4b-863e-e2a233f2ef74",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.00456,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4670,
+        "output_tokens": 282,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 100
+        }
+      },
+      "created_at": "2026-10-17T10:17:26.144534+00:00",
+      "settled_at": "2026-10-17T10:17:29.734357+00:00",
+      "released_at": null
+    },
+    {
+      "id": "0c14e521-58fe-4dee-b5b7-f9a4614e9a16",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054573,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1761,
+        "total_tokens": 3133,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 225,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:17:29.878133+00:00",
+      "settled_at": "2026-10-17T10:18:02.650275+00:00",
+      "released_at": null
+    },
+    {
+      "id": "8fe0f2e5-d7e8-43d4-b600-723ae4d05d35",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004619,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4683,
+        "output_tokens": 295,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 110
+        }
+      },
+      "created_at": "2026-10-17T10:18:05.209297+00:00",
+      "settled_at": "2026-10-17T10:18:09.69479+00:00",
+      "released_at": null
+    },
+    {
+      "id": "12ecb08e-4c17-4df7-931a-b07323c894e8",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054533,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1753,
+        "total_tokens": 3125,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 217,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:18:09.878211+00:00",
+      "settled_at": "2026-10-17T10:18:41.838867+00:00",
+      "released_at": null
+    },
+    {
+      "id": "8258f410-a0b8-42d0-985c-52905841873c",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004952,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4757,
+        "output_tokens": 369,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 118
+        }
+      },
+      "created_at": "2026-10-17T10:18:44.116007+00:00",
+      "settled_at": "2026-10-17T10:18:48.167372+00:00",
+      "released_at": null
+    },
+    {
+      "id": "04ee2c18-d599-4aed-8962-4b03dbcee30a",
+      "scope": "ab_test",
+      "reserved_usd": 0.75,
+      "cost_usd": 0.054473,
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "usage": {
+        "input_tokens": 1741,
+        "total_tokens": 3113,
+        "output_tokens": 1372,
+        "input_tokens_details": {
+          "text_tokens": 205,
+          "image_tokens": 1536
+        },
+        "output_tokens_details": {
+          "text_tokens": 0,
+          "image_tokens": 1372
+        }
+      },
+      "created_at": "2026-10-17T10:18:48.343015+00:00",
+      "settled_at": "2026-10-17T10:19:19.492381+00:00",
+      "released_at": null
+    },
+    {
+      "id": "7155d966-a059-4b31-81a7-982f56f11bde",
+      "scope": "ab_test",
+      "reserved_usd": 0.05,
+      "cost_usd": 0.004623,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "usage": {
+        "input_tokens": 4388,
+        "total_tokens": 4684,
+        "output_tokens": 296,
+        "input_tokens_details": {
+          "cached_tokens": 2048,
+          "cache_write_tokens": 0
+        },
+        "output_tokens_details": {
+          "reasoning_tokens": 90
+        }
+      },
+      "created_at": "2026-10-17T10:19:21.673243+00:00",
+      "settled_at": "2026-10-17T10:19:25.327497+00:00",
+      "released_at": null
+    }
+  ],
+  "humanVerified": false,
+  "limitations": [
+    "One stochastic six-pair experiment; no fixed generator seed available.",
+    "The learned ring constraint reinforces canon already present in both arms.",
+    "Primary checker uses identical canon-only requirements in both arms; learned-rule checks and calibration are excluded to keep the rubric fixed.",
+    "Monitor-reported flags are not human-verified image quality or checker accuracy."
+  ],
+  "usageEstimatedUsd": 0.7103640000000001,
+  "unsettledAttempts": 0,
+  "summary": {
+    "A": {
+      "shots": 6,
+      "flaggedShots": 0,
+      "targetedFlaggedShots": 0,
+      "targetedChecks": 12,
+      "targetedFailures": 0,
+      "targetedUnclear": 0,
+      "overallChecks": 24,
+      "overallFailures": 0,
+      "overallUnclear": 0,
+      "attributes": {
+        "ring_hand": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        },
+        "scar_side": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        }
+      }
+    },
+    "B": {
+      "shots": 6,
+      "flaggedShots": 0,
+      "targetedFlaggedShots": 0,
+      "targetedChecks": 12,
+      "targetedFailures": 0,
+      "targetedUnclear": 0,
+      "overallChecks": 24,
+      "overallFailures": 0,
+      "overallUnclear": 0,
+      "attributes": {
+        "ring_hand": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        },
+        "scar_side": {
+          "total": 6,
+          "failures": 0,
+          "unclear": 0
+        }
+      }
+    }
+  },
+  "completedAt": "2026-10-17T10:19:25.387Z"
+}

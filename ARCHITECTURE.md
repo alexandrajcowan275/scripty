@@ -75,3 +75,25 @@ Pricing sources checked October 17, 2026: [Sunburst](https://developers.openai.c
 Provider requests have timeouts and bounded retries. Generation fallback is explicit; it cannot enter the immutable real-image cache as a successful new shot. Failed monitoring produces uncertain checks. Repair failures preserve the source. Partial rechecks return per-shot errors rather than reporting complete evaluation.
 
 Main coordinates page commits from Design, runs `npm test` and `npm run build`, deploys the existing `archer-rag-dev/canon` project and verifies the public alias. No public repository conversion or external submission is performed. Final handoff:6:15am PT; latest founder-supplied submission deadline:2:00pm PT on October17.
+
+## Request architecture
+
+```mermaid
+flowchart TB
+  U[Browser: Studio / Review / Memory / Eval] --> A[Next.js route handlers]
+  A --> S[Ownership + access + validation]
+  S --> B[Atomic budget reservation]
+  B --> G[Reference-conditioned image provider]
+  B --> V[Independent structured vision monitor]
+  S --> R[Rule extraction + deduplication]
+  G --> D[(Supabase Storage + Postgres)]
+  V --> D
+  R --> D
+  D --> A
+  C[Bundled Mara history] --> A
+  H[Human blind submissions] --> F[Frozen-prediction evaluation]
+  A --> F
+  F --> D
+```
+
+The controlled study is a separate evaluation corpus: twelve saved shots are prepended to Mara's blind questions, with ring/scar requirements first. Neither condition nor model verdict is included in those cards. Study shots never alter the original take count or learning curve. Its checker uses the same fixed canon-only requirements for A and B, excluding learned-rule checks and calibration to avoid changing the rubric between arms.

@@ -1,6 +1,6 @@
 # Scripty
 
-**Your AI script supervisor. Every correction carries forward.**
+**Scripty: the AI script supervisor. The more you use it, the less your AI drifts.**
 
 ## Inspiration
 
@@ -14,11 +14,15 @@ Mara is a pre-filled sample production with four original takes and24 real image
 
 ## How we built it
 
-Next.js App Router, React and TypeScript serve the application and API routes. Supabase Postgres stores production canon, shots, rules, checks and traces. Uploaded references live in private Storage with ownership checks. Signed HttpOnly browser sessions keep productions isolated. Reference-conditioned generation and a separate structured vision monitor sit behind server-side rate and atomic cost limits. Zod validates inputs and model output.
+Next.js App Router, React and TypeScript serve the application and API routes. Supabase Postgres stores production canon, shots, rules, checks and traces. Uploaded references live in private Storage with ownership checks. Signed HttpOnly browser sessions keep productions isolated. Reference-conditioned generation and a separate structured vision monitor sit behind server-side rate and atomic cost limits. Zod validates inputs and model output. A multi-agent Codex workflow separated Main backend/evidence/releases from Design pages/components/styles/assets, with Claude product design and independent report-only QA/judge reviews.
 
-Learning is persistent project memory and prompt adaptation; foundation-model weights stay fixed. Every paid attempt is reserved before its provider request. Generation failures preserve the production and offer the sample. Live actions require a private access code and usage-based accounting under the founder-authorized $40 cap. Operator verification has a separate $6 ceiling.
+Learning is persistent project memory and prompt adaptation; foundation-model weights stay fixed. Every paid attempt is reserved before its provider request. Generation failures preserve the production and offer the sample. Live actions require a private access code and usage-based accounting under the founder-authorized $30 cap. Operator verification has a separate $12 ceiling.
 
 ## Evidence and limits
+
+**Controlled A/B:0/6 targeted-attribute flagged shots with canon only,0/6 with canon + learned memory.** The fixed checker found0/12 ring/scar failures and0/24 overall failures in each arm, with no uncertain checks. Adding the learned ring rule produced no additional reduction in this six-pair test; canon-only generation already passed the rubric. These are monitor judgments, pending human blind validation. The run cost an estimated **$0.710364** from returned usage.
+
+Both arms used identical scenes, reference, model, high quality,1536×1024 size and checker version. Only learned-rule injection into generation changed; the checker used fixed canon-only requirements in both arms. All12study images are queued first for blind human review. [Artifacts](../seed/experiments/ab-test/) / [protocol and results](results.md).
 
 One ring correction persisted after refresh, merged on repeat, and reached all18 later new-scene generation prompts and monitor outputs. An accepted portrait was an extra reference for the final six shots.
 
@@ -33,11 +37,11 @@ These are operational monitor results, **not human-verified accuracy or causal i
 
 ## Continual Learning
 
-A creator decision becomes inspectable, reusable production memory. Its exact text reaches later prompts and its rule ID reaches later checks across different scenes. The application learns project constraints through usage; it does not retrain model weights. Establishing better images requires a separate fixed-criteria, human-reviewed comparison.
+A creator decision becomes inspectable, reusable production memory. Its exact text reaches later prompts and its rule ID reaches later checks across different scenes. The application learns project constraints through usage; it does not retrain model weights. The fixed-criteria six-pair comparison found no additional reduction; human validation is next.
 
 ## Design
 
-A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The current Studio, Review and Memory update use a cinematic contact sheet, quiet glass controls and shared typography/color tokens from the supplied design handoff. Desktop and mobile public screenshots verify the main flow. Remaining pages are integrated incrementally; `handoff/MORNING.md` identifies the actual release. Design decisions are recorded in `DECISIONS.md` and the current backend decisions in `docs/backend-decisions.md`. No reference-site logos, media or layouts are copied into Scripty.
+A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The current Studio, Review and Memory update use a cinematic contact sheet, quiet glass controls and shared typography/color tokens from the supplied design handoff. Desktop and mobile public screenshots verify the main flow. All eight application pages are integrated; visual refinement continues incrementally and `handoff/MORNING.md` identifies the actual release. Design decisions are recorded in `DECISIONS.md` and the current backend decisions in `docs/backend-decisions.md`. No reference-site logos, media or layouts are copied into Scripty.
 
 ## Agent Monitoring — Lemma
 

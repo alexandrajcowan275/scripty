@@ -56,3 +56,9 @@ Qualified flag wording and visible nonmutating Review exit: resolved. Concrete m
 - **Done — recording hygiene:** documented a separate clean recording session in `docs/operations.md` and `MORNING.md`; preserve existing test sessions and evidence. No data was deleted.
 - **Done — stale integration wording:** interim handoff now lists all eight live pages. The judge-facing README rewrite follows the running controlled A/B so its headline can use actual results.
 - **Done — latest deadline:** use the founder's current2pm PT operational deadline and6:15am handoff. Earlier official11am listing remains historical attribution, not the current execution target.
+
+### Main evidence checkpoint — 03:22am PT
+
+- **Done — fixed-criteria comparison:** completed the founder's six-pair A/B at$0.710364 usage estimate. A0/6 vsB0/6 ring/scar flagged shots;0/12targeted and0/24overall failed checks each, no uncertainty. No additional measured reduction, no human truth supplied. Preserved all12images, prompts/settings/checks and24settled usage receipts. README/Devpost present this actual result, separate from original confounded takes.
+- **Done — repo credibility:** MIT license, package name `scripty`, process document moved only to `docs/process/`, clean judge README, architecture/API/operations split. GitHub CI run39024145517 completed green before the badge was added.
+- **Done — consequential Design repair:** merged8e00a86 into9fbeca2;71tests/build passed and canonical public Studio reloaded all6Take4images. CSS semicolons restore intended glass/haze/shadow tokens. No production rollback was needed.

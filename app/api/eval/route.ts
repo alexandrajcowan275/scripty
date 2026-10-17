@@ -1,3 +1,4 @@
+import { evaluationShots } from "@/lib/blind-study";
 import { z } from "zod";
 import { apiError, body, HttpError, projectIdSchema } from "@/lib/engine-http";
 import { cachedProject } from "@/lib/engine-cache";
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
     const data = input.projectId === "mara" ? (await cachedProject(request, input.projectId, true))?.data : await workspace(request, input.projectId);
     if (!data) throw new HttpError("Production not found", 404);
     const labels = await humanSubmissions(input.projectId, owner.hash);
-    const result = await evaluateHumanLabels(data.shots, labels);
+    const result = await evaluateHumanLabels(evaluationShots(input.projectId, data.shots), labels);
     return Response.json({ projectId: input.projectId, ...result }, { headers: { "Cache-Control": "no-store", ...(owner.cookie ? { "Set-Cookie": owner.cookie } : {}) } });
   } catch (error) { return apiError(error); }
 }

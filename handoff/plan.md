@@ -1,6 +1,6 @@
 # Scripty execution plan — updated deadline
 
-Submission deadline: Saturday October17,2026, **1:15pm America/Los_Angeles**, reaffirmed directly by user. **1:00am checkpoint**: local complete real-image flow, one-command run instructions, real cached replay, latest deployment URL in MORNING.md. Morning assets target10:45am. Earlier11am conservativeplanning superseded by direct user update. External submission remains a human step.
+Submission deadline: Saturday October17,2026, **2:00pm PT**, reaffirmed directly by user. **1:00am checkpoint**: local complete real-image flow, one-command run instructions, real cached replay, latest deployment URL in MORNING.md. Morning assets target10:45am. Earlier11am planning is superseded by the latest founder update: final handoff6:15am PT, submission2pm PT. External submission remains a human step.
 
 ## Priorities
 
@@ -18,7 +18,7 @@ Submission deadline: Saturday October17,2026, **1:15pm America/Los_Angeles**, re
 -8:30–9:30am: verify labels and real cached examples.
 -9:30–10am: visual polish/demo-breaking fixes only.
 -10–10:45am: record/check video, materials, public links.
--Before1:15pm: human submits.
+-Before2:00pm PT: human submits.
 
 ## Setup state
 

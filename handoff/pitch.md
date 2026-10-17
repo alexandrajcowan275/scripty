@@ -24,7 +24,7 @@ Agent draft labels require human verification. Cached viewer corrections are bro
 1. Root: add final batch 3/4 evidence from `handoff/results.md` when complete; preserve scene sets, monitor versions, sample counts, actual flags, and label verification status. Do not imply an improvement if none is verified.
 2. Root: verify latest real-cache deployment at the documented public URL. At the 1:00am PT October 17 checkpoint, verify local full flow with real images, one-command README setup, real cached playback, and latest deployment URL.
 3. Record the pitch with its appropriate live/recorded line; use only verified different-scene traces and actual persistence evidence.
-4. Target assets ready October 17 at 10:45am PT. The user's event deadline is **October 17, 2026, 1:15pm PT**; it overrides the older 11:00am planning note. External submission requires direct user authorization.
+4. Target assets ready October 17 at 10:45am PT. The user's event deadline is **October 17, 2026, 2:00pm PT**; it overrides the older 11:00am planning note. External submission requires direct user authorization.
 
 ## Run / validation
 

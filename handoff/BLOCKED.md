@@ -4,7 +4,7 @@ There is no credentials, infrastructure, or application-build blocker. GitHub, O
 
 ## Human morning steps
 
-Verify the ten-shot DRAFT worksheet in `handoff/label-review.md` against the actual images before claiming monitor accuracy or output improvement. Agent-only judgments are not ground truth. Record the two-minute video, verify its public link, and submit by **October17,1:15pm PT**. No external submission has been made.
+Verify the ten-shot DRAFT worksheet in `handoff/label-review.md` against the actual images before claiming monitor accuracy or output improvement. Agent-only judgments are not ground truth. Record the two-minute video, verify its public link, and submit by **October17,2:00pm PT**. No external submission has been made.
 
 ## Measurement limitations
 

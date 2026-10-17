@@ -6,7 +6,7 @@ cd ~/canon && npm run dev
 
 Open http://localhost:3000. Public: **https://canon-woad.vercel.app/**. Latest founder-supplied submission deadline: **October17,2026,2:00pm PT**. Final overnight handoff: **6:15am PT**.
 
-Updated3:15am PT. This is an interim checkpoint; the controlled six-pair experiment is running. Current verified UI release: `4a1f5c4` on private `main`; subsequent budget/accounting release is being checked. All eight new pages are integrated: landing, new production, Studio, Review, Memory update, Evidence, blind Eval and API. Design owns further visual refinements; Main owns backend/docs/releases.
+Updated3:15am PT. This is an interim checkpoint; the controlled six-pair experiment is complete. Current verified UI release: `9fbeca2` on private `main`; the glass/haze token repair is live; the A/B blind-queue release is next. All eight new pages are integrated: landing, new production, Studio, Review, Memory update, Evidence, blind Eval and API. Design owns further visual refinements; Main owns backend/docs/releases.
 
 ## What works
 
@@ -16,7 +16,7 @@ The left/right suggestion fix is live: provisional sides stay out of stable keys
 
 ## Evidence
 
-Original history stays **2/6,0/6,0/6,1/6** flagged; one learned ring rule reached18later prompts and18checks. These four takes are confounded and are not causal A/B evidence. Human checker accuracy is unverified. The new controlled A/B result will replace this paragraph when complete; no result is preclaimed.
+Original history stays **2/6,0/6,0/6,1/6** flagged; one learned ring rule reached18later prompts and18checks. These four takes are confounded and are not causal A/B evidence. Human checker accuracy is unverified. Controlled A/B: A0/6 and B0/6 targeted flagged shots,0/12 ring/scar failed checks each,0/24 overall failed checks each, no uncertainty. No additional reduction from the learned rule. Estimated cost$0.710364, all24attempts settled. Human validation is pending; the12images are being placed first in blind Eval.
 
 Founder-reported OpenAI baseline **$2.23**, credit balance **$32.29** at that checkpoint. App cap **$30**, Main tests **$12**, A/B **$3** inside testing. New usage settles from returned tokens; old receipts are retained and stale holds release after30minutes. These are estimates, not invoices.
 
@@ -32,4 +32,4 @@ Founder: supply real blind labels (the new12 A/B images will be first), record/u
 
 ## In progress
 
-Controlled A/B, judge-facing README/CI/license cleanup, incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
+A/B blind-queue release verification, judge-facing README cleanup, incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
