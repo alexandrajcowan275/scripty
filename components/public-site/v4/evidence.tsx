@@ -43,13 +43,13 @@ export function EvidenceStory() {
               priority
             />
             <span className="red-tag">
-              RING · WRONG HAND · {finding.confidence.toFixed(2)}
+              RING HAND · MODEL CONFIDENCE · {finding.confidence.toFixed(2)}
             </span>
           </div>
           <Caption first label="Evidence · Mara · Take 1 · Shot 2">
             A generated shot.
             <br />
-            <span>The ring is on the wrong hand.</span>
+            <span>Flagged for a possible mismatch.</span>
           </Caption>
           <div className="hint">SCROLL</div>
         </section>
@@ -108,7 +108,7 @@ export function EvidenceStory() {
                 {ringFailures[0]} → {ringFailures[3]}
               </b>
               <p>
-                Ring-hand checks that failed, Take 1 → Take 4
+                Non-passing ring-hand checks (includes uncertain), Take 1 → Take 4
               </p>
             </div>
           </div>

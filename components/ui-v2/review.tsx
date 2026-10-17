@@ -444,8 +444,10 @@ export function ReviewScreen({
                 </button>
               </div>
               <p className="v2-mono">
-                Fixes only this shot · est.{" "}
-                {money(config?.observedImageCostUsd)}
+                Fixes only this shot
+                {typeof config?.observedImageCostUsd === "number" && config.observedImageCostUsd > 0
+                  ? <> · est. {money(config.observedImageCostUsd)}</>
+                  : null}
               </p>
             </div>
           </aside>

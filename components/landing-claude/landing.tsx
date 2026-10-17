@@ -17,9 +17,9 @@ const CHECKS = [
 const GRID = ["e0a363b5e81c", "32102f4cb12f", "c572629800c7", "08c322d07e20", "de2c61a4b138", "8a7badfdfd08"];
 
 const STEPS = [
-  { n: "01", t: "Check", d: "Every generated shot is compared with your character's canon, one detail at a time. Unclear stays unclear. It never guesses." },
+  { n: "01", t: "Check", d: "Checks each shot against your character's canon. Flags possible mismatches and keeps uncertain checks visible." },
   { n: "02", t: "Correct", d: "Reject a shot with one plain note. Scripty turns it into a single testable rule and merges it with what it already knows." },
-  { n: "03", t: "Carry forward", d: "The rule rides into every future prompt and every future check, across any model you generate with." },
+  { n: "03", t: "Carry forward", d: "Saved rules carry into later prompts and checks. OpenAI still images today; other adapters planned." },
 ];
 
 
@@ -311,7 +311,7 @@ ACTIVE CANON CONSTRAINTS:
       {/* PLATFORM */}
       <section className={s.platform}>
         <div className={s.platCopy}>
-          <h2 className={s.h2}>One layer in front of<span> any generator.</span></h2>
+          <h2 className={s.h2}>Continuity memory for<span> AI image workflows.</span></h2>
           <div className={s.ctas}>
             <Link href="/developers" className={s.btnLight}>Read the API</Link>
             <Link href="/evidence" className={s.btnText}>View a trace →</Link>
@@ -323,7 +323,7 @@ ACTIVE CANON CONSTRAINTS:
           <div className={s.node} style={{ left: 0, top: 40 }}><span>INPUT</span>Scene prompt</div>
           <div className={s.node} style={{ left: 0, top: 270 }}><span>CANON</span>Character sheet</div>
           <div className={`${s.node} ${s.core}`} style={{ left: 240, top: 150, width: 220 }}><span>SCRIPTY</span>Rules → prompt<br />Monitor → checks<br />Memory → learns</div>
-          <div className={s.node} style={{ left: 520, top: 60 }}><span>GENERATOR</span>Any image / video model</div>
+          <div className={s.node} style={{ left: 520, top: 60 }}><span>GENERATOR</span>OpenAI still images</div>
           <div className={s.node} style={{ left: 520, top: 260 }}><span>OUTPUT</span>Shot + verdict</div>
           <div className={`${s.node} ${s.mem}`} style={{ left: 240, top: 440, width: 220 }}><span>MEMORY</span>Every correction</div>
           <i className={s.ln} style={{ left: 140, top: 68, width: 100, transform: "rotate(25deg)" }} />
