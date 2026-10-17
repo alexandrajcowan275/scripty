@@ -64,15 +64,15 @@ export async function POST(request: Request) {
       if (!cached) throw new HttpError("Project not found", 404);
       if (input.scenePrompts)
         throw new HttpError(
-          "Custom scene prompts require live mode; cached mode replays recorded scenes",
+          "New scene generation is paused. Explore Mara’s existing takes.",
           409,
         );
       const entry = cached.cache?.batches[cached.state.count];
       if (!entry)
         throw new HttpError(
           cached.cache
-            ? "All recorded batches have been replayed. Clear site data to start again."
-            : "No recorded batches installed. Capture real engine batches first.",
+            ? "All four takes are ready to review. New takes are paused."
+            : "Sample shots are unavailable. Please try again.",
           409,
         );
       cached.state.count++;

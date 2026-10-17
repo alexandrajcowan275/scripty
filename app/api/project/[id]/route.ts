@@ -53,7 +53,7 @@ export async function GET(
               cacheAvailable: false,
               provenance: "cache_unavailable",
               warning:
-                "No recorded batches are installed. Capture real engine batches to enable generation replay.",
+                "Sample shots are unavailable. Please try again.",
             }),
       },
       { headers: { "Cache-Control": "no-store", "x-canon-mode": "cached" } },
