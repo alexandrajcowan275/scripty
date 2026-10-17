@@ -1,5 +1,6 @@
 "use client";
-import type { ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { InView } from "./motion";
 import { percent } from "../ui-v2/data";
 import { metricsVisible, type Evaluation } from "../ui-v2/evaluation";
 export function Stat({
@@ -85,5 +86,48 @@ export function ConfusionMatrix({
         {evaluation?.uncertainHumanLabels ?? "—"} can’t tell
       </p>
     </section>
+  );
+}
+
+/** Animates only real returned values; missing data never becomes a numerical zero. */
+export function CountUp({ value }: { value: number | null }) {
+  const target = value !== null && Number.isFinite(value) ? value : null;
+  const [display, setDisplay] = useState<number | null>(target);
+  useEffect(() => {
+    if (
+      target === null ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setDisplay(target);
+      return;
+    }
+    let frame = 0;
+    const start = performance.now();
+    setDisplay(0);
+    const tick = (time: number) => {
+      const progress = Math.min(1, (time - start) / 200);
+      setDisplay(Math.round(target * (1 - Math.pow(1 - progress, 3))));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [target]);
+  return (
+    <span
+      aria-label={target === null ? "Unavailable" : String(target)}
+      data-unavailable={target === null || undefined}
+    >
+      <span aria-hidden="true">{target === null ? "—" : (display ?? "—")}</span>
+    </span>
+  );
+}
+export function MemoryThreadDot({ order }: { order: number }) {
+  return (
+    <InView
+      className="v2-memory-dot v2-thread-carry"
+      style={{ "--thread-order": order } as CSSProperties}
+    >
+      {null}
+    </InView>
   );
 }

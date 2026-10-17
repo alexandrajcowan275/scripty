@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import { Nav, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
-import { Stat } from "../ui/metrics";
+import { CountUp, MemoryThreadDot, Stat } from "../ui/metrics";
+import matchedStudy from "@/seed/experiments/ab-test/summary.json";
 import { ShotImage } from "../shot-image";
 import {
   frameName,
   message,
   percent,
-  post,
+  request,
   primaryRule,
   ruleReach,
   shotsFor,
@@ -22,7 +23,7 @@ export function EvidenceScreen() {
   useEffect(() => {
     if (!data) return;
     let active = true;
-    post<Evaluation>("/api/eval", { projectId: id })
+    request<Evaluation>(`/api/eval?projectId=${encodeURIComponent(id)}`)
       .then((result) => {
         if (active) setEvaluation(result);
       })
@@ -34,6 +35,27 @@ export function EvidenceScreen() {
   const batches = sortedBatches(data),
     rule = data && primaryRule(data),
     reach = data && rule ? ruleReach(rule, data.shots) : null;
+  const firstApplied =
+    rule && data
+      ? batches.find((batch) =>
+          shotsFor(data, batch.id).some(
+            (shot) =>
+              shot.finalPrompt.includes(rule.text) ||
+              shot.checks.some((check) => check.key === `rule:${rule.id}`),
+          ),
+        )
+      : undefined;
+  const eligible = firstApplied
+    ? batches
+        .filter((batch) => batch.index >= firstApplied.index)
+        .reduce((count, batch) => count + shotsFor(data, batch.id).length, 0)
+    : null;
+  const studyA = matchedStudy.summary.A,
+    studyB = matchedStudy.summary.B;
+  const matchedRead =
+    studyA.flaggedShots === studyB.flaggedShots && studyA.shots === studyB.shots
+      ? `${studyA.flaggedShots}/${studyA.shots} flags in both arms`
+      : `${studyA.flaggedShots}/${studyA.shots} vs ${studyB.flaggedShots}/${studyB.shots} flags`;
   const merged = data?.traces.filter(
     (t) =>
       t.type === "rule_learned" && /merged|merge=true|reused/i.test(t.message),
@@ -41,7 +63,16 @@ export function EvidenceScreen() {
   return (
     <div className="v2-screen v2-evidence">
       <Ambient />
-      <Nav id={id} data={data} active="evidence" />
+      <Nav
+        id={id}
+        data={data}
+        active="evidence"
+        context={
+          data
+            ? `${data.shots.length} real shots · ${data.batches.length} takes`
+            : "—"
+        }
+      />
       <main className="v2-detail-wrap">
         <RevealHeadline
           lead="One note. A longer memory."
@@ -74,7 +105,13 @@ export function EvidenceScreen() {
                         <span
                           className={batch.driftRate > 0 ? "v2-drift-text" : ""}
                         >
-                          {measured ? Math.round(batch.driftRate * 100) : "—"}
+                          <CountUp
+                            value={
+                              measured
+                                ? Math.round(batch.driftRate * 100)
+                                : null
+                            }
+                          />
                         </span>
                       </span>
                     );
@@ -84,10 +121,27 @@ export function EvidenceScreen() {
           >
             % flagged per original take
           </Stat>
-          <Stat label="Rule reach" memory value={reach ?? "—"}>
-            Prompts and checks carrying the same rule
+          <Stat
+            label="Rule reach"
+            memory
+            value={
+              <>
+                <CountUp value={reach ?? null} />
+                {eligible !== null && (
+                  <>
+                    {" "}
+                    / <CountUp value={eligible} />
+                  </>
+                )}
+              </>
+            }
+          >
+            Later prompts + checks carrying it
           </Stat>
-          <Stat label="Merged, not duplicated" value={merged ?? "—"}>
+          <Stat
+            label="Merged, not duplicated"
+            value={<CountUp value={merged ?? null} />}
+          >
             Confirmed merge events
           </Stat>
           <Stat
@@ -143,7 +197,7 @@ export function EvidenceScreen() {
                     <p className="v2-mono">{batch.rulesApplied.length} rules</p>
                   </div>
                   <div className="v2-thread-cells">
-                    {shots.map((shot) => {
+                    {shots.map((shot, shotIndex) => {
                       const carries =
                           !!rule &&
                           shot.finalPrompt.includes(rule.text) &&
@@ -166,7 +220,7 @@ export function EvidenceScreen() {
                             src={shot.imageUrl}
                             alt={`${frameName(shot, data)} · ${shot.scenePrompt}`}
                           />
-                          {carries && <i className="v2-memory-dot" />}
+                          {carries && <MemoryThreadDot order={shotIndex} />}
                           {taught && (
                             <span className="v2-thread-badge">
                               taught a rule
@@ -187,7 +241,9 @@ export function EvidenceScreen() {
                     )}
                   </div>
                   <div className="v2-thread-rate">
-                    <strong className="v2-mono">
+                    <strong
+                      className={`v2-mono ${batch.driftRate > 0 ? "v2-drift-text" : ""}`}
+                    >
                       {measured ? percent(batch.driftRate) : "—"}
                     </strong>
                     <span className="v2-mono">
@@ -201,6 +257,14 @@ export function EvidenceScreen() {
             <p className="v2-evidence-caveat">
               Memory carry-forward is visible here. Changing scenes and checker
               settings prevent a causal improvement claim.
+              {id === "mara" && matchedStudy.status === "completed" && (
+                <span className="v2-matched-note">
+                  Matched test: {matchedRead}.{" "}
+                  {matchedStudy.humanVerified
+                    ? "Human-reviewed."
+                    : "Human review pending."}
+                </span>
+              )}
             </p>
           </section>
         ) : (
