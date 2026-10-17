@@ -1,3 +1,56 @@
+# Scripty demo safety — current light-v3 release
+
+Checked Friday October16,2026 11:09p.m. Pacific (2026-10-17T06:09Z).
+
+**PASS for the focused public sample flow. No actionable regression found.** Public https://canon-woad.vercel.app/; Main announced production `dpl_EuUMC4t5pTEyPQ9Trwsq6obju3or`, source9edc16a7a587c558d791fb12643885763bec83b7. QA remains REPORT-ONLY every90minutes through7amPT, quiet on unchanged state. Main alone implements/releases. No app/code/assets/database/secrets/git/deployment/protection edits, purchases, data deletion or paid API calls were performed. Only this report updated.
+
+## Independent public browser check
+
+- Landing loads Scripty Productions with Start a new production and Explore a sample production: Mara.
+- Mara opens the latest Take4 (six actual station/town-square scenes), showing1of6 monitor-flagged shots. Occluded frames are labeled uncertain rather than confident passes.
+- Review it opens the actual flagged locker shot and says: “Scar seems on her right. Canon says left.”
+- Reject & remember saves exactly the relevant scar rule: “Mara must retain scar over the LEFT eye in every shot.” The success view and Back to shots work; the selected shot is marked rejected.
+- Browser refresh preserves rejection and the scar rule. Memory drawer contains the scar rule plus previously recorded ring memory; Close Memory works.
+- Progress shows original recorded rates2/6,0/6,0/6,1/6 and explicitly says models/scenes/checks changed and human verification is pending. No accuracy/causal improvement certification is implied.
+- At390×844, latest-take page width390 matches viewport390: no horizontal overflow. All7 visible HTML images load, all use same origin. No captured browser warnings/errors. Viewport override reset after QA.
+
+## Boundaries and limits
+
+Sample route source reads local cachedProject and signs browser-local state; no provider/database call is on that sample route. Public paid generation is guarded by requireGenerationCapacity unless CANON_PUBLIC_GENERATION_ENABLED is explicitly true. QA did not invoke any generation endpoint. No new production upload/save was attempted because it would create live data and falls outside report-only authority; Main reports its creation/private upload/save/isolation regression passed.
+
+Main independently reports all24 image hashes,4takes and API review/accept persistence/isolation passed on this release. This focused QA did not repeat24 full downloads, all historical secrets scans, complete no-egress server rehearsal or synthetic API-failure injection; those earlier results remain historical evidence and should not be represented as newly rerun. Public browser path had no crash/blank state. Main reports52 tests+build passing; QA did not rerun them.
+
+Monitor side/anatomy observations and DRAFT labels still need human verification. This is a functional demo check, not a judgment that the scar flag is factually correct. The four take rates remain historical and confounded.
+
+## Historical checkpoints (superseded by current verdict above)
+
+## Scheduled report-only checkpoint — October16,2026 10:53p.m. Pacific
+
+No substantive production change or new issue. Public `/api/project/mara` returned200, cached mode, cacheAvailable=true, cached_real_engine provenance. Current READY production is `dpl_4Q1UE4D5SpZiaSKKMmFb3KEY1J4j` /06bd5c2; diff from previously verified c33da80 is documentation/release evidence/screenshots only, with no application/cache changes. Four-batch cache remains unchanged. Full replay/screenshots/failure suite were not repeated to save usage.
+
+Local redesign is `codex/figma-implementation` /06c5138 and is not the public release. Its substantial app/backend changes require focused QA when Main announces the release. No app/assets/db/secret/git/deploy/protection mutations, purchases, deletions or paid calls performed.
+
+Existing schedule confirmed ACTIVE every90minutes through7amPT; no duplicate. No user/Main notification for unchanged readiness.
+
+# Scripty demo safety QA — round3 current result
+
+Checked October16,2026 9:08p.m. Pacific (2026-10-17T04:08Z).
+
+**PASS: current public cached demonstration. No new blocker found.** Main owns all implementation/releases. QA remains report-only; no code/assets/db/secrets/git/deployment/protection changes or paid calls in this round. Only this report is updated.
+
+- **Schedule confirmed:** existing `scripty-demo-safety-qa`, ACTIVE every90minutes through Saturday October17 7:00a.m. Pacific. No duplicate. Quiet on unchanged state; substantive issues/readiness sent to Main. Checkpoint1:00a.m.; readiness7:00a.m.; external submission1:15p.m. remains Main/user responsibility.
+- **Production replay independently rerun PASS:** unauthenticated https://canon-woad.vercel.app, new HTTP cookie session,4 genuine batches/24 images. Every image hash and byte count matches installed real manifest created2026-10-17T03:34:06.061Z. Browser-local reject/rule persistence, accept persistence, fresh-session isolation and exhaustion409 all pass. Evidence JSON `/private/tmp/scripty-public-round3-qa.json`. No live generation/recheck/provider calls.
+- **Public browser PASS:** Scripty branding, cached mode and4 batches/24 shots visible;26 HTML images (24shots, reference, selected-shot preview), zero broken, zero external-origin image sources, zero captured warnings/errors. This browser observation used an existing replay cookie; separate HTTP verifier above established fresh-session isolation.
+- **No-egress evidence:** reviewed Main's `handoff/experiments/no-egress-replay-final.json` and `production-release.json`:4 genuine batches, zero outbound attempts; sourcec33da80 / deploymentdpl_FKtFzCjnse9DzsxysVev43MnN4sj. Independent no-egress testing from prior QA covered2 batches; this round reran public4-batch replay and relied on Main's recorded4-batch isolated no-egress evidence rather than claiming a new independent no-egress run.
+- **Credential-pattern scan PASS within scope:**261 reachable committed blobs across current local refs, head2867326962171da914b1bcee6827c50df17d874e, zero OpenAI/GitHub/AWS/Supabase-secret/private-key pattern matches. No environment-secret files opened. This round did not refetch remote history or repeat JWT-role decoding; prior bounded history scan and its limits remain below.
+- **Failure handling:** no production crash during replay/exhaustion; earlier503 JSON, unreadable HTML and disconnect browser tests retain workspace/retry. Broader synthetic failure suite not repeated without a relevant change. Main records40 tests+build passing for the released implementation. Do not claim universal crash immunity.
+- **Local versus deployed source:** active checkout is redesign branch `codex/figma-implementation`, head2867326. Production remains the working cached release, not a certification of unfinished redesign. Recheck on Main's next deployed source/cache milestone.
+- **Tooling note (resolved, not an app issue):** initial Python HTTPS attempt failed local CA lookup; rerun used system `/etc/ssl/cert.pem`, TLS verification stayed enabled, all public checks passed.
+
+Operational rates and agent labels remain confounded/DRAFT. These QA results certify demonstrated replay behavior, not human-verified model accuracy or causal learning improvement.
+
+## Earlier rounds retained for history (superseded where noted above)
+
 # Scripty demo safety QA — current report-only status
 
 Updated October16,2026 8:29p.m. Pacific (2026-10-17T03:29Z).

@@ -1,6 +1,6 @@
 # Scripty — two-minute product pitch
 
-Rehearse and trim to exactly2:00. Keep the Sample production label visible when showing Mara; new-production creation and sample history are different paths. Match every evidence claim to `handoff/results.md`.
+Rehearse and trim to exactly2:00. Identify Mara as the sample production; new-production creation and sample history are different paths. Match every evidence claim to `handoff/results.md`.
 
 ## Voiceover
 
@@ -25,7 +25,7 @@ Scripty. Keep the story straight.
 ## Screen sequence
 
 1. Landing: show Start a new production, then the concise setup flow. Do not trigger paid generation during the overnight restriction.
-2. Open Mara. Show the real ring finding and creator-review affordance. Findings remain monitor claims until human review.
-3. Open Memory and the original rule's identity; show its text and matching check in a different scene's generation context.
+2. Open Mara. Review the actual scar finding; reject it and show the returned LEFT-eye rule. Findings remain monitor claims until human review.
+3. Open Memory, then Progress → Evidence. Distinguish the visitor’s new scar note from the original ring rule whose identity appears in18 later prompts/checks.
 4. Open Progress: retain all four rates, uncertainty and settings qualifier. Do not imply a viewer's new sample correction caused an existing image.
 5. End on the product and public URL. Verify the video link opens without login.

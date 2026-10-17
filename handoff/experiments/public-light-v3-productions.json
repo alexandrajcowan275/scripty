@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "check": "sample instantly contains all four takes and 24 genuine images",
+      "pass": true
+    },
+    {
+      "check": "new production and private reference saved to real Supabase",
+      "pass": true
+    },
+    {
+      "check": "fresh production read preserves creator name, character, canon and six scenes",
+      "pass": true
+    },
+    {
+      "check": "owned private reference bytes match the uploaded original",
+      "pass": true
+    },
+    {
+      "check": "another browser cannot read production",
+      "pass": true
+    },
+    {
+      "check": "another browser cannot read private reference",
+      "pass": true
+    },
+    {
+      "check": "production is discoverable again in owned production list",
+      "pass": true
+    },
+    {
+      "check": "generation budget fails closed with a friendly sample alternative",
+      "pass": true
+    },
+    {
+      "check": "budget limit leaves production safely persisted without invented shots",
+      "pass": true
+    },
+    {
+      "check": "sample remains available with the exact original four-take counts",
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "creation_response": {
+    "status": 201,
+    "error": null
+  },
+  "production_id": "97bb3656-b638-43fe-a030-52d7313c8bee",
+  "read_response": {
+    "status": 200,
+    "error": null
+  }
+}

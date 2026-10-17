@@ -69,15 +69,13 @@ API routes:
 - **MVP scope.** One seeded character, Mara; reference and attributes; filmstrip batches; inspector; accept/reject with correction; persistent deduplicated memory; rules applied to generation and monitoring; applied-rule traces; labeled cached replay. Defer video generation, multiple characters, accounts, collaboration, billing, and additional providers unless necessary for the core demonstration.
 
 ## 7. Design system (design is a top priority, so treat the UI as the product)
-Vibe: a professional film-editing suite meets a calm observability console. Dark, cinematic, precise. Think DaVinci Resolve or Frame.io crossed with Linear. Not a generic SaaS dashboard.
-- Background `#0B0B0D`, surface `#141418`, raised `#1C1C22`, border `#2A2A33`, text `#EDEDF0`, muted `#8A8A96`.
-- Accent "Scripty red" `#E5484D`, used only for drift and alerts. Pass `#3DD68C`. Learned-rule highlight `#F5C451` (warm gold for memory).
-- Type: Inter or Geist for UI, Geist Mono for traces and numbers. Tight, confident hierarchy.
-- Layout (desktop): left = project and Scripty Memory (character sheet + learned rules list); center = **film-strip** of 6 shots per batch, horizontally scrollable with batch rows stacked; right = selected-shot inspector (large image, attribute checks with pass/fail chips, Accept/Reject with reason); bottom = learning-curve chart + trace log drawer.
-- Motion: subtle and purposeful. The rule "lands" in Memory with a gold glow, flagged shots get a thin red frame plus a corner badge, and batches animate in sequentially. Under 250ms, ease-out.
-- Accessibility: WCAG AA contrast, visible focus states, every action reachable by keyboard (A = accept, R = reject).
-- If a Figma file or Figma MCP is available, use it as the source of truth for layout and tokens. Otherwise follow this section.
-- Put the tokens in `/styles/tokens.css` as CSS variables, and never hardcode colors in components.
+The final light v3 Figma specification is authoritative: `handoff/design-v3-implementation.md`. It supersedes all earlier dark dashboard layouts.
+- Warm canvas #F5F3EE, white cards, #E8E5DF image beds, #171714 text, #615E58 secondary. Drift #B4232C, pass #147A42, memory #FFF0C2/#8A5D00, focus #2858B8.
+- Inter400/500:56/64,24/32,16/24. Mobile title24/32. Mono only actual frame numbers.
+-1296px desktop grid,72px margins,24px gutters. Mobile24px margins. Radius16,56px pill actions.
+- Separate Batch → Review one shot → Learned. Memory drawer and Progress on demand. No extra panels, badges or explanatory paragraphs in the main flow.
+- Follow supplied native motion timings, reduced motion and keyboard/focus contracts. Source-coordinate drift markers preserve full-image evidence.
+- Main alone edits app code. Other chats provide design and read-only reviews; legacy folder ownership below is historical.
 
 ## 8. Repo layout (each agent owns its folders, so don't edit others' folders)
 - `/app`, `/components`, `/styles` → **UI agent**

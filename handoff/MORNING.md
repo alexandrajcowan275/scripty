@@ -4,58 +4,58 @@
 cd ~/canon && npm run dev
 ```
 
-Open **http://localhost:3000**. Node24/npm, dependencies and local credentials are installed on this Mac. Repo/folder/Vercel project remain `canon`; GitHub stays private.
+Open **http://localhost:3000**. This exact command was restarted and browser-verified on this Mac against the final interface. Node24, dependencies and local credentials are installed. Repo/folder/Vercel project remain `canon`; GitHub stays private.
 
-# Scripty — morning handoff
+# Scripty - morning handoff
 
-Updated during the founder-authorized overnight work. Target: ready before **7am PT, October17**. Human submission deadline supplied by founder: **1:15pm PT**. No external submission has been made.
+Updated **October16,2026,11:20pm PT**, before the1am checkpoint. Overnight Main/QA/judge checks continue every90minutes through the7am handoff. Founder-supplied submission deadline: **October17,1:15pm PT**. No external submission has been made.
 
-## Release status
+## Release
 
-The previously verified public release remains working. The replacement production-first application is being developed on `codex/figma-implementation`; it is **not yet the public release**. The designer is rebuilding a calm linear flow: Batch → one-shot Review → Learned, Memory drawer, separate Progress. Main is holding layout work until that exact spec arrives, then will verify screenshots, build and the public URL before releasing.
+**Final light-v3 design is live and verified**, replacing the earlier dark dashboard. Application commit `9edc16a`, followed by capacity-copy cleanup `f2d6cfa`; both are in the release branch being fast-forwarded to main. Final source/document commits are visible in the private repository: https://github.com/alexandrajcowan275/canon.
 
-Verified checkpoint commit: `7af5e42` (Figma v2 implementation), pushed to the private repo. The subsequent production backend increment is tested locally. Final release commit/deployment/screenshot links will replace this paragraph when deployed.
+Verified production deployment: **dpl_EuUMC4t5pTEyPQ9Trwsq6obju3or**, https://canon-2o3pwz6rf-archer-rag-dev.vercel.app. The public link above is the canonical judge entry; unique Vercel deployments may require authentication. Later main pushes with the same application update release documentation/capacity wording; see git/Vercel history for their exact deployment IDs.
 
-## What works in the new backend
+Final editable Figma: https://www.figma.com/design/M6a6owg9izgReM2ejauaos. Specification: [design-v3-implementation.md](design-v3-implementation.md). Desktop/mobile comparisons and public proof: [screenshots/verification](screenshots/verification/). Independent Design found no outstanding material mismatch in inspected views; QA passed the public sample flow and390px layout.
 
-- New production creation with the creator's name, character, private reference upload, canon details and six scene prompts saved to real Supabase.
-- Fresh production reads, exact uploaded-image bytes, owned production listing and same-browser persistence.
-- Different browser denied both production and private reference access.
-- Mara opens with all four original takes/24 real images immediately, without AI or database calls.
-- Sample review state remains separate from original history and from new productions.
-- Existing generation/review/Memory/trace engine is production-aware; public paid requests default off overnight. Limit responses preserve the production and offer Mara.
--50 tests and production build pass; Supabase security advisors report no issues. Ten real-data checks are in `experiments/production-workspaces-local.json`.
+## What works
 
-Reference generation and new-production paid generation are implemented but intentionally not paid-tested. The founder's no-spending/no-deletion instruction is enforced and recorded in `../BLOCKED.md`.
+- Landing offers **Start a new production** and **Explore a sample production: Mara**.
+- New production: name, character, private reference upload, editable canon details and six scene prompts. Real Supabase persistence, refresh, exact original image bytes and another-browser access denial were verified locally and on the public URL.
+- Reference uploads save before Continue. Owned Memory → Edit character saves an immutable version; prior reference versions remain available, and existing shots/checks are unchanged. Tested through both API and real browser.
+- Mara opens all four takes/24 real images immediately. Batch → one-shot Review → actual returned Learned rule → Memory → Progress works. Keyboard A/R, Escape/focus return, review refresh and session isolation were verified.
+- Original counts remain separate from visitor review decisions. Scar rejection yields the scar rule; it does not substitute a ring example. Memory notes do not rewrite historical images.
+- Progress retains all four actual takes, uncertainty/confounds, full prompt/check/trace evidence and original ring-rule transfer. Known-image markers use source coordinates; full Review images are contained rather than cropped.
+- Graceful saved-capacity response, sample alternative, private ownership and server-side budget/rate guards. Public paid generation stays **disabled** under the no-spending instruction.
+-52 tests and production build pass. Final Supabase security advisor reports **No issues found**. All24 public image hashes, four-take replay, acceptance/rejection persistence and isolated sessions pass. Sample flow also works with server AI/database egress blocked.
 
-## Real evidence
+Evidence: [public sample regression](experiments/public-light-v3-replay.json), [public production persistence](experiments/public-light-v3-productions.json), [character versions](experiments/production-character-versions-local.json), [independent QA](demo-safety.md), [design implementation](design-implementation.md).
 
-| Original take | Flagged shots | Uncertain checks |
+## Real metrics
+
+| Original take | Monitor-flagged shots | Uncertain checks |
 | --- | --- | --- |
 | 1, final checker v3 recheck | 2/6 | 4/36 |
 | 2 | 0/6 | 6/42 |
 | 3 | 0/6 | 8/42 |
 | 4, latest | 1/6 | 6/42 |
 
-One ring rule reached all18 later generation prompts and18 corresponding monitor outputs. An accepted portrait was a positive reference for all six final-take shots. Original checker v1/v2 each flagged6/6 before disclosed calibration. Generator/settings/scenes/reference changes confound comparison, learned rules alter monitoring, and the final rate rose. Human-verified accuracy and causal image improvement remain unavailable. Draft labels are not authoritative. See `results.md`.
+The original ring rule reached all18 later generation prompts and18 corresponding monitor outputs. An accepted portrait was an extra reference for all six final-take shots. Generator/settings/scenes/reference changes confound comparison; learned rules change monitoring; the final flag rate rose. Original checker v1/v2 each flagged6/6 before disclosed calibration. Both laterality findings await human review; the final scar flag may be a monitor error. **No human-verified accuracy or causal image improvement is claimed.** Draft labels stay excluded from authoritative evaluation. See [results.md](results.md).
 
-API reservations remain **$20.58 of$24**, unchanged after production-upload verification; remaining$3.42. These reservations are pessimistic bounds, not a billing receipt. No more paid work is authorized tonight.
+API reservation ledger remains **$20.58 of$24**, checked again after public upload/persistence verification. Remaining$3.42. Reservations are pessimistic bounds, not a provider billing receipt. No paid calls, purchases or data deletion were performed during this overnight release work.
 
-## Remaining overnight work
+## Remaining boundaries and morning actions
 
-1. Receive the final linear-flow Figma spec and implement exact grid, spacing, type, motion and every state, with no extra labels/features.
-2. Compare final desktop/mobile screenshots with the Figma frames; verify upload/create, sample review/Memory/Progress, shortcuts, refresh, errors and sample alternatives.
-3. Finish repo terminology/design docs and final brand handout; keep business model short.
-4. Commit/push verified increments, deploy Vercel, and verify the public URL end to end. Add actual release artifacts here.
+1. **Paid generation is intentionally unavailable.** Description-based reference generation and six-shot new-production generation are implemented but were not paid-tested for a new production. Upload/create/save works and offers Mara when generation is paused. Do not enable paid calls or increase limits without new founder authorization.
+2. **Record the two-minute video.** Use [video script](../docs/video-script.md), [final pitch](pitch-final.md), [Devpost copy](../docs/devpost.md), the public product and [Design cover](screenshots/figma-v3/devpost-cover.png). The script distinguishes the visitor’s new scar note from the original ring rule’s18-shot transfer. No final uploaded video exists yet.
+3. **Review the actual laterality findings before certifying them.** If unclear, demonstrate saved memory and prompt/check propagation; do not claim a visually repaired shot or measured accuracy.
+4. **Confirm judge access and submit.** The GitHub repository remains private as requested. No judge invitations/public conversion or external Devpost submission has been performed. Check the event’s access/video requirements and submit before1:15pm PT.
+5. Ownership is tied to the creating browser for30days. Clearing that cookie loses access; accounts, cross-device recovery and collaboration are outside this release. Save the production URL for returning directly.
 
-## Morning human actions
+The final one-page [brand handout](../docs/brand-guide.pdf) is updated to light v3 and visually verified. Business copy is deliberately short and treats customers, pricing and savings as hypotheses. Larger proposals are in [internal/IDEAS.md](../internal/IDEAS.md). Purchases/deletion and optional cleanup are logged in [BLOCKED.md](../BLOCKED.md).
 
-Record and share a two-minute video using `../docs/video-script.md`; verify it opens without login. Review the draft labels before claiming accuracy. Confirm private-repo judge-access and Devpost timing requirements, then submit. No account, pricing, savings or causal improvement claim is validated.
+## Overnight coordination
 
-## Overnight operating rules
+Main alone edits app code. Design completed the final spec and bounded visual check. Independent judge panel and report-only QA run every90minutes, quiet when unchanged; pitch writer completed and stopped. Main has a90-minute heartbeat for consequential fixes and final6:30–7am readiness/MORNING update. Routine project actions are explicitly approved; nothing needs a login, payment or approval to continue the authorized free work.
 
-Main alone edits app code. Design owns Figma/spec; judge panel and report-only QA run every90minutes, quiet when unchanged. Pitch writer delivered `pitch-final.md` and stopped. Routine editing, commits/pushes, deployments, Supabase changes, Figma uploads, browser use and inter-chat coordination are explicitly approved. Skip purchases, paid calls and deletion; log in `../BLOCKED.md`.
-
-Check usage at meaningful checkpoints. At10% or less remaining in a reported window tonight, use the one available free full reset expiring October29 first (`RateLimitResetCredit_4a4a7f9881f881918f27541d1a601a4a`). No purchases. Last check: weekly80% remaining; 5-hour window unreported; two free resets available; none consumed.
-
-Secrets remain in ignored `.env.local` and server-only Vercel variables. Never include them in video, screenshots, commits or URLs. Caffeinate is running. Production access is currently tied to its creating browser; clearing the owner cookie loses that access. No cross-device recovery is claimed.
+Latest reported usage: weekly73% remaining,5-hour window unavailable; two free resets available, none consumed. Use only the founder-authorized free reset if a reported window reaches10% remaining, expiringOct29 first. Never purchase. Secrets stay in ignored .env.local and server-only Vercel variables, never in screenshots or commits.

@@ -4,7 +4,7 @@
 cd ~/canon && npm run dev
 ```
 
-Open **http://localhost:3000**. Public app: [Scripty](https://canon-woad.vercel.app/). Current release and verification: [morning handoff](handoff/MORNING.md).
+Open **http://localhost:3000**. This exact startup command was browser-verified on the founder’s Mac. Public app: [Scripty](https://canon-woad.vercel.app/). Current release and verification: [morning handoff](handoff/MORNING.md).
 
 **Your AI script supervisor. Every correction carries forward.**
 

@@ -37,7 +37,7 @@ A creator decision becomes inspectable, reusable production memory. Its exact te
 
 ## Design
 
-A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The design is being finalized in Figma; `handoff/MORNING.md` identifies the actual deployed version. Every intentional decision and verification finding is kept in `DECISIONS.md`. No reference-site logos, media or layouts are copied into Scripty.
+A script supervisor's workflow guides the interaction: shots first, one review decision at a time, a clear learned moment, Memory on demand and Progress separately. The final light v3 Figma design is implemented as separate Batch, Review and Learned views, with a Memory drawer and separate Progress. Desktop and mobile screenshots were compared with the supplied frames; `handoff/MORNING.md` records release verification. Every intentional decision and verification finding is kept in `DECISIONS.md`. No reference-site logos, media or layouts are copied into Scripty.
 
 ## Agent Monitoring — Lemma
 

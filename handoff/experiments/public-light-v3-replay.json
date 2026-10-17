@@ -1,0 +1,47 @@
+{
+  "base": "https://canon-woad.vercel.app",
+  "manifest_created_at": "2026-10-17T03:34:06.061Z",
+  "checks": [
+    {
+      "check": "fresh cached session and local reference",
+      "pass": true
+    },
+    {
+      "check": "recorded batch, six local images/hashes and refresh",
+      "index": 1,
+      "pass": true
+    },
+    {
+      "check": "recorded batch, six local images/hashes and refresh",
+      "index": 2,
+      "pass": true
+    },
+    {
+      "check": "recorded batch, six local images/hashes and refresh",
+      "index": 3,
+      "pass": true
+    },
+    {
+      "check": "recorded batch, six local images/hashes and refresh",
+      "index": 4,
+      "pass": true
+    },
+    {
+      "check": "local correction and rule survive fresh project request",
+      "pass": true
+    },
+    {
+      "check": "acceptance survives refresh",
+      "pass": true
+    },
+    {
+      "check": "exhausted replay returns actionable409",
+      "pass": true
+    },
+    {
+      "check": "independent fresh session starts empty",
+      "pass": true
+    }
+  ],
+  "pass": true
+}
