@@ -1,9 +1,396 @@
 {
   "version": 1,
-  "description": "Hand labels only. truePass=false means drift (the positive class). Replace draft examples with real shot IDs after inspecting the exact image. A human must mark status=verified and set verifiedBy and verifiedAt. Never score these examples as ground truth.",
+  "description": "DRAFT AGENT VISUAL REVIEW of ten real shots, not human-verified ground truth. Fixed four character criteria only, independent of monitor predictions and learned-rule checks. truePass=false means visibly contradicted continuity (drift is positive). Uncertain/occluded cells are omitted from boolean labels and recorded separately. Default evaluation must exclude every draft entry; no verifiedBy/verifiedAt fields are populated. Human review of these exact images is required before accuracy or improvement claims.",
+  "reviewReference": "public/seed/mara-reference.png",
+  "shotCoverage": [
+    {
+      "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "batchIndex": 1,
+      "sceneIndex": 1,
+      "scenePrompt": "Wide establishing shot of Mara crossing a foggy railway platform at dawn.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/d8558165-3695-4a00-ac38-55f72f62ff45-d6c58089-cd77-4b2e-b01c-79e3791b59ed.png",
+      "localReviewImage": "/private/tmp/canon-inspection/01/shot-1.png",
+      "imageSha256": "de366e443656bc005cd7e0efc6eae96bea15ed5acba6813c178e03904ec18044",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "batchIndex": 1,
+      "sceneIndex": 2,
+      "scenePrompt": "Close-up portrait of Mara looking toward camera in soft window light.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/70c895a8-94a9-437f-8be6-bfd954f03d33-9986ea9e-1d8f-4afc-a45a-a6631923d8cb.png",
+      "localReviewImage": "/private/tmp/canon-inspection/01/shot-2.png",
+      "imageSha256": "e0a363b5e81c08bbb01076a48bcaff3c0ed2170a54545acf86658cff61322a27",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "batchIndex": 1,
+      "sceneIndex": 3,
+      "scenePrompt": "Low-angle shot of Mara climbing a fire escape at golden hour.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/f4e67491-6089-4cdb-92eb-08db2744a646-0653bd35-2fe3-490f-a36a-7a98356b4d98.png",
+      "localReviewImage": "/private/tmp/canon-inspection/01/shot-3.png",
+      "imageSha256": "7777ff70586f4f51783b739a13b0581686ca3afdc8fa4fca002ff3584b0825dc",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "batchIndex": 1,
+      "sceneIndex": 4,
+      "scenePrompt": "Profile medium shot of Mara reading a map under a cool streetlamp at night.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/f80e1e8b-a3b5-4241-b14e-ac1bfba36dd9-1fc48122-2b25-4841-b588-5554298bd339.png",
+      "localReviewImage": "/private/tmp/canon-inspection/01/shot-4.png",
+      "imageSha256": "42740988d07334e23651a98bf5906db3cd27708fc08d79ebd13b9eedb31cfaca",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "batchIndex": 1,
+      "sceneIndex": 5,
+      "scenePrompt": "Over-the-shoulder shot of Mara opening a door in a warmly lit room.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/98f1adc6-80ac-40e9-94db-6c41fea1851a-61f3f0b9-ffd9-4060-b7f4-510ed895eedc.png",
+      "localReviewImage": "/private/tmp/canon-inspection/01/shot-5.png",
+      "imageSha256": "e62ad3cb65feac8a838423180144947d0756b7b4fd4c78767b26944dcaeacec8",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "batchId": "e39d6aa0-5c5d-4442-a6ff-2a0f1c9a14f3",
+      "batchIndex": 1,
+      "sceneIndex": 6,
+      "scenePrompt": "High-angle shot of Mara reaching across a table in bright midday light.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/6deb7757-b479-42e7-85f1-d2e0c7b365f8-d0c0499f-306d-4fdf-bea0-958436f144bf.png",
+      "localReviewImage": "/private/tmp/canon-inspection/01/shot-6.png",
+      "imageSha256": "0edb2371e8cb802648fac6bf46266c36420a51f0d9bc2f7362259a9331edd64b",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+      "batchId": "617a645c-3e3f-4d4c-acbb-5debc8f0e867",
+      "batchIndex": 2,
+      "sceneIndex": 1,
+      "scenePrompt": "Wide establishing shot of Mara walking across a misty pedestrian bridge at dawn.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/63881597-73fa-418c-8eaf-5013d4a98cc4-2d371fa9-6ff8-4cf3-9973-070373b72cb7.png",
+      "localReviewImage": "/private/tmp/canon-inspection/02/shot-1.png",
+      "imageSha256": "5d82a9a5686429577f1f86253d182796d99c86cd065b13c6848ea2510d261ca8",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+      "batchId": "617a645c-3e3f-4d4c-acbb-5debc8f0e867",
+      "batchIndex": 2,
+      "sceneIndex": 2,
+      "scenePrompt": "Close-up portrait of Mara seated beside a library window in soft daylight.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/4e70bbd2-d6e6-484c-9dc5-5b513fe085ff-46dac550-1c1f-46e0-83e5-0ba03088bc83.png",
+      "localReviewImage": "/private/tmp/canon-inspection/02/shot-2.png",
+      "imageSha256": "2e9dd43564dc82935faaf00d809289986a0c8bfe6dcccc1ed1f7e86db2c19727",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+      "batchId": "617a645c-3e3f-4d4c-acbb-5debc8f0e867",
+      "batchIndex": 2,
+      "sceneIndex": 3,
+      "scenePrompt": "Low-angle shot of Mara ascending worn stone steps at golden hour.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/7d3f2451-6280-4a06-bfb0-391318e29239-ad21a387-b490-4093-838b-5f9e2cda2101.png",
+      "localReviewImage": "/private/tmp/canon-inspection/02/shot-3.png",
+      "imageSha256": "59d544d209e7648227d563e6a2d31b6238ebdc563b89f7f8385886b86c60ba77",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    },
+    {
+      "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+      "batchId": "617a645c-3e3f-4d4c-acbb-5debc8f0e867",
+      "batchIndex": 2,
+      "sceneIndex": 4,
+      "scenePrompt": "Profile medium shot of Mara buying a ticket under a cool station light at night.",
+      "imageUrl": "https://ybaxkdxaihhwyuyykjra.supabase.co/storage/v1/object/public/shots/2026-10-17/68ff122b-e88e-4296-ad64-8b54d0b7d08b-218a5fed-c03a-498a-bd75-cc441540f964.png",
+      "localReviewImage": "/private/tmp/canon-inspection/02/shot-4.png",
+      "imageSha256": "5ef78cabc863792f916677f2dcca2b257ece83a736504f265967daae2473547e",
+      "reviewStatus": "DRAFT_AGENT_REVIEW"
+    }
+  ],
+  "uncertain": [
+    {
+      "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "attributeKey": "scar_side",
+      "judgment": "uncertain_or_occluded",
+      "note": "UNCERTAIN: the face occupies a small area of this wide shot; a definite left-eye scar cannot be resolved confidently at the inspected scale. Do not score absence as drift."
+    },
+    {
+      "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "attributeKey": "ring_hand",
+      "judgment": "uncertain_or_occluded",
+      "note": "UNCERTAIN: hands are small in the wide frame and metallic details are too small to confidently establish a silver band and its anatomical hand."
+    },
+    {
+      "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "attributeKey": "ring_hand",
+      "judgment": "uncertain_or_occluded",
+      "note": "UNCERTAIN: a silver ring is clearly present on the raised hand near the scarf, but the tightly framed/crossed wrist pose does not establish anatomical hand laterality confidently."
+    },
+    {
+      "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "attributeKey": "scar_side",
+      "judgment": "uncertain_or_occluded",
+      "note": "OCCLUDED/UNCERTAIN: rear three-quarter viewpoint exposes only a narrow facial profile; the required left-eye area is not sufficiently visible to confirm or refute placement."
+    },
+    {
+      "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "attributeKey": "ring_hand",
+      "judgment": "uncertain_or_occluded",
+      "note": "OCCLUDED/UNCERTAIN: one silver-ringed hand is visible at the door, but the other hand/right-hand requirement cannot be fully inspected from this rear pose. Do not infer failure solely from the visible hand or absence of the hidden hand."
+    }
+  ],
   "labels": [
-    { "shotId": "DRAFT-replace-with-real-shot-1", "attributeKey": "scarf_color", "truePass": false, "status": "draft", "note": "Example only: inspect scarf color in the saved image." },
-    { "shotId": "DRAFT-replace-with-real-shot-2", "attributeKey": "scar_side", "truePass": true, "status": "draft", "note": "Example only: distinguish character left from viewer left." },
-    { "shotId": "DRAFT-replace-with-real-shot-3", "attributeKey": "ring_hand", "truePass": false, "status": "draft", "note": "Example only: omit the label if the hand is occluded." }
+    {
+      "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red knitted scarf is visibly wrapped around the neck and draped over the coat."
+    },
+    {
+      "shotId": "d6c58089-cd77-4b2e-b01c-79e3791b59ed",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Visible dark/black bob ends at the jaw, consistent with the short black reference haircut."
+    },
+    {
+      "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Close-up clearly shows a red textured knitted scarf."
+    },
+    {
+      "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Scar marks are around the eye on image-right in this near-frontal face: anatomical LEFT, matching the reference."
+    },
+    {
+      "shotId": "9986ea9e-1d8f-4afc-a45a-a6631923d8cb",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Short black bob with fringe is clearly visible."
+    },
+    {
+      "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red thick knitted scarf is clearly visible despite warm sunset illumination."
+    },
+    {
+      "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Face is near-frontal and scar marks encircle the image-right eye: anatomical LEFT."
+    },
+    {
+      "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Short black/dark bob is visible; warm rim lighting does not change the base hair color."
+    },
+    {
+      "shotId": "0653bd35-2fe3-490f-a36a-7a98356b4d98",
+      "attributeKey": "ring_hand",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. A silver-colored band is visible on the raised image-left hand; its arm can be traced to the near-frontal character's anatomical RIGHT shoulder. A separate warm/gold-colored band on the other hand is not evidence that the required right-hand silver ring is absent."
+    },
+    {
+      "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. The scarf is visibly red, thick, and knitted."
+    },
+    {
+      "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. The face is near-frontal, angled downward; scar marks are on image-right, anatomical LEFT."
+    },
+    {
+      "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Black jaw-length bob with fringe remains visible."
+    },
+    {
+      "shotId": "1fc48122-2b25-4841-b588-5554298bd339",
+      "attributeKey": "ring_hand",
+      "truePass": false,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. The silver band is clearly on the image-right hand holding the map: anatomical LEFT in this near-frontal pose. The corresponding fingers of the image-left/anatomical RIGHT hand are visible holding the other map edge without a silver band."
+    },
+    {
+      "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red textured knitted scarf is visible across the back of the neck and shoulder."
+    },
+    {
+      "shotId": "61f3f0b9-ffd9-4060-b7f4-510ed895eedc",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Rear view clearly shows a short black bob at the neck."
+    },
+    {
+      "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red knitted scarf is clearly visible around the neck and chest."
+    },
+    {
+      "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Near-frontal high-angle face shows scar marks at the image-right eye, anatomical LEFT."
+    },
+    {
+      "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Short black bob with fringe matches the fixed character criterion."
+    },
+    {
+      "shotId": "d0c0499f-306d-4fdf-bea0-958436f144bf",
+      "attributeKey": "ring_hand",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. A silver band is visible on the reaching image-left hand; its sleeve traces to the character's anatomical RIGHT side in this near-frontal view."
+    },
+    {
+      "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. A red knitted scarf is visible at the neck and down the chest."
+    },
+    {
+      "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Near-frontal face shows scar marks around image-right/anatomical LEFT eye."
+    },
+    {
+      "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Short black bob and fringe are visible."
+    },
+    {
+      "shotId": "2d371fa9-6ff8-4cf3-9973-070373b72cb7",
+      "attributeKey": "ring_hand",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Silver band is visible on the image-left hand gripping the bag strap; the arm traces directly to anatomical RIGHT shoulder. The other hand is pocketed and is not needed to confirm the visible right-hand ring."
+    },
+    {
+      "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red wool-like knitted scarf clearly surrounds the neck."
+    },
+    {
+      "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. The scar is on image-right side of the near-frontal face: anatomical LEFT eye."
+    },
+    {
+      "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Short black bob with fringe is clearly visible."
+    },
+    {
+      "shotId": "46dac550-1c1f-46e0-83e5-0ba03088bc83",
+      "attributeKey": "ring_hand",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Silver band is visible on the lower/image-left hand resting on the open book. The sleeve can be followed to the character's anatomical RIGHT shoulder; the opposite arm supports her head."
+    },
+    {
+      "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red knitted scarf is visible despite warm edge light."
+    },
+    {
+      "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Scar marks surround image-right/anatomical LEFT eye in the near-frontal face."
+    },
+    {
+      "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. The visible haircut is a short black bob."
+    },
+    {
+      "shotId": "ad21a387-b490-4093-838b-5f9e2cda2101",
+      "attributeKey": "ring_hand",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Silver band is visible on image-left hand gripping the shoulder strap; the arm belongs to the anatomical RIGHT side in this near-frontal pose."
+    },
+    {
+      "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+      "attributeKey": "scarf_color",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Red chunky knitted scarf is clearly visible around the neck."
+    },
+    {
+      "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+      "attributeKey": "scar_side",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Although the prompt calls for profile, the rendered face is three-quarter with both eyes distinguishable. Scar marks lie beside the farther/image-right eye, anatomical LEFT; the near/image-left eye is the right eye."
+    },
+    {
+      "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+      "attributeKey": "hair",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. Short black bob and fringe remain clearly visible."
+    },
+    {
+      "shotId": "218a5fed-c03a-498a-bd75-cc441540f964",
+      "attributeKey": "ring_hand",
+      "truePass": true,
+      "status": "draft",
+      "note": "DRAFT — agent visual review only; human verification required. A silver band is visible on the extended hand taking the ticket. The visible sleeve/forearm can be followed back to the near anatomical RIGHT shoulder in the three-quarter pose; this judgment uses arm continuity, not screen position alone."
+    }
   ]
 }
