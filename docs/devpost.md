@@ -1,63 +1,71 @@
-# Canon
+# Scripty
 
-> Submission draft. Only measurements recorded in `handoff/results.md` may replace metric placeholders. The eval labels remain provisional until a human verifies them. See `handoff/MORNING.md` for the final tested behavior.
+**Your AI script supervisor.** Continuity memory and monitoring for AI-generated stories.
+
+> Submission draft. Final measurements and the current deployed URL must come from `handoff/results.md` and the final deployment handoff. Draft labels need human verification. Do not claim a lower drift rate until a fixed-criteria review supports it.
 
 ## Inspiration
 
-A generation API can return success while the story fails: a red scarf becomes blue, a scar moves to the wrong eye, or a character changes between shots. The creator pays for a technically successful frame, then spends time finding and repairing the mistake. We wanted continuity to behave like a living production bible that remembers decisions and makes silent failures visible.
+On a film set, the script supervisor keeps track of continuity across shots: the costume, the prop, the detail an editor will need later. The role involves detailed written and photographic records so separately filmed takes can fit together. [ScreenSkills role profile](https://www.screenskills.com/job-profiles/browse/film-and-tv-drama/technical/script-supervisor-film-and-tv-drama/).
+
+Crews call that person the “scripty.” We are building the AI scripty. An image API can return success while the story breaks: the ring moves to the wrong hand, or a scar switches sides. A creator catches it, corrects it, and too often has to repeat the instruction. Scripty makes that correction part of the project's working memory.
 
 ## What it does
 
-Canon puts a character sheet and a growing set of creator rules around an image generator. It checks each shot attribute by attribute, shows expected versus observed values with confidence, and flags confident failures. A rejection can become one testable project rule. Rules constrain later prompts and become checks in later monitoring. Accepted shots can serve as additional positive references.
+Scripty puts a character reference, a character sheet, and creator-approved constraints around an image generator. It checks each shot attribute by attribute, shows expected versus observed values with confidence, and flags confident failures. A rejected shot becomes one short, testable rule. Repeated corrections merge with existing memory. Later generations receive the rule, and later monitoring checks it.
 
-The Mara demo follows one character: a red wool scarf, a scar above the left eye, short black hair, and a silver ring on the right hand. A six-shot batch appears as a filmstrip; the inspector explains why a shot needs attention. Canon Memory shows what the project learned. Batch history and traces show whether those decisions helped.
+The demo follows Mara: red wool scarf, scar above the left eye, short black hair, silver ring on the right hand. Six shots appear as a filmstrip beside Scripty Memory and a shot inspector. The essential demonstration is a correction on one shot, a persistent rule after refresh, and that rule in generation and monitoring context for different new scenes. Traces let the creator inspect each step. Accepted shots can also provide positive visual references.
 
 ## How we built it
 
-Next.js App Router and TypeScript serve the interface and route handlers. Tailwind and shared CSS tokens express a dark film-suite design. Supabase Postgres stores projects, attributes, rules, batches, shots, checks, and traces; its `shots` storage bucket serves generated images. Database access is server-only. The generator adapter supports reference images; a separate vision monitor validates structured output with Zod. Rejection-to-rule learning is kept separate from monitoring and generation so each decision is inspectable.
+Next.js App Router and TypeScript serve the interface and route handlers. Shared CSS tokens create a dark film-suite workspace. Supabase Postgres stores projects, attributes, rules, batches, shots, checks, and traces; Storage holds images. The generator accepts a reference image. A separate vision monitor returns structured checks validated with Zod. Rejection-to-rule extraction, deduplication, generation, and monitoring are separate, inspectable steps.
 
-A real-image cache provides a backup presentation without AI requests. Cached playback preserves the captured checks and measured batch rates. It is labeled as playback; it does not pretend to produce new live improvements. A conservative persistent API reservation budget protects the hackathon's $25 spending limit.
+Learning is persistent project memory and prompt adaptation; model weights stay fixed. A real-image cache provides a backup without new AI requests. Recorded images, prompts, checks, and rule traces retain their original provenance. Corrections made in cached playback are browser-local review state; they do not change historical generations or prove a new engine run. Persistent API reservations protect the hackathon's spending limit.
 
 ## Challenges
 
-Image continuity and reliable measurement are separate problems. Occluded details should be marked uncertain rather than guessed. Confidence is model-reported, not a calibrated probability. A few generated batches do not establish causation; model randomness, scene composition, and reference quality can affect drift. We keep prompt/rule provenance and do not turn a flat curve into a marketing claim.
+The monitor can be wrong too. In the initial real batch it flagged all six shots, including apparent anatomical-side mistakes by the checker. That is a calibration problem, not evidence that all six images truly failed. We retain the original checks and disclose monitor changes. Occluded details should be uncertain; confidence is model-reported, not a calibrated probability.
 
-Serverless deployment also makes in-memory state unreliable. Live state belongs in Postgres, while cached playback needs isolated browser state. The backup must remain useful without hiding the difference between a replay and a live model call.
+A falling chart alone cannot prove learning: rules change the monitor as well as the prompt. We need different new scenes, fixed character criteria, disclosed sample sizes, and human-reviewed labels to assess the output. Serverless persistence creates another constraint: real project state must survive a new request, while cached review state must be visibly distinguished from live memory.
 
 ## Accomplishments
 
-- A compact production-bible workflow: generate, inspect, accept/reject, retain a rule, and compare batches.
-- Explicit failure categories and per-attribute explanations instead of a generic failed badge.
-- An honest evaluation harness with draft-label exclusion and defined drift-positive precision/recall.
-- Deployment and repeatable cache assets: [TODO: live URL from MORNING.md].
-- Measured results: [TODO: real number] real batches; [TODO: real number] generated shots; observed drift rates [TODO: real number].
+- A real raster reference and a real six-shot baseline, with original results retained.
+- A real wrong-hand ring correction converted to a rule; a repeated correction merged into the same rule ID, and a fresh database read confirmed persistence.
+- An inspectable loop connecting a shot, its correction, memory, and later generation/monitor context.
+- Final new-scene results, monitor calibration, and evaluation: **pending final measured results in `handoff/results.md`**. No verified improvement or human-ground-truth accuracy claim yet.
+- Public demo: **[TODO: latest tested Vercel URL from final deployment handoff]**.
 
 ## What we learned
 
-The useful learning unit is a small, testable production constraint connected to a creator's decision. A rule is more valuable when a reviewer can inspect where it came from, where it was applied, and whether the measured output changed. Evaluating the monitor is as important as improving the generator: an optimistic checker can produce an attractive curve that means little.
+Continuity is a memory problem and a measurement problem. A useful production note is short, testable, and linked to the creator decision that produced it. A useful monitor admits when it cannot see the detail. The proof we can show first is that a correction persists and reaches a different scene; improvement in the resulting images needs its own evidence.
 
 ## What's next
 
-Verified labels and larger controlled comparisons, temporal checks across video frames, creator-approved positive references, and provider adapters. Real-time world models such as Reactor are a future integration direction, not a current product capability. Cross-project analysis would require customer consent and appropriate data controls.
+Human-verified labels and larger comparisons, temporal checks across video frames, and creator-controlled positive references. A future integration with real-time world models such as Reactor is exploratory. Video generation, multi-character projects, collaboration, billing, and additional provider integrations are outside this MVP.
 
 ## Continual Learning track
 
-Canon uses project-specific continual memory rather than model weight training. Rejecting a shot produces one short rule, deduplicated with existing rules; that rule changes both the next generation prompt and the next monitor's checklist. Accepting a shot adds a positive reference. The visible metric is `flagged shots / total shots` for each six-shot batch.
+One correction becomes reusable project memory. The rule is deduplicated, persisted, injected into a different scene's generation prompt, and checked during monitoring. This is an application-level learning loop with fixed model weights.
 
-Experiment: [TODO: real number] captured batches with the same scene set and documented creator-style review decisions. Rates: [TODO: real number]. Report a flat or worsening result plainly. These are small observational measurements; no causal or generalization claim follows from three batches. Eval precision/recall/F1: [TODO: real number], with label status prominently disclosed.
+The chart reports operational `flagged shots / total shots` per batch. It does not establish true drift reduction, particularly across monitor versions. Final report fields: **[TODO: measured batch/shot counts, scene sets, monitor versions, actual flag rates, and human verification status from `handoff/results.md`]**. Compare outputs with fixed character criteria and human-reviewed labels before making an improvement claim. Agent-drafted labels are provisional.
 
 ## Design track
 
-The layout follows creative work: a left production bible, a center filmstrip grouped by batch, a right inspection surface, and a bottom measurement/trace layer. Red means drift or an error, gold means memory, and green means a check passed. Color is paired with text and icons. Monospace numbers make time, confidence, and traces easier to compare. Motion communicates insertion and ordering, stays below 250ms, and respects reduced-motion preferences. The design aims for the precision of a film-editing suite, with keyboard review and a usable narrow-screen stack.
+The layout follows production work: reference and Scripty Memory at left, a central filmstrip, a right inspection surface, and a measurement/trace layer below. Red signals drift, gold signals retained memory, and green signals a passed check. Text and icons carry those meanings alongside color. Monospace numbers make confidence and traces easier to scan. Brief motion shows a rule arriving in memory. Keyboard review and a narrow-screen stack support practical use.
 
-See `docs/brand-guide.md` for the design rationale and palette.
+See `docs/brand-guide.md` for the identity and palette.
 
 ## Agent Monitoring track — Lemma
 
-A generator's success response is not a continuity guarantee. Canon watches for silent attribute, identity, style, and prompt-adherence failures and keeps API failures separate. Traces connect the generation, check, flag, review-derived rule, and later rule application. A rejected shot becomes a concrete constraint that can be checked again. The creator remains the decision maker; the monitor presents evidence and uncertainty.
+A successful API response can hide a failed creative requirement. Scripty checks for attribute, identity, style, and prompt-adherence drift while recording API errors separately. Traces connect generation, check, flag, creator correction, and later rule application. The system exposes the monitor's judgment and uncertainty so the creator can challenge it. The real baseline's false anatomical-side flags make this need concrete.
 
 ## Scale to $1B track
 
-Potential buyers include AI video studios, micro-drama studios, ad agencies, and AI video platforms that need continuity checks through an API. The proposed commercial model combines seats for creative review with usage pricing per checked generation. Pricing is a hypothesis, not tested revenue or committed customer demand.
+The initial buyer hypothesis is a small AI production team making recurring characters for ads, episodic stories, or micro-dramas. Repeated output gives continuity memory a reason to accumulate. A proposed commercial model combines creative-review seats with usage per checked generation; an API could serve larger production platforms later. There are no claimed customers, validated prices, measured savings, or revenue.
 
-The first compounding asset is each project's consented canon memory: character details, review history, and constraints. With explicit customer permission and privacy controls, aggregated failure patterns could improve future monitoring. A model-agnostic adapter layer lets teams change image providers while keeping their production memory. The business case should be validated through creator interviews, paid pilots, and measured reduction in rework.
+The first asset is each project's creator-approved continuity memory and review history. Retention and lower rework are hypotheses to test with creator interviews and paid pilots. Cross-customer failure-pattern analysis would require explicit permission and privacy controls. The model adapter creates a route toward keeping production memory when a team changes generators; broad provider coverage remains future work.
+
+## Competitive context
+
+Reference-driven generators, creative review tools, persistent agent memory, and agent observability already solve adjacent problems. Scripty's proposed focus is the complete creator workflow from a visible continuity mistake to a persistent, testable production constraint. This is a positioning hypothesis, not a uniqueness claim. See `docs/competitors.md` for dated comparisons and primary sources.
