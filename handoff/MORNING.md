@@ -6,7 +6,7 @@ cd ~/canon && npm run dev
 
 Open http://localhost:3000. [Public production](https://canon-woad.vercel.app/) · [Private GitHub](https://github.com/alexandrajcowan275/canon).
 
-**Finalized at 6:18am PT, on the first heartbeat after the scheduled 6:15am checkpoint. The overnight lead heartbeat is being paused, not deleted.**
+**Finalized at 6:18am PT, on the first heartbeat after the scheduled 6:15am checkpoint. The lead, judge-panel and QA heartbeats are now paused, not deleted.**
 
 **Deadline conflict:** your latest target is October 17, **2:00pm PT**. The current official Devpost listing says **11:00am PDT today**. Submit by 11am unless you have an organizer-confirmed extension. [Official source](https://sephacks-2026.devpost.com/) · [recorded verification](../docs/verification-deadline.json).
 
@@ -67,4 +67,4 @@ Compare-takes, advanced cast/script features, accounts/cross-device recovery and
 
 The optional external Marble viewer reported permission denied. The captured still works; no sharing permissions were changed. Share that world later only if desired. This does not block the core loop.
 
-No more paid repetition or new feature work is planned. A stronger future experiment using a novel correction absent from the initial canon is proposed in `internal/IDEAS.md`; it is not a measured result or a submission blocker. Final judge/QA reports remain attributed in `handoff/judge-log.md` and `handoff/demo-safety.md`.
+No more paid repetition or new feature work is planned. A stronger future experiment using a novel correction absent from the initial canon is proposed in `internal/IDEAS.md`; it is not a measured result or a submission blocker. Final judge/QA reports remain attributed in `handoff/judge-log.md` and `handoff/demo-safety.md`. [Judge questions and short answers](judge-prep.md) are ready for rehearsal; these are inferred panel reactions, not actual judges’ scores.

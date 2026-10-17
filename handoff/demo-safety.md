@@ -1,3 +1,25 @@
+# FINAL overnight QA handoff — 2026-10-17 06:17 AM Pacific
+
+**READY for the demonstrated public sample/review/blind-Eval path; no consequential regression found in the bounded final check.** Public https://canon-woad.vercel.app/; READY production `dpl_Cjgdiv7zWkoYzMSoiJgZg53PgDQ4`, mainc73a3a945b633a160720c1836b5396c648b4dfc2. This is a scoped functional readiness result, not human-verified model accuracy, new-production paid-test certification, or a universal crash guarantee.
+
+## Final GET-only observations
+
+- Studio `/p/mara` loaded Take4/1of6flagged/3rulesapplied, actual original frames,11loadedHTMLimages and zero broken images.
+- Review `/p/mara/shot/46bebc3e-533f-4806-82ac-b625abb76114` loaded the original locker-shot frame, Scar needs a second look heading and editable note field. No review, rejection, acceptance or paid fix submitted.
+- Blind Eval `/p/mara/eval` loaded first ring question of210; all6HTMLimages loaded and same-origin. No human labels submitted. No captured warnings/errors across the final QA tab.
+- Original4takes/24hash/APIcount/CI checks are Main's parallel responsibility; no duplicate corpus downloads, secret scan, screenshots, synthetic failure suite or full tests repeated. Prior study-imageP2closed in the preceding independent check.
+- No generation/recheck/fix/canon/reference/newproduction/start actions, cookie manipulation/logout, data deletion, purchases, paid calls or app/assets/db/git/deploy/protection mutations. Only this report updated.
+
+## Monitor and morning boundaries
+
+Existing `scripty-demo-safety-qa` is now **PAUSED**, preserving its90-minute configuration and history. It was not deleted and no replacement was created. No more overnight QA runs are scheduled unless explicitly resumed.
+
+Main reports74tests/build and controlled live/API verification; those are attributed evidence, not newly repeated QA. A/B0/6versus0/6shows no additional measured reduction; human validation remains pending. Original history remains2/0/0/1flagged. Preserve those qualifications in the video/pitch.
+
+Morning human actions remain: review anatomy/labels, record and verify the final video, ensure judge repository access and resolve submission time. MORNING.md flags official11amPDT versus founder2pm target; no extension is certified by QA. Main owns releases and any fixes.
+
+## Historical QA evidence and resolved findings
+
 # Scheduled GET-only QA — 2026-10-17 05:11 AM Pacific
 
 **PASS for bounded changed-release checks. Prior P2external-study-image dependency RESOLVED; no new consequential regression.** At start latest READY metadata was `dpl_9VXyNatmb4mdYmZ5FyjebLsEF8UD` /5a5b707. At end docs/final-candidate3817d17 was BUILDING as `dpl_J1EdU3meoEyj2ixfzgG1AkYiXxnK`; do not treat this check as certification of that unfinished deployment. Canonical public pages were exercised during this window. Main reports final applicationc4c69d9 passes74tests/build; QA did not repeat them.
