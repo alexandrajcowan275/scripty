@@ -106,3 +106,5 @@
 @media(max-width:760px){.v4-public .more a{white-space:nowrap;padding:10px 14px;font-size:13px}.v4-frames .wrap{padding-top:88px}}
 
 .v4-frames .thread{z-index:3}
+/* Match the prototype's phone code typography and padding. */
+@media(max-width:760px){.v4-api pre{font-size:12px;padding:20px 22px}}
