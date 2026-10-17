@@ -247,10 +247,10 @@ h2 { font-size: 12px; font-weight: 550; letter-spacing: -.1px; }
 .error-banner { background: var(--drift-dim); color: var(--drift-text); }
 .warning-banner { background: var(--surface-deep); color: var(--muted-strong); }
 .image-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; color: var(--muted); background: var(--raised); font-size: 10px; }
-.workspace-empty { display: flex; align-items: center; justify-content: center; flex-direction: column; min-height: 350px; text-align: center; padding: 35px; }
-.empty-icon { color: var(--muted); width: 60px; height: 60px; border: 1px solid var(--border); display: grid; place-items: center; border-radius: 13px; margin-bottom: 22px; }
+.workspace-empty { display: flex; align-items: center; justify-content: center; flex-direction: column; min-height: 100%; text-align: center; padding: 24px; }
+.empty-icon { color: var(--muted); width: 48px; height: 48px; border: 1px solid var(--border); display: grid; place-items: center; border-radius: 10px; margin-bottom: 16px; }
 .workspace-empty h3 { font-size: 17px; letter-spacing: -.3px; font-weight: 450; }
-.workspace-empty p { max-width: 290px; color: var(--muted); font-size: 12px; line-height: 1.8; margin: 10px 0 21px; }
+.workspace-empty p { max-width: 360px; color: var(--muted); font-size: 12px; line-height: 1.7; margin: 8px 0 16px; }
 .small-empty { padding: 20px 16px; font-size: 11px; line-height: 1.7; color: var(--muted); }
 .inspector-empty { display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 35px; text-align: center; flex: 1; gap: 13px; }
 .inspector-empty > svg { color: var(--muted); }

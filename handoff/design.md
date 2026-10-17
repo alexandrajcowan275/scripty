@@ -37,3 +37,14 @@ Intentional design decision for root DECISIONS.md: use actual capture-time UTC m
 The selected-shot image now has a keyboard-accessible Expand frame control. It opens the same image in a native modal dialog with batch/frame/scene context and contain sizing within the viewport. Close and Escape use native dialog dismissal and focus restoration. A/R global review shortcuts return immediately while the preview is open, so inspecting detail cannot review a hidden frame. No API, generation, image-editing or review behavior was added.
 
 Follow-up validation: typecheck, webpack build, focused evidence/scene tests and diff checks. A fresh browser check was left to root because browser user control interrupted the earlier session.
+
+
+## Focused pre-Figma audit (root 06bd5c2)
+
+Audited the current interface at exactly 1440×900 and 390×844 through the documented Cua viewport capability, using the current local cached project and real reference image. Inspected the committed production screenshots for populated real-shot states. No Figma actions, script injection, batch/review POSTs or AI requests were made.
+
+One consequential issue was found and fixed: the empty workspace's hard 350px minimum exceeded its available desktop scroll region, clipping the Load recorded batch action. The same composition now uses available pane height with a slightly smaller icon, wider copy measure and tighter internal spacing. This retains the existing type, palette, controls and panel layout. The action is fully contained at desktop (bottom 634px within pane ending 684px) and mobile (bottom 759px, above the sticky footer). No horizontal page overflow was observed at either viewport. No second change was justified before the external Figma arrives.
+
+Before/after screenshots: handoff/screenshots/audit/empty-before-1440.png, empty-after-1440.png, empty-before-390.png and empty-after-390.png. The temporary viewport override was reset and the audit tab/server closed.
+
+Decision for root DECISIONS.md: preserve the established film-tool layout while fitting empty-state compositions to their real scroll regions, so their primary actions remain visible. Validation: webpack build, typecheck, four focused evidence/scene tests and diff check.
