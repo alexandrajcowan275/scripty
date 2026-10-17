@@ -4137,3 +4137,26 @@
     gap: var(--space-32);
   }
 }
+
+/* Flow 01: preserve the stage as it becomes the reference drop zone. */
+:root[data-transition="start"] .v2-landing-hero,
+:root[data-transition="start"] .v2-upload {
+  view-transition-name: production-reference;
+}
+:root[data-transition="start"] .v2-landing-intro .v2-headline {
+  view-transition-name: production-heading;
+}
+:root[data-transition="start"]::view-transition-old(production-heading) {
+  animation: v2-heading-away 420ms var(--ease-out) both;
+}
+@keyframes v2-heading-away {
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-transition="start"]::view-transition-old(production-heading) {
+    animation: v2-reduced-fade 150ms linear reverse both;
+  }
+}
