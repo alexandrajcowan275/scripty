@@ -2,9 +2,9 @@
 
 **Scripty: the AI script supervisor. Every correction carries forward.**
 
-[Open Scripty](https://canon-woad.vercel.app/) · Video: coming soon
+[Open Scripty](https://getscripty.vercel.app/) · Video: coming soon
 
-[![CI](https://github.com/alexandrajcowan275/canon/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandrajcowan275/canon/actions/workflows/ci.yml)
+[![CI](https://github.com/alexandrajcowan275/scripty/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandrajcowan275/scripty/actions/workflows/ci.yml)
 
 ![Scripty Studio: a cinematic contact sheet with continuity checks and production memory](docs/images/scripty-studio-clean.png)
 

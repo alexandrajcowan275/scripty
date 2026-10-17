@@ -33,3 +33,9 @@ Final overnight handoff is6:15am PT. The latest founder-supplied submission dead
 The controlled A/B settled24requests at$0.710364 estimated usage. The separate public-UI vision→create→generate→edit/reject→learn→regenerate check settled at$0.121538. Public-UI operator requests use the production deployment's accounting scope, but are still counted toward Main's$12testing allowance in the handoff. Earlier backend-loop estimate:$0.204639 (already covered by the historical baseline reconciliation). Do not sum baseline-covered usage into the total again. No additional paid verification is needed unless a concrete release defect requires it.
 
 Local startup was re-verified on the current UI with the exact `npm run dev` command at port3000: landing200,24Mara shots/four takes,210blind questions and a byte-identical bundled study PNG. The temporary verification server was stopped afterward so the founder's command can use port3000. Receipt: `docs/verification-local-startup.json`.
+
+## Public URLs and repository rebrand
+
+Production: https://getscripty.vercel.app (the first available founder-requested alias; `scripty.vercel.app` and `scripty-ai.vercel.app` were already in use). The existing https://canon-woad.vercel.app remains attached to the same Vercel `canon` project. The private repository is https://github.com/alexandrajcowan275/scripty; GitHub redirects the old repository URL. The local folder and Vercel project remain `canon`.
+
+Browser ownership and access cookies are hostname-scoped. Existing private productions and in-progress blind labels remain accessible through their original browser on the old hostname; opening the new hostname does not migrate those cookies. Mara remains available on either hostname.

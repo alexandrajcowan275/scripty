@@ -1,6 +1,6 @@
 # Scripty — two-minute product pitch
 
-Record the real product. Keep original experiment evidence separate from the new note being entered. No finished recording/upload exists yet. Current verified entry: **https://canon-woad.vercel.app/p/mara**. The final page-by-page click path is maintained in `handoff/MORNING.md`.
+Record the real product. Keep original experiment evidence separate from the new note being entered. No finished recording/upload exists yet. Current verified entry: **https://getscripty.vercel.app/p/mara**. The final page-by-page click path is maintained in `handoff/MORNING.md`.
 
 ## Narration
 

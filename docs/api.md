@@ -1,6 +1,6 @@
 # Scripty API
 
-Base URL: `https://canon-woad.vercel.app`. Responses use JSON; private evidence is `Cache-Control: no-store`. Errors return `{error}` with 400 validation, 401 missing access code, 404 owner-scoped not found, 409 unsupported operation, 429 capacity, or 503 provider/storage unavailable.
+Base URL: `https://getscripty.vercel.app`. Responses use JSON; private evidence is `Cache-Control: no-store`. Errors return `{error}` with 400 validation, 401 missing access code, 404 owner-scoped not found, 409 unsupported operation, 429 capacity, or 503 provider/storage unavailable.
 
 ## Access
 

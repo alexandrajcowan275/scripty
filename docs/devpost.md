@@ -55,4 +55,4 @@ Our first buyer hypothesis is a small AI production team making recurring charac
 
 Continuity is a memory problem and a measurement problem. A useful correction is short, testable and traceable to its source; a useful monitor admits when the detail cannot be seen. Next: human-reviewed evaluation, creator pilots, temporal video checks and broader generator integrations. Accounts, collaboration and billing remain outside this release.
 
-Public app: [Scripty](https://canon-woad.vercel.app/). The repository remains private at the founder's request. Confirm the final video and judge-access requirements before submitting; no external submission has been made.
+Public app: [Scripty](https://getscripty.vercel.app/). The repository remains private at the founder's request. Confirm the final video and judge-access requirements before submitting; no external submission has been made.

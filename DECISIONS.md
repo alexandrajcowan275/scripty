@@ -106,3 +106,7 @@ Ship offline-generated, content-addressed 480px/1200px WebPs for all 24 Mara and
 ## October 17 morning — productions dashboard
 
 Add the founder-requested /dashboard overview from existing owner-scoped APIs. Count saved original-take attribute checks, distinct monitor-flagged shots and non-seed rules; keep historical calibration/recheck events and the separate A/B corpus out of take totals. The Mara curve and ring-rule marker derive from actual batch/rule data. Activity uses deduplicated recorded events and real links. Preserve compressed WebP delivery, original-on-intent inspection and existing workspace layouts; in-app branding and Open studio now enter the dashboard.
+
+## October 17 morning — Scripty URLs
+
+Founder requested a reversible URL rebrand before the 9:30am freeze. Add `getscripty.vercel.app` as a production domain of the existing `canon` project, preserving all old aliases; the first two requested names were already in use. Rename the private GitHub repository to `scripty` while retaining its numeric repository identity and old-URL redirect, and update origin. Keep local folder/project identifiers unchanged. A docs-only push verifies Git-triggered production delivery before changing app metadata. Preserve hostname-scoped owner sessions on the old URL rather than transferring private browser capabilities.
