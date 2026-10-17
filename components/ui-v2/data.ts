@@ -220,6 +220,21 @@ export const sceneTitle = (shot: Shot) =>
     )
     .replace(/^[^ ]+ /, "")
     .replace(/[.]$/, "");
+/** Keep recorded model names readable; the full version remains in the hover label. */
+export const modelLabel = (value: string) =>
+  value.replace(/-20\d{2}-\d{2}-\d{2}$/, "");
+/** A scene caption derived from its actual prompt, with lighting directions removed. */
+export const sceneCaption = (shot: Shot) => {
+  const scene = sceneTitle(shot).split(
+    /\s+(?:in|beneath|under|during)\s+(?:morning|soft|warm|cool|midday|bright|gentle|early|a\s+(?:cool|warm))/i,
+  )[0];
+  return (
+    scene
+      .split(/\b(?:a|an|the)\s+/i)
+      .at(-1)
+      ?.trim() || scene
+  );
+};
 export function modelFor(
   data: ProductionData,
   batch: Batch | undefined,

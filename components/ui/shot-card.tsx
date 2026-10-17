@@ -7,6 +7,7 @@ import {
   shotStatus,
   frameName,
   sharedShot,
+  sceneCaption,
   type ProductionData,
 } from "../ui-v2/data";
 export function ShotCard({
@@ -58,15 +59,19 @@ export function ShotCard({
             priority={index < 6}
             style={{ viewTransitionName: sharedShot(shot.id) } as CSSProperties}
           />
-          <span className="v2-frame-tag v2-glass v2-mono">
-            {frameName(shot, data)} ·{" "}
-            {shot.scenePrompt.replace(/^.*? of /i, "").slice(0, 42)}
+          <span
+            className="v2-frame-tag v2-glass v2-mono"
+            title={shot.scenePrompt}
+          >
+            {frameName(shot, data)} · {sceneCaption(shot)}
           </span>
           <span
             className={`v2-status-tag ${status.kind} ${status.kind === "drift" ? "v2-drift-fill" : "v2-glass"}`}
           >
             <span>
-              {status.kind === "drift" ? status.label : status.detail}
+              {status.kind === "drift"
+                ? status.label.replace(/^./, (letter) => letter.toUpperCase())
+                : status.detail}
             </span>
             {status.kind === "drift"
               ? ` · ${status.detail}`
