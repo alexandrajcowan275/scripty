@@ -1,6 +1,6 @@
 "use client";
 import { SavedProductions } from "../saved-productions";
-import { Brand } from "../ui/chrome";
+import { AppPageHeader } from "../ui/app-shell";
 import { Ambient, MotionLink } from "../ui/motion";
 import { ProductionCard } from "../ui/production-card";
 import { ProductionProvider, useProduction } from "./provider";
@@ -10,18 +10,9 @@ function ProductionCatalog() {
   return (
     <div className="v2-screen v2-productions">
       <Ambient warm />
+      <AppPageHeader title="Productions" />
       <div className="v2-page-wrap">
-        <header className="v2-public-nav">
-          <Brand />
-          <MotionLink href="/new" kind="start" className="v2-button">
-            Start a production →
-          </MotionLink>
-        </header>
         <main className="v2-production-catalog">
-          <div className="v2-production-heading">
-            <h1>Your productions.</h1>
-            <p>Pick up where you left off.</p>
-          </div>
           <ul className="v2-production-grid" aria-label="Productions">
             <ProductionCard
               name={data?.project.name ?? "Mara"}

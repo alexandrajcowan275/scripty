@@ -1,18 +1,16 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { AppPageHeader } from "../ui/app-shell";
 import { useEffect, useState } from "react";
-import { Icon, type IconName } from "../icons";
-import { Brand, ErrorNotice } from "../ui/chrome";
+import { Icon } from "../icons";
+import { ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink } from "../ui/motion";
-import { LocationReference } from "../ui/location-reference";
 import {
   HomeReviewQueue,
   HomeRecentRules,
   HomeAgents,
 } from "../ui/production-home";
 import {
-  OverviewDialog,
   ProductionOverviewCard,
   RecordedTime,
 } from "../ui/production-overview";
@@ -20,18 +18,6 @@ import { dashboardActivity, uniqueProductions } from "./dashboard-data";
 import { message, request, type ProductionData } from "./data";
 import { ProductionProvider, useProduction } from "./provider";
 
-const MemoryPanel = dynamic(
-  () => import("./studio").then((module) => module.MemoryPanel),
-  {
-    loading: () => (
-      <div
-        className="v2-skeleton v2-dashboard-placeholder"
-        role="status"
-        aria-label="Opening memory"
-      />
-    ),
-  },
-);
 type SavedProduction = {
   project_id: string;
   created_at: string;
@@ -44,8 +30,7 @@ function DashboardContent() {
     [ownedData, setOwnedData] = useState<ProductionData[]>([]),
     [ownedLoading, setOwnedLoading] = useState(true),
     [ownedError, setOwnedError] = useState(""),
-    [reload, setReload] = useState(0),
-    [panel, setPanel] = useState<"memory" | "locations" | null>(null);
+    [reload, setReload] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
     setOwnedLoading(true);
@@ -114,71 +99,11 @@ function DashboardContent() {
     setReload((value) => value + 1);
     void refresh().catch(() => {});
   };
-  const nav = (label: string, icon: IconName, href: string, active = false) => (
-    <MotionLink
-      href={href}
-      className={`v2-dashboard-nav-item ${active ? "on" : ""}`}
-    >
-      <Icon name={icon} />
-      <span>{label}</span>
-    </MotionLink>
-  );
   return (
     <div className="v2-screen v2-workspace v2-dashboard">
       <Ambient />
-      <aside className="v2-dashboard-sidebar">
-        <Brand />
-        <nav aria-label="Workspace" className="v2-dashboard-nav">
-          {nav("Home", "frame", "/dashboard", true)}
-          {nav("Productions", "slate", "#productions")}
-          <button
-            className="v2-dashboard-nav-item"
-            disabled={!data}
-            onClick={() => setPanel("memory")}
-          >
-            <Icon name="layers" />
-            <span>Memory</span>
-          </button>
-          {nav("Evidence", "activity", "/p/mara/evidence")}
-          {nav("Eval", "check", "/p/mara/eval")}
-          {nav("API", "terminal", "/developers")}
-        </nav>
-        <div className="v2-dashboard-products">
-          <span className="v2-dashboard-group-label">Products</span>
-          <nav aria-label="Products">
-            <button
-              className="v2-dashboard-nav-item"
-              onClick={() => setPanel("locations")}
-            >
-              <Icon name="image" />
-              <span>Locations</span>
-            </button>
-            <button className="v2-dashboard-nav-item" disabled>
-              <Icon name="play" />
-              <span>Video</span>
-              <small>Soon</small>
-            </button>
-            <button className="v2-dashboard-nav-item" disabled>
-              <Icon name="layers" />
-              <span>Team</span>
-              <small>Soon</small>
-            </button>
-          </nav>
-        </div>
-        <div className="v2-dashboard-sidebar-foot">
-          <span className="v2-memory-dot" /> Your AI script supervisor.
-        </div>
-      </aside>
+      <AppPageHeader title="Home" />
       <main className="v2-dashboard-main">
-        <header className="v2-dashboard-header">
-          <div>
-            <h1>Home</h1>
-          </div>
-          <MotionLink href="/new" kind="start" className="v2-button">
-            <Icon name="plus" />
-            New production
-          </MotionLink>
-        </header>
         {(error || ownedError) && (
           <ErrorNotice retry={retry}>{error || ownedError}</ErrorNotice>
         )}
@@ -321,23 +246,6 @@ function DashboardContent() {
           )}
         </section>
       </main>
-      {panel && (
-        <OverviewDialog
-          title={
-            panel === "memory" ? "Scripty Memory · Mara" : "Locations · Mara"
-          }
-          onClose={() => setPanel(null)}
-        >
-          {panel === "memory" && data ? (
-            <MemoryPanel data={data} />
-          ) : (
-            <>
-              <p className="v2-muted">World Labs · captured location still</p>
-              <LocationReference projectId="mara" />
-            </>
-          )}
-        </OverviewDialog>
-      )}
     </div>
   );
 }

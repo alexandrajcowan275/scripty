@@ -1,4 +1,5 @@
 "use client";
+import { AppPageHeader } from "../ui/app-shell";
 import { useEffect, useState } from "react";
 import { Nav, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
@@ -64,21 +65,13 @@ export function EvidenceScreen() {
   return (
     <div className="v2-screen v2-workspace v2-evidence">
       <Ambient />
-      <Nav
+      <AppPageHeader
+        title="Evidence"
         id={id}
-        data={data}
-        active="evidence"
-        context={
-          data
-            ? `${data.shots.length} real shots · ${data.batches.length} takes`
-            : "—"
-        }
+        productionName={data?.project.name}
       />
       <main className="v2-detail-wrap">
-        <RevealHeadline
-          lead="Memory across takes."
-          continuation="Original shots. Real checks."
-        />
+        <p className="v2-muted">Original shots. Real checks.</p>
         {error && (
           <ErrorNotice
             retry={() => {

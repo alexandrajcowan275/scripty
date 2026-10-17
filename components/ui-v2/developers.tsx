@@ -1,4 +1,5 @@
 "use client";
+import { AppPageHeader } from "../ui/app-shell";
 import { useEffect, useState } from "react";
 import { Ambient, MotionLink, RevealHeadline } from "../ui/motion";
 import { ErrorNotice, Nav } from "../ui/chrome";
@@ -25,12 +26,9 @@ function ApiContent() {
   return (
     <div className="v2-screen v2-developers">
       <Ambient />
-      <Nav active="api" data={data} context="REST · JSON" />
+      <AppPageHeader title="API" productionName={data?.project.name} />
       <main className="v2-detail-wrap v2-api-wrap">
-        <RevealHeadline
-          lead="Continuity belongs in your pipeline."
-          continuation="Same canon. Every prompt and check."
-        />
+        <p className="v2-muted">Same canon. Every prompt and check.</p>
         {error && (
           <ErrorNotice
             retry={() => {

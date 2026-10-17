@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AppPageHeader } from "../ui/app-shell";
+import { Icon } from "../icons";
 import { ShotImage } from "../shot-image";
 import { AccessDialog, ActionDock, Brand, ErrorNotice } from "../ui/chrome";
 import { Ambient, MotionLink, Scan, useMotionNavigation } from "../ui/motion";
@@ -213,8 +215,19 @@ export function NewProductionScreen() {
   return (
     <div className="v2-screen v2-setup">
       <Ambient />
-      <header className="v2-top">
-        <Brand />
+      <AppPageHeader
+        title="New production"
+        action={
+          <button
+            className="v2-button"
+            disabled={!valid || !!busy}
+            onClick={() => void create()}
+          >
+            Generate take 1 →
+          </button>
+        }
+      />
+      <header className="v2-setup-toolbar">
         <div className="v2-segment" role="group" aria-label="Production setup">
           <button
             className={mode === "quick" ? "on" : ""}
@@ -231,7 +244,7 @@ export function NewProductionScreen() {
             Studio · script
           </button>
         </div>
-        <MotionLink href="/" className="v2-text-button">
+        <MotionLink href="/dashboard" className="v2-text-button">
           Cancel
         </MotionLink>
       </header>
@@ -548,13 +561,6 @@ export function NewProductionScreen() {
               : config.observedImageCostUsd * scenePrompts.length,
           )}
         </span>
-        <button
-          className="v2-button"
-          disabled={!valid || !!busy}
-          onClick={() => void create()}
-        >
-          {busy === "create" ? "Opening your set…" : "Generate take 1 →"}
-        </button>
       </ActionDock>
       <AccessDialog
         open={access}

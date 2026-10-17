@@ -1,4 +1,5 @@
 "use client";
+import { AppPageHeader } from "../ui/app-shell";
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -302,6 +303,19 @@ export function StudioScreen() {
       void action("generate");
     }
   }, [data, search, config?.authorized]);
+  useEffect(() => {
+    if (search.get("panel") === "memory") setDrawer("memory");
+  }, [search.get("panel")]);
+  const closeDrawer = () => {
+    setDrawer(null);
+    if (search.get("panel") === "memory") {
+      const query = new URLSearchParams(search.toString());
+      query.delete("panel");
+      router.replace(`/p/${id}${query.size ? `?${query}` : ""}`, {
+        scroll: false,
+      });
+    }
+  };
   const choose = (batch: Batch) => {
     setActiveId(batch.id);
     const query = new URLSearchParams(search.toString());
@@ -313,7 +327,11 @@ export function StudioScreen() {
   return (
     <div className="v2-screen v2-workspace v2-studio">
       <Ambient />
-      <Nav id={id} data={data} />
+      <AppPageHeader
+        title="Studio"
+        id={id}
+        productionName={data?.project.name}
+      />
       <div className="v2-studio-grid">
         <div className="v2-desktop-rail">
           {data && <TakeRail data={data} active={active} choose={choose} />}
@@ -339,7 +357,7 @@ export function StudioScreen() {
             </button>
           </div>
           <div className="v2-contact-heading">
-            <h1>
+            <h2>
               {active ? (
                 <>
                   Take {active.index}{" "}
@@ -355,7 +373,7 @@ export function StudioScreen() {
               ) : (
                 "Your first take."
               )}
-            </h1>
+            </h2>
             <p
               className="v2-mono v2-model-line"
               title={
@@ -508,12 +526,12 @@ export function StudioScreen() {
         ref={railDialog}
         className="v2-rail-dialog"
         aria-label={drawer === "takes" ? "Takes" : "Memory"}
-        onCancel={() => setDrawer(null)}
+        onCancel={closeDrawer}
         onClose={() => setDrawer(null)}
       >
         <button
           className="v2-close"
-          onClick={() => setDrawer(null)}
+          onClick={closeDrawer}
           aria-label={`Close ${drawer ?? "drawer"}`}
         >
           ×
