@@ -101,7 +101,7 @@ function LandingContent() {
               <aside className="v2-hero-checklist v2-glass">
                 <div className="v2-rail-heading">
                   <span className="v2-label">
-                    {frameName(hero, data)} · checking
+                    {frameName(hero, data)} · checked
                   </span>
                   <span className="v2-label v2-drift-text">
                     {failedCheck(hero) ? "Flagged" : "Checked"}

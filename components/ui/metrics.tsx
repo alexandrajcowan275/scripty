@@ -2,7 +2,11 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { InView } from "./motion";
 import { percent } from "../ui-v2/data";
-import { metricsVisible, type Evaluation } from "../ui-v2/evaluation";
+import {
+  metricsVisible,
+  type Evaluation,
+  type MatrixCell,
+} from "../ui-v2/evaluation";
 export function Stat({
   label,
   value,
@@ -17,7 +21,11 @@ export function Stat({
   return (
     <div className={`v2-stat ${memory ? "memory" : ""}`}>
       <span className="v2-label">{label}</span>
-      <div className="v2-stat-value v2-mono">{value}</div>
+      <div
+        className={`v2-stat-value v2-mono ${value === "—" ? "unavailable" : ""}`}
+      >
+        {value}
+      </div>
       <div className="v2-stat-description">{children}</div>
     </div>
   );
@@ -26,17 +34,17 @@ export function ConfusionMatrix({
   evaluation,
   total,
   answered,
-  updating = false,
+  updatedCell = null,
 }: {
   evaluation: Evaluation | null;
   total: number | null;
   answered: number | null;
-  updating?: boolean;
+  updatedCell?: MatrixCell | null;
 }) {
   const matrix = evaluation?.confusionMatrix,
     value = (key: keyof NonNullable<typeof matrix>) => matrix?.[key] ?? "—";
   return (
-    <section className={`v2-matrix-panel ${updating ? "updated" : ""}`}>
+    <section className="v2-matrix-panel">
       <div className="v2-rail-heading">
         <h2 className="v2-label">Your labels vs monitor</h2>
         <span className="v2-mono">
@@ -53,17 +61,21 @@ export function ConfusionMatrix({
         <span>you: drift</span>
         <span>you: ok</span>
         <span>flagged</span>
-        <div className="caught">
+        <div
+          className={`caught ${updatedCell === "truePositives" ? "updated" : ""}`}
+        >
           <strong>{value("truePositives")}</strong>caught
         </div>
-        <div>
+        <div className={updatedCell === "falsePositives" ? "updated" : ""}>
           <strong>{value("falsePositives")}</strong>false alarm
         </div>
         <span>passed</span>
-        <div>
+        <div className={updatedCell === "falseNegatives" ? "updated" : ""}>
           <strong>{value("falseNegatives")}</strong>missed
         </div>
-        <div className="correct">
+        <div
+          className={`correct ${updatedCell === "trueNegatives" ? "updated" : ""}`}
+        >
           <strong>{value("trueNegatives")}</strong>correct
         </div>
       </div>

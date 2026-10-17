@@ -50,6 +50,12 @@ export function MemoryUpdate({
     }
     if (!open) dialog.current?.close();
   }, [open]);
+  useEffect(() => {
+    if (!open) return;
+    setRecheck(false);
+    setFix(false);
+    setError("");
+  }, [open]);
   async function save() {
     if ((recheck || fix) && !config?.authorized) {
       setAccess(true);

@@ -50,6 +50,13 @@
   --glass-sheen: rgba(255, 255, 255, 0.45);
   --glass-hud: rgba(255, 255, 255, 0.82);
   --pass-strong: #0f6334;
+  --answer-pass: #e9f7ef;
+  --answer-pass-border: #bfe6cf;
+  --answer-pass-text: #145c38;
+  --answer-drift: #fdeded;
+  --answer-drift-border: #f5c2c3;
+  --answer-drift-text: #9e1f24;
+  --shadow-card-stack: rgba(17, 17, 17, 0.14);
   --shadow-tint-subtle: rgba(23, 23, 20, 0.06);
   --shadow-tint-soft: rgba(23, 23, 20, 0.08);
   --shadow-tint: rgba(23, 23, 20, 0.1);
