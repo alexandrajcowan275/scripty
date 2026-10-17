@@ -110,3 +110,7 @@ Add the founder-requested /dashboard overview from existing owner-scoped APIs. C
 ## October 17 morning — Scripty URLs
 
 Founder requested a reversible URL rebrand before the 9:30am freeze. Add `getscripty.vercel.app` as a production domain of the existing `canon` project, preserving all old aliases; the first two requested names were already in use. Rename the private GitHub repository to `scripty` while retaining its numeric repository identity and old-URL redirect, and update origin. Keep local folder/project identifiers unchanged. A docs-only push verifies Git-triggered production delivery before changing app metadata. Preserve hostname-scoped owner sessions on the old URL rather than transferring private browser capabilities.
+
+## October 17 morning — licensed editorial presentation
+
+The founder directly confirmed in Main that credited Unsplash/Pexels photographs are allowed as brand atmosphere on landing and Home. Apply the cool studio palette and orange memory accents while keeping layouts/data intact. Credits, source/license links, camera provenance, responsive sizes and hashes are in `public/brand/CREDITS.md`. Mara remains the product content. Original sample/A/B assets stay unchanged; cool grading, grain and cropping are presentation-only on landing/dashboard. Review and Evidence images receive no filters or transformations from this treatment. Use darker small-text variants to meet AA contrast on the cool canvas, and include three contrast/scope checks in normal CI. Stop deployments at 9:30am PT.
