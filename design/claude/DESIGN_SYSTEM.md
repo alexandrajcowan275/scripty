@@ -91,3 +91,7 @@ The connected four-node pipeline uses source-sized left-aligned cards, dashed li
 ## Optional location reference
 
 Shared `LocationReference` reads the owner-scoped locations API and appears only when a real record returns. Memory shows the reviewed still through its image endpoint, preserving the complete image. This is reference context, not a generation or checking claim. The Marble world is private: its caption is non-interactive and explains permission is required; no dead viewer action is offered. Missing/error responses hide optional context without interrupting review. No duplicate binary, external world generation, or permission change is introduced.
+
+## Recovery states
+
+Shared `RecoveryScreen` supplies branded missing-route and render-error states using the same headline, ambient, brand and navigation primitives. One action returns to the production catalog, where Mara remains available. Recovery does not replay a generation/review, expose an internal error or replace actual data with a fabricated result. Inline request errors continue to preserve the current work and provide their existing explicit retry.
