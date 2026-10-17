@@ -1,3 +1,5 @@
+import "../components/ui-v2/data.test";
+import "../components/ui-v2/evaluation.test";
 import "./test-backend";
 import assert from "node:assert/strict";
 import test from "node:test";
