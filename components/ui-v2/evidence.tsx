@@ -65,6 +65,7 @@ export function EvidenceScreen() {
         title="Evidence"
         id={id}
         productionName={data?.project.name}
+        memoryRules={data?.rules}
       />
       <main className="v2-detail-wrap">
         <h2 className="v2-section-title">Evidence</h2>

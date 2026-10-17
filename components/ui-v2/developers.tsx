@@ -26,7 +26,11 @@ function ApiContent() {
   return (
     <div className="v2-screen v2-developers">
       <Ambient />
-      <AppPageHeader title="API" productionName={data?.project.name} />
+      <AppPageHeader
+        title="API"
+        productionName={data?.project.name}
+        memoryRules={data?.rules}
+      />
       <main className="v2-detail-wrap v2-api-wrap">
         <h2 className="v2-section-title">API</h2>
         {error && (

@@ -5,6 +5,7 @@ import { LearnedRuleCard } from "./rule-card";
 import { AccessDialog, ErrorNotice } from "./chrome";
 import {
   nextTakeIndex,
+  generatedBatchId,
   frameName,
   currentShot,
   operationIssue,
@@ -14,6 +15,7 @@ import {
   type ReviewReceipt,
 } from "../ui-v2/data";
 import { useProduction } from "../ui-v2/provider";
+import { useMotionNavigation } from "./motion";
 import { useConfiguration } from "../ui-v2/config";
 
 export function MemoryUpdate({
@@ -35,6 +37,7 @@ export function MemoryUpdate({
   onNext: () => void;
   onSave: () => void;
 }) {
+  const navigate = useMotionNavigation();
   const heading = useRef<HTMLHeadingElement>(null);
   const dialog = useRef<HTMLDialogElement>(null),
     { run, busy } = useProduction(),
@@ -251,7 +254,13 @@ export function MemoryUpdate({
                   const result = await run("generate");
                   if (operationIssue(result))
                     throw new Error(operationIssue(result));
-                  onSave();
+                  const batchId = generatedBatchId("generate", result);
+                  if (batchId)
+                    navigate(
+                      `/p/${data.project.id}?take=${encodeURIComponent(batchId)}`,
+                      "memory",
+                    );
+                  else onSave();
                 } catch (e) {
                   setError(message(e));
                 }

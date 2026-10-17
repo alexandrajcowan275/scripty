@@ -110,7 +110,7 @@ function DashboardContent() {
   return (
     <div className="v2-screen v2-workspace v2-dashboard">
       <Ambient />
-      <AppPageHeader title="Productions" />
+      <AppPageHeader title="Productions" memoryRules={data?.rules} />
       <main className="v2-dashboard-main">
         {(error || ownedError) && (
           <ErrorNotice retry={retry}>{error || ownedError}</ErrorNotice>

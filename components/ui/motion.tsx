@@ -40,6 +40,12 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     (href: string, kind: TransitionKind = "page") => {
       document.documentElement.dataset.transition = kind;
       if (
+        (/^\/(dashboard|projects|productions|new|developers|p)(\/|$)/.test(
+          pathname,
+        ) &&
+          /^\/(dashboard|projects|productions|new|developers|p)(\/|$)/.test(
+            href,
+          )) ||
         !document.startViewTransition ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches
       ) {
@@ -60,7 +66,7 @@ export function MotionProvider({ children }: { children: ReactNode }) {
           }),
       );
     },
-    [router],
+    [router, pathname],
   );
   return (
     <MotionContext.Provider value={{ navigate }}>
@@ -82,6 +88,7 @@ export function MotionLink({
   style,
   title,
   onNavigate,
+  "aria-label": ariaLabel,
 }: {
   href: string;
   kind?: TransitionKind;
@@ -90,6 +97,7 @@ export function MotionLink({
   style?: CSSProperties;
   title?: string;
   onNavigate?: () => void;
+  "aria-label"?: string;
 }) {
   const navigate = useMotionNavigation();
   return (
@@ -98,6 +106,7 @@ export function MotionLink({
       className={className}
       style={style}
       title={title}
+      aria-label={ariaLabel}
       onClick={(e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         e.preventDefault();

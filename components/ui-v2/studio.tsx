@@ -90,15 +90,9 @@ export function MemoryPanel({
           land={rule.id === landedRuleId}
         />
       ))}
-      {!rules.length && (
-        <p className="v2-memory-note">
-          Review a shot. Your continuity notes collect here.
-        </p>
-      )}
+      {!rules.length && <p className="v2-memory-note">No learned rules yet.</p>}
       <LocationReference projectId={data.project.id} />
-      <p className="v2-memory-note">
-        Notes collect here first. Nothing regenerates until you choose.
-      </p>
+      <p className="v2-memory-note"></p>
     </aside>
   );
 }
@@ -322,6 +316,7 @@ export function StudioScreen() {
         title="Studio"
         id={id}
         productionName={data?.project.name}
+        memoryRules={data?.rules}
         action={
           <button
             className="v2-button"

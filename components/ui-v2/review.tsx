@@ -214,6 +214,7 @@ export function ReviewScreen({
           title="Review"
           id={id}
           productionName={data?.project.name}
+          memoryRules={data?.rules}
         />
       )}
       <header className="v2-review-top">

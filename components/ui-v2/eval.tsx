@@ -154,7 +154,12 @@ export function EvalScreen() {
   return (
     <div className="v2-screen v2-eval">
       <Ambient />
-      <AppPageHeader title="Eval" id={id} productionName={data?.project.name} />
+      <AppPageHeader
+        title="Eval"
+        id={id}
+        productionName={data?.project.name}
+        memoryRules={data?.rules}
+      />
       <div className="v2-eval-layout">
         <main className="v2-eval-main">
           {(error || productionError) && (

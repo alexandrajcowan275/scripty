@@ -10,6 +10,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import type { Rule } from "@/lib/types";
 import { usePathname, useRouter } from "next/navigation";
 import { Brand } from "./chrome";
 import { Icon, type IconName } from "../icons";
@@ -17,12 +18,23 @@ import { MotionLink } from "./motion";
 
 const ShellContext = createContext<{
   register: (id: string, name: string) => void;
+  remember: (id: string, rule: Rule) => void;
 } | null>(null);
 export function AppShell({ children }: { children: ReactNode }) {
   const router = useRouter();
   const path = usePathname(),
     content = useRef<HTMLDivElement>(null);
   const [names, setNames] = useState<Record<string, string>>({});
+  const [memories, setMemories] = useState<Record<string, Rule>>({});
+  const remember = useCallback(
+    (id: string, rule: Rule) =>
+      setMemories((previous) =>
+        previous[id]?.id === rule.id && previous[id]?.text === rule.text
+          ? previous
+          : { ...previous, [id]: rule },
+      ),
+    [],
+  );
   const register = useCallback(
     (id: string, name: string) =>
       setNames((previous) =>
@@ -30,7 +42,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       ),
     [],
   );
-  const value = useMemo(() => ({ register }), [register]);
+  const value = useMemo(() => ({ register, remember }), [register, remember]);
   const isApp =
     /^\/(dashboard|projects|productions|new|developers|p)(\/|$)/.test(path);
   const id = path.match(/^\/p\/([^/]+)/)?.[1],
@@ -114,6 +126,15 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="v2-dashboard-group-label">Platform</span>
             {nav("API", "terminal", "/developers", path === "/developers")}
           </nav>
+          {memories[productionId] && (
+            <div className="v2-shell-memory" key={memories[productionId].id}>
+              <span className="v2-label">Memory</span>
+              <p>
+                <i className="v2-memory-dot" />
+                {memories[productionId].text}
+              </p>
+            </div>
+          )}
         </aside>
         <div ref={content} className="v2-shell-page">
           {children}
@@ -127,14 +148,22 @@ export function AppPageHeader({
   title,
   id,
   productionName,
+  memoryRules,
   action,
 }: {
   title: string;
   id?: string;
   productionName?: string;
+  memoryRules?: Rule[];
   action?: ReactNode;
 }) {
   const shell = useContext(ShellContext);
+  const latestRule = [...(memoryRules ?? [])]
+    .filter((rule) => rule.source !== "seed")
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
+  useEffect(() => {
+    if (latestRule) shell?.remember(id ?? "mara", latestRule);
+  }, [id, latestRule, shell?.remember]);
   useEffect(() => {
     if (id && productionName) shell?.register(id, productionName);
   }, [id, productionName, shell?.register]);

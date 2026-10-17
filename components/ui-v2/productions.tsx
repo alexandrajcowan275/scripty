@@ -10,7 +10,7 @@ function ProductionCatalog() {
   return (
     <div className="v2-screen v2-productions">
       <Ambient warm />
-      <AppPageHeader title="Productions" />
+      <AppPageHeader title="Productions" memoryRules={data?.rules} />
       <div className="v2-page-wrap">
         <main className="v2-production-catalog">
           <ul className="v2-production-grid" aria-label="Productions">
