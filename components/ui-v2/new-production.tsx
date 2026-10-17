@@ -126,6 +126,12 @@ export function NewProductionScreen() {
       setBusy("");
     }
   }
+  function removeCanon(key: string) {
+    setAttributes((previous) => previous.filter((row) => row.key !== key));
+    setSides((previous) =>
+      Object.fromEntries(Object.entries(previous).filter(([id]) => id !== key)),
+    );
+  }
   function confirmSide(item: Canon, side: "left" | "right") {
     setSides((previous) => ({ ...previous, [item.key]: side }));
     setAttributes((previous) =>
@@ -335,7 +341,7 @@ export function NewProductionScreen() {
             </div>
             {attributes.map((item) => (
               <div
-                className={`v2-canon-row ${needsSide(item) && !sides[item.key] ? "needs-confirm" : ""}`}
+                className={`v2-canon-row ${needsSide(item) ? "has-side" : ""} ${needsSide(item) && !sides[item.key] ? "needs-confirm" : ""}`}
                 key={item.key}
               >
                 <div>
@@ -407,19 +413,14 @@ export function NewProductionScreen() {
                       </button>
                     ))}
                   </div>
-                ) : (
-                  <button
-                    className="v2-close"
-                    aria-label={`Remove ${item.label}`}
-                    onClick={() =>
-                      setAttributes((previous) =>
-                        previous.filter((row) => row.key !== item.key),
-                      )
-                    }
-                  >
-                    ×
-                  </button>
-                )}
+                ) : null}
+                <button
+                  className="v2-close"
+                  aria-label={`Remove ${item.label}`}
+                  onClick={() => removeCanon(item.key)}
+                >
+                  ×
+                </button>
               </div>
             ))}
             {!attributes.length && (

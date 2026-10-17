@@ -28,8 +28,8 @@ export function ConfusionMatrix({
   updating = false,
 }: {
   evaluation: Evaluation | null;
-  total: number;
-  answered: number;
+  total: number | null;
+  answered: number | null;
   updating?: boolean;
 }) {
   const matrix = evaluation?.confusionMatrix,
@@ -39,12 +39,12 @@ export function ConfusionMatrix({
       <div className="v2-rail-heading">
         <h2 className="v2-label">Your labels vs monitor</h2>
         <span className="v2-mono">
-          {answered} / {total || "—"}
+          {answered ?? "—"} / {total ?? "—"}
         </span>
       </div>
       <progress
         max={total || 1}
-        value={answered}
+        value={answered ?? 0}
         aria-label="Questions answered"
       />
       <div className="v2-matrix">
