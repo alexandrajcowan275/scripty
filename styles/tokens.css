@@ -109,6 +109,7 @@
   --editorial-cool-wash: rgba(151, 178, 205, 0.1);
   --editorial-shadow: 0 16px 56px rgba(14, 15, 18, 0.16);
   --cinema-cycle: 32s;
+  --cinema-scrim-min: 58%;
   --cinema-mountains: url("/brand/cinema-mountains.webp");
   --editorial-visor: url("/brand/editorial-visor-marcin-sajur.webp");
   --editorial-couture: url("/brand/editorial-couture-felix-young.webp");

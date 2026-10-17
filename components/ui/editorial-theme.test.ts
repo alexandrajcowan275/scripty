@@ -85,3 +85,24 @@ test("the image color grade can only apply to landing and dashboard image layers
   });
   assert.ok(found);
 });
+
+test("cinematic white text remains AA over even the brightest source photograph", () => {
+  const opacity = parseFloat(tokens.get("--cinema-scrim-min")!) / 100;
+  assert.ok(opacity >= 0 && opacity <= 1);
+  const ink = color("--text")
+    .slice(1)
+    .match(/../g)!
+    .map((channel) => parseInt(channel, 16));
+  const brightest =
+    "#" +
+    ink
+      .map((channel) =>
+        Math.round(channel * opacity + 255 * (1 - opacity))
+          .toString(16)
+          .padStart(2, "0"),
+      )
+      .join("");
+  const ratio =
+    (luminance(color("--surface")) + 0.05) / (luminance(brightest) + 0.05);
+  assert.ok(ratio >= 4.5, `Hero small-text contrast ${ratio}`);
+});
