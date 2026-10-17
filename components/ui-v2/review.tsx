@@ -1,4 +1,5 @@
 "use client";
+import { AppPageHeader } from "../ui/app-shell";
 
 import { useEffect, useRef, useState } from "react";
 import type { Shot } from "@/lib/types";
@@ -197,6 +198,11 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
   return (
     <div className="v2-screen v2-workspace v2-review">
       <Ambient />
+      <AppPageHeader
+        title="Review"
+        id={id}
+        productionName={data?.project.name}
+      />
       <header className="v2-review-top">
         <div className="v2-review-top-left">
           <button className="v2-button v2-light v2-small" onClick={goBack}>
@@ -270,7 +276,7 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
         <ScreenSkeleton review />
       ) : !shot || !data ? (
         <main className="v2-loading-page">
-          <h1>This shot isn’t on the contact sheet.</h1>
+          <h2>This shot isn’t on the contact sheet.</h2>
           <button className="v2-button" onClick={goBack}>
             Back to Studio
           </button>
@@ -344,7 +350,7 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
                   ? " · rechecked"
                   : ""}
               </span>
-              <h1>
+              <h2>
                 {shot.flagged
                   ? `${failedCheck(shot) ? checkLabel(failedCheck(shot)!.key, data) : "This shot"} needs a second look.`
                   : !shot.checks.length
@@ -352,7 +358,7 @@ export function ReviewScreen({ shotId }: { shotId: string }) {
                     : shot.checks.some(unclear)
                       ? "A detail is still unclear."
                       : "The character holds."}
-              </h1>
+              </h2>
             </div>
             <CheckList shot={shot} data={data} />
             <div className="v2-review-note">

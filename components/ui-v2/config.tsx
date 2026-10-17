@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { request } from "./data";
+import { AppShell } from "../ui/app-shell";
 import { MotionProvider } from "../ui/motion";
 
 export type Configuration = {
@@ -48,7 +49,9 @@ export function ApplicationProviders({ children }: { children: ReactNode }) {
   }, [refreshConfig]);
   return (
     <ConfigurationContext.Provider value={{ config, refreshConfig }}>
-      <MotionProvider>{children}</MotionProvider>
+      <MotionProvider>
+        <AppShell>{children}</AppShell>
+      </MotionProvider>
     </ConfigurationContext.Provider>
   );
 }

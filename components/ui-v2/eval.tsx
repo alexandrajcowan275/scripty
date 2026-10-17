@@ -1,4 +1,5 @@
 "use client";
+import { AppPageHeader } from "../ui/app-shell";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ShotImage } from "../shot-image";
 import { ErrorNotice, Kbd, Nav } from "../ui/chrome";
@@ -153,12 +154,7 @@ export function EvalScreen() {
   return (
     <div className="v2-screen v2-eval">
       <Ambient />
-      <Nav
-        id={id}
-        data={data}
-        active="eval"
-        context="Blind review · monitor verdict hidden"
-      />
+      <AppPageHeader title="Eval" id={id} productionName={data?.project.name} />
       <div className="v2-eval-layout">
         <main className="v2-eval-main">
           {(error || productionError) && (
@@ -186,9 +182,9 @@ export function EvalScreen() {
                   Question {new Set(labels?.labels.map(questionKey)).size + 1}{" "}
                   of {labels?.questions.length ?? "—"}
                 </span>
-                <h1>
+                <h2>
                   Does this shot show <span>{question.expected}?</span>
-                </h1>
+                </h2>
               </div>
               <QuestionDeck
                 question={question}
@@ -233,11 +229,11 @@ export function EvalScreen() {
             </>
           ) : labels ? (
             <section className="v2-empty-production">
-              <h1>
+              <h2>
                 {labels.questions.length
                   ? "That’s a wrap."
                   : "No shots to judge yet."}
-              </h1>
+              </h2>
               <p>
                 {labels.questions.length
                   ? "Your judgments are saved for this production."

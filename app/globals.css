@@ -5,6 +5,7 @@
 @import "../styles/ui-v2.css";
 @import "../styles/workspace.css";
 @import "../styles/cinematic.css";
+@import "../styles/app-shell.css";
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--text);
