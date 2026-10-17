@@ -64,3 +64,5 @@ Current controls: $30 global cap, $2.23 founder-reported baseline, a separate $1
 `GET /api/project/:id/locations` returns reviewed location metadata. Mara has one existing World Labs capture and a real external Marble link; owned productions currently return an empty array. This read-only route performs no generation or location continuity checking.
 
 Mara's blind question list now starts with the12controlled A/B shots (48canon questions), before the original history. Ring/scar checks come first within each study shot. Question payloads contain no condition, prediction, confidence or drift flag. Submitted labels for those study shot IDs are saved normally and included in free human-only evaluation; production take counts remain unchanged.
+
+`GET /api/eval?projectId=mara` is the read-only equivalent of `POST /api/eval {projectId}`. It uses the same owner-scoped human labels and frozen predictions, sets no-store, and never runs a model or writes labels. GET accepts only `projectId`; recheck/draft options are rejected. POST remains compatible.

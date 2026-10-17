@@ -6,7 +6,7 @@ cd ~/canon && npm run dev
 
 Open http://localhost:3000. Public: **https://canon-woad.vercel.app/**. Latest founder-supplied submission deadline: **October17,2026,2:00pm PT**. Final overnight handoff: **6:15am PT**.
 
-Updated3:52am PT. Interim checkpoint. Current verified public UI release: `dd95173` on private `main`. All eight pages, the controlled A/B blind queue, Studio/Review refinements and the generated-take navigation fix are live. Bundled same-origin study images, stale-hold preflight cleanup and the refined Memory sheet are verified live. Design is refining Landing and remaining pages.
+Updated4:16am PT. Interim checkpoint. Current verified public release: `f668b5b` on private `main`. Studio, Review, Memory, Landing and Mara-first production catalog refinements are live. Same-origin study images and the read-only World Labs metadata/platform still are verified. Design is finishing New/Evidence/Eval/API and the optional location card; Main is adding the equivalent read-only GET evaluation method before the UI query switches.
 
 ## What works
 
@@ -32,6 +32,6 @@ Founder: supply real blind labels (the new12 A/B images will be first), record/u
 
 ## In progress
 
-A/B blind queue verified on publiccb84f34:210cards, first48cover all12studyimages, conditions/predictions hidden, zero human labels. Public new-production UI loop also passed generation→editednote→live memory→regeneration, with1prompt/1checkreach and$0.121538estimated additional usage. The selected-take navigation defect is fixed in241f899; oldTake1 correctly offers GenerateTake3, and Take2 selection updates the URL. Remaining: incremental Design refinements and a read-only card for the existing World Labs location. No new paid world generation or accounts/cross-device recovery is promised.
+A/B blind queue verified on publiccb84f34:210cards, first48cover all12studyimages, conditions/predictions hidden, zero human labels. Public new-production UI loop also passed generation→editednote→live memory→regeneration, with1prompt/1checkreach and$0.121538estimated additional usage. The selected-take navigation defect is fixed in241f899; oldTake1 correctly offers GenerateTake3, and Take2 selection updates the URL. Remaining: incremental Design refinements and the optional card for the now-live World Labs location data. No new paid world generation or accounts/cross-device recovery is promised.
 
 Capacity note: the existing three-take lifetime attempt limit remains. Automatic review rejected Main's proposed hourly replacement as an expansion of persistent paid capacity; no such migration ran. The verified Night Train production has2of3attempts used, one remaining. Changing this setting is optional founder approval work after waking; Mara's four original takes remain available.

@@ -26,3 +26,5 @@
 - Serve the fixed study's existing PNGs through a same-origin allowlist. Literal read paths make all12assets verifiable in Next's function trace without duplicating the corpus or editing Design's UI paths. Raw provider URLs remain in the experiment receipt; public blind cards contain only the local image path and no condition/verdict.
 
 - Locations metadata uses the existing reviewed World Labs platform capture and real Marble link. Serve the original PNG through a statically traced backend route, avoiding another copy in public assets or new world generation. Mara's read-only catalog is independent of image/character monitoring; other owned productions currently return no locations.
+
+- Add a read-only GET alias for human evaluation so page mounting/QA need no POST exception. Both methods share one owner-scoped evaluator; GET accepts only projectId, POST retains explicit rejection of recheck/draft options, and neither can call a model or save labels. Preserve existing POST clients.
