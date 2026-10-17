@@ -1,3 +1,4 @@
+import { shotSchema, batchSchema, traceSchema } from "../lib/db";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -161,12 +162,16 @@ test("fresh database reads retain the original scene order despite concurrent ra
   const { orderShotsForReview } = await import("../lib/shot-order");
   const manifest = await import("../seed/cache/manifest.json");
   const entries = manifest.default.batches;
-  const shots = entries.flatMap((entry) => entry.shots);
+  const shots = entries
+    .flatMap((entry) => entry.shots)
+    .map((shot) => shotSchema.parse(shot));
   const reversed = [...shots].reverse();
   const result = orderShotsForReview(
     reversed,
-    entries.map((entry) => entry.batch),
-    entries.flatMap((entry) => entry.traces),
+    entries.map((entry) => batchSchema.parse(entry.batch)),
+    entries
+      .flatMap((entry) => entry.traces)
+      .map((trace) => traceSchema.parse(trace)),
   );
   assert.deepEqual(
     result.map((shot) => shot.id),

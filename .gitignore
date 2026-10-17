@@ -14,3 +14,6 @@ supabase/.temp/
 supabase/.branches/
 
 .canon-cache/
+
+# Local mirror retained; canonical design research is handoff/screenshots/research/.
+handoff/design-research-assets/
