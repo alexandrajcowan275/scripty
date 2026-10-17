@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       const entry = cached.cache?.batches[cached.state.count];
       if (!entry) throw new HttpError(cached.cache ? "All recorded batches have been replayed. Clear site data to start again." : "No recorded batches installed. Capture real engine batches first.", 409);
       cached.state.count++;
-      return Response.json({ batch: entry.batch, shots: entry.shots.map((shot) => ({ ...shot, status: "pending", rejectReason: undefined })), ...cacheMetadata }, { headers: { "Set-Cookie": sessionCookie(cached.state), "Cache-Control": "no-store", "x-canon-mode": "cached" } });
+      return Response.json({ batch: entry.batch, shots: entry.shots.map((shot) => ({ ...shot, status: "pending", rejectReason: undefined })), ...cacheMetadata, recordedRuleIds: entry.batch.rulesApplied }, { headers: { "Set-Cookie": sessionCookie(cached.state), "Cache-Control": "no-store", "x-canon-mode": "cached" } });
     }
     const snapshot = await getProject(input.projectId); if (!snapshot) throw new HttpError("Project not found", 404);
     const character = snapshot.project.characters[0]; if (!character) throw new HttpError("Project has no character sheet", 409);

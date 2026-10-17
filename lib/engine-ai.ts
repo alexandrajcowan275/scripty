@@ -17,7 +17,14 @@ export async function aiFetch(url: string, init: RequestInit, deadline = Date.no
   if (!response.ok) throw new Error(`AI provider returned HTTP ${response.status}`);
   return response;
 }
+export function assertBudgetedTextModel(model: string): void {
+  if (!["gpt-4.1-mini", "gpt-4.1-mini-2025-04-14", "gpt-4o-mini", "gpt-4o-mini-2024-07-18"].includes(model)) throw new Error("Text model is outside the budgeted allowlist; use gpt-4.1-mini or gpt-4o-mini");
+}
 export async function structuredCall<T>(options: { schema: z.ZodType<T>; name: string; system: string; content: unknown[]; model: string; usage: Usage; deadline?: number; reservation?: number }): Promise<T> {
+  assertBudgetedTextModel(options.model);
+  const ruleCall = options.name === "canon_rule";
+  if (options.system.length > 4000) throw new Error("System prompt exceeds the budgeted input limit");
+  if (JSON.stringify(options.content.filter((item) => !(item && typeof item === "object" && "type" in item && item.type === "input_image"))).length > (ruleCall ? 12000 : 32000)) throw new Error("Text context exceeds the budgeted input limit");
   if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not configured");
   let failure: unknown;
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -26,7 +33,7 @@ export async function structuredCall<T>(options: { schema: z.ZodType<T>; name: s
       options.usage.textRequests++;
       const response = await aiFetch("https://api.openai.com/v1/responses", {
         method: "POST", headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ model: options.model, max_output_tokens: 2400, store: false,
+        body: JSON.stringify({ model: options.model, max_output_tokens: ruleCall ? 600 : 2400, store: false,
           instructions: options.system, input: [{ role: "user", content: options.content }],
           text: { format: { type: "json_schema", name: options.name, strict: true, schema: z.toJSONSchema(options.schema) } } }),
       }, options.deadline);

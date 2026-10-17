@@ -34,7 +34,7 @@ export async function loadCache() {
   try { return manifestSchema.parse(JSON.parse(await readFile(path.join(process.cwd(), "seed/cache/manifest.json"), "utf8"))); }
   catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") return null; throw new Error("Recorded cache is invalid; regenerate it before serving the demo."); }
 }
-export async function cachedProject(request: Request, projectId: string): Promise<{ data: ProjectData; state: DemoState; cache: Awaited<ReturnType<typeof loadCache>> } | null> {
+export async function cachedProject(request: Request, projectId: string): Promise<{ data: ProjectData; state: DemoState; cache: Awaited<ReturnType<typeof loadCache>>; recordedRuleIds: string[] } | null> {
   const project = projectSchema.parse(seed.project);
   if (project.id !== projectId) return null;
   const cache = await loadCache();
@@ -42,13 +42,19 @@ export async function cachedProject(request: Request, projectId: string): Promis
   const state = readDemoState(request, projectId);
   const entries = cache?.batches.slice(0, state.count) ?? [];
   const rules = new Map<string, Rule>(seed.rules.map((rule) => [rule.id, rule as Rule]));
+  // Captured review snapshots can contain rules learned AFTER this batch. Show only
+  // the historical constraints actually applied to delivered generation entries.
+  for (const entry of entries) for (const rule of entry.rules) {
+    if (entry.batch.rulesApplied.includes(rule.id)) rules.set(rule.id, rule);
+  }
   for (const rule of state.rules) rules.set(rule.id, rule);
   const shots = entries.flatMap((entry) => entry.shots).map((shot) => {
     const review = state.reviews.find((item) => item.id === shot.id);
     return review ? { ...shot, status: review.decision === "accept" ? "accepted" as const : "rejected" as const, rejectReason: review.decision === "reject" ? review.reason : undefined } : { ...shot, status: "pending" as const, rejectReason: undefined };
   });
   const localTraces: TraceEvent[] = state.rules.map((rule) => ({ id: `local-${rule.id}`, projectId, type: "rule_learned", message: `Cached session correction (local extraction, no AI call): ${rule.text}`, createdAt: rule.createdAt }));
-  return { data: { project, rules: [...rules.values()], batches: entries.map((entry) => entry.batch), shots, traces: [...entries.flatMap((entry) => entry.traces), ...localTraces] }, state, cache };
+  const recordedRuleIds = [...new Set(entries.flatMap((entry) => entry.batch.rulesApplied))].filter((id) => rules.has(id) && !state.rules.some((rule) => rule.id === id));
+  return { recordedRuleIds, data: { project, rules: [...rules.values()], batches: entries.map((entry) => entry.batch), shots, traces: [...new Map(entries.flatMap((entry) => entry.traces).map((trace) => [trace.id, { ...trace, message: `[Recorded engine] ${trace.message}` }])).values(), ...localTraces] }, state, cache };
 }
-export const cacheMetadata = { mode: "cached", provenance: "cached_real_engine", warning: "Replaying recorded images and measured checks. Reviews and local memory persist in this browser; recorded generation results do not change when you add a correction." };
+export const cacheMetadata = { mode: "cached", cacheAvailable: true, provenance: "cached_real_engine", warning: "Replaying recorded images and measured checks. Reviews and local memory persist in this browser; recorded generation results do not change when you add a correction." };
 export async function fallbackImage(index: number): Promise<string> { const cache = await loadCache(); return cache?.batches[0]?.shots[index % 6]?.imageUrl ?? seed.project.characters[0].referenceImageUrl; }

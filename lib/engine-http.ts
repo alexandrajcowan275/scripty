@@ -25,6 +25,8 @@ export function apiError(error: unknown): Response {
 export const projectIdSchema = z.string().trim().min(1).max(100).regex(/^[a-zA-Z0-9_-]+$/);
 export async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T, index: number) => Promise<R>): Promise<R[]> {
   const results = new Array<R>(items.length); let cursor = 0;
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => { while (cursor < items.length) { const index = cursor++; results[index] = await fn(items[index], index); } }));
+  const workers = await Promise.allSettled(Array.from({ length: Math.min(limit, items.length) }, async () => { while (cursor < items.length) { const index = cursor++; results[index] = await fn(items[index], index); } }));
+  const failed = workers.find((worker) => worker.status === "rejected");
+  if (failed?.status === "rejected") throw failed.reason;
   return results;
 }

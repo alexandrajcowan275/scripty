@@ -7,7 +7,7 @@
 - Vision Responses `text.format` strict JSON Schema generated from Zod, then Zod validation and exact required-key coverage validation. Character attributes plus EVERY active rule are independent checks. Occlusion/unavailable evidence returns uncertain, `pass:false`, confidence zero; never counted as pass. `flagged` is exactly any failure confidence ≥.6; score is weighted confidence of failures divided by all check weights.
 - LLM rejection extraction creates ONE short testable rule, merges exact normalized text or explicitly selected semantic equivalent while preserving ID/usage. Prompt ordering is usage descending then newest. Accepted shots stored by DB review API are selected by lowest drift score for future extra references.
 - Routes persist batches, shots, reviews, rules, usages and categorized traces. Eval uses Data's verified hand labels, excludes drafts by default; fresh paid recheck requires authorized live mode and returns error if monitor unavailable, rather than success metrics.
-- Cached replay reads `seed/cache/manifest.json` real-engine manifest and serves raster images at `/api/cache/images/[filename]`. No global mutable demo state and no API/DB requirement: bounded, signed, compressed HttpOnly cookie stores replay count, viewer reviews and local correction rules. Separate browsers are isolated; refresh survives cold starts. Recorded rules captured after scripted reviews are NOT preloaded into viewer memory. Recorded images/checks/prompts/curve remain unchanged; response warnings explain historical replay versus local extraction.
+- Cached replay reads `seed/cache/manifest.json` real-engine manifest and serves raster images at `/api/cache/images/[filename]`. No global mutable demo state and no API/DB requirement: bounded, signed, compressed HttpOnly cookie stores replay count, viewer reviews and local correction rules. Separate browsers are isolated; refresh survives cold starts. Recorded rules are visible only when their IDs occur in a delivered batch’s rulesApplied; rules learned after a captured batch are not preloaded early. recordedRuleIds metadata distinguishes recorded constraints from browser corrections, and historical trace messages are prefixed [Recorded engine]. Recorded images/checks/prompts/curve remain unchanged; response warnings explain historical replay versus local extraction.
 - Production defaults to cached unless `DEMO_MODE=live`. `x-canon-mode:live` cannot override cached environment. If `CANON_ADMIN_TOKEN` set, live access requires matching `x-canon-admin-token`; ordinary public requests still use cached. Response metadata `mode`, `provenance`, `warning`, `usage`, `imageProvenance` is additive to shared contracts.
 
 ## No mock outcomes
@@ -47,3 +47,11 @@ No fake generation/check/learning outcomes are returned. A missing cache yields 
 - https://ai.google.dev/gemini-api/docs/image-generation — inlineData reference inputs and IMAGE output.
 - https://supabase.com/docs/reference/javascript/rpc — durable budget RPC access. Changelog fetch attempted but tool returned internal error; no Supabase schema edits by engine.
 - Vercel Functions skill consulted: default Node runtime, stateless invocations, maxDuration300, explicit filesystem tracing caveat.
+
+## Integration followup
+
+- Normalized monitor evidence now drives BOTH flags and failure traces; an unclear high-confidence raw response cannot emit a confident flag trace.
+- Successful image generation followed by failed Storage upload immediately records a storage fallback; it never buys a second generation to solve a storage outage. Independent worker successes finish/persist even if another worker fails.
+- Text models are allowlisted to gpt-4.1-mini / gpt-4o-mini and their known dated snapshots; text context/output caps preserve pessimistic per-call reservations. Unknown models fail before reservation/network.
+- cacheAvailable metadata distinguishes missing cache from an available cache with no delivered batches.
+-13 regression tests and typecheck pass; no real API calls performed. Mock dependency seam exercises paid-generation success/storage failure without real requests.

@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import seed from "../seed/mara.json";
 import { buildFinalPrompt, localRejectionRule, mergeRule, orderRules } from "../lib/rules";
-import { scoreChecks, uncertainChecks, monitorImage } from "../lib/monitor";
+import { scoreChecks, uncertainChecks, monitorImage, normalizeMonitorChecks } from "../lib/monitor";
+import { assertBudgetedTextModel, emptyUsage, structuredCall } from "../lib/engine-ai";
+import { z } from "zod";
 import { generateImage } from "../lib/generate";
 import { readDemoState, sessionCookie, type DemoState } from "../lib/engine-cache";
 import { liveMode, mapLimit } from "../lib/engine-http";
@@ -87,9 +89,9 @@ test("cached API replay, review and refresh share only the signed browser state"
   const cwd = process.cwd(), oldMode = process.env.DEMO_MODE;
   try {
     await mkdir(path.join(directory, "seed/cache"), { recursive: true });
-    const batch = { id: "recorded", projectId: "mara", index: 1, rulesApplied: [], driftRate: 1 / 6, createdAt: "2026-10-17T00:00:00.000Z" };
+    const batch = { id: "recorded", projectId: "mara", index: 1, rulesApplied: ["captured-applied"], driftRate: 1 / 6, createdAt: "2026-10-17T00:00:00.000Z" };
     const shots = Array.from({ length: 6 }, (_, index) => ({ ...shot, id: `recorded-${index}`, batchId: "recorded", status: "rejected", rejectReason: "Captured script reason", flagged: index === 0 }));
-    await writeFile(path.join(directory, "seed/cache/manifest.json"), JSON.stringify({ version: 1, projectId: "mara", provenance: "real_engine", createdAt: batch.createdAt, batches: [{ batch, shots, rules: [{ ...rules[0], id: "captured-only" }], traces: [] }] }));
+    await writeFile(path.join(directory, "seed/cache/manifest.json"), JSON.stringify({ version: 1, projectId: "mara", provenance: "real_engine", createdAt: batch.createdAt, batches: [{ batch, shots, rules: [{ ...rules[0], id: "captured-only" }, { ...rules[0], id: "captured-applied", text: "A recorded applied constraint." }], traces: [{ id: "applied-trace", projectId: "mara", type: "rule_applied", message: "Applied recorded constraint", createdAt: batch.createdAt }] }] }));
     process.chdir(directory); process.env.DEMO_MODE = "cached";
     const initial = await projectGet(new Request("http://localhost"), { params: Promise.resolve({ id: "mara" }) });
     assert.equal((await initial.json()).shots.length, 0);
@@ -100,10 +102,51 @@ test("cached API replay, review and refresh share only the signed browser state"
     assert.equal(review.status, 200); const reviewCookie = review.headers.get("set-cookie")!.split(";")[0];
     const refreshed = await projectGet(new Request("http://localhost", { headers: { cookie: reviewCookie } }), { params: Promise.resolve({ id: "mara" }) });
     const refreshedData = await refreshed.json();
-    assert.equal(refreshedData.shots[0].status, "rejected"); assert.equal(refreshedData.rules.length, 3); assert.ok(!refreshedData.rules.some((rule: Rule) => rule.id === "captured-only"));
+    assert.equal(refreshedData.shots[0].status, "rejected"); assert.equal(refreshedData.rules.length, 4); assert.ok(refreshedData.rules.some((rule: Rule) => rule.id === "captured-applied")); assert.ok(refreshedData.traces.some((trace: { message: string }) => trace.message.startsWith("[Recorded engine]"))); assert.ok(!refreshedData.rules.some((rule: Rule) => rule.id === "captured-only"));
     const secondBrowser = await projectGet(new Request("http://localhost"), { params: Promise.resolve({ id: "mara" }) });
     assert.equal((await secondBrowser.json()).shots.length, 0);
     const exhausted = await batchPost(new Request("http://localhost", { method: "POST", headers: { cookie: reviewCookie }, body: JSON.stringify({ projectId: "mara" }) }));
     assert.equal(exhausted.status, 409);
   } finally { process.chdir(cwd); if (oldMode === undefined) delete process.env.DEMO_MODE; else process.env.DEMO_MODE = oldMode; await rm(directory, { recursive: true, force: true }); }
+});
+
+test("unclear high-confidence provider output cannot create a confident failure trace", () => {
+  const output = character.attributes.map((attribute) => ({ key: attribute.key, observed: attribute.expected, pass: true, confidence: .9, note: null, category: null as "attribute_drift" | null }));
+  output[0] = { ...output[0], observed: "unclear because the scarf is occluded", pass: false, category: "attribute_drift" };
+  const normalized = normalizeMonitorChecks(output, character, []);
+  assert.equal(normalized.checks[0].confidence, .49); assert.equal(normalized.failures.length, 0); assert.equal(scoreChecks(normalized.checks, character, []).flagged, false);
+  output[1] = { ...output[1], observed: "scar over the RIGHT eye", pass: false, category: "attribute_drift" };
+  const visibleFailure = normalizeMonitorChecks(output, character, []);
+  assert.equal(visibleFailure.failures.length, 1); assert.equal(visibleFailure.failures[0].key, "scar_side");
+});
+
+test("storage failure after paid image success never generates a second image", async () => {
+  const key = process.env.OPENAI_API_KEY; process.env.OPENAI_API_KEY = "test-only-not-real";
+  let requests = 0, reservations = 0, uploads = 0;
+  try {
+    const generated = await generateImage({ finalPrompt: "scene", referenceImageUrl: "/reference.png", fallbackImageUrl: "/fallback.png", filename: "x.png" }, {
+      image: async () => "data:image/png;base64,dGVzdA==",
+      reserve: async (_amount, usage) => { reservations++; usage.reservedUsd += .5; },
+      request: async () => { requests++; return Response.json({ data: [{ b64_json: "dGVzdA==" }] }); },
+      upload: async () => { uploads++; throw new Error("Storage unavailable"); },
+    });
+    assert.equal(requests, 1); assert.equal(reservations, 1); assert.equal(uploads, 1); assert.equal(generated.provenance, "cached_fallback"); assert.ok(generated.errors.some((error) => error.includes("storage upload failed")));
+  } finally { if (key === undefined) delete process.env.OPENAI_API_KEY; else process.env.OPENAI_API_KEY = key; }
+});
+
+test("unbudgeted text models fail closed before reservation or network", async () => {
+  assert.doesNotThrow(() => assertBudgetedTextModel("gpt-4.1-mini"));
+  assert.throws(() => assertBudgetedTextModel("future-very-expensive-model"), /budgeted allowlist/);
+  const usage = emptyUsage();
+  await assert.rejects(structuredCall({ schema: z.strictObject({ value: z.string() }), name: "test", model: "future-very-expensive-model", system: "test", content: [], usage }), /budgeted allowlist/);
+  assert.equal(usage.reservedUsd, 0); assert.equal(usage.textRequests, 0);
+});
+
+test("partial job failure waits for independent successful persistence before rejecting", async () => {
+  const saved: number[] = [];
+  await assert.rejects(mapLimit([0, 1, 2], 2, async (value) => {
+    if (value === 0) throw new Error("One shot failed");
+    await new Promise((resolve) => setTimeout(resolve, 2)); saved.push(value); return value;
+  }), /One shot failed/);
+  assert.deepEqual(saved, [1, 2]);
 });
