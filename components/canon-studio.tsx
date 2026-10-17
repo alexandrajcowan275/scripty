@@ -31,7 +31,7 @@ async function api<T>(url: string, options?: RequestInit): Promise<T> {
   const abort = () => controller.abort();
   external?.addEventListener("abort", abort, { once: true });
   if (external?.aborted) controller.abort();
-  const timeout = setTimeout(abort, options?.method === "POST" ? 190_000 : 20_000);
+  const timeout = setTimeout(abort, url === "/api/batch" ? 310_000 : options?.method === "POST" ? 190_000 : 20_000);
   try {
     const response = await fetch(url, { ...options, signal: controller.signal, cache: "no-store", headers: { "Content-Type": "application/json", ...options?.headers } });
     let payload;
