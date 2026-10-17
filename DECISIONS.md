@@ -157,3 +157,11 @@ Public390px verification found the final hero line extending beyond its containe
 ## October17 — final dark workspace integration
 
 Integrate the six founder-approved Design commits through413c750 onto the new cinematic landing2414247. Keep the shared56px header and grouped sidebar, real production table/contact sheet, embedded Studio review, API-returned learned-rule card, original Evidence imagery and existing generation/access contracts. The learned-card next-take action opens the actual API-returned batch id. No API, database, original sample images, human labels or tests changed. Main’s exact combined checkout passes92tests, production build, typecheck and diff check; publish the existing Vercel production project before pushing, then verify the requested public routes and rejection loop.
+
+## 2026-10-17 — Separate public information from the Studio
+
+Founder requested an immediate navigation correction while Claude designs the final public pages. Product stays on the landing's existing `#how` section; API stays at `/developers` but now uses a public website header/footer; new `/evidence` explains the recorded study outside the app shell. All landing buttons labeled Open studio/Open the studio now target `/dashboard`. Production-specific `/p/:id/evidence` remains inside Studio. The landing CSS, composition, animation and copy are unchanged; only destinations changed.
+
+Public pages are server-rendered from existing documentation and the immutable Mara cache. They do not load private production state or run generation. Evidence retains all 24 original frames, 2/6,0/6,0/6,1/6 monitor flags, 18/18 memory reach, and the matched flat A/B result without claiming measured visual improvement. Layouts are intentionally functional pending Claude's design, rather than implementing the rejected mockups.
+
+94 tests and production build pass. Local 1440px/390px browser checks confirm public API/Evidence have no Studio shell, all three landing Open studio links target the dashboard, Product returns to the existing section, and production Evidence retains its app shell. No mutating requests or AI calls. Publishing is held in response to the founder's newer “Don't deploy yet” instruction in the code-review chat.

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { isStudioRoute } from "@/lib/navigation";
 import { usePathname, useRouter } from "next/navigation";
 import {
   createContext,
@@ -40,12 +41,7 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     (href: string, kind: TransitionKind = "page") => {
       document.documentElement.dataset.transition = kind;
       if (
-        (/^\/(dashboard|projects|productions|new|developers|p)(\/|$)/.test(
-          pathname,
-        ) &&
-          /^\/(dashboard|projects|productions|new|developers|p)(\/|$)/.test(
-            href,
-          )) ||
+        (isStudioRoute(pathname) && isStudioRoute(href)) ||
         !document.startViewTransition ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches
       ) {

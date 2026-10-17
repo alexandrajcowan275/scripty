@@ -7,7 +7,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test scripts/test-data.ts scripts/test-cache.ts tests/engine.test.ts tests/sample-review.test.ts components/batch-evidence.test.tsx components/demo-evidence.test.ts tests/productions.test.ts components/ui/legacy-route.test.ts components/ui/image-source.test.ts components/ui-v2/dashboard-data.test.ts components/ui/editorial-theme.test.ts",
+    "test": "node --import tsx --test scripts/test-data.ts scripts/test-cache.ts tests/engine.test.ts tests/sample-review.test.ts components/batch-evidence.test.tsx components/demo-evidence.test.ts tests/productions.test.ts components/ui/legacy-route.test.ts components/ui/image-source.test.ts components/ui-v2/dashboard-data.test.ts components/ui/editorial-theme.test.ts tests/navigation.test.ts",
     "seed": "tsx scripts/seed.ts",
     "eval": "tsx scripts/run-eval.ts",
     "cache:demo": "tsx scripts/cache-demo.ts"

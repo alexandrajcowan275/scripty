@@ -1,0 +1,137 @@
+{
+  "sourceCommits": {
+    "sampleFixes": "a783863",
+    "introAndTraceFixes": "2f23949",
+    "navigation": "954b28c"
+  },
+  "unitTests": {
+    "passed": 95,
+    "failed": 0,
+    "skipped": 0
+  },
+  "productionBuild": "passed including TypeScript",
+  "intro": {
+    "base": "http://localhost:3007",
+    "results": [
+      {
+        "width": 1440,
+        "test": "fresh-reduced-motion",
+        "status": "passed"
+      },
+      {
+        "width": 1440,
+        "test": "normal-timer-and-session",
+        "status": "passed"
+      },
+      {
+        "width": 1440,
+        "test": "preference-changes-during-intro",
+        "status": "passed"
+      },
+      {
+        "width": 1440,
+        "test": "pointer-dismisses-intro",
+        "status": "passed"
+      },
+      {
+        "width": 1440,
+        "test": "wheel-dismisses-intro",
+        "status": "passed"
+      },
+      {
+        "width": 1440,
+        "test": "navigation-cleans-intro",
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "test": "fresh-reduced-motion",
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "test": "normal-timer-and-session",
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "test": "preference-changes-during-intro",
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "test": "pointer-dismisses-intro",
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "test": "wheel-dismisses-intro",
+        "status": "passed"
+      },
+      {
+        "width": 390,
+        "test": "navigation-cleans-intro",
+        "status": "passed"
+      }
+    ]
+  },
+  "demo": [
+    {
+      "width": 1440,
+      "status": "passed",
+      "publicNavigation": true,
+      "mobileLandingInfoLinksHiddenByExistingDesign": false,
+      "publicPagesOutsideStudio": true,
+      "neutralPersistedTrace": true,
+      "shots": 24,
+      "rates": [
+        0.333333333333333,
+        0,
+        0,
+        0.166666666666667
+      ],
+      "correctionSaved": true,
+      "reloadPersisted": true,
+      "duplicateMerged": true,
+      "acceptPersisted": true,
+      "recordedEvidenceUnchanged": true,
+      "browserIsolated": true,
+      "sampleGenerationActionAbsent": true,
+      "consoleErrors": [],
+      "failedResponses": [],
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "status": "passed",
+      "publicNavigation": true,
+      "mobileLandingInfoLinksHiddenByExistingDesign": true,
+      "publicPagesOutsideStudio": true,
+      "neutralPersistedTrace": true,
+      "shots": 24,
+      "rates": [
+        0.333333333333333,
+        0,
+        0,
+        0.166666666666667
+      ],
+      "correctionSaved": true,
+      "reloadPersisted": true,
+      "duplicateMerged": true,
+      "acceptPersisted": true,
+      "recordedEvidenceUnchanged": true,
+      "browserIsolated": true,
+      "sampleGenerationActionAbsent": true,
+      "consoleErrors": [],
+      "failedResponses": [],
+      "horizontalOverflow": false
+    }
+  ],
+  "limits": [
+    "No paid model extraction/generation/repair/recheck exercised",
+    "No database writes or human labels submitted",
+    "Pending v4 public-page designs are not part of this verified baseline",
+    "Existing landing hides non-Studio navigation links on mobile; those destinations were opened directly at390px, then public-page links were clicked",
+    "No push or deployment"
+  ]
+}
